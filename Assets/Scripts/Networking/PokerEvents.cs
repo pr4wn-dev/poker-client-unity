@@ -33,10 +33,13 @@ namespace PokerClient.Networking
         public const string SearchUsers = "search_users";
         
         // ============ Adventure Mode ============
-        public const string GetLevels = "get_levels";
+        public const string GetWorldMap = "get_world_map";
+        public const string GetAreaBosses = "get_area_bosses";
         public const string StartAdventure = "start_adventure";
         public const string AdventureAction = "adventure_action";
         public const string ForfeitAdventure = "forfeit_adventure";
+        public const string GetActiveSession = "get_active_session";
+        public const string UseXpItem = "use_xp_item";
         
         // ============ Inventory ============
         public const string GetInventory = "get_inventory";
@@ -69,9 +72,14 @@ namespace PokerClient.Networking
         public const string TableInviteReceived = "table_invite_received";
         
         // Adventure Events
+        public const string WorldMapState = "world_map_state";
+        public const string AreaBosses = "area_bosses";
         public const string AdventureState = "adventure_state";
         public const string AdventureResult = "adventure_result";
         public const string BossTaunt = "boss_taunt";
+        public const string XpGained = "xp_gained";
+        public const string LevelUp = "level_up";
+        public const string RareDropObtained = "rare_drop_obtained";
         
         // Side Pot Events
         public const string SidePotStarted = "side_pot_started";

@@ -62,7 +62,32 @@ namespace PokerClient.Networking
         ChipStyle,
         Trophy,
         Consumable,
-        Special
+        Special,
+        LocationKey,  // Unlocks special map areas
+        Vehicle,      // Yacht, jet, etc.
+        XpBoost       // XP multiplier items
+    }
+    
+    public enum AreaType
+    {
+        Starter,
+        City,
+        Casino,
+        Underground,
+        Vip,
+        Yacht,
+        Island,
+        Penthouse,
+        Secret
+    }
+    
+    public enum AreaUnlockType
+    {
+        XpLevel,
+        BossDefeat,
+        Item,
+        Chips,
+        Achievement
     }
     
     public enum BossDifficulty
@@ -243,15 +268,70 @@ namespace PokerClient.Networking
     
     #region Adventure Mode Models
     
+    // ============ XP & Progression ============
+    
+    [Serializable]
+    public class PlayerXPInfo
+    {
+        public int xp;
+        public int level;
+        public int? xpForNextLevel;
+        public int xpProgress; // Percentage to next level
+    }
+    
     [Serializable]
     public class AdventureProgress
     {
-        public int currentLevel;
-        public int highestLevel;
+        public string currentArea;
         public List<string> bossesDefeated;
+        public Dictionary<string, int> bossDefeatCounts;
         public int totalWins;
         public int totalLosses;
     }
+    
+    // ============ World Map ============
+    
+    [Serializable]
+    public class WorldMapState
+    {
+        public int playerLevel;
+        public int playerXP;
+        public int xpProgress;
+        public int? xpForNextLevel;
+        public int maxLevel;
+        public List<AreaInfo> areas;
+    }
+    
+    [Serializable]
+    public class AreaInfo
+    {
+        public string id;
+        public string name;
+        public string type;
+        public string description;
+        public string icon;
+        public Position position;
+        public bool isUnlocked;
+        public List<AreaRequirement> requirements;
+        public int bossCount;
+        public int completedBosses;
+    }
+    
+    [Serializable]
+    public class Position
+    {
+        public int x;
+        public int y;
+    }
+    
+    [Serializable]
+    public class AreaRequirement
+    {
+        public string type; // "xp_level", "boss_defeat", "item", "chips"
+        public string value;
+    }
+    
+    // ============ Boss Models ============
     
     [Serializable]
     public class BossInfo
@@ -279,22 +359,29 @@ namespace PokerClient.Networking
     }
     
     [Serializable]
-    public class LevelInfo
+    public class BossListItem
     {
-        public int level;
-        public string bossId;
-        public string bossName;
-        public string bossAvatar;
+        public string id;
+        public string name;
+        public string avatar;
+        public string description;
         public string difficulty;
-        public bool isUnlocked;
-        public bool isDefeated;
+        public int minLevel;
+        public int entryFee;
+        public bool canChallenge;
+        public string challengeBlockedReason;
+        public int defeatCount;
         public RewardPreview rewards;
     }
     
     [Serializable]
     public class RewardPreview
     {
+        public int xp;
         public int coins;
+        public int chips;
+        public int entryFee;
+        public int minLevel;
         public List<DropChance> possibleDrops;
     }
     
@@ -303,34 +390,54 @@ namespace PokerClient.Networking
     {
         public string itemId;
         public float chance;
+        public int minDefeats; // Must defeat boss X times before this can drop
     }
+    
+    // ============ Session & Results ============
     
     [Serializable]
     public class AdventureSession
     {
-        public string oderId;
-        public int level;
+        public string userId;
         public BossInfo boss;
         public int userChips;
         public int handsPlayed;
+        public int entryFee;
     }
     
     [Serializable]
     public class AdventureResult
     {
         public string status;  // "victory", "defeat", "ongoing"
-        public int level;
-        public string boss;
+        public BossResultInfo boss;
         public int handsPlayed;
         public AdventureRewards rewards;
+        public int playerXP;
+        public int playerLevel;
+        public int xpProgress;
+        public int defeatCount;
+        public bool isFirstDefeat;
+        public int consolationXP;  // XP given even on defeat
+        public int entryFeeLost;
         public string message;
+    }
+    
+    [Serializable]
+    public class BossResultInfo
+    {
+        public string id;
+        public string name;
+        public string winQuote;
+        public string loseQuote;
     }
     
     [Serializable]
     public class AdventureRewards
     {
+        public int xp;
         public int coins;
-        public List<Item> items;
+        public int chips;
+        public List<ItemInfo> items;
     }
     
     #endregion
