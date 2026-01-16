@@ -442,6 +442,126 @@ namespace PokerClient.Networking
     
     #endregion
     
+    #region Tournament Models
+    
+    public enum TournamentStatus
+    {
+        Registering,
+        Starting,
+        InProgress,
+        FinalTable,
+        Completed,
+        Cancelled
+    }
+    
+    public enum TournamentType
+    {
+        SitNGo,
+        Scheduled,
+        Freeroll,
+        Satellite
+    }
+    
+    [Serializable]
+    public class TournamentInfo
+    {
+        public string id;
+        public string name;
+        public string areaId;
+        public string type;
+        public string status;
+        public int registeredCount;
+        public int minPlayers;
+        public int maxPlayers;
+        public int startingChips;
+        public int entryFee;
+        public int minLevel;
+        public int minChips;
+        public List<string> requiredItems;
+        public bool sidePotRequired;
+        public string sidePotMinRarity;
+        public int prizePool;
+        public int xpPrizePool;
+        public long? scheduledStart;
+        public int currentBlindLevel;
+        public BlindLevel blinds;
+        
+        // Added by client when checking eligibility
+        public TournamentEligibility canEnter;
+    }
+    
+    [Serializable]
+    public class TournamentEligibility
+    {
+        public bool canEnter;
+        public string reason;
+        public List<string> reasons;
+    }
+    
+    [Serializable]
+    public class BlindLevel
+    {
+        public int small;
+        public int big;
+        public int ante;
+    }
+    
+    [Serializable]
+    public class TournamentState
+    {
+        public string id;
+        public string name;
+        public string areaId;
+        public string status;
+        public int registeredCount;
+        public int maxPlayers;
+        public int prizePool;
+        public int xpPrizePool;
+        public List<TournamentPlayer> players;
+        public List<TournamentSidePotEntry> sidePotItems;
+        public int eliminatedCount;
+        public Dictionary<int, int> payoutStructure;
+        public int currentBlindLevel;
+        public BlindLevel blinds;
+    }
+    
+    [Serializable]
+    public class TournamentPlayer
+    {
+        public string oderId;
+        public string username;
+        public bool isEliminated;
+        public int? seatAssignment;
+    }
+    
+    [Serializable]
+    public class TournamentSidePotEntry
+    {
+        public string oderId;
+        public ItemInfo item;
+    }
+    
+    [Serializable]
+    public class TournamentResult
+    {
+        public string status;
+        public string oderId;
+        public List<TournamentPayout> payouts;
+    }
+    
+    [Serializable]
+    public class TournamentPayout
+    {
+        public string oderId;
+        public int position;
+        public int chips;
+        public int xp;
+        public ItemInfo itemPrize;
+        public List<ItemInfo> sidePotItems;
+    }
+    
+    #endregion
+    
     #region House Rules Models
     
     [Serializable]

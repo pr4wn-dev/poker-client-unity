@@ -41,6 +41,15 @@ namespace PokerClient.Networking
         public const string GetActiveSession = "get_active_session";
         public const string UseXpItem = "use_xp_item";
         
+        // ============ Tournaments ============
+        public const string GetAreaTournaments = "get_area_tournaments";
+        public const string GetAllTournaments = "get_all_tournaments";
+        public const string RegisterTournament = "register_tournament";
+        public const string UnregisterTournament = "unregister_tournament";
+        public const string GetTournamentState = "get_tournament_state";
+        public const string GetMyTournament = "get_my_tournament";
+        public const string GetEligibleSidePotItems = "get_eligible_side_pot_items";
+        
         // ============ Inventory ============
         public const string GetInventory = "get_inventory";
         public const string EquipItem = "equip_item";
@@ -80,6 +89,17 @@ namespace PokerClient.Networking
         public const string XpGained = "xp_gained";
         public const string LevelUp = "level_up";
         public const string RareDropObtained = "rare_drop_obtained";
+        
+        // Tournament Events
+        public const string TournamentList = "tournament_list";
+        public const string TournamentState = "tournament_state";
+        public const string TournamentPlayerJoined = "tournament_player_joined";
+        public const string TournamentPlayerLeft = "tournament_player_left";
+        public const string TournamentStarting = "tournament_starting";
+        public const string TournamentStarted = "tournament_started";
+        public const string TournamentEliminated = "tournament_eliminated";
+        public const string TournamentCompleted = "tournament_completed";
+        public const string TournamentBlindLevelUp = "tournament_blind_level_up";
         
         // Side Pot Events
         public const string SidePotStarted = "side_pot_started";
