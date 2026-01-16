@@ -43,6 +43,13 @@ namespace PokerClient.Networking
         public const string EquipItem = "equip_item";
         public const string UnequipItem = "unequip_item";
         
+        // ============ Side Pot (Item Gambling) ============
+        public const string StartSidePot = "start_side_pot";
+        public const string SubmitToSidePot = "submit_to_side_pot";
+        public const string OptOutSidePot = "opt_out_side_pot";
+        public const string ApproveSidePotItem = "approve_side_pot_item";
+        public const string DeclineSidePotItem = "decline_side_pot_item";
+        
         // ============ Server -> Client Events ============
         public const string TableCreated = "table_created";
         public const string PlayerJoined = "player_joined";
@@ -65,6 +72,14 @@ namespace PokerClient.Networking
         public const string AdventureState = "adventure_state";
         public const string AdventureResult = "adventure_result";
         public const string BossTaunt = "boss_taunt";
+        
+        // Side Pot Events
+        public const string SidePotStarted = "side_pot_started";
+        public const string SidePotSubmission = "side_pot_submission";
+        public const string SidePotItemApproved = "side_pot_item_approved";
+        public const string YourSidePotApproved = "your_side_pot_approved";
+        public const string YourSidePotDeclined = "your_side_pot_declined";
+        public const string SidePotAwarded = "side_pot_awarded";
     }
     
     /// <summary>

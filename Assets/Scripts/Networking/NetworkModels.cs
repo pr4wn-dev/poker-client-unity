@@ -371,6 +371,126 @@ namespace PokerClient.Networking
     
     #endregion
     
+    #region Side Pot Models (Item Gambling)
+    
+    public enum SidePotStatus
+    {
+        Inactive,
+        Collecting,
+        Locked,
+        Awarded
+    }
+    
+    public enum SubmissionStatus
+    {
+        Pending,
+        Approved,
+        Declined,
+        OptedOut
+    }
+    
+    [Serializable]
+    public class SidePotState
+    {
+        public string id;
+        public string status;
+        public string creatorId;
+        public SidePotItem creatorItem;
+        public long collectionEndTime;
+        public int approvedCount;
+        public int totalValue;
+        public List<SidePotEntry> approvedItems;
+        public List<SidePotSubmission> pendingSubmissions;  // Only for creator
+        public MySubmission mySubmission;  // User's own submission status
+        public string winnerId;  // Set when awarded
+        
+        public SidePotStatus GetStatus()
+        {
+            return status?.ToLower() switch
+            {
+                "inactive" => SidePotStatus.Inactive,
+                "collecting" => SidePotStatus.Collecting,
+                "locked" => SidePotStatus.Locked,
+                "awarded" => SidePotStatus.Awarded,
+                _ => SidePotStatus.Inactive
+            };
+        }
+        
+        public bool IsActive => GetStatus() != SidePotStatus.Inactive;
+        public bool IsCollecting => GetStatus() == SidePotStatus.Collecting;
+    }
+    
+    [Serializable]
+    public class SidePotItem
+    {
+        public string id;
+        public string name;
+        public string rarity;
+        public string type;
+        public string icon;
+        public int baseValue;
+    }
+    
+    [Serializable]
+    public class SidePotEntry
+    {
+        public string oderId;
+        public SidePotItem item;
+    }
+    
+    [Serializable]
+    public class SidePotSubmission
+    {
+        public string oderId;
+        public SidePotItem item;
+        public long submittedAt;
+    }
+    
+    [Serializable]
+    public class MySubmission
+    {
+        public string status;
+        public SidePotItem item;
+        
+        public SubmissionStatus GetStatus()
+        {
+            return status?.ToLower() switch
+            {
+                "pending" => SubmissionStatus.Pending,
+                "approved" => SubmissionStatus.Approved,
+                "declined" => SubmissionStatus.Declined,
+                "opted_out" => SubmissionStatus.OptedOut,
+                _ => SubmissionStatus.Pending
+            };
+        }
+    }
+    
+    // Events
+    [Serializable]
+    public class SidePotStartedEvent
+    {
+        public string creatorId;
+        public SidePotItem creatorItem;
+        public long collectionEndTime;
+    }
+    
+    [Serializable]
+    public class SidePotSubmissionEvent
+    {
+        public string oderId;
+        public string username;
+        public SidePotItem item;
+    }
+    
+    [Serializable]
+    public class SidePotAwardedEvent
+    {
+        public string winnerId;
+        public List<SidePotItem> items;
+    }
+    
+    #endregion
+    
     #region Table Models
     
     [Serializable]
@@ -388,6 +508,8 @@ namespace PokerClient.Networking
         public bool gameStarted;
         public bool allowSpectators;
         public string houseRulesPreset;
+        public bool hasSidePot;
+        public int sidePotItemCount;
         public long createdAt;
     }
     
@@ -402,6 +524,7 @@ namespace PokerClient.Networking
         public bool isFolded;
         public bool isAllIn;
         public bool isConnected;
+        public bool inSidePot;  // Whether player is participating in item side pot
         public List<Card> cards;
         
         public bool IsEmpty => string.IsNullOrEmpty(playerId);
@@ -422,7 +545,9 @@ namespace PokerClient.Networking
         public int handsPlayed;
         public int spectatorCount;
         public bool isSpectating;
+        public string creatorId;
         public HouseRules houseRules;
+        public SidePotState sidePot;  // Item side pot state
         public List<SeatInfo> seats;
         
         public GamePhase GetPhase()
