@@ -438,6 +438,9 @@ namespace PokerClient.Networking
         public int handsPlayed;
         public int entryFee;
         public int level;
+        
+        // Alias for backwards compatibility
+        public string userId { get => oderId; set => oderId = value; }
     }
     
     [Serializable]
