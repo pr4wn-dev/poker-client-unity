@@ -233,7 +233,7 @@ namespace PokerClient.UI.Scenes
         
         private void LoadStats()
         {
-            var user = GameService.CurrentUser;
+            var user = GameService.Instance?.CurrentUser;
             if (user == null)
             {
                 usernameText.text = "Not logged in";
@@ -257,7 +257,7 @@ namespace PokerClient.UI.Scenes
             var progress = user.adventureProgress;
             if (progress != null)
             {
-                adventureProgressText.text = progress.bossesDefeated.ToString("N0");
+                adventureProgressText.text = (progress.bossesDefeated?.Count ?? 0).ToString("N0");
             }
             
             // Playtime (mock for now)

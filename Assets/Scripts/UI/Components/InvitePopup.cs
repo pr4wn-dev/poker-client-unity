@@ -232,7 +232,7 @@ namespace PokerClient.UI.Components
             OnInviteAccepted?.Invoke(invite);
             
             // Join the table
-            _gameService?.JoinTable(invite.tableId, invite.password, (success, state, error) =>
+            _gameService?.JoinTable(invite.tableId, null, invite.password, (success, error) =>
             {
                 if (success)
                 {

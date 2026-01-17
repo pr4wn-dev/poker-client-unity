@@ -178,7 +178,7 @@ namespace PokerClient.UI.Components
         
         private void CreateQuickButton(Transform parent, string label, System.Action onClick)
         {
-            var btn = UIFactory.CreateButton(parent, $"Quick{label}", label, onClick);
+            var btn = UIFactory.CreateButton(parent, $"Quick{label}", label, () => onClick?.Invoke());
             btn.GetComponent<RectTransform>().sizeDelta = new Vector2(70, 40);
             btn.GetComponent<Image>().color = Theme.Current.cardPanelColor;
         }

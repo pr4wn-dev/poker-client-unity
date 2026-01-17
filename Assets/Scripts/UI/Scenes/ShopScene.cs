@@ -364,7 +364,7 @@ namespace PokerClient.UI.Scenes
         
         private void UpdateBalances()
         {
-            var user = GameService.CurrentUser;
+            var user = GameService.Instance?.CurrentUser;
             if (user != null)
             {
                 chipsBalanceText.text = user.chips.ToString("N0");

@@ -80,6 +80,7 @@ namespace PokerClient.Networking
         public event Action<string> OnPlayerLeftTable; // playerId
         public event Action<HandResultData> OnHandComplete;
         public event Action<TableInviteData> OnInviteReceived;
+        public event Action<string, string, string> OnChatMessageReceived; // playerId, username, message
         
         public event Action<WorldMapState> OnWorldMapReceived;
         public event Action<List<BossListItem>> OnBossesReceived;
@@ -118,6 +119,7 @@ namespace PokerClient.Networking
                 _socket.OnPlayerLeft += HandlePlayerLeft;
                 _socket.OnHandResult += HandleHandResult;
                 _socket.OnTableInvite += HandleTableInvite;
+                _socket.OnChatMessage += HandleChatMessage;
                 _socket.OnAdventureResult += HandleAdventureResult;
                 _socket.OnWorldMapState += HandleWorldMapState;
                 
@@ -148,6 +150,7 @@ namespace PokerClient.Networking
                     _socket.OnPlayerLeft -= HandlePlayerLeft;
                     _socket.OnHandResult -= HandleHandResult;
                     _socket.OnTableInvite -= HandleTableInvite;
+                    _socket.OnChatMessage -= HandleChatMessage;
                     _socket.OnAdventureResult -= HandleAdventureResult;
                     _socket.OnWorldMapState -= HandleWorldMapState;
                 }
@@ -356,7 +359,7 @@ namespace PokerClient.Networking
                     }
                     
                     Debug.Log($"Reconnected to table: {response.tableName}");
-                    OnTableJoined?.Invoke(response.tableId);
+                    OnTableJoined?.Invoke(response.state);
                     OnTableStateUpdate?.Invoke(response.state);
                 }
                 
@@ -813,6 +816,11 @@ namespace PokerClient.Networking
         private void HandleTableInvite(TableInviteData data)
         {
             OnInviteReceived?.Invoke(data);
+        }
+        
+        private void HandleChatMessage(ChatMessageData data)
+        {
+            OnChatMessageReceived?.Invoke(data.playerId, data.name, data.message);
         }
         
         private void HandleAdventureResult(AdventureResult result)

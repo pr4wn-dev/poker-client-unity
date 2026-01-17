@@ -215,7 +215,7 @@ namespace PokerClient.UI.Components
         
         public void ShowCurrentUser()
         {
-            var user = GameService.CurrentUser;
+            var user = GameService.Instance?.CurrentUser;
             if (user == null)
             {
                 Debug.LogWarning("No current user");
@@ -262,7 +262,7 @@ namespace PokerClient.UI.Components
             if (string.IsNullOrEmpty(_targetUserId)) return;
             
             // Check if at a table
-            if (string.IsNullOrEmpty(GameService.CurrentTableId))
+            if (string.IsNullOrEmpty(GameService.Instance?.CurrentTableId))
             {
                 Debug.LogWarning("Not at a table");
                 return;

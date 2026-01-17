@@ -810,7 +810,7 @@ namespace PokerClient.UI.Scenes
         {
             resultPanel.SetActive(false);
             
-            _gameService.ForfeitAdventure((success, error) =>
+            _gameService.ForfeitAdventure(success =>
             {
                 SceneManager.LoadScene("AdventureScene");
             });
@@ -824,42 +824,6 @@ namespace PokerClient.UI.Scenes
         #endregion
     }
     
-    // Data class for adventure hand state
-    [System.Serializable]
-    public class AdventureHandState
-    {
-        public string phase;
-        public int pot;
-        public int currentBet;
-        public int minRaise;
-        public List<Card> communityCards;
-        
-        public List<Card> playerCards;
-        public int playerChips;
-        public int playerBet;
-        public bool playerFolded;
-        public bool playerAllIn;
-        
-        public int bossChips;
-        public int bossBet;
-        public bool bossFolded;
-        public bool bossAllIn;
-        public List<Card> bossCards;
-        
-        public bool isPlayerTurn;
-        public bool isHandComplete;
-        public string winner;
-        public HandResult playerHandResult;
-        public HandResult bossHandResult;
-        public List<string> validActions;
-    }
-    
-    [System.Serializable]
-    public class HandResult
-    {
-        public int rank;
-        public string name;
-        public List<int> values;
-    }
+    // NOTE: AdventureHandState and HandResultInfo are defined in NetworkModels.cs
 }
 

@@ -176,6 +176,13 @@ namespace PokerClient.Networking
         public string lastDailyReward;  // ISO date string
         public int totalWinnings;
         public int tournamentsWon;
+        
+        // Convenience accessors for stats (avoids null checks everywhere)
+        public int level => adventureProgress?.level ?? 1;
+        public int xp => adventureProgress?.xp ?? 0;
+        public int handsPlayed => stats?.handsPlayed ?? 0;
+        public int handsWon => stats?.handsWon ?? 0;
+        public int biggestPot => stats?.biggestPot ?? 0;
     }
     
     [Serializable]
@@ -567,6 +574,8 @@ namespace PokerClient.Networking
         public Dictionary<int, int> payoutStructure;
         public int currentBlindLevel;
         public BlindLevel blinds;
+        public int currentRound;
+        public string winner;  // Winner's user ID when tournament ends
     }
     
     [Serializable]
@@ -816,6 +825,8 @@ namespace PokerClient.Networking
         public List<Card> communityCards;
         public int currentBet;
         public int minBet;          // Minimum bet amount
+        public int smallBlind;      // Small blind amount
+        public int bigBlind;        // Big blind amount
         public int dealerIndex;
         public int currentPlayerIndex;
         public string currentPlayerId;  // ID of player whose turn it is
@@ -867,6 +878,10 @@ namespace PokerClient.Networking
         public bool success;
         public string error;
     }
+    
+    // Alias for SimpleResponse - used in friend operations
+    [Serializable]
+    public class GenericResponse : SimpleResponse { }
     
     // ============ Auth Requests/Responses ============
     

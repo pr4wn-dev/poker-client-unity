@@ -60,7 +60,7 @@ namespace PokerClient.UI.Components
             _gameService = GameService.Instance;
             if (_gameService != null)
             {
-                _gameService.OnChatMessageReceived += AddMessage;
+                _gameService.OnChatMessageReceived += HandleChatMessage;
             }
         }
         
@@ -68,8 +68,13 @@ namespace PokerClient.UI.Components
         {
             if (_gameService != null)
             {
-                _gameService.OnChatMessageReceived -= AddMessage;
+                _gameService.OnChatMessageReceived -= HandleChatMessage;
             }
+        }
+        
+        private void HandleChatMessage(string playerId, string username, string message)
+        {
+            AddMessage(username ?? playerId, message);
         }
         
         private void BuildHeader()
