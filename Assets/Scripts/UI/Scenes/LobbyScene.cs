@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using PokerClient.Core;
 using PokerClient.UI;
 using PokerClient.UI.Components;
 using PokerClient.Networking;
@@ -61,6 +62,9 @@ namespace PokerClient.UI.Scenes
             
             BuildScene();
             RefreshTableList();
+            
+            // Play lobby music
+            AudioManager.Instance?.PlayLobbyMusic();
         }
         
         private void OnDestroy()

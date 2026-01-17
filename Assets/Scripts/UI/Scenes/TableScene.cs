@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using PokerClient.Core;
 using PokerClient.UI;
 using PokerClient.UI.Components;
 using PokerClient.Networking;
@@ -87,6 +88,9 @@ namespace PokerClient.UI.Scenes
             }
             
             BuildScene();
+            
+            // Start table music
+            AudioManager.Instance?.PlayTableMusic();
             
             // Apply initial state if we have it
             if (_gameService.CurrentTableState != null)
@@ -588,6 +592,9 @@ namespace PokerClient.UI.Scenes
         {
             // Show action animation on the player seat
             _tableView.ShowPlayerAction(oderId, action, amount);
+            
+            // Play sound for the action
+            AudioManager.Instance?.PlayPokerAction(action, amount);
         }
         
         private void OnPlayerJoinedTable(string oderId, string name, int seatIndex)
@@ -602,6 +609,14 @@ namespace PokerClient.UI.Scenes
         
         private void OnHandComplete(HandResultData result)
         {
+            // Play win/lose sound
+            bool iWon = result.oderId == _gameService.CurrentUser?.id;
+            if (iWon)
+                AudioManager.Instance?.PlayHandWin();
+            
+            // Play chip win sound
+            AudioManager.Instance?.PlayChipWin();
+            
             // Show result
             resultText.text = $"{result.winnerName} wins with {result.handName}!\n+{ChipStack.FormatChipValue(result.potAmount)}";
             resultPanel.SetActive(true);
@@ -625,6 +640,17 @@ namespace PokerClient.UI.Scenes
         {
             // Hide action panel
             actionPanel.SetActive(false);
+            
+            // Play victory or defeat sound
+            bool iWon = data.winnerId == _gameService.CurrentUser?.id;
+            if (iWon)
+            {
+                AudioManager.Instance?.PlayVictoryMusic();
+            }
+            else
+            {
+                AudioManager.Instance?.PlayHandLose();
+            }
             
             // Show game over popup
             ShowGameOverPopup(data);

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using PokerClient.Core;
 using PokerClient.UI;
 using PokerClient.UI.Components;
 using PokerClient.Networking;
@@ -48,6 +49,9 @@ namespace PokerClient.UI.Scenes
         {
             InitializeNetworking();
             BuildScene();
+            
+            // Play menu music
+            AudioManager.Instance?.PlayMenuMusic();
             
             // Check if already logged in (e.g., returning from another scene)
             if (_gameService != null && _gameService.IsLoggedIn)
