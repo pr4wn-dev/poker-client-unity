@@ -48,7 +48,31 @@ namespace PokerClient.UI.Scenes
         {
             InitializeNetworking();
             BuildScene();
-            ShowLoginPanel();
+            
+            // Check if already logged in (e.g., returning from another scene)
+            if (_gameService != null && _gameService.IsLoggedIn)
+            {
+                Debug.Log("[MainMenuScene] Already logged in, showing main menu");
+                _isLoggedIn = true;
+                
+                var profile = _gameService.CurrentUser;
+                int xp = profile?.adventureProgress?.xp ?? 0;
+                int xpNext = profile?.adventureProgress?.xpToNextLevel ?? 100;
+                float xpProgress = xpNext > 0 ? (float)xp / xpNext : 0;
+                
+                UpdatePlayerInfo(
+                    profile?.username ?? "Player", 
+                    (int)(profile?.chips ?? 0), 
+                    profile?.adventureProgress?.level ?? 1, 
+                    xpProgress
+                );
+                
+                ShowMainMenu();
+            }
+            else
+            {
+                ShowLoginPanel();
+            }
         }
         
         private void InitializeNetworking()
@@ -78,17 +102,27 @@ namespace PokerClient.UI.Scenes
         {
             yield return new WaitForSeconds(1f);
             
+            // Don't change panel if already logged in
+            if (_isLoggedIn) yield break;
+            
             if (SocketManager.Instance != null && SocketManager.Instance.IsConnected)
             {
                 HideLoading();
-                ShowLoginPanel();
+                // Only show login if not already logged in
+                if (!_gameService.IsLoggedIn)
+                {
+                    ShowLoginPanel();
+                }
             }
             else
             {
                 // Still connecting - wait a bit more then show login anyway
                 yield return new WaitForSeconds(2f);
                 HideLoading();
-                ShowLoginPanel();
+                if (!_gameService.IsLoggedIn)
+                {
+                    ShowLoginPanel();
+                }
             }
         }
         
