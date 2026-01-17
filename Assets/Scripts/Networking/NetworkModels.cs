@@ -313,6 +313,9 @@ namespace PokerClient.Networking
     public class AdventureProgress
     {
         public string currentArea;
+        public int xp;
+        public int level;
+        public int xpToNextLevel;
         public List<string> bossesDefeated;
         public Dictionary<string, int> bossDefeatCounts;
         public int totalWins;
@@ -342,6 +345,7 @@ namespace PokerClient.Networking
         public string icon;
         public Position position;
         public bool isUnlocked;
+        public string unlockReason;
         public List<AreaRequirement> requirements;
         public int bossCount;
         public int completedBosses;
@@ -428,11 +432,12 @@ namespace PokerClient.Networking
     [Serializable]
     public class AdventureSession
     {
-        public string userId;
+        public string oderId;
         public BossInfo boss;
         public int userChips;
         public int handsPlayed;
         public int entryFee;
+        public int level;
     }
     
     [Serializable]
@@ -777,8 +782,8 @@ namespace PokerClient.Networking
         public string playerId;
         public string playerName;  // Display name
         public string name;        // Alias for playerName
-        public long chips;
-        public long currentBet;
+        public int chips;
+        public int currentBet;
         public bool isFolded;
         public bool isAllIn;
         public bool isConnected;
@@ -798,10 +803,10 @@ namespace PokerClient.Networking
         public string id;
         public string name;
         public string phase;
-        public long pot;
+        public int pot;
         public List<Card> communityCards;
-        public long currentBet;
-        public long minBet;          // Minimum bet amount
+        public int currentBet;
+        public int minBet;          // Minimum bet amount
         public int dealerIndex;
         public int currentPlayerIndex;
         public string currentPlayerId;  // ID of player whose turn it is
@@ -913,6 +918,16 @@ namespace PokerClient.Networking
     
     [Serializable]
     public class GetTablesResponse
+    {
+        public bool success;
+        public List<TableInfo> tables;
+    }
+    
+    /// <summary>
+    /// Alias for GetTablesResponse (backwards compatibility)
+    /// </summary>
+    [Serializable]
+    public class TablesResponse
     {
         public bool success;
         public List<TableInfo> tables;
