@@ -61,7 +61,7 @@ namespace PokerClient.Networking
         [Header("Server Configuration")]
         [SerializeField] private string serverUrl = "http://localhost:3000";
         [SerializeField] private bool autoConnect = false;
-        [SerializeField] private bool useMockMode = true; // Set to false when server is ready
+        [SerializeField] private bool useMockMode = false; // USE REAL SERVER - no mock mode!
         
         [Header("Status")]
         [SerializeField] private bool isConnected = false;
