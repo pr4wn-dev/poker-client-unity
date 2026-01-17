@@ -75,6 +75,7 @@ namespace PokerClient.UI.Scenes
             _gameService.OnPlayerJoinedTable += OnPlayerJoinedTable;
             _gameService.OnPlayerLeftTable += OnPlayerLeftTable;
             _gameService.OnHandComplete += OnHandComplete;
+            _gameService.OnGameOver += OnGameOver;
             _gameService.OnTableLeft += OnTableLeft;
             
             // Subscribe to bot events
@@ -103,6 +104,7 @@ namespace PokerClient.UI.Scenes
                 _gameService.OnPlayerJoinedTable -= OnPlayerJoinedTable;
                 _gameService.OnPlayerLeftTable -= OnPlayerLeftTable;
                 _gameService.OnHandComplete -= OnHandComplete;
+                _gameService.OnGameOver -= OnGameOver;
                 _gameService.OnTableLeft -= OnTableLeft;
             }
             
@@ -617,6 +619,66 @@ namespace PokerClient.UI.Scenes
         private void OnTableLeft()
         {
             SceneManager.LoadScene("LobbyScene");
+        }
+        
+        private void OnGameOver(GameOverData data)
+        {
+            // Hide action panel
+            actionPanel.SetActive(false);
+            
+            // Show game over popup
+            ShowGameOverPopup(data);
+        }
+        
+        private void ShowGameOverPopup(GameOverData data)
+        {
+            var theme = Theme.Current;
+            
+            // Create overlay
+            var overlay = UIFactory.CreatePanel(_canvas.transform, "GameOverOverlay", new Color(0, 0, 0, 0.8f));
+            var overlayRect = overlay.GetComponent<RectTransform>();
+            overlayRect.anchorMin = Vector2.zero;
+            overlayRect.anchorMax = Vector2.one;
+            overlayRect.sizeDelta = Vector2.zero;
+            
+            // Create popup panel
+            var popup = UIFactory.CreatePanel(overlay.transform, "GameOverPopup", theme.panelBackground);
+            var popupRect = popup.GetComponent<RectTransform>();
+            popupRect.anchorMin = new Vector2(0.5f, 0.5f);
+            popupRect.anchorMax = new Vector2(0.5f, 0.5f);
+            popupRect.sizeDelta = new Vector2(500, 400);
+            
+            // Title
+            bool iWon = data.winnerId == _gameService.CurrentUser?.id;
+            string titleText = iWon ? "🏆 YOU WIN! 🏆" : "GAME OVER";
+            var title = UIFactory.CreateTitle(popup.transform, "Title", titleText, 48f);
+            title.color = iWon ? theme.success : theme.textPrimary;
+            var titleRect = title.GetComponent<RectTransform>();
+            titleRect.anchorMin = new Vector2(0.5f, 0.85f);
+            titleRect.anchorMax = new Vector2(0.5f, 0.85f);
+            titleRect.anchoredPosition = Vector2.zero;
+            
+            // Winner info
+            string winnerMsg = iWon ? 
+                $"You collected all the chips!\n\nFinal Stack: {ChipStack.FormatChipValue(data.winnerChips)}" :
+                $"{(data.isBot ? "🤖 " : "")}{data.winnerName} wins!\n\nYou've been eliminated.";
+            var info = UIFactory.CreateText(popup.transform, "Info", winnerMsg, theme.textSecondary, 24f);
+            var infoRect = info.GetComponent<RectTransform>();
+            infoRect.anchorMin = new Vector2(0.1f, 0.4f);
+            infoRect.anchorMax = new Vector2(0.9f, 0.7f);
+            infoRect.sizeDelta = Vector2.zero;
+            info.alignment = TextAlignmentOptions.Center;
+            
+            // Leave Table button
+            var leaveBtn = UIFactory.CreateButton(popup.transform, "LeaveBtn", "LEAVE TABLE", theme.primary, () =>
+            {
+                Destroy(overlay);
+                _gameService.LeaveTable();
+            });
+            var leaveBtnRect = leaveBtn.GetComponent<RectTransform>();
+            leaveBtnRect.anchorMin = new Vector2(0.2f, 0.1f);
+            leaveBtnRect.anchorMax = new Vector2(0.8f, 0.25f);
+            leaveBtnRect.sizeDelta = Vector2.zero;
         }
         
         #endregion

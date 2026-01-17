@@ -81,6 +81,7 @@ namespace PokerClient.Networking
         public event Action<string> OnPlayerLeft;
         public event Action<ChatMessageData> OnChatMessage;
         public event Action<HandResultData> OnHandResult;
+        public event Action<GameOverData> OnGameOver;
         public event Action<TableInviteData> OnTableInvite;
         
         // Bot events
@@ -259,6 +260,12 @@ namespace PokerClient.Networking
             {
                 var data = ParseResponse<HandResultData>(response);
                 if (data != null) UnityMainThread.Execute(() => OnHandResult?.Invoke(data));
+            });
+            
+            _socket.On("game_over", response =>
+            {
+                var data = ParseResponse<GameOverData>(response);
+                if (data != null) UnityMainThread.Execute(() => OnGameOver?.Invoke(data));
             });
             
             _socket.On("table_invite_received", response =>

@@ -1266,6 +1266,16 @@ namespace PokerClient.Networking
     }
     
     [Serializable]
+    public class GameOverData
+    {
+        public string tableId;
+        public string winnerId;
+        public string winnerName;
+        public int winnerChips;
+        public bool isBot;
+    }
+    
+    [Serializable]
     public class TableInviteData
     {
         public string tableId;

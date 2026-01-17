@@ -75,6 +75,7 @@ namespace PokerClient.Networking
         public event Action<string, string, int> OnPlayerJoinedTable; // playerId, name, seat
         public event Action<string> OnPlayerLeftTable; // playerId
         public event Action<HandResultData> OnHandComplete;
+        public event Action<GameOverData> OnGameOver;
         public event Action<TableInviteData> OnInviteReceived;
         public event Action<string, string, string> OnChatMessageReceived; // playerId, username, message
         
@@ -114,6 +115,7 @@ namespace PokerClient.Networking
                 _socket.OnPlayerJoined += HandlePlayerJoined;
                 _socket.OnPlayerLeft += HandlePlayerLeft;
                 _socket.OnHandResult += HandleHandResult;
+                _socket.OnGameOver += HandleGameOver;
                 _socket.OnTableInvite += HandleTableInvite;
                 _socket.OnChatMessage += HandleChatMessage;
                 _socket.OnAdventureResult += HandleAdventureResult;
@@ -145,6 +147,7 @@ namespace PokerClient.Networking
                     _socket.OnPlayerJoined -= HandlePlayerJoined;
                     _socket.OnPlayerLeft -= HandlePlayerLeft;
                     _socket.OnHandResult -= HandleHandResult;
+                    _socket.OnGameOver -= HandleGameOver;
                     _socket.OnTableInvite -= HandleTableInvite;
                     _socket.OnChatMessage -= HandleChatMessage;
                     _socket.OnAdventureResult -= HandleAdventureResult;
@@ -919,6 +922,11 @@ namespace PokerClient.Networking
         private void HandleHandResult(HandResultData data)
         {
             OnHandComplete?.Invoke(data);
+        }
+        
+        private void HandleGameOver(GameOverData data)
+        {
+            OnGameOver?.Invoke(data);
         }
         
         private void HandleTableInvite(TableInviteData data)
