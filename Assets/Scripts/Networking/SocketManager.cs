@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+#if SOCKET_IO_AVAILABLE
+using SocketIOClient;
+using SIOUnity = SocketIOUnity.SocketIOUnity;
+#endif
 
 namespace PokerClient.Networking
 {
@@ -89,7 +93,7 @@ namespace PokerClient.Networking
         private int _callbackId = 0;
         
         #if SOCKET_IO_AVAILABLE
-        private SocketIOUnity.SocketIOUnity _socket;
+        private SIOUnity _socket;
         #endif
         
         private void Awake()
@@ -165,7 +169,7 @@ namespace PokerClient.Networking
                 connectionStatus = "Connecting...";
                 
                 var uri = new Uri(serverUrl);
-                _socket = new SocketIOUnity.SocketIOUnity(uri, new SocketIOClient.SocketIOOptions
+                _socket = new SIOUnity(uri, new SocketIOOptions
                 {
                     Transport = SocketIOClient.Transport.TransportProtocol.WebSocket
                 });
@@ -295,7 +299,7 @@ namespace PokerClient.Networking
             // Listen for the response event
             string responseEvent = eventName + "_response";
             
-            void OnResponse(SocketIOClient.SocketIOResponse response)
+            void OnResponse(SocketIOResponse response)
             {
                 // Unsubscribe immediately after receiving
                 _socket.Off(responseEvent);
