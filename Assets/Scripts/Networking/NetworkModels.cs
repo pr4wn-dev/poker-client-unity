@@ -745,9 +745,10 @@ namespace PokerClient.Networking
     {
         public int index;
         public string playerId;
-        public string name;
-        public int chips;
-        public int currentBet;
+        public string playerName;  // Display name
+        public string name;        // Alias for playerName
+        public long chips;
+        public long currentBet;
         public bool isFolded;
         public bool isAllIn;
         public bool isConnected;
@@ -756,6 +757,9 @@ namespace PokerClient.Networking
         
         public bool IsEmpty => string.IsNullOrEmpty(playerId);
         public bool IsActive => !IsEmpty && !isFolded && isConnected;
+        
+        // Get display name (prefer playerName, fallback to name)
+        public string GetDisplayName() => !string.IsNullOrEmpty(playerName) ? playerName : name ?? "Player";
     }
     
     [Serializable]
@@ -764,11 +768,14 @@ namespace PokerClient.Networking
         public string id;
         public string name;
         public string phase;
-        public int pot;
+        public long pot;
         public List<Card> communityCards;
-        public int currentBet;
+        public long currentBet;
+        public long minBet;          // Minimum bet amount
         public int dealerIndex;
         public int currentPlayerIndex;
+        public string currentPlayerId;  // ID of player whose turn it is
+        public float? turnTimeRemaining; // Seconds left in turn
         public int handsPlayed;
         public int spectatorCount;
         public bool isSpectating;

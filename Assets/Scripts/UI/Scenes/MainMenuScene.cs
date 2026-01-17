@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using PokerClient.UI.Components;
+using PokerClient.Networking;
 
 namespace PokerClient.UI.Scenes
 {
@@ -11,6 +13,9 @@ namespace PokerClient.UI.Scenes
     /// </summary>
     public class MainMenuScene : MonoBehaviour
     {
+        [Header("Server Configuration")]
+        [SerializeField] private string serverUrl = "http://localhost:3000";
+        
         [Header("Scene References")]
         [SerializeField] private Canvas canvas;
         
@@ -18,11 +23,16 @@ namespace PokerClient.UI.Scenes
         [SerializeField] private GameObject mainPanel;
         [SerializeField] private GameObject loginPanel;
         [SerializeField] private GameObject registerPanel;
+        [SerializeField] private GameObject loadingPanel;
         
         [Header("Login Components")]
         [SerializeField] private TMP_InputField usernameInput;
         [SerializeField] private TMP_InputField passwordInput;
+        [SerializeField] private TMP_InputField emailInput;
+        [SerializeField] private TMP_InputField regUsernameInput;
+        [SerializeField] private TMP_InputField regPasswordInput;
         [SerializeField] private TextMeshProUGUI errorText;
+        [SerializeField] private TextMeshProUGUI loadingText;
         
         [Header("Player Info")]
         [SerializeField] private TextMeshProUGUI playerNameText;
@@ -31,11 +41,72 @@ namespace PokerClient.UI.Scenes
         [SerializeField] private Image xpProgressBar;
         
         private bool _isLoggedIn = false;
+        private GameService _gameService;
         
         private void Start()
         {
+            InitializeNetworking();
             BuildScene();
             ShowLoginPanel();
+        }
+        
+        private void InitializeNetworking()
+        {
+            // Create or get GameService
+            if (GameService.Instance == null)
+            {
+                var serviceObj = new GameObject("GameService");
+                _gameService = serviceObj.AddComponent<GameService>();
+            }
+            else
+            {
+                _gameService = GameService.Instance;
+            }
+            
+            // Create SocketManager if needed
+            if (SocketManager.Instance == null)
+            {
+                var socketObj = new GameObject("SocketManager");
+                socketObj.AddComponent<SocketManager>();
+            }
+            
+            // Subscribe to events
+            _gameService.OnLoginSuccess += OnLoginSuccessHandler;
+            _gameService.OnLoginFailed += OnLoginFailedHandler;
+            
+            // Connect to server
+            ShowLoading("Connecting to server...");
+            _gameService.Connect(serverUrl);
+            
+            // Check if server is connected
+            StartCoroutine(CheckConnectionStatus());
+        }
+        
+        private System.Collections.IEnumerator CheckConnectionStatus()
+        {
+            yield return new WaitForSeconds(1f);
+            
+            if (SocketManager.Instance != null && SocketManager.Instance.IsConnected)
+            {
+                HideLoading();
+                ShowLoginPanel();
+            }
+            else
+            {
+                ShowError("Connecting...");
+                yield return new WaitForSeconds(2f);
+                HideLoading();
+                ShowLoginPanel();
+            }
+        }
+        
+        private void OnDestroy()
+        {
+            if (_gameService != null)
+            {
+                _gameService.OnLoginSuccess -= OnLoginSuccessHandler;
+                _gameService.OnLoginFailed -= OnLoginFailedHandler;
+            }
         }
         
         private void BuildScene()
@@ -362,48 +433,97 @@ namespace PokerClient.UI.Scenes
                 return;
             }
             
-            // TODO: Call network manager to login
-            Debug.Log($"Login attempt: {username}");
+            ClearError();
+            ShowLoading("Logging in...");
             
-            // For now, simulate successful login
-            _isLoggedIn = true;
-            UpdatePlayerInfo("Player", 10000, 1, 0);
-            ShowMainMenu();
+            _gameService.Login(username, password, (success, error) =>
+            {
+                HideLoading();
+                if (!success)
+                {
+                    ShowError(error ?? "Login failed");
+                }
+            });
         }
         
         private void OnRegisterClick()
         {
-            // TODO: Implement registration
-            Debug.Log("Register clicked");
+            string username = regUsernameInput?.text ?? usernameInput?.text;
+            string password = regPasswordInput?.text ?? passwordInput?.text;
+            string email = emailInput?.text ?? "";
+            
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                ShowError("Please enter username and password");
+                return;
+            }
+            
+            ClearError();
+            ShowLoading("Creating account...");
+            
+            _gameService.Register(username, password, email, (success, error) =>
+            {
+                HideLoading();
+                if (!success)
+                {
+                    ShowError(error ?? "Registration failed");
+                }
+            });
+        }
+        
+        private void OnLoginSuccessHandler(UserProfile profile)
+        {
+            _isLoggedIn = true;
+            HideLoading();
+            
+            int xp = profile.adventureProgress?.xp ?? 0;
+            int xpNext = profile.adventureProgress?.xpToNextLevel ?? 100;
+            float xpProgress = xpNext > 0 ? (float)xp / xpNext : 0;
+            
+            UpdatePlayerInfo(
+                profile.username, 
+                (int)profile.chips, 
+                profile.adventureProgress?.level ?? 1, 
+                xpProgress
+            );
+            
+            ShowMainMenu();
+        }
+        
+        private void OnLoginFailedHandler(string error)
+        {
+            HideLoading();
+            ShowError(error ?? "Login failed");
         }
         
         private void OnAdventureClick()
         {
             Debug.Log("Adventure mode selected");
-            // TODO: Load Adventure scene
-            // SceneManager.LoadScene("Adventure");
+            SceneManager.LoadScene("AdventureScene");
         }
         
         private void OnMultiplayerClick()
         {
             Debug.Log("Multiplayer mode selected");
-            // TODO: Load Lobby scene
-            // SceneManager.LoadScene("Lobby");
+            SceneManager.LoadScene("LobbyScene");
         }
         
         private void OnInventoryClick()
         {
             Debug.Log("Inventory clicked");
+            // TODO: Show inventory popup
         }
         
         private void OnFriendsClick()
         {
             Debug.Log("Friends clicked");
+            // TODO: Show friends popup
         }
         
         private void OnSettingsClick()
         {
             Debug.Log("Settings clicked");
+            // TODO: Show settings popup
         }
         
         #endregion
@@ -420,6 +540,22 @@ namespace PokerClient.UI.Scenes
         {
             if (errorText != null)
                 errorText.text = "";
+        }
+        
+        public void ShowLoading(string message = "Loading...")
+        {
+            if (loadingPanel != null)
+            {
+                loadingPanel.SetActive(true);
+                if (loadingText != null)
+                    loadingText.text = message;
+            }
+        }
+        
+        public void HideLoading()
+        {
+            if (loadingPanel != null)
+                loadingPanel.SetActive(false);
         }
         
         public void UpdatePlayerInfo(string name, int chips, int level, float xpProgress)
