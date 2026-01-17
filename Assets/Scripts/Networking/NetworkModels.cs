@@ -805,14 +805,20 @@ namespace PokerClient.Networking
         public bool isFolded;
         public bool isAllIn;
         public bool isConnected;
-        public bool inSidePot;  // Whether player is participating in item side pot
+        public bool isBot;         // True if this seat is occupied by a bot
+        public bool isSittingOut;  // True if player is sitting out
+        public bool inSidePot;     // Whether player is participating in item side pot
         public List<Card> cards;
         
         public bool IsEmpty => string.IsNullOrEmpty(playerId);
-        public bool IsActive => !IsEmpty && !isFolded && isConnected;
+        public bool IsActive => !IsEmpty && !isFolded && isConnected && !isSittingOut;
         
-        // Get display name (prefer playerName, fallback to name)
-        public string GetDisplayName() => !string.IsNullOrEmpty(playerName) ? playerName : name ?? "Player";
+        // Get display name - show bot icon for bots
+        public string GetDisplayName()
+        {
+            string displayName = !string.IsNullOrEmpty(playerName) ? playerName : name ?? "Player";
+            return isBot ? $"🤖 {displayName}" : displayName;
+        }
     }
     
     [Serializable]
