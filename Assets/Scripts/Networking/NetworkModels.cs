@@ -171,6 +171,11 @@ namespace PokerClient.Networking
         public List<Item> inventory;
         public List<string> friends;
         public List<FriendRequest> friendRequests;
+        public List<string> achievements;  // IDs of unlocked achievements
+        public int dailyStreak;
+        public string lastDailyReward;  // ISO date string
+        public int totalWinnings;
+        public int tournamentsWon;
     }
     
     [Serializable]
