@@ -837,6 +837,7 @@ namespace PokerClient.Networking
         public int currentPlayerIndex;
         public string currentPlayerId;  // ID of player whose turn it is
         public float? turnTimeRemaining; // Seconds left in turn
+        public int? startCountdownRemaining; // Seconds until game starts (null if not counting)
         public int handsPlayed;
         public int spectatorCount;
         public bool isSpectating;

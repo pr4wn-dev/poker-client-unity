@@ -494,8 +494,17 @@ namespace PokerClient.UI.Scenes
             // Update pot
             potText.text = $"Pot: {ChipStack.FormatChipValue((int)state.pot)}";
             
-            // Update phase
-            phaseText.text = GetPhaseDisplayName(state.phase);
+            // Update phase (show countdown if waiting and countdown active)
+            if (state.phase == "waiting" && state.startCountdownRemaining.HasValue && state.startCountdownRemaining.Value > 0)
+            {
+                phaseText.text = $"Starting in {state.startCountdownRemaining.Value}...";
+                timerText.text = state.startCountdownRemaining.Value.ToString();
+                timerText.gameObject.SetActive(true);
+            }
+            else
+            {
+                phaseText.text = GetPhaseDisplayName(state.phase);
+            }
             
             // Update table view
             _tableView?.UpdateFromState(state);
@@ -512,13 +521,13 @@ namespace PokerClient.UI.Scenes
                 actionPanel.SetActive(false);
             }
             
-            // Update timer
-            if (state.turnTimeRemaining.HasValue && state.turnTimeRemaining.Value > 0)
+            // Update turn timer (only if game is in progress)
+            if (state.phase != "waiting" && state.turnTimeRemaining.HasValue && state.turnTimeRemaining.Value > 0)
             {
                 timerText.text = Mathf.CeilToInt(state.turnTimeRemaining.Value).ToString();
                 timerText.gameObject.SetActive(true);
             }
-            else
+            else if (!state.startCountdownRemaining.HasValue || state.startCountdownRemaining.Value <= 0)
             {
                 timerText.gameObject.SetActive(false);
             }
