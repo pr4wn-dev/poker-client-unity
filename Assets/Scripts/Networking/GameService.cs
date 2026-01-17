@@ -459,11 +459,72 @@ namespace PokerClient.Networking
             });
         }
         
-        public void SendAdventureAction(string action, int? amount = null)
+        /// <summary>
+        /// Send a poker action in adventure mode
+        /// </summary>
+        public void SendAdventureAction(string action, int amount = 0, 
+            System.Action<AdventureActionResponse> callback = null)
         {
-            var handResult = new { winner = "pending", action, amount };
-            _socket.Emit("adventure_action", new { handResult });
+            _socket.Emit<AdventureActionResponse>("adventure_action", new { action, amount }, response =>
+            {
+                if (response.success)
+                {
+                    // Check for boss actions
+                    if (response.bossActions != null)
+                    {
+                        foreach (var bossAction in response.bossActions)
+                        {
+                            OnBossAction?.Invoke(bossAction);
+                        }
+                    }
+                    
+                    // Update hand state
+                    if (response.state != null)
+                    {
+                        OnAdventureHandUpdate?.Invoke(response.state);
+                    }
+                    
+                    // Check for hand complete
+                    if (response.handComplete)
+                    {
+                        OnAdventureHandComplete?.Invoke(response);
+                    }
+                    
+                    // Check for game end
+                    if (response.status == "victory" || response.status == "defeat")
+                    {
+                        OnAdventureGameEnd?.Invoke(response);
+                    }
+                }
+                else
+                {
+                    Debug.LogError($"Adventure action failed: {response.error}");
+                }
+                
+                callback?.Invoke(response);
+            });
         }
+        
+        /// <summary>
+        /// Request next hand in adventure mode
+        /// </summary>
+        public void RequestNextAdventureHand(System.Action<AdventureHandState> callback = null)
+        {
+            _socket.Emit<AdventureNextHandResponse>("adventure_next_hand", new { }, response =>
+            {
+                if (response.success && response.hand != null)
+                {
+                    OnAdventureHandUpdate?.Invoke(response.hand);
+                }
+                callback?.Invoke(response.hand);
+            });
+        }
+        
+        // Adventure events
+        public event System.Action<BossActionInfo> OnBossAction;
+        public event System.Action<AdventureHandState> OnAdventureHandUpdate;
+        public event System.Action<AdventureActionResponse> OnAdventureHandComplete;
+        public event System.Action<AdventureActionResponse> OnAdventureGameEnd;
         
         #endregion
         

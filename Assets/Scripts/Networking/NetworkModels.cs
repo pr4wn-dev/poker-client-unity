@@ -1034,6 +1034,87 @@ namespace PokerClient.Networking
         public bool success;
         public string error;
         public AdventureSession session;
+        public AdventureHandState hand;
+    }
+    
+    [Serializable]
+    public class AdventureActionResponse
+    {
+        public bool success;
+        public string error;
+        public string status;  // "ongoing", "victory", "defeat"
+        public string action;
+        public int amount;
+        public bool handComplete;
+        public string winner;
+        public List<BossActionInfo> bossActions;
+        public AdventureHandState state;
+        public AdventureSession session;
+        
+        // Victory/Defeat specific
+        public AdventureRewards rewards;
+        public int playerXP;
+        public int playerLevel;
+        public int xpProgress;
+        public int defeatCount;
+        public bool isFirstDefeat;
+        public int consolationXP;
+        public int entryFeeLost;
+        public string message;
+        public BossResultInfo boss;
+    }
+    
+    [Serializable]
+    public class AdventureNextHandResponse
+    {
+        public bool success;
+        public string error;
+        public AdventureHandState hand;
+    }
+    
+    [Serializable]
+    public class BossActionInfo
+    {
+        public string action;
+        public int amount;
+        public string taunt;
+    }
+    
+    [Serializable]
+    public class AdventureHandState
+    {
+        public string phase;
+        public int pot;
+        public int currentBet;
+        public int minRaise;
+        public List<Card> communityCards;
+        
+        public List<Card> playerCards;
+        public int playerChips;
+        public int playerBet;
+        public bool playerFolded;
+        public bool playerAllIn;
+        
+        public int bossChips;
+        public int bossBet;
+        public bool bossFolded;
+        public bool bossAllIn;
+        public List<Card> bossCards;
+        
+        public bool isPlayerTurn;
+        public bool isHandComplete;
+        public string winner;
+        public HandResultInfo playerHandResult;
+        public HandResultInfo bossHandResult;
+        public List<string> validActions;
+    }
+    
+    [Serializable]
+    public class HandResultInfo
+    {
+        public int rank;
+        public string name;
+        public List<int> values;
     }
     
     #endregion

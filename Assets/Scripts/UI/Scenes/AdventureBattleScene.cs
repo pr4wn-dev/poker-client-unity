@@ -736,11 +736,60 @@ namespace PokerClient.UI.Scenes
             // Disable buttons
             actionPanel.SetActive(false);
             
-            // TODO: Send action via GameService
-            Debug.Log($"[AdventureBattle] Sending action: {action} {amount}");
-            
-            // For now, simulate a response
-            _waitingForResponse = false;
+            _gameService.SendAdventureAction(action, amount, response =>
+            {
+                _waitingForResponse = false;
+                
+                if (response.success)
+                {
+                    // Handle boss actions
+                    if (response.bossActions != null)
+                    {
+                        foreach (var bossAction in response.bossActions)
+                        {
+                            ShowBossAction(bossAction);
+                        }
+                    }
+                    
+                    // Update state
+                    if (response.state != null)
+                    {
+                        UpdateFromState(response.state);
+                    }
+                    
+                    // Check for game end
+                    if (response.status == "victory" || response.status == "defeat")
+                    {
+                        ShowGameOver(new AdventureResult
+                        {
+                            status = response.status,
+                            boss = response.boss,
+                            rewards = response.rewards,
+                            message = response.message,
+                            entryFeeLost = response.entryFeeLost,
+                            consolationXP = response.consolationXP
+                        });
+                    }
+                }
+                else
+                {
+                    Debug.LogError($"Action failed: {response.error}");
+                    // Re-enable action panel
+                    if (_currentState != null && _currentState.isPlayerTurn)
+                    {
+                        ShowActionButtons(_currentState);
+                    }
+                }
+            });
+        }
+        
+        private void ShowBossAction(BossActionInfo action)
+        {
+            if (action.taunt != null)
+            {
+                bossTauntText.text = action.taunt;
+            }
+            Debug.Log($"[AdventureBattle] Boss: {action.action} {action.amount}");
         }
         
         private void OnContinueClick()
@@ -748,17 +797,23 @@ namespace PokerClient.UI.Scenes
             resultPanel.SetActive(false);
             
             // Request next hand
-            // TODO: Call GameService to start next hand
-            Debug.Log("[AdventureBattle] Requesting next hand");
+            _gameService.RequestNextAdventureHand(state =>
+            {
+                if (state != null)
+                {
+                    UpdateFromState(state);
+                }
+            });
         }
         
         private void OnForfeitClick()
         {
             resultPanel.SetActive(false);
             
-            // TODO: Call GameService to forfeit
-            Debug.Log("[AdventureBattle] Forfeiting");
-            SceneManager.LoadScene("AdventureScene");
+            _gameService.ForfeitAdventure((success, error) =>
+            {
+                SceneManager.LoadScene("AdventureScene");
+            });
         }
         
         private void OnReturnClick()
