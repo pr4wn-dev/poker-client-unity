@@ -182,8 +182,8 @@ namespace PokerClient.UI.Scenes
             _tableView.Initialize(9); // 9 max players
             
             var rect = tableViewObj.GetComponent<RectTransform>();
-            rect.anchorMin = Vector2.zero;
-            rect.anchorMax = Vector2.one;
+            rect.anchorMin = new Vector2(0, 0.12f); // Leave room for action panel at bottom
+            rect.anchorMax = new Vector2(1, 0.95f); // Leave room for top bar
             rect.sizeDelta = Vector2.zero;
         }
         

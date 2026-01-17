@@ -52,8 +52,8 @@ namespace PokerClient.UI.Components
         {
             var felt = UIFactory.CreatePanel(transform, "TableFelt", new Color(0.1f, 0.4f, 0.2f));
             var feltRect = felt.GetComponent<RectTransform>();
-            feltRect.anchorMin = new Vector2(0.15f, 0.2f);
-            feltRect.anchorMax = new Vector2(0.85f, 0.75f);
+            feltRect.anchorMin = new Vector2(0.12f, 0.18f);
+            feltRect.anchorMax = new Vector2(0.88f, 0.78f);
             feltRect.sizeDelta = Vector2.zero;
             
             // Add rounded appearance (could use sprite with rounded corners)
@@ -122,32 +122,33 @@ namespace PokerClient.UI.Components
             // Standard poker table layout for different player counts
             // Positions are anchor positions (0-1)
             
-            // 9-player layout (oval table)
+            // 9-player layout (oval table) - adjusted for screen fit
+            // Y positions 0.08-0.92 within the table view area (which already accounts for action panel)
             if (count >= 9)
             {
                 return new List<Vector2>
                 {
-                    new Vector2(0.5f, 0.05f),   // Bottom center (player's usual seat)
-                    new Vector2(0.15f, 0.15f),  // Bottom left
-                    new Vector2(0.05f, 0.4f),   // Left
-                    new Vector2(0.1f, 0.7f),    // Top left
-                    new Vector2(0.35f, 0.9f),   // Top left-center
-                    new Vector2(0.65f, 0.9f),   // Top right-center
-                    new Vector2(0.9f, 0.7f),    // Top right
-                    new Vector2(0.95f, 0.4f),   // Right
-                    new Vector2(0.85f, 0.15f),  // Bottom right
+                    new Vector2(0.5f, 0.08f),   // Bottom center (player's usual seat)
+                    new Vector2(0.18f, 0.12f),  // Bottom left
+                    new Vector2(0.08f, 0.40f),  // Left
+                    new Vector2(0.12f, 0.68f),  // Top left
+                    new Vector2(0.35f, 0.88f),  // Top left-center
+                    new Vector2(0.65f, 0.88f),  // Top right-center
+                    new Vector2(0.88f, 0.68f),  // Top right
+                    new Vector2(0.92f, 0.40f),  // Right
+                    new Vector2(0.82f, 0.12f),  // Bottom right
                 };
             }
             else if (count >= 6)
             {
                 return new List<Vector2>
                 {
-                    new Vector2(0.5f, 0.08f),
-                    new Vector2(0.1f, 0.3f),
-                    new Vector2(0.15f, 0.75f),
-                    new Vector2(0.5f, 0.92f),
-                    new Vector2(0.85f, 0.75f),
-                    new Vector2(0.9f, 0.3f),
+                    new Vector2(0.5f, 0.08f),   // Bottom center
+                    new Vector2(0.12f, 0.30f),  // Left lower
+                    new Vector2(0.15f, 0.72f),  // Top left
+                    new Vector2(0.5f, 0.88f),   // Top center
+                    new Vector2(0.85f, 0.72f),  // Top right
+                    new Vector2(0.88f, 0.30f),  // Right lower
                 };
             }
             else
@@ -155,8 +156,8 @@ namespace PokerClient.UI.Components
                 // Heads-up or small game
                 return new List<Vector2>
                 {
-                    new Vector2(0.5f, 0.1f),
-                    new Vector2(0.5f, 0.9f),
+                    new Vector2(0.5f, 0.12f),   // Bottom (you)
+                    new Vector2(0.5f, 0.85f),   // Top (opponent)
                 };
             }
         }
