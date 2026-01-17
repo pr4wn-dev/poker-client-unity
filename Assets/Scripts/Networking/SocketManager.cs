@@ -83,6 +83,11 @@ namespace PokerClient.Networking
         public event Action<HandResultData> OnHandResult;
         public event Action<TableInviteData> OnTableInvite;
         
+        // Bot events
+        public event Action<BotInvitePendingData> OnBotInvitePending;
+        public event Action<BotJoinedData> OnBotJoined;
+        public event Action<BotRejectedData> OnBotRejected;
+        
         // Adventure events
         public event Action<AdventureResult> OnAdventureResult;
         public event Action<WorldMapState> OnWorldMapState;
@@ -241,6 +246,25 @@ namespace PokerClient.Networking
             {
                 var data = response.GetValue<TableInviteData>();
                 UnityMainThread.Execute(() => OnTableInvite?.Invoke(data));
+            });
+            
+            // Bot events
+            _socket.On("bot_invite_pending", response =>
+            {
+                var data = response.GetValue<BotInvitePendingData>();
+                UnityMainThread.Execute(() => OnBotInvitePending?.Invoke(data));
+            });
+            
+            _socket.On("bot_joined", response =>
+            {
+                var data = response.GetValue<BotJoinedData>();
+                UnityMainThread.Execute(() => OnBotJoined?.Invoke(data));
+            });
+            
+            _socket.On("bot_rejected", response =>
+            {
+                var data = response.GetValue<BotRejectedData>();
+                UnityMainThread.Execute(() => OnBotRejected?.Invoke(data));
             });
             
             // Adventure events
