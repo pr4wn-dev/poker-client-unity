@@ -127,7 +127,7 @@ namespace PokerClient.UI.Components
                 go.AddComponent<TutorialOverlay>();
             }
             
-            Instance.Start(steps, onComplete);
+            Instance.BeginTutorial(steps, onComplete);
         }
         
         /// <summary>
@@ -165,7 +165,7 @@ namespace PokerClient.UI.Components
             StartTutorial(steps, onComplete);
         }
         
-        private void Start(List<TutorialStep> steps, System.Action onComplete)
+        private void BeginTutorial(List<TutorialStep> steps, System.Action onComplete)
         {
             _steps = steps;
             _currentStepIndex = 0;
