@@ -368,6 +368,25 @@ namespace PokerClient.Networking
             SendAction("allin");
         }
         
+        /// <summary>
+        /// Request a rebuy (add chips to your stack at the table)
+        /// </summary>
+        public void Rebuy(int amount, System.Action<bool, int, int, string> callback = null)
+        {
+            _socket.Emit<RebuyResponse>("rebuy", new { amount }, response =>
+            {
+                if (response.success)
+                {
+                    Debug.Log($"Rebuy successful: +{amount} chips, new stack: {response.newTableStack}");
+                }
+                else
+                {
+                    Debug.LogError($"Rebuy failed: {response.error}");
+                }
+                callback?.Invoke(response.success, response.newTableStack, response.accountBalance, response.error);
+            });
+        }
+        
         private void SendAction(string action, int? amount = null)
         {
             var data = amount.HasValue 

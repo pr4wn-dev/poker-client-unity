@@ -971,6 +971,15 @@ namespace PokerClient.Networking
         public int amount;
     }
     
+    [Serializable]
+    public class RebuyResponse
+    {
+        public bool success;
+        public string error;
+        public int newTableStack;
+        public int accountBalance;
+    }
+    
     // ============ Social Requests/Responses ============
     
     [Serializable]
