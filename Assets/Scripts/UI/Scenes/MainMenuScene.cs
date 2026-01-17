@@ -85,7 +85,7 @@ namespace PokerClient.UI.Scenes
             }
             else
             {
-                ShowError("Connecting...");
+                // Still connecting - wait a bit more then show login anyway
                 yield return new WaitForSeconds(2f);
                 HideLoading();
                 ShowLoginPanel();
@@ -130,6 +130,30 @@ namespace PokerClient.UI.Scenes
             
             // === MAIN MENU PANEL ===
             BuildMainPanel(canvas.transform);
+            
+            // === LOADING PANEL (on top) ===
+            BuildLoadingPanel();
+        }
+        
+        private void BuildLoadingPanel()
+        {
+            var theme = Theme.Current;
+            
+            loadingPanel = UIFactory.CreatePanel(canvas.transform, "LoadingPanel", new Color(0, 0, 0, 0.8f));
+            var panelRect = loadingPanel.GetComponent<RectTransform>();
+            panelRect.anchorMin = Vector2.zero;
+            panelRect.anchorMax = Vector2.one;
+            panelRect.sizeDelta = Vector2.zero;
+            
+            loadingText = UIFactory.CreateTitle(loadingPanel.transform, "LoadingText", "Loading...", 32f);
+            loadingText.alignment = TextAlignmentOptions.Center;
+            var textRect = loadingText.GetComponent<RectTransform>();
+            textRect.anchorMin = new Vector2(0.5f, 0.5f);
+            textRect.anchorMax = new Vector2(0.5f, 0.5f);
+            textRect.sizeDelta = new Vector2(400, 60);
+            textRect.anchoredPosition = Vector2.zero;
+            
+            loadingPanel.SetActive(false);
         }
         
         private void BuildLoginPanel(Transform parent)
@@ -398,6 +422,7 @@ namespace PokerClient.UI.Scenes
             loginPanel?.SetActive(true);
             registerPanel?.SetActive(false);
             mainPanel?.SetActive(false);
+            ClearError();
         }
         
         public void ShowRegisterPanel()
