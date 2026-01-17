@@ -498,7 +498,7 @@ namespace PokerClient.UI.Scenes
             phaseText.text = GetPhaseDisplayName(state.phase);
             
             // Update table view
-            _tableView.UpdateFromState(state);
+            _tableView?.UpdateFromState(state);
             
             // Check if it's my turn (myId already declared above)
             _isMyTurn = state.currentPlayerId == myId;

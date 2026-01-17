@@ -172,8 +172,12 @@ namespace PokerClient.UI.Components
             UpdateCommunityCards(state.communityCards);
             
             // Update seats
+            if (_seats == null || state.seats == null) return;
+            
             for (int i = 0; i < _seats.Count; i++)
             {
+                if (_seats[i] == null) continue;
+                
                 if (i < state.seats.Count && state.seats[i] != null)
                 {
                     _seats[i].UpdateFromState(state.seats[i], state.currentPlayerId == state.seats[i].playerId, state.dealerIndex == i);
