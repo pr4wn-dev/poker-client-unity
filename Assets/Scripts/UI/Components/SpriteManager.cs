@@ -42,6 +42,10 @@ namespace PokerClient.UI.Components
         private Dictionary<string, Texture2D> _generatedTextures = new Dictionary<string, Texture2D>();
         private Dictionary<string, Sprite> _generatedSprites = new Dictionary<string, Sprite>();
         
+        // Cache for individually loaded card sprites
+        private Dictionary<string, Sprite> _cardSpriteCache = new Dictionary<string, Sprite>();
+        private Dictionary<string, Sprite> _avatarCache = new Dictionary<string, Sprite>();
+        
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -51,6 +55,32 @@ namespace PokerClient.UI.Components
             }
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            
+            LoadSpritesFromResources();
+        }
+        
+        /// <summary>
+        /// Auto-load sprites from Resources folder if not assigned in Inspector
+        /// </summary>
+        private void LoadSpritesFromResources()
+        {
+            // Card back
+            if (cardBackSprite == null)
+                cardBackSprite = Resources.Load<Sprite>("Sprites/Cards/card_back");
+            
+            // Chip sprites
+            if (chipWhite == null) chipWhite = Resources.Load<Sprite>("Sprites/Chips/chip_white");
+            if (chipRed == null) chipRed = Resources.Load<Sprite>("Sprites/Chips/chip_red");
+            if (chipBlue == null) chipBlue = Resources.Load<Sprite>("Sprites/Chips/chip_blue");
+            if (chipGreen == null) chipGreen = Resources.Load<Sprite>("Sprites/Chips/chip_green");
+            if (chipBlack == null) chipBlack = Resources.Load<Sprite>("Sprites/Chips/chip_black");
+            if (chipPurple == null) chipPurple = Resources.Load<Sprite>("Sprites/Chips/chip_purple");
+            if (chipYellow == null) chipYellow = Resources.Load<Sprite>("Sprites/Chips/chip_yellow");
+            if (chipPink == null) chipPink = Resources.Load<Sprite>("Sprites/Chips/chip_pink");
+            
+            // Table felt
+            if (tableFelt == null) tableFelt = Resources.Load<Sprite>("Sprites/UI/table_felt");
+            if (dealerButton == null) dealerButton = Resources.Load<Sprite>("Sprites/UI/dealer_button");
         }
         
         /// <summary>
@@ -58,23 +88,43 @@ namespace PokerClient.UI.Components
         /// </summary>
         public Sprite GetCardSprite(string rank, string suit)
         {
-            // Try to use assigned sprites
+            string key = $"{rank}_{suit}";
+            
+            // Check cache first
+            if (_cardSpriteCache.TryGetValue(key, out Sprite cachedSprite) && cachedSprite != null)
+            {
+                return cachedSprite;
+            }
+            
+            // Try to use assigned sprites array
             if (cardFaceSprites != null && cardFaceSprites.Length == 52)
             {
                 int index = GetCardIndex(rank, suit);
-                if (index >= 0 && index < cardFaceSprites.Length)
+                if (index >= 0 && index < cardFaceSprites.Length && cardFaceSprites[index] != null)
                 {
+                    _cardSpriteCache[key] = cardFaceSprites[index];
                     return cardFaceSprites[index];
                 }
             }
             
-            // Generate procedural sprite
-            string key = $"card_{rank}_{suit}";
-            if (!_generatedSprites.TryGetValue(key, out Sprite sprite))
+            // Try to load individual card sprite from Resources
+            // Format: Resources/Sprites/Cards/{rank}_{suit}.png (e.g., A_hearts, K_spades, 10_diamonds)
+            string resourcePath = $"Sprites/Cards/{rank}_{suit}";
+            Sprite loadedSprite = Resources.Load<Sprite>(resourcePath);
+            if (loadedSprite != null)
+            {
+                _cardSpriteCache[key] = loadedSprite;
+                return loadedSprite;
+            }
+            
+            // Generate procedural sprite as fallback
+            string genKey = $"card_{rank}_{suit}";
+            if (!_generatedSprites.TryGetValue(genKey, out Sprite sprite))
             {
                 sprite = GenerateCardSprite(rank, suit);
-                _generatedSprites[key] = sprite;
+                _generatedSprites[genKey] = sprite;
             }
+            _cardSpriteCache[key] = sprite;
             return sprite;
         }
         
@@ -85,12 +135,86 @@ namespace PokerClient.UI.Components
         {
             if (cardBackSprite != null) return cardBackSprite;
             
+            // Try loading from Resources
+            cardBackSprite = Resources.Load<Sprite>("Sprites/Cards/card_back");
+            if (cardBackSprite != null) return cardBackSprite;
+            
             if (!_generatedSprites.TryGetValue("card_back", out Sprite sprite))
             {
                 sprite = GenerateCardBackSprite();
                 _generatedSprites["card_back"] = sprite;
             }
             return sprite;
+        }
+        
+        /// <summary>
+        /// Get avatar sprite by name or index
+        /// </summary>
+        public Sprite GetAvatar(string avatarName)
+        {
+            if (string.IsNullOrEmpty(avatarName)) avatarName = "default_1";
+            
+            // Check cache
+            if (_avatarCache.TryGetValue(avatarName, out Sprite cached) && cached != null)
+                return cached;
+            
+            // Try loading from Resources
+            Sprite avatar = Resources.Load<Sprite>($"Sprites/Avatars/{avatarName}");
+            if (avatar != null)
+            {
+                _avatarCache[avatarName] = avatar;
+                return avatar;
+            }
+            
+            // Check assigned array
+            if (avatarSprites != null && avatarSprites.Length > 0)
+            {
+                // Try to parse index
+                if (int.TryParse(avatarName.Replace("default_", ""), out int index))
+                {
+                    index = Mathf.Clamp(index - 1, 0, avatarSprites.Length - 1);
+                    if (avatarSprites[index] != null)
+                    {
+                        _avatarCache[avatarName] = avatarSprites[index];
+                        return avatarSprites[index];
+                    }
+                }
+                
+                // Return first available
+                foreach (var s in avatarSprites)
+                {
+                    if (s != null)
+                    {
+                        _avatarCache[avatarName] = s;
+                        return s;
+                    }
+                }
+            }
+            
+            // Generate procedural avatar
+            if (!_generatedSprites.TryGetValue($"avatar_{avatarName}", out Sprite generated))
+            {
+                generated = GenerateAvatarSprite(avatarName);
+                _generatedSprites[$"avatar_{avatarName}"] = generated;
+            }
+            _avatarCache[avatarName] = generated;
+            return generated;
+        }
+        
+        /// <summary>
+        /// Get bot avatar sprite
+        /// </summary>
+        public Sprite GetBotAvatar(string botName)
+        {
+            string avatarName = botName?.ToLower() switch
+            {
+                "tex" => "bot_tex",
+                "lazy larry" => "bot_larry",
+                "pickles" => "bot_pickles",
+                _ => $"bot_{botName?.ToLower()}"
+            };
+            
+            return GetAvatar(avatarName);
         }
         
         /// <summary>
@@ -323,6 +447,69 @@ namespace PokerClient.UI.Components
                         feltColor.b + noise,
                         1f
                     );
+                }
+            }
+            
+            texture.SetPixels(pixels);
+            texture.Apply();
+            
+            return Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), 100);
+        }
+        
+        private Sprite GenerateAvatarSprite(string name)
+        {
+            int size = 128;
+            var texture = new Texture2D(size, size, TextureFormat.RGBA32, false);
+            texture.filterMode = FilterMode.Bilinear;
+            
+            // Generate a unique color based on the name
+            int hash = name?.GetHashCode() ?? 0;
+            Color bgColor = new Color(
+                0.3f + (Mathf.Abs(hash % 70) / 100f),
+                0.3f + (Mathf.Abs((hash >> 8) % 70) / 100f),
+                0.3f + (Mathf.Abs((hash >> 16) % 70) / 100f),
+                1f
+            );
+            
+            Color[] pixels = new Color[size * size];
+            float center = size / 2f;
+            float radius = size / 2f - 4;
+            
+            for (int y = 0; y < size; y++)
+            {
+                for (int x = 0; x < size; x++)
+                {
+                    float dx = x - center;
+                    float dy = y - center;
+                    float dist = Mathf.Sqrt(dx * dx + dy * dy);
+                    
+                    if (dist < radius)
+                    {
+                        // Simple face - head circle
+                        if (dist < radius * 0.7f && dy < 0)
+                        {
+                            // Face area (top part)
+                            pixels[y * size + x] = bgColor * 1.2f;
+                        }
+                        else if (dist < radius * 0.4f && dy > radius * 0.1f)
+                        {
+                            // Body area (bottom part)
+                            pixels[y * size + x] = bgColor * 0.9f;
+                        }
+                        else
+                        {
+                            pixels[y * size + x] = bgColor;
+                        }
+                    }
+                    else if (dist < radius + 3)
+                    {
+                        // Border
+                        pixels[y * size + x] = bgColor * 0.5f;
+                    }
+                    else
+                    {
+                        pixels[y * size + x] = Color.clear;
+                    }
                 }
             }
             

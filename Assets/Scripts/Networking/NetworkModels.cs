@@ -800,6 +800,7 @@ namespace PokerClient.Networking
         public string playerId;
         public string playerName;  // Display name
         public string name;        // Alias for playerName
+        public string avatarId;    // Avatar identifier (e.g., "default_1", "bot_tex")
         public int chips;
         public int currentBet;
         public bool isFolded;

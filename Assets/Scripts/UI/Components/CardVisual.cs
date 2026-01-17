@@ -169,9 +169,31 @@ namespace PokerClient.UI.Components
             _rank = rank;
             _suit = suit?.ToLower();
             
+            // Try to get sprite from SpriteManager
+            if (SpriteManager.Instance != null)
+            {
+                var cardSprite = SpriteManager.Instance.GetCardSprite(rank, _suit);
+                if (cardSprite != null && cardBackground != null)
+                {
+                    // Use sprite-based rendering
+                    cardBackground.sprite = cardSprite;
+                    cardBackground.color = Color.white;
+                    
+                    // Hide text elements when using sprites
+                    if (faceContent != null) faceContent.SetActive(false);
+                    
+                    SetFaceDown(false);
+                    return;
+                }
+            }
+            
+            // Fallback to text-based rendering
             var suitSymbol = GetSuitSymbol(_suit);
             var isRed = _suit == "hearts" || _suit == "diamonds";
             var color = isRed ? Theme.Current.suitRed : Theme.Current.suitBlack;
+            
+            // Show text elements
+            if (faceContent != null) faceContent.SetActive(true);
             
             // Update all text elements
             rankTextTopLeft.text = rank;

@@ -112,6 +112,59 @@ namespace PokerClient.Core
             
             SetupAudioSources();
             LoadVolumeSettings();
+            LoadAudioFromResources();
+        }
+        
+        /// <summary>
+        /// Auto-load audio clips from Resources folder if not assigned in Inspector
+        /// </summary>
+        private void LoadAudioFromResources()
+        {
+            // SFX - Card sounds
+            if (cardDeal == null) cardDeal = Resources.Load<AudioClip>("Audio/SFX/card_deal");
+            if (cardFlip == null) cardFlip = Resources.Load<AudioClip>("Audio/SFX/card_flip");
+            if (cardShuffle == null) cardShuffle = Resources.Load<AudioClip>("Audio/SFX/card_shuffle");
+            
+            // SFX - Chip sounds
+            if (chipBet == null) chipBet = Resources.Load<AudioClip>("Audio/SFX/chip_bet");
+            if (chipWin == null) chipWin = Resources.Load<AudioClip>("Audio/SFX/chip_win");
+            if (chipStack == null) chipStack = Resources.Load<AudioClip>("Audio/SFX/chip_stack");
+            if (allIn == null) allIn = Resources.Load<AudioClip>("Audio/SFX/all_in");
+            
+            // SFX - Action sounds
+            if (fold == null) fold = Resources.Load<AudioClip>("Audio/SFX/fold");
+            if (check == null) check = Resources.Load<AudioClip>("Audio/SFX/check");
+            if (call == null) call = Resources.Load<AudioClip>("Audio/SFX/call");
+            if (raise == null) raise = Resources.Load<AudioClip>("Audio/SFX/raise");
+            if (turnTimer == null) turnTimer = Resources.Load<AudioClip>("Audio/SFX/timer_tick");
+            if (turnTimerWarning == null) turnTimerWarning = Resources.Load<AudioClip>("Audio/SFX/timer_warning");
+            
+            // SFX - UI sounds
+            if (buttonClick == null) buttonClick = Resources.Load<AudioClip>("Audio/SFX/button_click");
+            if (buttonHover == null) buttonHover = Resources.Load<AudioClip>("Audio/SFX/button_hover");
+            if (notification == null) notification = Resources.Load<AudioClip>("Audio/SFX/notification");
+            if (error == null) error = Resources.Load<AudioClip>("Audio/SFX/error");
+            if (success == null) success = Resources.Load<AudioClip>("Audio/SFX/success");
+            
+            // SFX - Game events
+            if (gameStart == null) gameStart = Resources.Load<AudioClip>("Audio/SFX/game_start");
+            if (handWin == null) handWin = Resources.Load<AudioClip>("Audio/SFX/hand_win");
+            if (handLose == null) handLose = Resources.Load<AudioClip>("Audio/SFX/hand_lose");
+            if (royalFlush == null) royalFlush = Resources.Load<AudioClip>("Audio/SFX/royal_flush");
+            if (playerJoin == null) playerJoin = Resources.Load<AudioClip>("Audio/SFX/player_join");
+            if (playerLeave == null) playerLeave = Resources.Load<AudioClip>("Audio/SFX/player_leave");
+            
+            // SFX - Adventure
+            if (levelUp == null) levelUp = Resources.Load<AudioClip>("Audio/SFX/level_up");
+            if (itemDrop == null) itemDrop = Resources.Load<AudioClip>("Audio/SFX/item_drop");
+            
+            // Music
+            if (menuMusic == null) menuMusic = Resources.Load<AudioClip>("Audio/Music/menu_music");
+            if (lobbyMusic == null) lobbyMusic = Resources.Load<AudioClip>("Audio/Music/lobby_music");
+            if (tableMusic == null) tableMusic = Resources.Load<AudioClip>("Audio/Music/table_music");
+            if (adventureMusic == null) adventureMusic = Resources.Load<AudioClip>("Audio/Music/adventure_music");
+            if (bossMusic == null) bossMusic = Resources.Load<AudioClip>("Audio/Music/boss_music");
+            if (victoryMusic == null) victoryMusic = Resources.Load<AudioClip>("Audio/Music/victory_music");
         }
         
         private void SetupAudioSources()

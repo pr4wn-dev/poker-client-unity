@@ -185,10 +185,32 @@ namespace PokerClient.UI.Components
             _isFolded = seat.isFolded;
             _isAllIn = seat.isAllIn;
             
-            nameText.text = seat.name ?? "Player";
+            nameText.text = seat.GetDisplayName();
             nameText.color = Theme.Current.textPrimary;
             chipsText.text = ChipStack.FormatChipValue(seat.chips);
-            avatarImage.color = Theme.Current.buttonSecondary;
+            
+            // Set avatar - use bot avatar or player avatar
+            if (SpriteManager.Instance != null)
+            {
+                Sprite avatar = seat.isBot 
+                    ? SpriteManager.Instance.GetBotAvatar(seat.name)
+                    : SpriteManager.Instance.GetAvatar(seat.avatarId ?? "default_1");
+                    
+                if (avatar != null)
+                {
+                    avatarImage.sprite = avatar;
+                    avatarImage.color = Color.white;
+                }
+                else
+                {
+                    avatarImage.sprite = null;
+                    avatarImage.color = seat.isBot ? Theme.Current.accentColor : Theme.Current.buttonSecondary;
+                }
+            }
+            else
+            {
+                avatarImage.color = seat.isBot ? Theme.Current.accentColor : Theme.Current.buttonSecondary;
+            }
             
             // Set bet
             betChips.SetValue(seat.currentBet);
