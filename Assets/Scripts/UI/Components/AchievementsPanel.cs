@@ -179,27 +179,30 @@ namespace PokerClient.UI.Components
         public void Show(List<string> unlockedIds = null)
         {
             _gameService = GameService.Instance;
-            
-            // Clear existing
-            foreach (var card in _achievementCards)
-            {
-                Destroy(card);
-            }
-            _achievementCards.Clear();
-            
-            unlockedIds = unlockedIds ?? new List<string>();
-            
-            int unlocked = 0;
-            foreach (var achievement in ACHIEVEMENTS)
-            {
-                bool isUnlocked = unlockedIds.Contains(achievement.id);
-                if (isUnlocked) unlocked++;
-                CreateAchievementCard(achievement, isUnlocked);
-            }
-            
-            progressText.text = $"{unlocked} / {ACHIEVEMENTS.Length} Unlocked";
-            
             gameObject.SetActive(true);
+            
+            // Load from server
+            _gameService?.GetAchievements(response =>
+            {
+                // Clear existing
+                foreach (var card in _achievementCards)
+                {
+                    Destroy(card);
+                }
+                _achievementCards.Clear();
+                
+                List<string> ids = response?.success == true ? response.unlockedIds : (unlockedIds ?? new List<string>());
+                
+                int unlocked = 0;
+                foreach (var achievement in ACHIEVEMENTS)
+                {
+                    bool isUnlocked = ids.Contains(achievement.id);
+                    if (isUnlocked) unlocked++;
+                    CreateAchievementCard(achievement, isUnlocked);
+                }
+                
+                progressText.text = $"{unlocked} / {ACHIEVEMENTS.Length} Unlocked";
+            });
         }
         
         public void Hide()

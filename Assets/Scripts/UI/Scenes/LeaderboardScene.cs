@@ -223,9 +223,32 @@ namespace PokerClient.UI.Scenes
             }
             _entries.Clear();
             
-            // TODO: Load from server
-            // For now, show mock data
-            LoadMockData(category);
+            // Load from server
+            string serverCategory = category switch
+            {
+                LeaderboardCategory.Chips => "chips",
+                LeaderboardCategory.Wins => "wins",
+                LeaderboardCategory.Level => "level",
+                LeaderboardCategory.BiggestPot => "biggest_pot",
+                LeaderboardCategory.WinStreak => "wins",  // Use wins for now
+                _ => "chips"
+            };
+            
+            _gameService?.GetLeaderboard(serverCategory, entries =>
+            {
+                if (entries != null && entries.Count > 0)
+                {
+                    foreach (var entry in entries)
+                    {
+                        CreateLeaderboardEntry(entry.rank, entry.username, entry.level, entry.value, category);
+                    }
+                }
+                else
+                {
+                    // Show mock data as fallback
+                    LoadMockData(category);
+                }
+            });
         }
         
         private void LoadMockData(LeaderboardCategory category)

@@ -248,15 +248,34 @@ namespace PokerClient.UI.Components
         
         public void Show(int currentDay = 1, bool canClaim = true)
         {
-            _currentDay = Mathf.Clamp(currentDay, 1, 7);
-            _canClaim = canClaim;
             _gameService = GameService.Instance;
+            gameObject.SetActive(true);
             
+            // Load status from server
+            _gameService?.GetDailyRewardStatus(response =>
+            {
+                if (response.success)
+                {
+                    _currentDay = Mathf.Clamp(response.currentDay, 1, 7);
+                    _canClaim = response.canClaim;
+                }
+                else
+                {
+                    _currentDay = Mathf.Clamp(currentDay, 1, 7);
+                    _canClaim = canClaim;
+                }
+                
+                UpdateDisplay();
+            });
+        }
+        
+        private void UpdateDisplay()
+        {
             streakText.text = $"🔥 Day {_currentDay}";
             
-            claimButton.interactable = canClaim;
-            claimButtonText.text = canClaim ? "CLAIM REWARD!" : "ALREADY CLAIMED";
-            timerText.text = canClaim ? "" : "Next reward available in 23:45:30";
+            claimButton.interactable = _canClaim;
+            claimButtonText.text = _canClaim ? "CLAIM REWARD!" : "ALREADY CLAIMED";
+            timerText.text = _canClaim ? "" : "Come back tomorrow!";
             
             // Rebuild grid with current day
             foreach (Transform child in rewardsContainer)
@@ -267,8 +286,6 @@ namespace PokerClient.UI.Components
             {
                 CreateRewardCard(DAILY_REWARDS[i]);
             }
-            
-            gameObject.SetActive(true);
         }
         
         public void Hide()
@@ -281,20 +298,34 @@ namespace PokerClient.UI.Components
         {
             if (!_canClaim) return;
             
-            var reward = DAILY_REWARDS[_currentDay - 1];
-            
             claimButton.interactable = false;
             claimButtonText.text = "CLAIMING...";
             
-            // TODO: Call server to claim reward
-            // For now, simulate success
-            OnRewardClaimed?.Invoke(reward);
-            
-            ToastNotification.Show($"Claimed Day {_currentDay} reward: +{reward.chips:N0} chips, +{reward.xp} XP!", ToastType.Success);
-            
-            _canClaim = false;
-            claimButtonText.text = "CLAIMED!";
-            timerText.text = "Come back tomorrow for more rewards!";
+            _gameService?.ClaimDailyReward(response =>
+            {
+                if (response.success)
+                {
+                    var reward = DAILY_REWARDS[_currentDay - 1];
+                    OnRewardClaimed?.Invoke(reward);
+                    
+                    string message = $"Claimed Day {_currentDay}: +{response.chipsAwarded:N0} chips, +{response.xpAwarded} XP!";
+                    if (response.gemsAwarded > 0)
+                    {
+                        message += $" +{response.gemsAwarded} gems!";
+                    }
+                    ToastNotification.Show(message, ToastType.Success);
+                    
+                    _canClaim = false;
+                    claimButtonText.text = "CLAIMED!";
+                    timerText.text = "Come back tomorrow for more rewards!";
+                }
+                else
+                {
+                    ToastNotification.Show(response.error ?? "Failed to claim reward", ToastType.Error);
+                    claimButton.interactable = _canClaim;
+                    claimButtonText.text = "CLAIM REWARD!";
+                }
+            });
         }
     }
     
