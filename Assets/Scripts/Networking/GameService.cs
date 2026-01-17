@@ -244,26 +244,27 @@ namespace PokerClient.Networking
             
             _socket.Emit<CreateTableResponse>("create_table", data, response =>
             {
-                Debug.Log($"[GameService] CreateTable callback - success: {response?.success}, tableId: {response?.tableId}, seatIndex: {response?.seatIndex}");
+                Debug.Log($"[GameService] CreateTable callback - success: {response?.success}, tableId: {response?.tableId}, seatIndex: {response?.seatIndex}, hasState: {response?.state != null}");
                 
                 if (response != null && response.success)
                 {
                     OnTableCreated?.Invoke(response.table);
                     
-                    // Check if server already seated us (Issue #55 fix)
-                    if (response.seatIndex.HasValue && response.state != null)
+                    // Check if server already seated us (Issue #55/57 fix)
+                    // Use IsAutoSeated which checks seatIndex >= 0 && state != null
+                    if (response.IsAutoSeated)
                     {
                         // Already seated by server - just update state
                         Debug.Log($"[GameService] Auto-seated by server at seat {response.seatIndex}");
                         CurrentTableId = response.tableId;
-                        MySeatIndex = response.seatIndex.Value;
+                        MySeatIndex = response.seatIndex;
                         CurrentTableState = response.state;
                         OnTableJoined?.Invoke(response.state);
                         callback?.Invoke(true, response.tableId);
                     }
                     else
                     {
-                        // Legacy: need to join separately
+                        // Legacy: need to join separately (shouldn't happen with new server)
                         Debug.Log($"[GameService] Table created: {response.tableId}, now joining...");
                         JoinTable(response.tableId, 0, password, (joinSuccess, joinError) =>
                         {
