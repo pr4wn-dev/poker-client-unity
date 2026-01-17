@@ -666,6 +666,50 @@ namespace PokerClient.Networking
         
         #endregion
         
+        #region Bot Management
+        
+        public void AddBot(string tableId, string botProfile, int buyIn = 1000, Action<bool, int, string, string> callback = null)
+        {
+            _socket.Emit<AddBotResponse>("add_bot", new { tableId, botProfile, buyIn }, response =>
+            {
+                if (response.success)
+                {
+                    Debug.Log($"Bot {response.botName} added at seat {response.seatIndex}");
+                }
+                else
+                {
+                    Debug.LogError($"Add bot failed: {response.error}");
+                }
+                callback?.Invoke(response.success, response.seatIndex, response.botName, response.error);
+            });
+        }
+        
+        public void RemoveBot(string tableId, int seatIndex, Action<bool, string> callback = null)
+        {
+            _socket.Emit<RemoveBotResponse>("remove_bot", new { tableId, seatIndex }, response =>
+            {
+                if (response.success)
+                {
+                    Debug.Log($"Bot {response.botName} removed");
+                }
+                else
+                {
+                    Debug.LogError($"Remove bot failed: {response.error}");
+                }
+                callback?.Invoke(response.success, response.error);
+            });
+        }
+        
+        public void GetAvailableBots(Action<BotInfo[]> callback = null)
+        {
+            _socket.Emit<GetBotsResponse>("get_available_bots", null, response =>
+            {
+                callback?.Invoke(response.bots);
+            });
+        }
+        
+        #endregion
+        
         #region Adventure Mode
         
         public void GetWorldMap(Action<WorldMapState> callback = null)

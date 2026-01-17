@@ -1002,6 +1002,39 @@ namespace PokerClient.Networking
     }
     
     [Serializable]
+    public class AddBotResponse
+    {
+        public bool success;
+        public string error;
+        public int seatIndex;
+        public string botName;
+    }
+    
+    [Serializable]
+    public class RemoveBotResponse
+    {
+        public bool success;
+        public string error;
+        public string botName;
+    }
+    
+    [Serializable]
+    public class BotInfo
+    {
+        public string id;
+        public string name;
+        public string personality;
+        public string description;
+    }
+    
+    [Serializable]
+    public class GetBotsResponse
+    {
+        public bool success;
+        public BotInfo[] bots;
+    }
+    
+    [Serializable]
     public class ActiveSessionResponse
     {
         public bool success;
