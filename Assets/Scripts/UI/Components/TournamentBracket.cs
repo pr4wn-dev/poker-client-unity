@@ -239,7 +239,7 @@ namespace PokerClient.UI.Components
             }
         }
         
-        private void CreateMatchCard(Transform parent, int matchIndex, int roundIndex, bool isPast, bool isCurrent, List<TournamentPlayerInfo> players)
+        private void CreateMatchCard(Transform parent, int matchIndex, int roundIndex, bool isPast, bool isCurrent, List<TournamentPlayer> players)
         {
             var theme = Theme.Current;
             
