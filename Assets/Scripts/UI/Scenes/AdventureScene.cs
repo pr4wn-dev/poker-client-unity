@@ -397,10 +397,10 @@ namespace PokerClient.UI.Scenes
             _currentMapState = state;
             
             // Update player stats
-            playerLevelText.text = $"Level {state.playerLevel}";
-            playerXPText.text = $"{state.playerXP} / {state.xpForNextLevel} XP";
+            playerLevelText.text = $"Level {state.playerLevel ?? 1}";
+            playerXPText.text = $"{state.playerXP ?? 0} / {state.xpForNextLevel ?? 100} XP";
             
-            float progress = state.xpForNextLevel > 0 ? (float)state.playerXP / state.xpForNextLevel : 0;
+            float progress = (state.xpForNextLevel ?? 0) > 0 ? (float)(state.playerXP ?? 0) / (state.xpForNextLevel ?? 1) : 0;
             var xpRect = xpProgressBar.GetComponent<RectTransform>();
             xpRect.anchorMax = new Vector2(Mathf.Clamp01(progress), 1);
             
