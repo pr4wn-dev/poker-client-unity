@@ -495,16 +495,17 @@ namespace PokerClient.Networking
             return new GetBossesResponse
             {
                 success = true,
-                bosses = new System.Collections.Generic.List<BossInfo>
+                bosses = new System.Collections.Generic.List<BossListItem>
                 {
-                    new BossInfo
+                    new BossListItem
                     {
                         id = "boss_tutorial",
                         name = "Dealer Dan",
                         difficulty = "easy",
-                        chips = 5000,
                         description = "The friendly tutorial dealer",
-                        taunt = "Let's see what you've got!"
+                        minLevel = 1,
+                        entryFee = 0,
+                        canChallenge = true
                     }
                 }
             };
