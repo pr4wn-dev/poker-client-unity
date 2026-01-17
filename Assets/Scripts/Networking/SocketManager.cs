@@ -335,15 +335,8 @@ namespace PokerClient.Networking
                     // Get JSON and parse with Unity's JsonUtility
                     var obj = response.GetValue<object>();
                     string jsonStr = obj?.ToString() ?? "{}";
-                    Debug.Log($"[SocketManager] {responseEvent} received: {jsonStr}");
                     var result = JsonUtility.FromJson<T>(jsonStr);
-                    Debug.Log($"[SocketManager] {responseEvent} parsed, result null? {result == null}, enqueueing callback");
-                    UnityMainThread.Execute(() => 
-                    {
-                        Debug.Log($"[SocketManager] {responseEvent} callback executing on main thread");
-                        callback?.Invoke(result);
-                        Debug.Log($"[SocketManager] {responseEvent} callback completed");
-                    });
+                    UnityMainThread.Execute(() => callback?.Invoke(result));
                 }
                 catch (Exception e)
                 {

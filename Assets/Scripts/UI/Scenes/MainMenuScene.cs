@@ -52,7 +52,6 @@ namespace PokerClient.UI.Scenes
             // Check if already logged in (e.g., returning from another scene)
             if (_gameService != null && _gameService.IsLoggedIn)
             {
-                Debug.Log("[MainMenuScene] Already logged in, showing main menu");
                 _isLoggedIn = true;
                 
                 var profile = _gameService.CurrentUser;
@@ -666,7 +665,6 @@ namespace PokerClient.UI.Scenes
             
             if (!string.IsNullOrEmpty(savedUsername))
             {
-                Debug.Log($"[MainMenuScene] Loaded saved credentials for: {savedUsername}");
             }
         }
         
@@ -675,7 +673,6 @@ namespace PokerClient.UI.Scenes
             PlayerPrefs.SetString(PREF_USERNAME, username);
             PlayerPrefs.SetString(PREF_PASSWORD, password);
             PlayerPrefs.Save();
-            Debug.Log($"[MainMenuScene] Saved credentials for: {username}");
         }
         
         /// <summary>
@@ -686,7 +683,6 @@ namespace PokerClient.UI.Scenes
             PlayerPrefs.DeleteKey(PREF_USERNAME);
             PlayerPrefs.DeleteKey(PREF_PASSWORD);
             PlayerPrefs.Save();
-            Debug.Log("[MainMenuScene] Cleared saved credentials");
         }
         
         #endregion

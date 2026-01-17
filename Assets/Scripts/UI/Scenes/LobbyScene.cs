@@ -565,7 +565,6 @@ namespace PokerClient.UI.Scenes
         {
             _gameService.OnTableJoined -= OnTableJoinedForCreate;
             loadingPanel.SetActive(false);
-            Debug.Log($"[LobbyScene] OnTableJoined fired! IsInGame: {_gameService.IsInGame}, TableId: {_gameService.CurrentTableId}");
             SceneManager.LoadScene("TableScene");
         }
         

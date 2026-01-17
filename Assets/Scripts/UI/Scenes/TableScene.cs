@@ -62,7 +62,6 @@ namespace PokerClient.UI.Scenes
         private void Start()
         {
             _gameService = GameService.Instance;
-            Debug.Log($"[TableScene] Start - GameService: {_gameService != null}, IsInGame: {_gameService?.IsInGame}, CurrentTableId: {_gameService?.CurrentTableId}");
             if (_gameService == null || !_gameService.IsInGame)
             {
                 Debug.LogError($"Not in a game! Going back to lobby. IsInGame={_gameService?.IsInGame}, TableId={_gameService?.CurrentTableId}");

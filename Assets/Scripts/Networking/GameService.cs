@@ -28,16 +28,12 @@ namespace PokerClient.Networking
                 {
                     if (_instance == null)
                     {
-                        // Try to find existing instance
                         _instance = FindObjectOfType<GameService>();
-                        Debug.Log($"[GameService] NEW CODE v2 - FindObjectOfType returned: {_instance != null}");
                         
                         if (_instance == null)
                         {
-                            // Create new instance
                             var go = new GameObject("GameService");
                             _instance = go.AddComponent<GameService>();
-                            Debug.Log("[GameService] NEW CODE v2 - Created fresh instance");
                         }
                     }
                     return _instance;
@@ -244,7 +240,6 @@ namespace PokerClient.Networking
             
             _socket.Emit<CreateTableResponse>("create_table", data, response =>
             {
-                Debug.Log($"[GameService] CreateTable callback - success: {response?.success}, tableId: {response?.tableId}, seatIndex: {response?.seatIndex}, hasState: {response?.state != null}");
                 
                 if (response != null && response.success)
                 {
@@ -255,7 +250,6 @@ namespace PokerClient.Networking
                     if (response.IsAutoSeated)
                     {
                         // Already seated by server - just update state
-                        Debug.Log($"[GameService] Auto-seated by server at seat {response.seatIndex}");
                         CurrentTableId = response.tableId;
                         MySeatIndex = response.seatIndex;
                         CurrentTableState = response.state;
@@ -265,12 +259,10 @@ namespace PokerClient.Networking
                     else
                     {
                         // Legacy: need to join separately (shouldn't happen with new server)
-                        Debug.Log($"[GameService] Table created: {response.tableId}, now joining...");
                         JoinTable(response.tableId, 0, password, (joinSuccess, joinError) =>
                         {
                             if (joinSuccess)
                             {
-                                Debug.Log($"[GameService] Auto-joined table {response.tableId}");
                                 callback?.Invoke(true, response.tableId);
                             }
                             else
@@ -292,18 +284,15 @@ namespace PokerClient.Networking
         public void JoinTable(string tableId, int? preferredSeat = null, string password = null, 
             Action<bool, string> callback = null)
         {
-            Debug.Log($"[GameService] JoinTable called for tableId: {tableId}");
             var data = new { tableId, seatIndex = preferredSeat, password };
             
             _socket.Emit<JoinTableResponse>("join_table", data, response =>
             {
-                Debug.Log($"[GameService] JoinTable response: success={response?.success}, seatIndex={response?.seatIndex}");
                 if (response != null && response.success)
                 {
                     CurrentTableId = tableId;
                     MySeatIndex = response.seatIndex;
                     CurrentTableState = response.state;
-                    Debug.Log($"[GameService] Joined! CurrentTableId={CurrentTableId}, IsInGame={IsInGame}");
                     OnTableJoined?.Invoke(response.state);
                     callback?.Invoke(true, null);
                 }
