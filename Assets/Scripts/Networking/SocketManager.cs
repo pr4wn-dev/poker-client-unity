@@ -394,7 +394,7 @@ namespace PokerClient.Networking
             return new RegisterResponse
             {
                 success = true,
-                userId = Guid.NewGuid().ToString(),
+                playerId = Guid.NewGuid().ToString(),
                 profile = new UserProfile
                 {
                     id = Guid.NewGuid().ToString(),
@@ -502,9 +502,9 @@ namespace PokerClient.Networking
                         id = "boss_tutorial",
                         name = "Dealer Dan",
                         difficulty = "easy",
-                        minLevel = 1,
-                        entryFee = 0,
-                        canChallenge = true
+                        chips = 5000,
+                        description = "The friendly tutorial dealer",
+                        taunt = "Let's see what you've got!"
                     }
                 }
             };
@@ -517,12 +517,17 @@ namespace PokerClient.Networking
                 success = true,
                 session = new AdventureSession
                 {
-                    oderId = "player1",
-                    bossId = "boss_tutorial",
-                    bossName = "Dealer Dan",
-                    bossChips = 5000,
+                    userId = "player1",
+                    boss = new BossInfo
+                    {
+                        id = "boss_tutorial",
+                        name = "Dealer Dan",
+                        chips = 5000,
+                        difficulty = "easy"
+                    },
                     userChips = 10000,
-                    handsPlayed = 0
+                    handsPlayed = 0,
+                    entryFee = 0
                 }
             };
         }
@@ -539,10 +544,10 @@ namespace PokerClient.Networking
                 minBet = 100,
                 dealerIndex = 0,
                 currentPlayerIndex = -1,
-                communityCards = new System.Collections.Generic.List<CardInfo>(),
+                communityCards = new System.Collections.Generic.List<Card>(),
                 seats = new System.Collections.Generic.List<SeatInfo>
                 {
-                    new SeatInfo { index = 0, playerId = "player1", name = "You", chips = 10000, currentBet = 0, isFolded = false, isAllIn = false, isConnected = true, cards = new System.Collections.Generic.List<CardInfo>() },
+                    new SeatInfo { index = 0, playerId = "player1", name = "You", chips = 10000, currentBet = 0, isFolded = false, isAllIn = false, isConnected = true, cards = new System.Collections.Generic.List<Card>() },
                     null, null, null, null, null, null, null, null
                 }
             };
