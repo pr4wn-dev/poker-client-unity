@@ -311,11 +311,17 @@ namespace PokerClient.Networking
                     string jsonStr = obj?.ToString() ?? "{}";
                     Debug.Log($"[SocketManager] {responseEvent} received: {jsonStr}");
                     var result = JsonUtility.FromJson<T>(jsonStr);
-                    UnityMainThread.Execute(() => callback?.Invoke(result));
+                    Debug.Log($"[SocketManager] {responseEvent} parsed, result null? {result == null}, enqueueing callback");
+                    UnityMainThread.Execute(() => 
+                    {
+                        Debug.Log($"[SocketManager] {responseEvent} callback executing on main thread");
+                        callback?.Invoke(result);
+                        Debug.Log($"[SocketManager] {responseEvent} callback completed");
+                    });
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError($"[SocketManager] Failed to parse {responseEvent}: {e.Message}");
+                    Debug.LogError($"[SocketManager] Failed to parse {responseEvent}: {e.Message}\n{e.StackTrace}");
                     UnityMainThread.Execute(() => callback?.Invoke(null));
                 }
             }
