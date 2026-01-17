@@ -680,6 +680,7 @@ PlayerSettings:
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
     Android: SOCKETIO_INSTALLED;SOCKET_IO_AVAILABLE
+    Standalone: SOCKETIO_INSTALLED;SOCKET_IO_AVAILABLE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
