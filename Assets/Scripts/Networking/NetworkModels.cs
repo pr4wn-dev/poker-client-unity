@@ -1007,6 +1007,102 @@ namespace PokerClient.Networking
         public TableState state;
     }
     
+    [Serializable]
+    public class TournamentPlayerInfo
+    {
+        public string oderId;
+        public string oderId_alias { set { oderId = value; } }  // Handle both "id" and "oderId"
+        public string id { set { oderId = value; } }
+        public string username;
+        public int chips;
+        public int position;
+        public bool isEliminated;
+        public int finishPosition;
+    }
+    
+    [Serializable]
+    public class LeaderboardResponse
+    {
+        public bool success;
+        public string error;
+        public string category;
+        public List<LeaderboardEntry> entries;
+    }
+    
+    [Serializable]
+    public class LeaderboardEntry
+    {
+        public int rank;
+        public string oderId;
+        public string username;
+        public int level;
+        public int value;
+    }
+    
+    [Serializable]
+    public class DailyRewardResponse
+    {
+        public bool success;
+        public string error;
+        public int currentDay;
+        public bool canClaim;
+        public string nextClaimTime;
+        public DailyRewardInfo reward;
+    }
+    
+    [Serializable]
+    public class DailyRewardInfo
+    {
+        public int day;
+        public int chips;
+        public int xp;
+        public int gems;
+        public string bonus;
+    }
+    
+    [Serializable]
+    public class ClaimDailyRewardResponse
+    {
+        public bool success;
+        public string error;
+        public int chipsAwarded;
+        public int xpAwarded;
+        public int gemsAwarded;
+        public string bonusItem;
+        public int newStreak;
+    }
+    
+    [Serializable]
+    public class AchievementsResponse
+    {
+        public bool success;
+        public string error;
+        public List<string> unlockedIds;
+        public List<AchievementInfo> allAchievements;
+    }
+    
+    [Serializable]
+    public class AchievementInfo
+    {
+        public string id;
+        public string name;
+        public string description;
+        public string icon;
+        public string category;
+        public int xpReward;
+        public bool isUnlocked;
+        public string unlockedAt;
+    }
+    
+    [Serializable]
+    public class UnlockAchievementResponse
+    {
+        public bool success;
+        public string error;
+        public string achievementId;
+        public int xpAwarded;
+    }
+    
     // ============ Social Requests/Responses ============
     
     [Serializable]

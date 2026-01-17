@@ -521,6 +521,75 @@ namespace PokerClient.Networking
         
         #endregion
         
+        #region Leaderboards
+        
+        /// <summary>
+        /// Get leaderboard entries for a category
+        /// </summary>
+        public void GetLeaderboard(string category, Action<List<LeaderboardEntry>> callback)
+        {
+            _socket.Emit<LeaderboardResponse>("get_leaderboard", new { category }, response =>
+            {
+                callback?.Invoke(response.success ? response.entries : new List<LeaderboardEntry>());
+            });
+        }
+        
+        #endregion
+        
+        #region Daily Rewards
+        
+        /// <summary>
+        /// Get current daily reward status
+        /// </summary>
+        public void GetDailyRewardStatus(Action<DailyRewardResponse> callback)
+        {
+            _socket.Emit<DailyRewardResponse>("get_daily_reward_status", new { }, response =>
+            {
+                callback?.Invoke(response);
+            });
+        }
+        
+        /// <summary>
+        /// Claim today's daily reward
+        /// </summary>
+        public void ClaimDailyReward(Action<ClaimDailyRewardResponse> callback)
+        {
+            _socket.Emit<ClaimDailyRewardResponse>("claim_daily_reward", new { }, response =>
+            {
+                callback?.Invoke(response);
+            });
+        }
+        
+        #endregion
+        
+        #region Achievements
+        
+        /// <summary>
+        /// Get all achievements and unlock status
+        /// </summary>
+        public void GetAchievements(Action<AchievementsResponse> callback)
+        {
+            _socket.Emit<AchievementsResponse>("get_achievements", new { }, response =>
+            {
+                callback?.Invoke(response);
+            });
+        }
+        
+        /// <summary>
+        /// Unlock an achievement (called when conditions are met)
+        /// </summary>
+        public void UnlockAchievement(string achievementId, Action<bool, int> callback = null)
+        {
+            _socket.Emit<UnlockAchievementResponse>("unlock_achievement", new { achievementId }, response =>
+            {
+                callback?.Invoke(response.success, response.xpAwarded);
+            });
+        }
+        
+        public event Action<string, int> OnAchievementUnlocked;  // achievementId, xpAwarded
+        
+        #endregion
+        
         #region Game Actions
         
         public void Fold()
