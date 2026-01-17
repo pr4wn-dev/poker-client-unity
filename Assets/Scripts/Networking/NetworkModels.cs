@@ -266,42 +266,6 @@ namespace PokerClient.Networking
     
     #endregion
     
-    #region Level Info
-    
-    [Serializable]
-    public class LevelInfo
-    {
-        public int level;
-        public string bossId;
-        public string bossName;
-        public string difficulty;
-        public bool isUnlocked;
-        public bool isDefeated;
-        public int requiredXP;
-        public int entryFee;
-    }
-    
-    #endregion
-    
-    #region Item Info (simplified for rewards/drops)
-    
-    [Serializable]
-    public class ItemInfo
-    {
-        public string id;
-        public string templateId;
-        public string name;
-        public string description;
-        public string type;
-        public string rarity;
-        public string icon;
-        public int baseValue;
-        public bool isTradeable;
-        public bool isGambleable;
-    }
-    
-    #endregion
-    
     #region Adventure Mode Models
     
     // ============ XP & Progression ============
@@ -319,9 +283,6 @@ namespace PokerClient.Networking
     public class AdventureProgress
     {
         public string currentArea;
-        public int level;
-        public int xp;
-        public int xpToNextLevel;
         public List<string> bossesDefeated;
         public Dictionary<string, int> bossDefeatCounts;
         public int totalWins;
@@ -351,7 +312,6 @@ namespace PokerClient.Networking
         public string icon;
         public Position position;
         public bool isUnlocked;
-        public string unlockReason;
         public List<AreaRequirement> requirements;
         public int bossCount;
         public int completedBosses;
@@ -443,7 +403,6 @@ namespace PokerClient.Networking
         public int userChips;
         public int handsPlayed;
         public int entryFee;
-        public int level;
     }
     
     [Serializable]
@@ -569,7 +528,7 @@ namespace PokerClient.Networking
     [Serializable]
     public class TournamentPlayer
     {
-        public string userId;
+        public string oderId;
         public string username;
         public bool isEliminated;
         public int? seatAssignment;
@@ -578,7 +537,7 @@ namespace PokerClient.Networking
     [Serializable]
     public class TournamentSidePotEntry
     {
-        public string userId;
+        public string oderId;
         public ItemInfo item;
     }
     
@@ -586,14 +545,14 @@ namespace PokerClient.Networking
     public class TournamentResult
     {
         public string status;
-        public string userId;
+        public string oderId;
         public List<TournamentPayout> payouts;
     }
     
     [Serializable]
     public class TournamentPayout
     {
-        public string userId;
+        public string oderId;
         public int position;
         public int chips;
         public int xp;
@@ -702,14 +661,14 @@ namespace PokerClient.Networking
     [Serializable]
     public class SidePotEntry
     {
-        public string userId;
+        public string oderId;
         public SidePotItem item;
     }
     
     [Serializable]
     public class SidePotSubmission
     {
-        public string userId;
+        public string oderId;
         public SidePotItem item;
         public long submittedAt;
     }
@@ -745,7 +704,7 @@ namespace PokerClient.Networking
     [Serializable]
     public class SidePotSubmissionEvent
     {
-        public string userId;
+        public string oderId;
         public string username;
         public SidePotItem item;
     }
@@ -788,8 +747,8 @@ namespace PokerClient.Networking
         public string playerId;
         public string playerName;  // Display name
         public string name;        // Alias for playerName
-        public int chips;
-        public int currentBet;
+        public long chips;
+        public long currentBet;
         public bool isFolded;
         public bool isAllIn;
         public bool isConnected;
@@ -809,10 +768,10 @@ namespace PokerClient.Networking
         public string id;
         public string name;
         public string phase;
-        public int pot;
+        public long pot;
         public List<Card> communityCards;
-        public int currentBet;
-        public int minBet;          // Minimum bet amount
+        public long currentBet;
+        public long minBet;          // Minimum bet amount
         public int dealerIndex;
         public int currentPlayerIndex;
         public string currentPlayerId;  // ID of player whose turn it is
@@ -846,15 +805,26 @@ namespace PokerClient.Networking
             return seats[currentPlayerIndex];
         }
         
-        public SeatInfo FindPlayer(string userId)
+        public SeatInfo FindPlayer(string oderId)
         {
-            return seats.Find(s => s?.playerId == userId);
+            return seats.Find(s => s?.playerId == oderId);
         }
     }
     
     #endregion
     
     #region Request/Response Models
+    
+    // ============ Generic Responses ============
+    
+    [Serializable]
+    public class SimpleResponse
+    {
+        public bool success;
+        public string error;
+    }
+    
+    // ============ Auth Requests/Responses ============
     
     [Serializable]
     public class RegisterRequest
@@ -866,8 +836,8 @@ namespace PokerClient.Networking
     public class RegisterResponse
     {
         public bool success;
-        public string playerId;
         public string error;
+        public string playerId;
         public UserProfile profile;
     }
     
@@ -882,10 +852,12 @@ namespace PokerClient.Networking
     public class LoginResponse
     {
         public bool success;
+        public string error;
         public string userId;
         public UserProfile profile;
-        public string error;
     }
+    
+    // ============ Table Requests/Responses ============
     
     [Serializable]
     public class CreateTableRequest
@@ -904,9 +876,16 @@ namespace PokerClient.Networking
     public class CreateTableResponse
     {
         public bool success;
-        public string tableId;
         public string error;
+        public string tableId;
         public TableInfo table;
+    }
+    
+    [Serializable]
+    public class GetTablesResponse
+    {
+        public bool success;
+        public List<TableInfo> tables;
     }
     
     [Serializable]
@@ -922,10 +901,10 @@ namespace PokerClient.Networking
     public class JoinTableResponse
     {
         public bool success;
+        public string error;
         public int seatIndex;
         public bool isSpectating;
         public TableState state;
-        public string error;
     }
     
     [Serializable]
@@ -939,16 +918,26 @@ namespace PokerClient.Networking
     public class ActionResponse
     {
         public bool success;
+        public string error;
         public string action;
         public int amount;
-        public string error;
+    }
+    
+    // ============ Social Requests/Responses ============
+    
+    [Serializable]
+    public class SearchUsersResponse
+    {
+        public bool success;
+        public List<UserSearchResult> users;
     }
     
     [Serializable]
-    public class TablesResponse
+    public class UserSearchResult
     {
-        public bool success;
-        public List<TableInfo> tables;
+        public string id;
+        public string username;
+        public bool isOnline;
     }
     
     [Serializable]
@@ -963,6 +952,31 @@ namespace PokerClient.Networking
     {
         public string userId;
         public string tableId;
+    }
+    
+    // ============ Adventure Requests/Responses ============
+    
+    [Serializable]
+    public class GetWorldMapResponse
+    {
+        public bool success;
+        public WorldMapState mapState;
+    }
+    
+    [Serializable]
+    public class GetBossesResponse
+    {
+        public bool success;
+        public string areaId;
+        public List<BossListItem> bosses;
+    }
+    
+    [Serializable]
+    public class StartAdventureResponse
+    {
+        public bool success;
+        public string error;
+        public AdventureSession session;
     }
     
     #endregion
