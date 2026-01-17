@@ -535,21 +535,28 @@ namespace PokerClient.UI.Scenes
             
             loadingPanel.SetActive(true);
             
+            // Subscribe to OnTableJoined to load scene AFTER CurrentTableId is set
+            _gameService.OnTableJoined -= OnTableJoinedForCreate;
+            _gameService.OnTableJoined += OnTableJoinedForCreate;
+            
             _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, isPrivate, password, (success, result) =>
             {
-                loadingPanel.SetActive(false);
-                if (success)
+                if (!success)
                 {
-                    // Auto-join the table we just created
-                    _gameService.JoinTable(result, null, password, (joinSuccess, error) =>
-                    {
-                        if (joinSuccess)
-                        {
-                            SceneManager.LoadScene("TableScene");
-                        }
-                    });
+                    loadingPanel.SetActive(false);
+                    _gameService.OnTableJoined -= OnTableJoinedForCreate;
+                    Debug.LogError($"[LobbyScene] Failed to create/join table: {result}");
                 }
+                // If success, OnTableJoined event will fire and load the scene
             });
+        }
+        
+        private void OnTableJoinedForCreate(TableState state)
+        {
+            _gameService.OnTableJoined -= OnTableJoinedForCreate;
+            loadingPanel.SetActive(false);
+            Debug.Log($"[LobbyScene] OnTableJoined fired! IsInGame: {_gameService.IsInGame}, TableId: {_gameService.CurrentTableId}");
+            SceneManager.LoadScene("TableScene");
         }
         
         private void OnSearchUsers()

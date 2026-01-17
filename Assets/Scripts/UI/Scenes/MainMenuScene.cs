@@ -52,22 +52,13 @@ namespace PokerClient.UI.Scenes
         
         private void InitializeNetworking()
         {
-            // Create or get GameService
-            if (GameService.Instance == null)
-            {
-                var serviceObj = new GameObject("GameService");
-                _gameService = serviceObj.AddComponent<GameService>();
-            }
-            else
-            {
-                _gameService = GameService.Instance;
-            }
+            // Get GameService (it will auto-create if needed via singleton getter)
+            _gameService = GameService.Instance;
             
-            // Create SocketManager if needed
-            if (SocketManager.Instance == null)
+            if (_gameService == null)
             {
-                var socketObj = new GameObject("SocketManager");
-                socketObj.AddComponent<SocketManager>();
+                Debug.LogError("[MainMenu] Failed to get GameService instance!");
+                return;
             }
             
             // Subscribe to events

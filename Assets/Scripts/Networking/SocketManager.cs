@@ -18,7 +18,41 @@ namespace PokerClient.Networking
     /// </summary>
     public class SocketManager : MonoBehaviour
     {
-        public static SocketManager Instance { get; private set; }
+        private static SocketManager _instance;
+        private static readonly object _lock = new object();
+        private static bool _applicationIsQuitting = false;
+        
+        public static SocketManager Instance
+        {
+            get
+            {
+                if (_applicationIsQuitting)
+                {
+                    Debug.LogWarning("[SocketManager] Instance requested after application quit - returning null");
+                    return null;
+                }
+                
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        // Try to find existing instance first
+                        _instance = FindObjectOfType<SocketManager>();
+                        
+                        if (_instance == null)
+                        {
+                            // Create new instance
+                            var go = new GameObject("SocketManager");
+                            _instance = go.AddComponent<SocketManager>();
+                            // Note: DontDestroyOnLoad is called in Awake
+                        }
+                    }
+                    return _instance;
+                }
+            }
+        }
+        
+        public static bool HasInstance => _instance != null;
         
         [Header("Server Configuration")]
         [SerializeField] private string serverUrl = "http://localhost:3000";
@@ -60,14 +94,17 @@ namespace PokerClient.Networking
         
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            // Singleton check
+            if (_instance != null && _instance != this)
             {
+                Debug.Log("[SocketManager] Duplicate instance destroyed");
                 Destroy(gameObject);
                 return;
             }
             
-            Instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
+            Debug.Log("[SocketManager] Initialized");
         }
         
         private void Start()
@@ -78,9 +115,19 @@ namespace PokerClient.Networking
             }
         }
         
+        private void OnApplicationQuit()
+        {
+            _applicationIsQuitting = true;
+        }
+        
         private void OnDestroy()
         {
-            Disconnect();
+            if (_instance == this)
+            {
+                Disconnect();
+                // Don't null out during scene transitions
+                // _instance = null;
+            }
         }
         
         #region Connection
@@ -562,5 +609,6 @@ namespace PokerClient.Networking
         }
     }
 }
+
 
 

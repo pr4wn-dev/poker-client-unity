@@ -10,18 +10,58 @@ namespace PokerClient.Networking
     /// </summary>
     public class GameService : MonoBehaviour
     {
-        public static GameService Instance { get; private set; }
+        private static GameService _instance;
+        private static readonly object _lock = new object();
+        private static bool _applicationIsQuitting = false;
+        
+        public static GameService Instance
+        {
+            get
+            {
+                if (_applicationIsQuitting)
+                {
+                    Debug.LogWarning("[GameService] Instance requested after application quit - returning null");
+                    return null;
+                }
+                
+                lock (_lock)
+                {
+                    if (_instance == null)
+                    {
+                        // Try to find existing instance
+                        _instance = FindObjectOfType<GameService>();
+                        
+                        if (_instance == null)
+                        {
+                            // Create new instance
+                            var go = new GameObject("GameService");
+                            _instance = go.AddComponent<GameService>();
+                            // Note: DontDestroyOnLoad is called in Awake
+                        }
+                    }
+                    return _instance;
+                }
+            }
+        }
+        
+        public static bool HasInstance => _instance != null;
         
         private SocketManager _socket;
+        private bool _isInitialized = false;
         
-        // Current user state
-        public UserProfile CurrentUser { get; private set; }
+        // Current user state - Static so it survives scene changes
+        private static UserProfile _currentUser;
+        private static string _currentTableId;
+        private static TableState _currentTableState;
+        private static int _mySeatIndex = -1;
+        
+        public UserProfile CurrentUser { get => _currentUser; private set => _currentUser = value; }
         public bool IsLoggedIn => CurrentUser != null;
         
         // Current game state
-        public string CurrentTableId { get; private set; }
-        public TableState CurrentTableState { get; private set; }
-        public int MySeatIndex { get; private set; } = -1;
+        public string CurrentTableId { get => _currentTableId; private set => _currentTableId = value; }
+        public TableState CurrentTableState { get => _currentTableState; private set => _currentTableState = value; }
+        public int MySeatIndex { get => _mySeatIndex; private set => _mySeatIndex = value; }
         public bool IsInGame => !string.IsNullOrEmpty(CurrentTableId);
         
         // Events for UI to subscribe to
@@ -47,48 +87,72 @@ namespace PokerClient.Networking
         
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            // Singleton check
+            if (_instance != null && _instance != this)
             {
+                Debug.Log("[GameService] Duplicate instance destroyed");
                 Destroy(gameObject);
                 return;
             }
             
-            Instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
+            
+            // Initialize socket immediately in Awake
+            InitializeSocket();
         }
         
-        private void Start()
+        private void InitializeSocket()
         {
-            _socket = SocketManager.Instance;
-            if (_socket == null)
-            {
-                var socketObj = new GameObject("SocketManager");
-                _socket = socketObj.AddComponent<SocketManager>();
-            }
+            if (_isInitialized) return;
             
-            // Subscribe to socket events
-            _socket.OnTableState += HandleTableState;
-            _socket.OnPlayerAction += HandlePlayerAction;
-            _socket.OnPlayerJoined += HandlePlayerJoined;
-            _socket.OnPlayerLeft += HandlePlayerLeft;
-            _socket.OnHandResult += HandleHandResult;
-            _socket.OnTableInvite += HandleTableInvite;
-            _socket.OnAdventureResult += HandleAdventureResult;
-            _socket.OnWorldMapState += HandleWorldMapState;
+            _socket = SocketManager.Instance;
+            
+            if (_socket != null)
+            {
+                // Subscribe to socket events
+                _socket.OnTableState += HandleTableState;
+                _socket.OnPlayerAction += HandlePlayerAction;
+                _socket.OnPlayerJoined += HandlePlayerJoined;
+                _socket.OnPlayerLeft += HandlePlayerLeft;
+                _socket.OnHandResult += HandleHandResult;
+                _socket.OnTableInvite += HandleTableInvite;
+                _socket.OnAdventureResult += HandleAdventureResult;
+                _socket.OnWorldMapState += HandleWorldMapState;
+                
+                _isInitialized = true;
+                Debug.Log("[GameService] Initialized successfully");
+            }
+            else
+            {
+                Debug.LogError("[GameService] Failed to get SocketManager instance!");
+            }
+        }
+        
+        private void OnApplicationQuit()
+        {
+            _applicationIsQuitting = true;
         }
         
         private void OnDestroy()
         {
-            if (_socket != null)
+            // Only clear instance if this is THE instance
+            if (_instance == this)
             {
-                _socket.OnTableState -= HandleTableState;
-                _socket.OnPlayerAction -= HandlePlayerAction;
-                _socket.OnPlayerJoined -= HandlePlayerJoined;
-                _socket.OnPlayerLeft -= HandlePlayerLeft;
-                _socket.OnHandResult -= HandleHandResult;
-                _socket.OnTableInvite -= HandleTableInvite;
-                _socket.OnAdventureResult -= HandleAdventureResult;
-                _socket.OnWorldMapState -= HandleWorldMapState;
+                if (_socket != null)
+                {
+                    _socket.OnTableState -= HandleTableState;
+                    _socket.OnPlayerAction -= HandlePlayerAction;
+                    _socket.OnPlayerJoined -= HandlePlayerJoined;
+                    _socket.OnPlayerLeft -= HandlePlayerLeft;
+                    _socket.OnHandResult -= HandleHandResult;
+                    _socket.OnTableInvite -= HandleTableInvite;
+                    _socket.OnAdventureResult -= HandleAdventureResult;
+                    _socket.OnWorldMapState -= HandleWorldMapState;
+                }
+                
+                // Don't null out _instance - it might be needed during scene transitions
+                // _instance = null;
             }
         }
         
@@ -176,14 +240,29 @@ namespace PokerClient.Networking
             
             _socket.Emit<CreateTableResponse>("create_table", data, response =>
             {
-                if (response.success)
+                if (response != null && response.success)
                 {
+                    Debug.Log($"[GameService] Table created: {response.tableId}, now joining...");
                     OnTableCreated?.Invoke(response.table);
-                    callback?.Invoke(true, response.tableId);
+                    
+                    // Auto-join the table we just created
+                    JoinTable(response.tableId, 0, password, (joinSuccess, joinError) =>
+                    {
+                        if (joinSuccess)
+                        {
+                            Debug.Log($"[GameService] Auto-joined table {response.tableId}");
+                            callback?.Invoke(true, response.tableId);
+                        }
+                        else
+                        {
+                            Debug.LogError($"[GameService] Failed to auto-join: {joinError}");
+                            callback?.Invoke(false, joinError);
+                        }
+                    });
                 }
                 else
                 {
-                    callback?.Invoke(false, response.error);
+                    callback?.Invoke(false, response?.error ?? "Create table failed");
                 }
             });
         }
@@ -191,21 +270,25 @@ namespace PokerClient.Networking
         public void JoinTable(string tableId, int? preferredSeat = null, string password = null, 
             Action<bool, string> callback = null)
         {
+            Debug.Log($"[GameService] JoinTable called for tableId: {tableId}");
             var data = new { tableId, seatIndex = preferredSeat, password };
             
             _socket.Emit<JoinTableResponse>("join_table", data, response =>
             {
-                if (response.success)
+                Debug.Log($"[GameService] JoinTable response: success={response?.success}, seatIndex={response?.seatIndex}");
+                if (response != null && response.success)
                 {
                     CurrentTableId = tableId;
                     MySeatIndex = response.seatIndex;
                     CurrentTableState = response.state;
+                    Debug.Log($"[GameService] Joined! CurrentTableId={CurrentTableId}, IsInGame={IsInGame}");
                     OnTableJoined?.Invoke(response.state);
                     callback?.Invoke(true, null);
                 }
                 else
                 {
-                    callback?.Invoke(false, response.error);
+                    Debug.LogError($"[GameService] JoinTable failed: {response?.error}");
+                    callback?.Invoke(false, response?.error ?? "Join failed");
                 }
             });
         }
