@@ -382,6 +382,16 @@ namespace PokerClient.Networking
         
         private object MockRegister(object data)
         {
+            // Extract username from data using JSON
+            string username = "Player";
+            try
+            {
+                var json = JsonConvert.SerializeObject(data);
+                var jobj = JObject.Parse(json);
+                username = jobj["username"]?.ToString() ?? "Player";
+            }
+            catch { }
+            
             return new
             {
                 success = true,
@@ -389,7 +399,7 @@ namespace PokerClient.Networking
                 profile = new
                 {
                     id = Guid.NewGuid().ToString(),
-                    username = (data as dynamic)?.username ?? "Player",
+                    username = username,
                     chips = 10000
                 }
             };
@@ -397,8 +407,15 @@ namespace PokerClient.Networking
         
         private object MockLogin(object data)
         {
-            var username = "Player";
-            try { username = ((dynamic)data).username; } catch { }
+            // Extract username from data using JSON
+            string username = "Player";
+            try
+            {
+                var json = JsonConvert.SerializeObject(data);
+                var jobj = JObject.Parse(json);
+                username = jobj["username"]?.ToString() ?? "Player";
+            }
+            catch { }
             
             return new
             {
