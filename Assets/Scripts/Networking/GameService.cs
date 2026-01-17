@@ -908,6 +908,7 @@ namespace PokerClient.Networking
         
         private void HandleTableState(TableState state)
         {
+            Debug.Log($"[GameService] HandleTableState - phase: {state?.phase}, currentPlayerId: {state?.currentPlayerId}, pot: {state?.pot}");
             CurrentTableState = state;
             OnTableStateUpdate?.Invoke(state);
         }

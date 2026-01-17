@@ -512,8 +512,12 @@ namespace PokerClient.UI.Scenes
             // Check if it's my turn (myId already declared above)
             _isMyTurn = state.currentPlayerId == myId;
             
+            // DEBUG: Log turn info
+            Debug.Log($"[TableScene] Turn check - currentPlayerId: '{state.currentPlayerId}', myId: '{myId}', isMyTurn: {_isMyTurn}, phase: {state.phase}");
+            
             if (_isMyTurn && state.phase != "waiting" && state.phase != "showdown")
             {
+                Debug.Log("[TableScene] IT'S MY TURN - Showing action buttons!");
                 ShowActionButtons(state);
             }
             else
