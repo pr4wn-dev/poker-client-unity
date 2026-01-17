@@ -500,8 +500,7 @@ namespace PokerClient.UI.Scenes
             // Update table view
             _tableView.UpdateFromState(state);
             
-            // Check if it's my turn
-            string myId = _gameService.CurrentUser?.id;
+            // Check if it's my turn (myId already declared above)
             _isMyTurn = state.currentPlayerId == myId;
             
             if (_isMyTurn && state.phase != "waiting" && state.phase != "showdown")
