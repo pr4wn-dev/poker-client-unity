@@ -523,7 +523,7 @@ namespace PokerClient.UI.Scenes
         private void OnSettingsClick()
         {
             Debug.Log("Settings clicked");
-            // TODO: Show settings popup
+            SettingsScene.OpenSettings("MainMenuScene");
         }
         
         #endregion

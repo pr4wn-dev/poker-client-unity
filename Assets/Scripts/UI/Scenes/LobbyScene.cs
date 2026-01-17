@@ -165,13 +165,22 @@ namespace PokerClient.UI.Scenes
             hlg.childForceExpandWidth = false;
             
             var tablesBtn = UIFactory.CreateButton(buttonRow.transform, "TablesBtn", "Browse Tables", () => ShowTableListPanel());
-            tablesBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(180, 45);
+            tablesBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 45);
             
             var createBtn = UIFactory.CreateButton(buttonRow.transform, "CreateBtn", "Create Table", () => ShowCreateTablePanel());
-            createBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(180, 45);
+            createBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 45);
             
-            var refreshBtn = UIFactory.CreateButton(buttonRow.transform, "RefreshBtn", "↻ Refresh", RefreshTableList);
-            refreshBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 45);
+            var tournamentsBtn = UIFactory.CreateButton(buttonRow.transform, "TournamentsBtn", "🏆 Tournaments", OnTournamentsClick);
+            tournamentsBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(170, 45);
+            tournamentsBtn.GetComponent<Image>().color = Theme.Current.accentColor;
+            
+            var refreshBtn = UIFactory.CreateButton(buttonRow.transform, "RefreshBtn", "↻", RefreshTableList);
+            refreshBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 45);
+        }
+        
+        private void OnTournamentsClick()
+        {
+            SceneManager.LoadScene("TournamentScene");
         }
         
         private void BuildTableListPanel()
