@@ -407,7 +407,7 @@ namespace PokerClient.UI.Scenes
             CreateAreaButtons(state.areas);
         }
         
-        private void CreateAreaButtons(List<WorldMapArea> areas)
+        private void CreateAreaButtons(List<AreaInfo> areas)
         {
             // Clear existing
             foreach (var btn in areaButtons.Values)
@@ -443,7 +443,7 @@ namespace PokerClient.UI.Scenes
             }
         }
         
-        private GameObject CreateAreaButton(WorldMapArea area, Vector2 position)
+        private GameObject CreateAreaButton(AreaInfo area, Vector2 position)
         {
             var theme = Theme.Current;
             
@@ -598,4 +598,5 @@ namespace PokerClient.UI.Scenes
         #endregion
     }
 }
+
 
