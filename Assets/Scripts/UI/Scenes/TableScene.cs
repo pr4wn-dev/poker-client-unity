@@ -53,6 +53,12 @@ namespace PokerClient.UI.Scenes
         private int _maxBet = 0;
         private int _callAmount = 0;
         
+        // Bot UI
+        private bool _isTableCreator = false;
+        private GameObject _botPanel;
+        private GameObject _botApprovalPopup;
+        private int _pendingBotSeat = -1;
+        
         private void Start()
         {
             _gameService = GameService.Instance;
@@ -71,6 +77,14 @@ namespace PokerClient.UI.Scenes
             _gameService.OnPlayerLeftTable += OnPlayerLeftTable;
             _gameService.OnHandComplete += OnHandComplete;
             _gameService.OnTableLeft += OnTableLeft;
+            
+            // Subscribe to bot events
+            if (SocketManager.Instance != null)
+            {
+                SocketManager.Instance.OnBotInvitePending += OnBotInvitePending;
+                SocketManager.Instance.OnBotJoined += OnBotJoined;
+                SocketManager.Instance.OnBotRejected += OnBotRejected;
+            }
             
             BuildScene();
             
@@ -92,6 +106,37 @@ namespace PokerClient.UI.Scenes
                 _gameService.OnHandComplete -= OnHandComplete;
                 _gameService.OnTableLeft -= OnTableLeft;
             }
+            
+            // Unsubscribe from bot events
+            if (SocketManager.Instance != null)
+            {
+                SocketManager.Instance.OnBotInvitePending -= OnBotInvitePending;
+                SocketManager.Instance.OnBotJoined -= OnBotJoined;
+                SocketManager.Instance.OnBotRejected -= OnBotRejected;
+            }
+        }
+        
+        private void OnBotInvitePending(BotInvitePendingData data)
+        {
+            Debug.Log($"Bot invite pending: {data.botName} by {data.invitedBy}");
+            
+            // If we're not the creator, show approval popup
+            if (!_isTableCreator)
+            {
+                ShowBotApprovalPopup(data.botName, data.seatIndex);
+            }
+        }
+        
+        private void OnBotJoined(BotJoinedData data)
+        {
+            Debug.Log($"Bot joined: {data.botName} at seat {data.seatIndex}");
+            // Table state will update automatically
+        }
+        
+        private void OnBotRejected(BotRejectedData data)
+        {
+            Debug.Log($"Bot {data.botName} rejected by {data.rejectedBy}");
+            _botApprovalPopup?.SetActive(false);
         }
         
         private void BuildScene()
@@ -295,6 +340,11 @@ namespace PokerClient.UI.Scenes
             vlg.childForceExpandWidth = true;
             vlg.childControlHeight = false;
             
+            // Add Bots button (for table creator)
+            var addBotsBtn = UIFactory.CreateButton(menuPanel.transform, "AddBotsBtn", "🤖 Add Bots", OnAddBotsClick);
+            addBotsBtn.GetOrAddComponent<LayoutElement>().preferredHeight = 50;
+            addBotsBtn.GetComponent<Image>().color = theme.primaryColor;
+            
             inviteButton = UIFactory.CreateButton(menuPanel.transform, "InviteBtn", "Invite Player", OnInviteClick).GetComponent<Button>();
             inviteButton.GetOrAddComponent<LayoutElement>().preferredHeight = 50;
             
@@ -306,6 +356,112 @@ namespace PokerClient.UI.Scenes
             leaveButton.GetComponent<Image>().color = theme.dangerColor;
             
             menuPanel.SetActive(false);
+            
+            // Build bot selection panel
+            BuildBotPanel();
+            
+            // Build bot approval popup
+            BuildBotApprovalPopup();
+        }
+        
+        private void BuildBotPanel()
+        {
+            var theme = Theme.Current;
+            
+            _botPanel = UIFactory.CreatePanel(_canvas.transform, "BotPanel", new Color(0, 0, 0, 0.9f));
+            var panelRect = _botPanel.GetComponent<RectTransform>();
+            panelRect.anchorMin = Vector2.zero;
+            panelRect.anchorMax = Vector2.one;
+            panelRect.sizeDelta = Vector2.zero;
+            
+            var innerPanel = UIFactory.CreatePanel(_botPanel.transform, "InnerPanel", theme.panelColor);
+            var innerRect = innerPanel.GetComponent<RectTransform>();
+            innerRect.anchorMin = new Vector2(0.5f, 0.5f);
+            innerRect.anchorMax = new Vector2(0.5f, 0.5f);
+            innerRect.sizeDelta = new Vector2(320, 380);
+            
+            var layout = innerPanel.AddComponent<VerticalLayoutGroup>();
+            layout.spacing = 12;
+            layout.padding = new RectOffset(20, 20, 20, 20);
+            layout.childAlignment = TextAnchor.UpperCenter;
+            layout.childControlWidth = true;
+            layout.childControlHeight = false;
+            
+            var title = UIFactory.CreateTitle(innerPanel.transform, "Title", "ADD BOT PLAYERS", 22f);
+            title.GetComponent<RectTransform>().sizeDelta = new Vector2(280, 35);
+            
+            var subtitle = UIFactory.CreateText(innerPanel.transform, "Subtitle", 
+                "Select a bot to invite.", 12f, theme.textSecondary);
+            subtitle.GetComponent<RectTransform>().sizeDelta = new Vector2(280, 25);
+            
+            // Bot buttons
+            var texBtn = UIFactory.CreateButton(innerPanel.transform, "TexBtn", "🤠 TEX (Aggressive)", () => OnInviteBot("tex"));
+            texBtn.GetOrAddComponent<LayoutElement>().preferredHeight = 55;
+            texBtn.GetComponent<Image>().color = theme.primaryColor;
+            
+            var larryBtn = UIFactory.CreateButton(innerPanel.transform, "LarryBtn", "😴 LAZY LARRY (Passive)", () => OnInviteBot("lazy_larry"));
+            larryBtn.GetOrAddComponent<LayoutElement>().preferredHeight = 55;
+            larryBtn.GetComponent<Image>().color = theme.primaryColor;
+            
+            var picklesBtn = UIFactory.CreateButton(innerPanel.transform, "PicklesBtn", "🤡 PICKLES (Random)", () => OnInviteBot("pickles"));
+            picklesBtn.GetOrAddComponent<LayoutElement>().preferredHeight = 55;
+            picklesBtn.GetComponent<Image>().color = theme.primaryColor;
+            
+            var closeBtn = UIFactory.CreateButton(innerPanel.transform, "CloseBtn", "CLOSE", () => _botPanel.SetActive(false));
+            closeBtn.GetOrAddComponent<LayoutElement>().preferredHeight = 45;
+            
+            _botPanel.SetActive(false);
+        }
+        
+        private void BuildBotApprovalPopup()
+        {
+            var theme = Theme.Current;
+            
+            _botApprovalPopup = UIFactory.CreatePanel(_canvas.transform, "BotApprovalPopup", new Color(0, 0, 0, 0.85f));
+            var panelRect = _botApprovalPopup.GetComponent<RectTransform>();
+            panelRect.anchorMin = Vector2.zero;
+            panelRect.anchorMax = Vector2.one;
+            panelRect.sizeDelta = Vector2.zero;
+            
+            var innerPanel = UIFactory.CreatePanel(_botApprovalPopup.transform, "InnerPanel", theme.panelColor);
+            var innerRect = innerPanel.GetComponent<RectTransform>();
+            innerRect.anchorMin = new Vector2(0.5f, 0.5f);
+            innerRect.anchorMax = new Vector2(0.5f, 0.5f);
+            innerRect.sizeDelta = new Vector2(320, 180);
+            
+            var layout = innerPanel.AddComponent<VerticalLayoutGroup>();
+            layout.spacing = 15;
+            layout.padding = new RectOffset(20, 20, 20, 20);
+            layout.childAlignment = TextAnchor.UpperCenter;
+            layout.childControlWidth = true;
+            layout.childControlHeight = false;
+            
+            var title = UIFactory.CreateTitle(innerPanel.transform, "Title", "BOT INVITE", 20f);
+            title.GetComponent<RectTransform>().sizeDelta = new Vector2(280, 30);
+            
+            var message = UIFactory.CreateText(innerPanel.transform, "Message", 
+                "A bot wants to join. Approve?", 14f, theme.textSecondary);
+            message.GetComponent<RectTransform>().sizeDelta = new Vector2(280, 35);
+            
+            // Button row
+            var buttonRow = new GameObject("ButtonRow", typeof(RectTransform), typeof(HorizontalLayoutGroup));
+            buttonRow.transform.SetParent(innerPanel.transform, false);
+            buttonRow.GetComponent<RectTransform>().sizeDelta = new Vector2(280, 50);
+            var hlg = buttonRow.GetComponent<HorizontalLayoutGroup>();
+            hlg.spacing = 20;
+            hlg.childAlignment = TextAnchor.MiddleCenter;
+            hlg.childControlWidth = false;
+            hlg.childControlHeight = false;
+            
+            var approveBtn = UIFactory.CreateButton(buttonRow.transform, "ApproveBtn", "✓ APPROVE", OnApproveBot);
+            approveBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 45);
+            approveBtn.GetComponent<Image>().color = theme.successColor;
+            
+            var rejectBtn = UIFactory.CreateButton(buttonRow.transform, "RejectBtn", "✗ REJECT", OnRejectBot);
+            rejectBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 45);
+            rejectBtn.GetComponent<Image>().color = theme.dangerColor;
+            
+            _botApprovalPopup.SetActive(false);
         }
         
         private void BuildResultPanel()
@@ -330,6 +486,10 @@ namespace PokerClient.UI.Scenes
         private void OnTableStateUpdate(TableState state)
         {
             _currentState = state;
+            
+            // Check if current user is the table creator
+            var myId = _gameService.CurrentUser?.id;
+            _isTableCreator = myId != null && state.creatorId == myId;
             
             // Update pot
             potText.text = $"Pot: {ChipStack.FormatChipValue((int)state.pot)}";
@@ -518,6 +678,83 @@ namespace PokerClient.UI.Scenes
         private void OnLeaveClick()
         {
             _gameService.LeaveTable();
+        }
+        
+        private void OnAddBotsClick()
+        {
+            if (!_isTableCreator)
+            {
+                Debug.LogWarning("Only the table creator can add bots");
+                return;
+            }
+            menuPanel.SetActive(false);
+            _botPanel.SetActive(true);
+        }
+        
+        private void OnInviteBot(string botId)
+        {
+            _botPanel.SetActive(false);
+            
+            var tableId = _gameService.CurrentTableId;
+            _gameService.InviteBot(tableId, botId, 1000, (success, seat, name, pending, error) =>
+            {
+                if (success)
+                {
+                    Debug.Log(pending ? $"Bot {name} invited - waiting for approval" : $"Bot {name} joined!");
+                }
+                else
+                {
+                    Debug.LogError($"Failed to invite bot: {error}");
+                }
+            });
+        }
+        
+        private void OnApproveBot()
+        {
+            _botApprovalPopup.SetActive(false);
+            
+            if (_pendingBotSeat >= 0)
+            {
+                var tableId = _gameService.CurrentTableId;
+                _gameService.ApproveBot(tableId, _pendingBotSeat, (success, error) =>
+                {
+                    if (!success) Debug.LogError($"Failed to approve bot: {error}");
+                });
+                _pendingBotSeat = -1;
+            }
+        }
+        
+        private void OnRejectBot()
+        {
+            _botApprovalPopup.SetActive(false);
+            
+            if (_pendingBotSeat >= 0)
+            {
+                var tableId = _gameService.CurrentTableId;
+                _gameService.RejectBot(tableId, _pendingBotSeat, (success, error) =>
+                {
+                    if (!success) Debug.LogError($"Failed to reject bot: {error}");
+                });
+                _pendingBotSeat = -1;
+            }
+        }
+        
+        private void ShowBotApprovalPopup(string botName, int seatIndex)
+        {
+            _pendingBotSeat = seatIndex;
+            
+            // Update popup message
+            var texts = _botApprovalPopup.GetComponentsInChildren<TextMeshProUGUI>();
+            foreach (var t in texts)
+            {
+                if (t.name == "Message")
+                {
+                    t.text = $"{botName} wants to join. Approve?";
+                    break;
+                }
+            }
+            
+            _botApprovalPopup.SetActive(true);
         }
         
         #endregion
