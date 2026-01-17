@@ -264,6 +264,20 @@ namespace PokerClient.Networking
         }
     }
     
+    /// <summary>
+    /// Simplified item info for rewards and side pots (less fields than full Item)
+    /// </summary>
+    [Serializable]
+    public class ItemInfo
+    {
+        public string id;
+        public string name;
+        public string type;
+        public string rarity;
+        public string icon;
+        public int baseValue;
+    }
+    
     #endregion
     
     #region Adventure Mode Models
@@ -277,6 +291,22 @@ namespace PokerClient.Networking
         public int level;
         public int? xpForNextLevel;
         public int xpProgress; // Percentage to next level
+    }
+    
+    /// <summary>
+    /// Level/stage info for adventure mode UI
+    /// </summary>
+    [Serializable]
+    public class LevelInfo
+    {
+        public int level;
+        public string bossId;
+        public string bossName;
+        public string difficulty;
+        public bool isUnlocked;
+        public bool isDefeated;
+        public int entryFee;
+        public RewardPreview rewards;
     }
     
     [Serializable]
