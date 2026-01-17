@@ -562,53 +562,7 @@ namespace PokerClient.Networking
         
         #endregion
     }
-    
-    #region Event Data Classes
-    
-    [Serializable]
-    public class PlayerActionData
-    {
-        public string playerId;
-        public string action;
-        public int? amount;
-    }
-    
-    [Serializable]
-    public class PlayerJoinedData
-    {
-        public string playerId;
-        public string name;
-        public int seatIndex;
-    }
-    
-    [Serializable]
-    public class ChatMessageData
-    {
-        public string playerId;
-        public string name;
-        public string message;
-    }
-    
-    [Serializable]
-    public class HandResultData
-    {
-        public string oderId;
-        public string winnerName;
-        public string handName;
-        public int potAmount;
-        public List<Card> winningCards;
-    }
-    
-    [Serializable]
-    public class TableInviteData
-    {
-        public string tableId;
-        public string tableName;
-        public string inviterName;
-        public string inviterId;
-    }
-    
-    #endregion
+    // NOTE: Event data classes moved to NetworkModels.cs (Issue #26)
     
     /// <summary>
     /// Helper to run actions on the Unity main thread
