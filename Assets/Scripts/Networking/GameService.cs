@@ -334,6 +334,77 @@ namespace PokerClient.Networking
             });
         }
         
+        /// <summary>
+        /// Get friends list with online status
+        /// </summary>
+        public void GetFriends(Action<List<FriendInfo>> callback)
+        {
+            _socket.Emit<FriendsResponse>("get_friends", new { }, response =>
+            {
+                callback?.Invoke(response.success ? response.friends : new List<FriendInfo>());
+            });
+        }
+        
+        /// <summary>
+        /// Send a friend request to another player
+        /// </summary>
+        public void SendFriendRequest(string userId, Action<bool, string> callback = null)
+        {
+            _socket.Emit<GenericResponse>("send_friend_request", new { targetUserId = userId }, response =>
+            {
+                callback?.Invoke(response.success, response.error);
+            });
+        }
+        
+        /// <summary>
+        /// Accept a pending friend request
+        /// </summary>
+        public void AcceptFriendRequest(string userId, Action<bool, string> callback = null)
+        {
+            _socket.Emit<GenericResponse>("accept_friend_request", new { fromUserId = userId }, response =>
+            {
+                callback?.Invoke(response.success, response.error);
+            });
+        }
+        
+        /// <summary>
+        /// Decline a pending friend request
+        /// </summary>
+        public void DeclineFriendRequest(string userId, Action<bool, string> callback = null)
+        {
+            _socket.Emit<GenericResponse>("decline_friend_request", new { fromUserId = userId }, response =>
+            {
+                callback?.Invoke(response.success, response.error);
+            });
+        }
+        
+        /// <summary>
+        /// Remove a friend
+        /// </summary>
+        public void RemoveFriend(string userId, Action<bool, string> callback = null)
+        {
+            _socket.Emit<GenericResponse>("remove_friend", new { friendUserId = userId }, response =>
+            {
+                callback?.Invoke(response.success, response.error);
+            });
+        }
+        
+        /// <summary>
+        /// Get pending friend requests
+        /// </summary>
+        public void GetFriendRequests(Action<List<FriendRequestInfo>> callback)
+        {
+            _socket.Emit<FriendRequestsResponse>("get_friend_requests", new { }, response =>
+            {
+                callback?.Invoke(response.success ? response.requests : new List<FriendRequestInfo>());
+            });
+        }
+        
+        // Events for friends
+        public event Action<FriendInfo> OnFriendOnline;
+        public event Action<string> OnFriendOffline;
+        public event Action<FriendRequestInfo> OnFriendRequestReceived;
+        
         #endregion
         
         #region Game Actions

@@ -337,6 +337,7 @@ namespace PokerClient.UI.Scenes
             bottomRect.anchoredPosition = new Vector2(0, 20);
             bottomRect.sizeDelta = new Vector2(500, 50);
             
+            UIFactory.CreateSecondaryButton(bottomBar.transform, "ShopBtn", "SHOP", OnShopClick, 100, 45);
             UIFactory.CreateSecondaryButton(bottomBar.transform, "InventoryBtn", "INVENTORY", OnInventoryClick, 120, 45);
             UIFactory.CreateSecondaryButton(bottomBar.transform, "FriendsBtn", "FRIENDS", OnFriendsClick, 120, 45);
             UIFactory.CreateSecondaryButton(bottomBar.transform, "SettingsBtn", "SETTINGS", OnSettingsClick, 120, 45);
@@ -524,6 +525,12 @@ namespace PokerClient.UI.Scenes
         {
             Debug.Log("Settings clicked");
             SettingsScene.OpenSettings("MainMenuScene");
+        }
+        
+        private void OnShopClick()
+        {
+            Debug.Log("Shop clicked");
+            SceneManager.LoadScene("ShopScene");
         }
         
         #endregion

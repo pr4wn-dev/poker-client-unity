@@ -163,6 +163,7 @@ namespace PokerClient.Networking
         public string id;
         public string username;
         public int chips;
+        public int gems;
         public int adventureCoins;
         public bool isOnline;
         public UserStats stats;
@@ -987,6 +988,42 @@ namespace PokerClient.Networking
     {
         public bool success;
         public List<UserSearchResult> users;
+    }
+    
+    [Serializable]
+    public class FriendsResponse
+    {
+        public bool success;
+        public List<FriendInfo> friends;
+    }
+    
+    [Serializable]
+    public class FriendInfo
+    {
+        public string id;
+        public string username;
+        public int level;
+        public bool isOnline;
+        public string currentTableId;
+        public string currentTableName;
+        public string lastSeen;
+    }
+    
+    [Serializable]
+    public class FriendRequestsResponse
+    {
+        public bool success;
+        public List<FriendRequestInfo> requests;
+    }
+    
+    [Serializable]
+    public class FriendRequestInfo
+    {
+        public string id;
+        public string fromUserId;
+        public string fromUsername;
+        public int fromLevel;
+        public string sentAt;
     }
     
     [Serializable]
