@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using PokerClient.Networking;
+using PokerClient.UI;
 
 namespace PokerClient.UI.Components
 {
@@ -240,5 +241,6 @@ namespace PokerClient.UI.Components
         }
     }
 }
+
 
 

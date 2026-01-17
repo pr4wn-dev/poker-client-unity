@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using PokerClient.Networking;
+using PokerClient.UI;
 using System.Collections.Generic;
 
 namespace PokerClient.UI.Components
