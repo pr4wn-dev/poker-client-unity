@@ -281,17 +281,17 @@ namespace PokerClient.UI.Components
             
             // Name
             _nameText = UIFactory.CreateText(content.transform, "Name", "Empty", 16f, theme.textSecondary);
-            _nameText.GetComponent<LayoutElement>().preferredHeight = 22;
+            _nameText.GetOrAddComponent<LayoutElement>().preferredHeight = 22;
             _nameText.alignment = TextAlignmentOptions.Center;
             
             // Chips
             _chipsText = UIFactory.CreateText(content.transform, "Chips", "", 14f, theme.accentColor);
-            _chipsText.GetComponent<LayoutElement>().preferredHeight = 18;
+            _chipsText.GetOrAddComponent<LayoutElement>().preferredHeight = 18;
             _chipsText.alignment = TextAlignmentOptions.Center;
             
             // Cards row
             var cardsRow = UIFactory.CreatePanel(content.transform, "CardsRow", Color.clear);
-            cardsRow.GetComponent<LayoutElement>().preferredHeight = 55;
+            cardsRow.GetOrAddComponent<LayoutElement>().preferredHeight = 55;
             var hlg = cardsRow.AddComponent<HorizontalLayoutGroup>();
             hlg.spacing = 5;
             hlg.childAlignment = TextAnchor.MiddleCenter;
@@ -308,7 +308,7 @@ namespace PokerClient.UI.Components
             
             // Action text (Fold, Call, etc.)
             _actionText = UIFactory.CreateText(content.transform, "Action", "", 14f, theme.primaryColor);
-            _actionText.GetComponent<LayoutElement>().preferredHeight = 18;
+            _actionText.GetOrAddComponent<LayoutElement>().preferredHeight = 18;
             _actionText.alignment = TextAlignmentOptions.Center;
             _actionText.fontStyle = FontStyles.Bold;
             _actionText.gameObject.SetActive(false);

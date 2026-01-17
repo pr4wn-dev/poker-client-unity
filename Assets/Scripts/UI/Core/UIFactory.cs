@@ -6,28 +6,6 @@ using TMPro;
 namespace PokerClient.UI
 {
     /// <summary>
-    /// Extension methods for UI components
-    /// </summary>
-    public static class UIExtensions
-    {
-        /// <summary>
-        /// Get LayoutElement, adding it if it doesn't exist
-        /// </summary>
-        public static LayoutElement GetOrAddLayoutElement(this GameObject go)
-        {
-            var le = go.GetComponent<LayoutElement>();
-            if (le == null)
-                le = go.AddComponent<LayoutElement>();
-            return le;
-        }
-        
-        public static LayoutElement GetOrAddLayoutElement(this Component comp)
-        {
-            return comp.gameObject.GetOrAddLayoutElement();
-        }
-    }
-    
-    /// <summary>
     /// Factory for creating UI elements with consistent styling.
     /// All visuals are created programmatically - easy to swap for custom assets later.
     /// </summary>
@@ -359,6 +337,24 @@ namespace PokerClient.UI
         
         #endregion
     }
+    
+    /// <summary>
+    /// Extension methods for GameObjects
+    /// </summary>
+    public static class GameObjectExtensions
+    {
+        public static T GetOrAddComponent<T>(this GameObject go) where T : Component
+        {
+            var component = go.GetComponent<T>();
+            if (component == null)
+                component = go.AddComponent<T>();
+            return component;
+        }
+        
+        public static T GetOrAddComponent<T>(this Component c) where T : Component
+        {
+            return c.gameObject.GetOrAddComponent<T>();
+        }
+    }
 }
-
 
