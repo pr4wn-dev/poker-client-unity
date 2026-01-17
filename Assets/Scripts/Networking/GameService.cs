@@ -244,31 +244,45 @@ namespace PokerClient.Networking
             
             _socket.Emit<CreateTableResponse>("create_table", data, response =>
             {
-                Debug.Log($"[GameService] CreateTable callback - response null: {response == null}, success: {response?.success}, tableId: {response?.tableId}");
+                Debug.Log($"[GameService] CreateTable callback - success: {response?.success}, tableId: {response?.tableId}, seatIndex: {response?.seatIndex}");
                 
                 if (response != null && response.success)
                 {
-                    Debug.Log($"[GameService] Table created: {response.tableId}, now joining...");
                     OnTableCreated?.Invoke(response.table);
                     
-                    // Auto-join the table we just created
-                    JoinTable(response.tableId, 0, password, (joinSuccess, joinError) =>
+                    // Check if server already seated us (Issue #55 fix)
+                    if (response.seatIndex.HasValue && response.state != null)
                     {
-                        if (joinSuccess)
+                        // Already seated by server - just update state
+                        Debug.Log($"[GameService] Auto-seated by server at seat {response.seatIndex}");
+                        CurrentTableId = response.tableId;
+                        MySeatIndex = response.seatIndex.Value;
+                        CurrentTableState = response.state;
+                        OnTableJoined?.Invoke(response.state);
+                        callback?.Invoke(true, response.tableId);
+                    }
+                    else
+                    {
+                        // Legacy: need to join separately
+                        Debug.Log($"[GameService] Table created: {response.tableId}, now joining...");
+                        JoinTable(response.tableId, 0, password, (joinSuccess, joinError) =>
                         {
-                            Debug.Log($"[GameService] Auto-joined table {response.tableId}");
-                            callback?.Invoke(true, response.tableId);
-                        }
-                        else
-                        {
-                            Debug.LogError($"[GameService] Failed to auto-join: {joinError}");
-                            callback?.Invoke(false, joinError);
-                        }
-                    });
+                            if (joinSuccess)
+                            {
+                                Debug.Log($"[GameService] Auto-joined table {response.tableId}");
+                                callback?.Invoke(true, response.tableId);
+                            }
+                            else
+                            {
+                                Debug.LogError($"[GameService] Failed to auto-join: {joinError}");
+                                callback?.Invoke(false, joinError);
+                            }
+                        });
+                    }
                 }
                 else
                 {
-                    Debug.LogError($"[GameService] CreateTable failed - response null: {response == null}, error: {response?.error}");
+                    Debug.LogError($"[GameService] CreateTable failed: {response?.error}");
                     callback?.Invoke(false, response?.error ?? "Create table failed");
                 }
             });

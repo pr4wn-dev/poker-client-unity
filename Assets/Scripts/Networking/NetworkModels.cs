@@ -945,6 +945,8 @@ namespace PokerClient.Networking
         public string error;
         public string tableId;
         public TableInfo table;
+        public int? seatIndex;      // If set, creator was auto-seated at this index
+        public TableState state;    // Current table state if auto-seated
     }
     
     [Serializable]
