@@ -170,6 +170,9 @@ namespace PokerClient.UI.Scenes
             passwordInput = UIFactory.CreateInputField(loginPanel.transform, "Password", "Password", 340, 50, 
                 TMP_InputField.ContentType.Password);
             
+            // Load saved credentials
+            LoadSavedCredentials();
+            
             // Error text
             errorText = UIFactory.CreateText(loginPanel.transform, "Error", "", 14f, theme.textDanger);
             var errorRect = errorText.GetComponent<RectTransform>();
@@ -431,7 +434,12 @@ namespace PokerClient.UI.Scenes
             _gameService.Login(username, password, (success, error) =>
             {
                 HideLoading();
-                if (!success)
+                if (success)
+                {
+                    // Save credentials for next time
+                    SaveCredentials(username, password);
+                }
+                else
                 {
                     ShowError(error ?? "Login failed");
                 }
@@ -566,6 +574,53 @@ namespace PokerClient.UI.Scenes
                 var rect = xpProgressBar.GetComponent<RectTransform>();
                 rect.anchorMax = new Vector2(Mathf.Clamp01(xpProgress), 1);
             }
+        }
+        
+        #endregion
+        
+        #region Credential Storage
+        
+        private const string PREF_USERNAME = "SavedUsername";
+        private const string PREF_PASSWORD = "SavedPassword";
+        
+        private void LoadSavedCredentials()
+        {
+            string savedUsername = PlayerPrefs.GetString(PREF_USERNAME, "");
+            string savedPassword = PlayerPrefs.GetString(PREF_PASSWORD, "");
+            
+            if (!string.IsNullOrEmpty(savedUsername) && usernameInput != null)
+            {
+                usernameInput.text = savedUsername;
+            }
+            
+            if (!string.IsNullOrEmpty(savedPassword) && passwordInput != null)
+            {
+                passwordInput.text = savedPassword;
+            }
+            
+            if (!string.IsNullOrEmpty(savedUsername))
+            {
+                Debug.Log($"[MainMenuScene] Loaded saved credentials for: {savedUsername}");
+            }
+        }
+        
+        private void SaveCredentials(string username, string password)
+        {
+            PlayerPrefs.SetString(PREF_USERNAME, username);
+            PlayerPrefs.SetString(PREF_PASSWORD, password);
+            PlayerPrefs.Save();
+            Debug.Log($"[MainMenuScene] Saved credentials for: {username}");
+        }
+        
+        /// <summary>
+        /// Call this to clear saved credentials (e.g., on logout)
+        /// </summary>
+        public void ClearSavedCredentials()
+        {
+            PlayerPrefs.DeleteKey(PREF_USERNAME);
+            PlayerPrefs.DeleteKey(PREF_PASSWORD);
+            PlayerPrefs.Save();
+            Debug.Log("[MainMenuScene] Cleared saved credentials");
         }
         
         #endregion
