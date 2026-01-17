@@ -231,6 +231,7 @@ namespace PokerClient.UI.Components
         private TextMeshProUGUI _chipsText;
         private TextMeshProUGUI _actionText;
         private TextMeshProUGUI _betText;
+        private ChipStack _betChips;
         private List<CardView> _holeCards = new List<CardView>();
         private GameObject _dealerButton;
         private Image _turnIndicator;
@@ -318,13 +319,21 @@ namespace PokerClient.UI.Components
             _actionText.fontStyle = FontStyles.Bold;
             _actionText.gameObject.SetActive(false);
             
+            // Bet chips (visual chip stack)
+            _betChips = ChipStack.Create(transform, 0);
+            var chipsRect = _betChips.GetComponent<RectTransform>();
+            chipsRect.anchorMin = new Vector2(0.5f, 0);
+            chipsRect.anchorMax = new Vector2(0.5f, 0);
+            chipsRect.pivot = new Vector2(0.5f, 1);
+            chipsRect.anchoredPosition = new Vector2(0, -5);
+            
             // Bet text (chips in front)
             _betText = UIFactory.CreateText(transform, "Bet", "", 16f, theme.accentColor);
             var betRect = _betText.GetComponent<RectTransform>();
             betRect.anchorMin = new Vector2(0.5f, 0);
             betRect.anchorMax = new Vector2(0.5f, 0);
             betRect.pivot = new Vector2(0.5f, 1);
-            betRect.anchoredPosition = new Vector2(0, -5);
+            betRect.anchoredPosition = new Vector2(0, -55);
             betRect.sizeDelta = new Vector2(100, 25);
             _betText.alignment = TextAlignmentOptions.Center;
             _betText.gameObject.SetActive(false);
@@ -366,6 +375,7 @@ namespace PokerClient.UI.Components
             _chipsText.text = "";
             _actionText.gameObject.SetActive(false);
             _betText.gameObject.SetActive(false);
+            _betChips.SetValue(0);
             _dealerButton.SetActive(false);
             _turnIndicator.color = Color.clear;
             
@@ -413,14 +423,16 @@ namespace PokerClient.UI.Components
                 }
             }
             
-            // Current bet
+            // Current bet - show chip stack and text
             if (info.currentBet > 0)
             {
+                _betChips.SetValue((int)info.currentBet);
                 _betText.text = ChipStack.FormatChipValue((int)info.currentBet);
                 _betText.gameObject.SetActive(true);
             }
             else
             {
+                _betChips.SetValue(0);
                 _betText.gameObject.SetActive(false);
             }
             
