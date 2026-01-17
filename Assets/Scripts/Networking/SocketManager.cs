@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 #if SOCKET_IO_AVAILABLE
 using SocketIOClient;
-using SIOUnity = SocketIOUnity.SocketIOUnity;
+using SocketIOUnity;
 #endif
 
 namespace PokerClient.Networking
@@ -93,7 +93,7 @@ namespace PokerClient.Networking
         private int _callbackId = 0;
         
         #if SOCKET_IO_AVAILABLE
-        private SIOUnity _socket;
+        private SocketIOUnity _socket;
         #endif
         
         private void Awake()
@@ -169,7 +169,7 @@ namespace PokerClient.Networking
                 connectionStatus = "Connecting...";
                 
                 var uri = new Uri(serverUrl);
-                _socket = new SIOUnity(uri, new SocketIOOptions
+                _socket = new SocketIOUnity(uri, new SocketIOOptions
                 {
                     Transport = SocketIOClient.Transport.TransportProtocol.WebSocket
                 });
