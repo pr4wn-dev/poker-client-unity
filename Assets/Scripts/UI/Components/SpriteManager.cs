@@ -9,7 +9,23 @@ namespace PokerClient.UI.Components
     /// </summary>
     public class SpriteManager : MonoBehaviour
     {
-        public static SpriteManager Instance { get; private set; }
+        private static SpriteManager _instance;
+        public static SpriteManager Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = FindObjectOfType<SpriteManager>();
+                    if (_instance == null)
+                    {
+                        var go = new GameObject("SpriteManager");
+                        _instance = go.AddComponent<SpriteManager>();
+                    }
+                }
+                return _instance;
+            }
+        }
         
         [Header("Card Sprites")]
         [Tooltip("Optional: Sprite for card backs")]
@@ -48,12 +64,12 @@ namespace PokerClient.UI.Components
         
         private void Awake()
         {
-            if (Instance != null && Instance != this)
+            if (_instance != null && _instance != this)
             {
                 Destroy(gameObject);
                 return;
             }
-            Instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
             
             LoadSpritesFromResources();

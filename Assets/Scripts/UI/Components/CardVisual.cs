@@ -33,6 +33,7 @@ namespace PokerClient.UI.Components
         [SerializeField] private TextMeshProUGUI suitTextBottomRight;
         [SerializeField] private GameObject faceContent;
         [SerializeField] private GameObject backContent;
+        [SerializeField] private Image backImage;
         
         private string _rank;
         private string _suit;
@@ -128,20 +129,48 @@ namespace PokerClient.UI.Components
             suitBRRect.localRotation = Quaternion.Euler(0, 0, 180);
             
             // Back content
-            backContent = UIFactory.CreatePanel(transform, "BackContent", theme.cardBackColor);
+            backContent = UIFactory.CreatePanel(transform, "BackContent", Color.white);
             var backRect = backContent.GetComponent<RectTransform>();
             backRect.anchorMin = Vector2.zero;
             backRect.anchorMax = Vector2.one;
             backRect.offsetMin = new Vector2(2, 2);
             backRect.offsetMax = new Vector2(-2, -2);
             
-            // Back pattern (simple diamond pattern placeholder)
-            var pattern = UIFactory.CreatePanel(backContent.transform, "Pattern", theme.cardBackPattern);
-            var patternRect = pattern.GetComponent<RectTransform>();
-            patternRect.anchorMin = new Vector2(0.15f, 0.1f);
-            patternRect.anchorMax = new Vector2(0.85f, 0.9f);
-            patternRect.offsetMin = Vector2.zero;
-            patternRect.offsetMax = Vector2.zero;
+            // Add image for card back sprite
+            backImage = backContent.GetComponent<Image>();
+            
+            // Try to load card back sprite
+            if (SpriteManager.Instance != null)
+            {
+                var cardBackSprite = SpriteManager.Instance.GetCardBack();
+                if (cardBackSprite != null)
+                {
+                    backImage.sprite = cardBackSprite;
+                    backImage.color = Color.white;
+                }
+                else
+                {
+                    // Fallback to colored pattern
+                    backImage.color = theme.cardBackColor;
+                    var pattern = UIFactory.CreatePanel(backContent.transform, "Pattern", theme.cardBackPattern);
+                    var patternRect = pattern.GetComponent<RectTransform>();
+                    patternRect.anchorMin = new Vector2(0.15f, 0.1f);
+                    patternRect.anchorMax = new Vector2(0.85f, 0.9f);
+                    patternRect.offsetMin = Vector2.zero;
+                    patternRect.offsetMax = Vector2.zero;
+                }
+            }
+            else
+            {
+                // Fallback to colored pattern
+                backImage.color = theme.cardBackColor;
+                var pattern = UIFactory.CreatePanel(backContent.transform, "Pattern", theme.cardBackPattern);
+                var patternRect = pattern.GetComponent<RectTransform>();
+                patternRect.anchorMin = new Vector2(0.15f, 0.1f);
+                patternRect.anchorMax = new Vector2(0.85f, 0.9f);
+                patternRect.offsetMin = Vector2.zero;
+                patternRect.offsetMax = Vector2.zero;
+            }
             
             // Default to face down
             SetFaceDown(true);
@@ -221,10 +250,28 @@ namespace PokerClient.UI.Components
         {
             _isFaceDown = faceDown;
             
+            // Show face content when face up
             if (faceContent != null)
                 faceContent.SetActive(!faceDown);
+            
+            // Show back content when face down
             if (backContent != null)
+            {
                 backContent.SetActive(faceDown);
+                
+                // Ensure back image has the sprite (might not have been available at Awake)
+                if (faceDown && backImage != null && backImage.sprite == null && SpriteManager.Instance != null)
+                {
+                    var cardBackSprite = SpriteManager.Instance.GetCardBack();
+                    if (cardBackSprite != null)
+                    {
+                        backImage.sprite = cardBackSprite;
+                        backImage.color = Color.white;
+                    }
+                }
+            }
+            
+            // Show card background when face up
             if (cardBackground != null)
                 cardBackground.gameObject.SetActive(!faceDown);
         }

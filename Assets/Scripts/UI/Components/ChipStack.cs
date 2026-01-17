@@ -55,23 +55,20 @@ namespace PokerClient.UI.Components
             
             for (int i = 0; i < MAX_VISIBLE_CHIPS; i++)
             {
-                var chipObj = UIFactory.CreatePanel(chipContainer.transform, $"Chip{i}", theme.chipGreen);
+                var chipObj = new GameObject($"Chip{i}", typeof(RectTransform), typeof(Image));
+                chipObj.transform.SetParent(chipContainer.transform, false);
                 chipImages[i] = chipObj.GetComponent<Image>();
                 
                 var chipRect = chipObj.GetComponent<RectTransform>();
-                chipRect.sizeDelta = new Vector2(theme.chipSize, theme.chipSize * 0.3f);
+                // Make chips circular, not thin rectangles
+                chipRect.sizeDelta = new Vector2(theme.chipSize * 0.8f, theme.chipSize * 0.8f);
                 chipRect.anchorMin = new Vector2(0.5f, 0);
                 chipRect.anchorMax = new Vector2(0.5f, 0);
                 chipRect.pivot = new Vector2(0.5f, 0);
-                chipRect.anchoredPosition = new Vector2(0, i * 4);
+                chipRect.anchoredPosition = new Vector2(0, i * 6); // Stack with slight overlap
                 
-                // Add edge highlight
-                var edge = UIFactory.CreatePanel(chipObj.transform, "Edge", Color.white * 0.3f);
-                var edgeRect = edge.GetComponent<RectTransform>();
-                edgeRect.anchorMin = new Vector2(0, 0.7f);
-                edgeRect.anchorMax = new Vector2(1, 1);
-                edgeRect.offsetMin = new Vector2(2, 0);
-                edgeRect.offsetMax = new Vector2(-2, -1);
+                // Set color - will be updated by SetValue
+                chipImages[i].color = theme.chipGreen;
             }
             
             // Value text
@@ -96,7 +93,7 @@ namespace PokerClient.UI.Components
             
             if (valueText != null)
             {
-                valueText.text = FormatChipValue(value);
+                valueText.text = value > 0 ? FormatChipValue(value) : "";
             }
             
             // Determine how many chips to show based on value
@@ -110,6 +107,13 @@ namespace PokerClient.UI.Components
                 _ => 5
             };
             
+            // Try to get chip sprite from SpriteManager
+            Sprite chipSprite = null;
+            if (SpriteManager.Instance != null)
+            {
+                chipSprite = SpriteManager.Instance.GetChipSprite(value);
+            }
+            
             // Get the appropriate color for the value
             var chipColor = Theme.Current.GetChipColor(value);
             
@@ -119,7 +123,17 @@ namespace PokerClient.UI.Components
                 if (chipImages[i] != null)
                 {
                     chipImages[i].gameObject.SetActive(i < chipsToShow);
-                    chipImages[i].color = chipColor;
+                    
+                    if (chipSprite != null)
+                    {
+                        chipImages[i].sprite = chipSprite;
+                        chipImages[i].color = Color.white;
+                    }
+                    else
+                    {
+                        chipImages[i].sprite = null;
+                        chipImages[i].color = chipColor;
+                    }
                 }
             }
         }
