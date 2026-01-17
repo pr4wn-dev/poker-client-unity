@@ -668,22 +668,74 @@ namespace PokerClient.Networking
         
         #region Bot Management
         
-        public void AddBot(string tableId, string botProfile, int buyIn = 1000, Action<bool, int, string, string> callback = null)
+        /// <summary>
+        /// Invite a bot to the table (table creator only).
+        /// If other players are at the table, they must approve before the bot joins.
+        /// </summary>
+        public void InviteBot(string tableId, string botProfile, int buyIn = 1000, Action<bool, int, string, bool, string> callback = null)
         {
-            _socket.Emit<AddBotResponse>("add_bot", new { tableId, botProfile, buyIn }, response =>
+            _socket.Emit<InviteBotResponse>("invite_bot", new { tableId, botProfile, buyIn }, response =>
             {
                 if (response.success)
                 {
-                    Debug.Log($"Bot {response.botName} added at seat {response.seatIndex}");
+                    if (response.pendingApproval)
+                    {
+                        Debug.Log($"Bot {response.botName} invited - awaiting player approval");
+                    }
+                    else
+                    {
+                        Debug.Log($"Bot {response.botName} joined at seat {response.seatIndex}");
+                    }
                 }
                 else
                 {
-                    Debug.LogError($"Add bot failed: {response.error}");
+                    Debug.LogError($"Invite bot failed: {response.error}");
                 }
-                callback?.Invoke(response.success, response.seatIndex, response.botName, response.error);
+                callback?.Invoke(response.success, response.seatIndex, response.botName, response.pendingApproval, response.error);
             });
         }
         
+        /// <summary>
+        /// Approve a pending bot invite
+        /// </summary>
+        public void ApproveBot(string tableId, int seatIndex, Action<bool, string> callback = null)
+        {
+            _socket.Emit<ApproveBotResponse>("approve_bot", new { tableId, seatIndex }, response =>
+            {
+                if (response.success)
+                {
+                    Debug.Log($"Bot approved ({response.approvalsReceived}/{response.approvalsNeeded})");
+                }
+                else
+                {
+                    Debug.LogError($"Approve bot failed: {response.error}");
+                }
+                callback?.Invoke(response.success, response.error);
+            });
+        }
+        
+        /// <summary>
+        /// Reject a pending bot invite (any player can reject)
+        /// </summary>
+        public void RejectBot(string tableId, int seatIndex, Action<bool, string> callback = null)
+        {
+            _socket.Emit<RejectBotResponse>("reject_bot", new { tableId, seatIndex }, response =>
+            {
+                if (response.success)
+                {
+                    Debug.Log($"Bot {response.botName} rejected");
+                }
+                else
+                {
+                    Debug.LogError($"Reject bot failed: {response.error}");
+                }
+                callback?.Invoke(response.success, response.error);
+            });
+        }
+        
+        /// <summary>
+        /// Remove an active bot from the table (table creator only)
+        /// </summary>
         public void RemoveBot(string tableId, int seatIndex, Action<bool, string> callback = null)
         {
             _socket.Emit<RemoveBotResponse>("remove_bot", new { tableId, seatIndex }, response =>
@@ -705,6 +757,14 @@ namespace PokerClient.Networking
             _socket.Emit<GetBotsResponse>("get_available_bots", null, response =>
             {
                 callback?.Invoke(response.bots);
+            });
+        }
+        
+        public void GetPendingBots(string tableId, Action<PendingBotInfo[]> callback = null)
+        {
+            _socket.Emit<GetPendingBotsResponse>("get_pending_bots", new { tableId }, response =>
+            {
+                callback?.Invoke(response.pendingBots);
             });
         }
         

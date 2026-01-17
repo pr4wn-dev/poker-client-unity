@@ -1002,12 +1002,32 @@ namespace PokerClient.Networking
     }
     
     [Serializable]
-    public class AddBotResponse
+    public class InviteBotResponse
     {
         public bool success;
         public string error;
         public int seatIndex;
         public string botName;
+        public bool pendingApproval;
+    }
+    
+    [Serializable]
+    public class ApproveBotResponse
+    {
+        public bool success;
+        public string error;
+        public bool allApproved;
+        public int approvalsReceived;
+        public int approvalsNeeded;
+    }
+    
+    [Serializable]
+    public class RejectBotResponse
+    {
+        public bool success;
+        public string error;
+        public string botName;
+        public string rejectedBy;
     }
     
     [Serializable]
@@ -1028,10 +1048,29 @@ namespace PokerClient.Networking
     }
     
     [Serializable]
+    public class PendingBotInfo
+    {
+        public int seatIndex;
+        public string botName;
+        public string botPersonality;
+        public string inviterId;
+        public int approvalsReceived;
+        public int approvalsNeeded;
+        public string[] waitingFor;
+    }
+    
+    [Serializable]
     public class GetBotsResponse
     {
         public bool success;
         public BotInfo[] bots;
+    }
+    
+    [Serializable]
+    public class GetPendingBotsResponse
+    {
+        public bool success;
+        public PendingBotInfo[] pendingBots;
     }
     
     [Serializable]
