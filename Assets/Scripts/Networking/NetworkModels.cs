@@ -986,6 +986,27 @@ namespace PokerClient.Networking
         public int accountBalance;
     }
     
+    [Serializable]
+    public class ActiveSessionResponse
+    {
+        public bool success;
+        public string error;
+        public bool hasActiveSession;
+        public string tableId;
+        public string tableName;
+        public string phase;
+    }
+    
+    [Serializable]
+    public class ReconnectResponse
+    {
+        public bool success;
+        public string error;
+        public string tableId;
+        public string tableName;
+        public TableState state;
+    }
+    
     // ============ Social Requests/Responses ============
     
     [Serializable]

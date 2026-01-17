@@ -312,6 +312,120 @@ namespace PokerClient.Networking
             });
         }
         
+        /// <summary>
+        /// Check if user has an active table session to reconnect to
+        /// </summary>
+        public void CheckActiveSession(Action<bool, string, string> callback)
+        {
+            _socket.Emit<ActiveSessionResponse>("check_active_session", new { }, response =>
+            {
+                if (response.success && response.hasActiveSession)
+                {
+                    callback?.Invoke(true, response.tableId, response.tableName);
+                }
+                else
+                {
+                    callback?.Invoke(false, null, null);
+                }
+            });
+        }
+        
+        /// <summary>
+        /// Reconnect to an existing table session after disconnect
+        /// </summary>
+        public void ReconnectToTable(string tableId = null, Action<bool, TableState, string> callback = null)
+        {
+            _socket.Emit<ReconnectResponse>("reconnect_to_table", new { tableId }, response =>
+            {
+                if (response.success)
+                {
+                    CurrentTableId = response.tableId;
+                    CurrentTableState = response.state;
+                    
+                    // Find my seat
+                    if (response.state?.seats != null && CurrentUser != null)
+                    {
+                        for (int i = 0; i < response.state.seats.Count; i++)
+                        {
+                            if (response.state.seats[i]?.playerId == CurrentUser.id)
+                            {
+                                MySeatIndex = i;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    Debug.Log($"Reconnected to table: {response.tableName}");
+                    OnTableJoined?.Invoke(response.tableId);
+                    OnTableStateUpdate?.Invoke(response.state);
+                }
+                
+                callback?.Invoke(response.success, response.state, response.error);
+            });
+        }
+        
+        // Events for reconnection
+        public event Action<string, string> OnDisconnectedFromTable;  // tableId, reason
+        public event Action<string> OnPlayerDisconnected;  // playerId
+        public event Action<string> OnPlayerReconnected;   // playerId
+        
+        #endregion
+        
+        #region Sit Out
+        
+        private bool _isSittingOut = false;
+        public bool IsSittingOut => _isSittingOut;
+        
+        /// <summary>
+        /// Sit out from the current hand (skip next hands until back)
+        /// </summary>
+        public void SitOut(Action<bool, string> callback = null)
+        {
+            _socket.Emit<SimpleResponse>("sit_out", new { }, response =>
+            {
+                if (response.success)
+                {
+                    _isSittingOut = true;
+                    OnSitOutChanged?.Invoke(true);
+                }
+                callback?.Invoke(response.success, response.error);
+            });
+        }
+        
+        /// <summary>
+        /// Return to active play after sitting out
+        /// </summary>
+        public void SitBack(Action<bool, string> callback = null)
+        {
+            _socket.Emit<SimpleResponse>("sit_back", new { }, response =>
+            {
+                if (response.success)
+                {
+                    _isSittingOut = false;
+                    OnSitOutChanged?.Invoke(false);
+                }
+                callback?.Invoke(response.success, response.error);
+            });
+        }
+        
+        /// <summary>
+        /// Toggle sit out status
+        /// </summary>
+        public void ToggleSitOut(Action<bool, string> callback = null)
+        {
+            if (_isSittingOut)
+                SitBack(callback);
+            else
+                SitOut(callback);
+        }
+        
+        public event Action<bool> OnSitOutChanged;
+        public event Action<string, bool> OnPlayerSitOutChanged;  // playerId, isSittingOut
+        
+        #endregion
+        
+        #region Invites
+        
         public void InvitePlayer(string oderId, Action<bool, string> callback = null)
         {
             if (string.IsNullOrEmpty(CurrentTableId))
