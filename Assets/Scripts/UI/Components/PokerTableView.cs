@@ -534,13 +534,30 @@ namespace PokerClient.UI.Components
         
         public void SetCard(Card card)
         {
-            if (card == null)
+            if (card == null || card.IsHidden)
             {
-                SetEmpty();
+                SetHidden();
                 return;
             }
             
             gameObject.SetActive(true);
+            
+            // Try to use sprite from SpriteManager
+            if (SpriteManager.Instance != null)
+            {
+                var cardSprite = SpriteManager.Instance.GetCardSprite(card.rank, card.suit);
+                if (cardSprite != null)
+                {
+                    _background.sprite = cardSprite;
+                    _background.color = Color.white;
+                    _rankText.gameObject.SetActive(false);
+                    _suitText.gameObject.SetActive(false);
+                    return;
+                }
+            }
+            
+            // Fallback to text rendering
+            _background.sprite = null;
             _background.color = Color.white;
             
             string rank = card.rank?.ToUpper() ?? "?";
@@ -559,9 +576,24 @@ namespace PokerClient.UI.Components
         public void SetHidden()
         {
             gameObject.SetActive(true);
-            _background.color = new Color(0.2f, 0.3f, 0.6f); // Blue card back
             _rankText.gameObject.SetActive(false);
             _suitText.gameObject.SetActive(false);
+            
+            // Try to use card back sprite
+            if (SpriteManager.Instance != null)
+            {
+                var cardBack = SpriteManager.Instance.GetCardBack();
+                if (cardBack != null)
+                {
+                    _background.sprite = cardBack;
+                    _background.color = Color.white;
+                    return;
+                }
+            }
+            
+            // Fallback to blue color
+            _background.sprite = null;
+            _background.color = new Color(0.2f, 0.3f, 0.6f);
         }
         
         public void SetEmpty()

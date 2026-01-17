@@ -109,7 +109,8 @@ namespace PokerClient.Networking
         public string rank;
         public string suit;
         
-        public bool IsHidden => string.IsNullOrEmpty(rank);
+        // Card is hidden if rank/suit is null, empty, or "?" (server sends "?" for hidden cards)
+        public bool IsHidden => string.IsNullOrEmpty(rank) || rank == "?" || string.IsNullOrEmpty(suit) || suit == "?";
         
         public CardSuit GetSuit()
         {
