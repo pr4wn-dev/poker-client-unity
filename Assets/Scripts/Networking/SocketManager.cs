@@ -203,81 +203,100 @@ namespace PokerClient.Networking
             }
         }
         
+        /// <summary>
+        /// Parse socket response using JsonUtility (workaround for GetValue<T> not working - Issue #1)
+        /// </summary>
+        private T ParseResponse<T>(SocketIOResponse response) where T : class
+        {
+            try
+            {
+                var jsonStr = response.GetValue<object>()?.ToString();
+                if (string.IsNullOrEmpty(jsonStr)) return null;
+                return JsonUtility.FromJson<T>(jsonStr);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[SocketManager] Failed to parse response as {typeof(T).Name}: {e.Message}");
+                return null;
+            }
+        }
+        
         private void RegisterEventListeners()
         {
-            // Table events
+            // Table events - using ParseResponse to work around GetValue<T> issues (Issue #1)
             _socket.On("table_state", response =>
             {
-                var state = response.GetValue<TableState>();
-                UnityMainThread.Execute(() => OnTableState?.Invoke(state));
+                var state = ParseResponse<TableState>(response);
+                if (state != null) UnityMainThread.Execute(() => OnTableState?.Invoke(state));
             });
             
             _socket.On("player_action", response =>
             {
-                var data = response.GetValue<PlayerActionData>();
-                UnityMainThread.Execute(() => OnPlayerAction?.Invoke(data));
+                var data = ParseResponse<PlayerActionData>(response);
+                if (data != null) UnityMainThread.Execute(() => OnPlayerAction?.Invoke(data));
             });
             
             _socket.On("player_joined", response =>
             {
-                var data = response.GetValue<PlayerJoinedData>();
-                UnityMainThread.Execute(() => OnPlayerJoined?.Invoke(data));
+                var data = ParseResponse<PlayerJoinedData>(response);
+                if (data != null) UnityMainThread.Execute(() => OnPlayerJoined?.Invoke(data));
             });
             
             _socket.On("player_left", response =>
             {
+                // player_left sends just a string (player ID)
                 var data = response.GetValue<string>();
                 UnityMainThread.Execute(() => OnPlayerLeft?.Invoke(data));
             });
             
             _socket.On("chat", response =>
             {
-                var data = response.GetValue<ChatMessageData>();
-                UnityMainThread.Execute(() => OnChatMessage?.Invoke(data));
+                var data = ParseResponse<ChatMessageData>(response);
+                if (data != null) UnityMainThread.Execute(() => OnChatMessage?.Invoke(data));
             });
             
             _socket.On("hand_result", response =>
             {
-                var data = response.GetValue<HandResultData>();
-                UnityMainThread.Execute(() => OnHandResult?.Invoke(data));
+                var data = ParseResponse<HandResultData>(response);
+                if (data != null) UnityMainThread.Execute(() => OnHandResult?.Invoke(data));
             });
             
             _socket.On("table_invite_received", response =>
             {
-                var data = response.GetValue<TableInviteData>();
-                UnityMainThread.Execute(() => OnTableInvite?.Invoke(data));
+                var data = ParseResponse<TableInviteData>(response);
+                if (data != null) UnityMainThread.Execute(() => OnTableInvite?.Invoke(data));
             });
             
             // Bot events
             _socket.On("bot_invite_pending", response =>
             {
-                var data = response.GetValue<BotInvitePendingData>();
-                UnityMainThread.Execute(() => OnBotInvitePending?.Invoke(data));
+                var data = ParseResponse<BotInvitePendingData>(response);
+                if (data != null) UnityMainThread.Execute(() => OnBotInvitePending?.Invoke(data));
             });
             
             _socket.On("bot_joined", response =>
             {
-                var data = response.GetValue<BotJoinedData>();
-                UnityMainThread.Execute(() => OnBotJoined?.Invoke(data));
+                var data = ParseResponse<BotJoinedData>(response);
+                if (data != null) UnityMainThread.Execute(() => OnBotJoined?.Invoke(data));
             });
             
             _socket.On("bot_rejected", response =>
             {
-                var data = response.GetValue<BotRejectedData>();
-                UnityMainThread.Execute(() => OnBotRejected?.Invoke(data));
+                var data = ParseResponse<BotRejectedData>(response);
+                if (data != null) UnityMainThread.Execute(() => OnBotRejected?.Invoke(data));
             });
             
             // Adventure events
             _socket.On("adventure_result", response =>
             {
-                var data = response.GetValue<AdventureResult>();
-                UnityMainThread.Execute(() => OnAdventureResult?.Invoke(data));
+                var data = ParseResponse<AdventureResult>(response);
+                if (data != null) UnityMainThread.Execute(() => OnAdventureResult?.Invoke(data));
             });
             
             _socket.On("world_map_state", response =>
             {
-                var data = response.GetValue<WorldMapState>();
-                UnityMainThread.Execute(() => OnWorldMapState?.Invoke(data));
+                var data = ParseResponse<WorldMapState>(response);
+                if (data != null) UnityMainThread.Execute(() => OnWorldMapState?.Invoke(data));
             });
         }
         #endif
