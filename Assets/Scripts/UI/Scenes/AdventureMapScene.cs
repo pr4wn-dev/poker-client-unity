@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using PokerClient.UI;
 using PokerClient.UI.Components;
 using PokerClient.Networking;
 using System.Collections.Generic;
@@ -513,5 +514,6 @@ namespace PokerClient.UI.Scenes
         }
     }
 }
+
 
 

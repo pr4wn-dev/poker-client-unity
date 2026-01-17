@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using PokerClient.UI;
 using PokerClient.UI.Components;
 using PokerClient.Networking;
 using System.Collections.Generic;
@@ -49,21 +50,10 @@ namespace PokerClient.UI.Scenes
         
         private void Start()
         {
-            // GameService.Instance will auto-create if needed
             _gameService = GameService.Instance;
-            Debug.Log($"[AdventureScene] GameService: {_gameService != null}, IsLoggedIn: {_gameService?.IsLoggedIn}");
-            
             if (_gameService == null)
             {
-                Debug.LogError("GameService could not be created!");
-                SceneManager.LoadScene("MainMenuScene");
-                return;
-            }
-            
-            // If not logged in, go back to main menu
-            if (!_gameService.IsLoggedIn)
-            {
-                Debug.Log("[AdventureScene] Not logged in, going to MainMenu");
+                Debug.LogError("GameService not found!");
                 SceneManager.LoadScene("MainMenuScene");
                 return;
             }
@@ -75,7 +65,6 @@ namespace PokerClient.UI.Scenes
             BuildScene();
             LoadWorldMap();
         }
-        
         
         private void OnDestroy()
         {
@@ -161,22 +150,21 @@ namespace PokerClient.UI.Scenes
             
             // Level & XP row
             var levelRow = UIFactory.CreatePanel(statsPanel.transform, "LevelRow", Color.clear);
-            var levelRowLayout = levelRow.AddComponent<LayoutElement>();
-            levelRowLayout.preferredHeight = 30;
+            levelRow.GetComponent<LayoutElement>().preferredHeight = 30;
             var levelHlg = levelRow.AddComponent<HorizontalLayoutGroup>();
             levelHlg.spacing = 20;
             levelHlg.childAlignment = TextAnchor.MiddleRight;
             
             playerLevelText = UIFactory.CreateText(levelRow.transform, "Level", "Level 1", 22f, theme.primaryColor);
             playerLevelText.fontStyle = FontStyles.Bold;
-            playerLevelText.GetOrAddLayoutElement().preferredWidth = 100;
+            playerLevelText.GetComponent<LayoutElement>().preferredWidth = 100;
             
             playerXPText = UIFactory.CreateText(levelRow.transform, "XP", "0 / 100 XP", 18f, theme.textSecondary);
-            playerXPText.GetOrAddLayoutElement().preferredWidth = 150;
+            playerXPText.GetComponent<LayoutElement>().preferredWidth = 150;
             
             // XP Progress bar
             var xpBarBg = UIFactory.CreatePanel(statsPanel.transform, "XPBarBg", theme.backgroundColor);
-            xpBarBg.GetOrAddLayoutElement().preferredHeight = 15;
+            xpBarBg.GetComponent<LayoutElement>().preferredHeight = 15;
             var xpBgRect = xpBarBg.GetComponent<RectTransform>();
             
             var xpBarFill = UIFactory.CreatePanel(xpBarBg.transform, "XPBarFill", theme.primaryColor);
@@ -188,7 +176,7 @@ namespace PokerClient.UI.Scenes
             
             // Coins
             playerCoinsText = UIFactory.CreateText(statsPanel.transform, "Coins", "🪙 0 Coins", 18f, theme.accentColor);
-            playerCoinsText.GetOrAddLayoutElement().preferredHeight = 25;
+            playerCoinsText.GetComponent<LayoutElement>().preferredHeight = 25;
             playerCoinsText.alignment = TextAlignmentOptions.Right;
         }
         
@@ -235,24 +223,24 @@ namespace PokerClient.UI.Scenes
             
             // Back button
             var backBtn = UIFactory.CreateButton(areaDetailPanel.transform, "BackBtn", "← Back to Map", () => ShowWorldMap());
-            backBtn.GetOrAddLayoutElement().preferredHeight = 45;
+            backBtn.GetComponent<LayoutElement>().preferredHeight = 45;
             
             // Area name
             areaNameText = UIFactory.CreateTitle(areaDetailPanel.transform, "AreaName", "Area Name", 36f);
-            areaNameText.GetOrAddLayoutElement().preferredHeight = 50;
+            areaNameText.GetComponent<LayoutElement>().preferredHeight = 50;
             
             // Area description
             areaDescriptionText = UIFactory.CreateText(areaDetailPanel.transform, "AreaDesc", "", 18f, theme.textSecondary);
-            areaDescriptionText.GetOrAddLayoutElement().preferredHeight = 60;
+            areaDescriptionText.GetComponent<LayoutElement>().preferredHeight = 60;
             areaDescriptionText.alignment = TextAlignmentOptions.Center;
             
             // Bosses title
             var bossesTitle = UIFactory.CreateTitle(areaDetailPanel.transform, "BossesTitle", "BOSSES", 24f);
-            bossesTitle.GetOrAddLayoutElement().preferredHeight = 35;
+            bossesTitle.GetComponent<LayoutElement>().preferredHeight = 35;
             
             // Boss list container
             var bossListScroll = UIFactory.CreatePanel(areaDetailPanel.transform, "BossListScroll", theme.backgroundColor);
-            bossListScroll.GetOrAddLayoutElement().flexibleHeight = 1;
+            bossListScroll.GetComponent<LayoutElement>().flexibleHeight = 1;
             
             bossListContainer = bossListScroll.transform;
             
@@ -287,31 +275,31 @@ namespace PokerClient.UI.Scenes
             
             // Boss name
             bossNameText = UIFactory.CreateTitle(content.transform, "BossName", "Boss Name", 42f);
-            bossNameText.GetOrAddLayoutElement().preferredHeight = 60;
+            bossNameText.GetComponent<LayoutElement>().preferredHeight = 60;
             bossNameText.color = theme.dangerColor;
             
             // Description
             bossDescriptionText = UIFactory.CreateText(content.transform, "BossDesc", "", 20f, theme.textSecondary);
-            bossDescriptionText.GetOrAddLayoutElement().preferredHeight = 80;
+            bossDescriptionText.GetComponent<LayoutElement>().preferredHeight = 80;
             bossDescriptionText.alignment = TextAlignmentOptions.Center;
             
             // Requirements
             bossRequirementsText = UIFactory.CreateText(content.transform, "Requirements", "", 18f, theme.textSecondary);
-            bossRequirementsText.GetOrAddLayoutElement().preferredHeight = 40;
+            bossRequirementsText.GetComponent<LayoutElement>().preferredHeight = 40;
             bossRequirementsText.alignment = TextAlignmentOptions.Center;
             
             // Rewards
             var rewardsTitle = UIFactory.CreateTitle(content.transform, "RewardsTitle", "REWARDS", 24f);
-            rewardsTitle.GetOrAddLayoutElement().preferredHeight = 35;
+            rewardsTitle.GetComponent<LayoutElement>().preferredHeight = 35;
             rewardsTitle.color = theme.accentColor;
             
             bossRewardsText = UIFactory.CreateText(content.transform, "Rewards", "", 20f, theme.accentColor);
-            bossRewardsText.GetOrAddLayoutElement().preferredHeight = 60;
+            bossRewardsText.GetComponent<LayoutElement>().preferredHeight = 60;
             bossRewardsText.alignment = TextAlignmentOptions.Center;
             
             // Buttons
             var buttonRow = UIFactory.CreatePanel(content.transform, "ButtonRow", Color.clear);
-            buttonRow.GetOrAddLayoutElement().preferredHeight = 60;
+            buttonRow.GetComponent<LayoutElement>().preferredHeight = 60;
             var hlg = buttonRow.AddComponent<HorizontalLayoutGroup>();
             hlg.spacing = 30;
             hlg.childAlignment = TextAnchor.MiddleCenter;
@@ -412,7 +400,7 @@ namespace PokerClient.UI.Scenes
             playerLevelText.text = $"Level {state.playerLevel}";
             playerXPText.text = $"{state.playerXP} / {state.xpForNextLevel} XP";
             
-            float progress = (state.xpForNextLevel ?? 0) > 0 ? (float)state.playerXP / (state.xpForNextLevel ?? 1) : 0;
+            float progress = state.xpForNextLevel > 0 ? (float)state.playerXP / state.xpForNextLevel : 0;
             var xpRect = xpProgressBar.GetComponent<RectTransform>();
             xpRect.anchorMax = new Vector2(Mathf.Clamp01(progress), 1);
             
@@ -479,7 +467,7 @@ namespace PokerClient.UI.Scenes
             
             // Area name
             var nameText = UIFactory.CreateText(button.transform, "Name", area.name, 18f, Color.white);
-            nameText.GetOrAddLayoutElement().preferredHeight = 25;
+            nameText.GetComponent<LayoutElement>().preferredHeight = 25;
             nameText.alignment = TextAlignmentOptions.Center;
             nameText.fontStyle = FontStyles.Bold;
             
@@ -489,7 +477,7 @@ namespace PokerClient.UI.Scenes
                 : "🔒 Locked";
             var progressText = UIFactory.CreateText(button.transform, "Progress", progressStr, 14f, 
                 area.isUnlocked ? theme.textSecondary : theme.dangerColor);
-            progressText.GetOrAddLayoutElement().preferredHeight = 20;
+            progressText.GetComponent<LayoutElement>().preferredHeight = 20;
             progressText.alignment = TextAlignmentOptions.Center;
             
             return button;
@@ -527,7 +515,7 @@ namespace PokerClient.UI.Scenes
             var theme = Theme.Current;
             
             var item = UIFactory.CreatePanel(bossListContainer, $"Boss_{boss.id}", theme.cardPanelColor);
-            item.GetOrAddLayoutElement().preferredHeight = 80;
+            item.GetComponent<LayoutElement>().preferredHeight = 80;
             
             var hlg = item.AddComponent<HorizontalLayoutGroup>();
             hlg.spacing = 20;
@@ -538,7 +526,7 @@ namespace PokerClient.UI.Scenes
             
             // Boss name
             var nameText = UIFactory.CreateTitle(item.transform, "Name", boss.name, 24f);
-            nameText.GetOrAddLayoutElement().preferredWidth = 250;
+            nameText.GetComponent<LayoutElement>().preferredWidth = 250;
             nameText.color = boss.canChallenge ? theme.textPrimary : theme.textSecondary;
             
             // Difficulty
@@ -551,12 +539,12 @@ namespace PokerClient.UI.Scenes
                 _ => theme.textSecondary
             };
             var diffText = UIFactory.CreateText(item.transform, "Difficulty", boss.difficulty?.ToUpper() ?? "UNKNOWN", 16f, diffColor);
-            diffText.GetOrAddLayoutElement().preferredWidth = 120;
+            diffText.GetComponent<LayoutElement>().preferredWidth = 120;
             diffText.fontStyle = FontStyles.Bold;
             
             // Requirements
             var reqText = UIFactory.CreateText(item.transform, "Req", $"Lv.{boss.minLevel} | {boss.entryFee} coins", 16f, theme.textSecondary);
-            reqText.GetOrAddLayoutElement().preferredWidth = 180;
+            reqText.GetComponent<LayoutElement>().preferredWidth = 180;
             
             // Spacer
             var spacer = new GameObject("Spacer");
@@ -566,7 +554,7 @@ namespace PokerClient.UI.Scenes
             // Challenge button
             var challengeBtn = UIFactory.CreateButton(item.transform, "Challenge", boss.canChallenge ? "CHALLENGE" : "🔒", 
                 () => ShowBossDetail(boss));
-            challengeBtn.GetOrAddLayoutElement().preferredWidth = 140;
+            challengeBtn.GetComponent<LayoutElement>().preferredWidth = 140;
             challengeBtn.GetComponent<Button>().interactable = boss.canChallenge;
             
             if (boss.canChallenge)

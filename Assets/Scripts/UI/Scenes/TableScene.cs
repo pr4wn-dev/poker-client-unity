@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using PokerClient.UI;
 using PokerClient.UI.Components;
 using PokerClient.Networking;
 using System.Collections.Generic;
@@ -55,11 +56,10 @@ namespace PokerClient.UI.Scenes
         private void Start()
         {
             _gameService = GameService.Instance;
-            Debug.Log($"[TableScene] GameService: {_gameService != null}, IsInGame: {_gameService?.IsInGame}");
-            
+            Debug.Log($"[TableScene] Start - GameService: {_gameService != null}, IsInGame: {_gameService?.IsInGame}, CurrentTableId: {_gameService?.CurrentTableId}");
             if (_gameService == null || !_gameService.IsInGame)
             {
-                Debug.LogError("Not in a game! Going back to lobby.");
+                Debug.LogError($"Not in a game! Going back to lobby. IsInGame={_gameService?.IsInGame}, TableId={_gameService?.CurrentTableId}");
                 SceneManager.LoadScene("LobbyScene");
                 return;
             }
@@ -220,7 +220,7 @@ namespace PokerClient.UI.Scenes
             
             // Call Button
             var callContainer = UIFactory.CreatePanel(actionPanel.transform, "CallContainer", Color.clear);
-            callContainer.GetOrAddLayoutElement().preferredWidth = 150;
+            callContainer.GetComponent<LayoutElement>().preferredWidth = 150;
             
             callButton = UIFactory.CreateButton(callContainer.transform, "CallBtn", "CALL", OnCallClick).GetComponent<Button>();
             var callRect = callButton.GetComponent<RectTransform>();
@@ -238,7 +238,7 @@ namespace PokerClient.UI.Scenes
             
             // Bet/Raise Slider Section
             var betSection = UIFactory.CreatePanel(actionPanel.transform, "BetSection", Color.clear);
-            betSection.GetOrAddLayoutElement().preferredWidth = 400;
+            betSection.GetComponent<LayoutElement>().preferredWidth = 400;
             
             // Slider row
             var sliderRow = UIFactory.CreatePanel(betSection.transform, "SliderRow", Color.clear);
@@ -296,13 +296,13 @@ namespace PokerClient.UI.Scenes
             vlg.childControlHeight = false;
             
             inviteButton = UIFactory.CreateButton(menuPanel.transform, "InviteBtn", "Invite Player", OnInviteClick).GetComponent<Button>();
-            inviteButton.GetOrAddLayoutElement().preferredHeight = 50;
+            inviteButton.GetComponent<LayoutElement>().preferredHeight = 50;
             
             chatButton = UIFactory.CreateButton(menuPanel.transform, "ChatBtn", "Chat", OnChatClick).GetComponent<Button>();
-            chatButton.GetOrAddLayoutElement().preferredHeight = 50;
+            chatButton.GetComponent<LayoutElement>().preferredHeight = 50;
             
             leaveButton = UIFactory.CreateButton(menuPanel.transform, "LeaveBtn", "Leave Table", OnLeaveClick).GetComponent<Button>();
-            leaveButton.GetOrAddLayoutElement().preferredHeight = 50;
+            leaveButton.GetComponent<LayoutElement>().preferredHeight = 50;
             leaveButton.GetComponent<Image>().color = theme.dangerColor;
             
             menuPanel.SetActive(false);
