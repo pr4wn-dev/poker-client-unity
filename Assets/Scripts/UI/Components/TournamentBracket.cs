@@ -202,7 +202,7 @@ namespace PokerClient.UI.Components
             contentRect.sizeDelta = new Vector2((totalRounds + 1) * 280, 0);
         }
         
-        private void CreateRoundColumn(int roundIndex, int totalRounds, int matchCount, int currentRound, List<TournamentPlayerInfo> players)
+        private void CreateRoundColumn(int roundIndex, int totalRounds, int matchCount, int currentRound, List<TournamentPlayer> players)
         {
             var theme = Theme.Current;
             
@@ -338,10 +338,13 @@ namespace PokerClient.UI.Components
             trophy.GetOrAddComponent<LayoutElement>().preferredHeight = 60;
             trophy.alignment = TextAlignmentOptions.Center;
             
-            // Winner name
-            string winnerName = tournament.status == "completed" && tournament.winner != null 
-                ? tournament.winner.username 
-                : "???";
+            // Winner name - look up from players list
+            string winnerName = "???";
+            if (tournament.status == "completed" && !string.IsNullOrEmpty(tournament.winner))
+            {
+                var winnerPlayer = tournament.players?.Find(p => p.oderId == tournament.winner);
+                winnerName = winnerPlayer?.username ?? tournament.winner;
+            }
             var winnerText = UIFactory.CreateText(winnerCard.transform, "Name", winnerName, 22f, 
                 tournament.status == "completed" ? theme.successColor : theme.textSecondary);
             winnerText.GetOrAddComponent<LayoutElement>().preferredHeight = 30;

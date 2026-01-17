@@ -207,7 +207,7 @@ namespace PokerClient.UI.Components
             _sendButton.GetComponent<Image>().color = theme.primaryColor;
         }
         
-        private RectTransform CreatePlaceholder(Transform parent)
+        private Graphic CreatePlaceholder(Transform parent)
         {
             var placeholder = UIFactory.CreateText(parent, "Placeholder", "Type message...", 14f, Theme.Current.textSecondary);
             var rect = placeholder.GetComponent<RectTransform>();
@@ -215,7 +215,7 @@ namespace PokerClient.UI.Components
             rect.anchorMax = Vector2.one;
             rect.offsetMin = new Vector2(5, 0);
             rect.offsetMax = new Vector2(-5, 0);
-            return rect;
+            return placeholder;  // Return the TextMeshProUGUI (which is a Graphic)
         }
         
         public void AddMessage(ChatMessage message)
