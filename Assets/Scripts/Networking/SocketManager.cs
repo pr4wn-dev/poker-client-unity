@@ -382,7 +382,6 @@ namespace PokerClient.Networking
         
         private object MockRegister(object data)
         {
-            // Extract username from data using JSON
             string username = "Player";
             try
             {
@@ -392,11 +391,11 @@ namespace PokerClient.Networking
             }
             catch { }
             
-            return new
+            return new RegisterResponse
             {
                 success = true,
                 userId = Guid.NewGuid().ToString(),
-                profile = new
+                profile = new UserProfile
                 {
                     id = Guid.NewGuid().ToString(),
                     username = username,
@@ -407,7 +406,6 @@ namespace PokerClient.Networking
         
         private object MockLogin(object data)
         {
-            // Extract username from data using JSON
             string username = "Player";
             try
             {
@@ -417,44 +415,44 @@ namespace PokerClient.Networking
             }
             catch { }
             
-            return new
+            return new LoginResponse
             {
                 success = true,
                 userId = Guid.NewGuid().ToString(),
-                profile = new
+                profile = new UserProfile
                 {
                     id = Guid.NewGuid().ToString(),
                     username = username,
                     chips = 10000,
-                    xp = 500,
-                    level = 3
+                    adventureProgress = new AdventureProgress { xp = 500, level = 3 }
                 }
             };
         }
         
         private object MockGetTables()
         {
-            return new
+            return new GetTablesResponse
             {
                 success = true,
-                tables = new[]
+                tables = new System.Collections.Generic.List<TableInfo>
                 {
-                    new { id = "table1", name = "Beginner's Luck", playerCount = 3, maxPlayers = 9, smallBlind = 50, bigBlind = 100 },
-                    new { id = "table2", name = "High Rollers", playerCount = 5, maxPlayers = 6, smallBlind = 100, bigBlind = 200 },
-                    new { id = "table3", name = "Pro League", playerCount = 2, maxPlayers = 9, smallBlind = 500, bigBlind = 1000 }
+                    new TableInfo { id = "table1", name = "Beginner's Luck", playerCount = 3, maxPlayers = 9, smallBlind = 50, bigBlind = 100 },
+                    new TableInfo { id = "table2", name = "High Rollers", playerCount = 5, maxPlayers = 6, smallBlind = 100, bigBlind = 200 },
+                    new TableInfo { id = "table3", name = "Pro League", playerCount = 2, maxPlayers = 9, smallBlind = 500, bigBlind = 1000 }
                 }
             };
         }
         
         private object MockCreateTable(object data)
         {
-            return new
+            var tableId = Guid.NewGuid().ToString();
+            return new CreateTableResponse
             {
                 success = true,
-                tableId = Guid.NewGuid().ToString(),
-                table = new
+                tableId = tableId,
+                table = new TableInfo
                 {
-                    id = Guid.NewGuid().ToString(),
+                    id = tableId,
                     name = "My Table",
                     playerCount = 1,
                     maxPlayers = 9
@@ -464,7 +462,7 @@ namespace PokerClient.Networking
         
         private object MockJoinTable(object data)
         {
-            return new
+            return new JoinTableResponse
             {
                 success = true,
                 seatIndex = 0,
@@ -474,21 +472,19 @@ namespace PokerClient.Networking
         
         private object MockGetWorldMap()
         {
-            return new
+            return new GetWorldMapResponse
             {
                 success = true,
-                mapState = new
+                mapState = new WorldMapState
                 {
                     playerLevel = 3,
                     playerXP = 500,
-                    xpProgress = 50,
                     xpForNextLevel = 1000,
-                    maxLevel = 25,
-                    areas = new[]
+                    areas = new System.Collections.Generic.List<AreaInfo>
                     {
-                        new { id = "area_tutorial", name = "Poker Academy", isUnlocked = true, bossCount = 1, completedBosses = 1 },
-                        new { id = "area_downtown", name = "Downtown Casino", isUnlocked = true, bossCount = 2, completedBosses = 0 },
-                        new { id = "area_highrise", name = "The Highrise", isUnlocked = false, bossCount = 2, completedBosses = 0 }
+                        new AreaInfo { id = "area_tutorial", name = "Poker Academy", isUnlocked = true, bossCount = 1, completedBosses = 1 },
+                        new AreaInfo { id = "area_downtown", name = "Downtown Casino", isUnlocked = true, bossCount = 2, completedBosses = 0 },
+                        new AreaInfo { id = "area_highrise", name = "The Highrise", isUnlocked = false, bossCount = 2, completedBosses = 0 }
                     }
                 }
             };
@@ -496,20 +492,19 @@ namespace PokerClient.Networking
         
         private object MockGetAreaBosses(object data)
         {
-            return new
+            return new GetBossesResponse
             {
                 success = true,
-                bosses = new[]
+                bosses = new System.Collections.Generic.List<BossInfo>
                 {
-                    new
+                    new BossInfo
                     {
                         id = "boss_tutorial",
                         name = "Dealer Dan",
                         difficulty = "easy",
                         minLevel = 1,
                         entryFee = 0,
-                        canChallenge = true,
-                        rewards = new { xp = 50, coins = 100, chips = 500 }
+                        canChallenge = true
                     }
                 }
             };
@@ -517,29 +512,24 @@ namespace PokerClient.Networking
         
         private object MockStartAdventure(object data)
         {
-            return new
+            return new StartAdventureResponse
             {
                 success = true,
-                session = new
+                session = new AdventureSession
                 {
                     oderId = "player1",
-                    boss = new
-                    {
-                        id = "boss_tutorial",
-                        name = "Dealer Dan",
-                        chips = 5000,
-                        difficulty = "easy",
-                        taunt = "Let's see what you've got, rookie!"
-                    },
+                    bossId = "boss_tutorial",
+                    bossName = "Dealer Dan",
+                    bossChips = 5000,
                     userChips = 10000,
                     handsPlayed = 0
                 }
             };
         }
         
-        private object CreateMockTableState()
+        private TableState CreateMockTableState()
         {
-            return new
+            return new TableState
             {
                 id = "mock-table",
                 name = "Test Table",
@@ -549,10 +539,10 @@ namespace PokerClient.Networking
                 minBet = 100,
                 dealerIndex = 0,
                 currentPlayerIndex = -1,
-                communityCards = new object[0],
-                seats = new object[]
+                communityCards = new System.Collections.Generic.List<CardInfo>(),
+                seats = new System.Collections.Generic.List<SeatInfo>
                 {
-                    new { index = 0, playerId = "player1", name = "You", chips = 10000, currentBet = 0, isFolded = false, isAllIn = false, isConnected = true, cards = new object[0] },
+                    new SeatInfo { index = 0, playerId = "player1", name = "You", chips = 10000, currentBet = 0, isFolded = false, isAllIn = false, isConnected = true, cards = new System.Collections.Generic.List<CardInfo>() },
                     null, null, null, null, null, null, null, null
                 }
             };
