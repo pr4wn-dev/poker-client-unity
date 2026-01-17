@@ -670,11 +670,11 @@ namespace PokerClient.UI.Scenes
             info.alignment = TextAlignmentOptions.Center;
             
             // Leave Table button
-            var leaveBtn = UIFactory.CreateButton(popup.transform, "LeaveBtn", "LEAVE TABLE", theme.buttonPrimary, () =>
+            var leaveBtn = UIFactory.CreateButton(popup.transform, "LeaveBtn", "LEAVE TABLE", () =>
             {
                 Destroy(overlay);
                 _gameService.LeaveTable();
-            });
+            }, theme.buttonPrimary);
             var leaveBtnRect = leaveBtn.GetComponent<RectTransform>();
             leaveBtnRect.anchorMin = new Vector2(0.2f, 0.1f);
             leaveBtnRect.anchorMax = new Vector2(0.8f, 0.25f);
