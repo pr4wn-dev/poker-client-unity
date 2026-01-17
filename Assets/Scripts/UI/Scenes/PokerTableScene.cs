@@ -597,7 +597,7 @@ namespace PokerClient.UI.Scenes
             
             // Check if current user is the table creator
             var currentUser = GameService.Instance?.CurrentUser;
-            _isTableCreator = currentUser != null && state.creatorId == currentUser.oderId;
+            _isTableCreator = currentUser != null && state.creatorId == currentUser.id;
             
             // Update header
             tableNameText.text = state.name ?? "Poker Table";
