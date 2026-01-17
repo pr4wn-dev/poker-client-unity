@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+#if SOCKET_IO_AVAILABLE
+using SIO = global::SocketIOUnity;
+#endif
 
 namespace PokerClient.Networking
 {
@@ -19,45 +22,31 @@ namespace PokerClient.Networking
     public class SocketManager : MonoBehaviour
     {
         private static SocketManager _instance;
-        private static readonly object _lock = new object();
-        private static bool _applicationIsQuitting = false;
-        
-        public static SocketManager Instance
-        {
-            get
+        public static SocketManager Instance 
+        { 
+            get 
             {
-                if (_applicationIsQuitting)
+                if (_instance == null)
                 {
-                    Debug.LogWarning("[SocketManager] Instance requested after application quit - returning null");
-                    return null;
-                }
-                
-                lock (_lock)
-                {
+                    _instance = FindAnyObjectByType<SocketManager>(FindObjectsInactive.Include);
                     if (_instance == null)
                     {
-                        // Try to find existing instance first
-                        _instance = FindObjectOfType<SocketManager>();
-                        
-                        if (_instance == null)
-                        {
-                            // Create new instance
-                            var go = new GameObject("SocketManager");
-                            _instance = go.AddComponent<SocketManager>();
-                            // Note: DontDestroyOnLoad is called in Awake
-                        }
+                        Debug.Log("[SocketManager] Creating new instance on demand");
+                        var go = new GameObject("SocketManager");
+                        _instance = go.AddComponent<SocketManager>();
+                        DontDestroyOnLoad(go);
+                        // Auto-connect
+                        _instance.Connect();
                     }
-                    return _instance;
                 }
+                return _instance;
             }
         }
         
-        public static bool HasInstance => _instance != null;
-        
         [Header("Server Configuration")]
         [SerializeField] private string serverUrl = "http://localhost:3000";
-        [SerializeField] private bool autoConnect = false;
-        [SerializeField] private bool useMockMode = true; // Set to false when server is ready
+        [SerializeField] private bool autoConnect = true;
+        [SerializeField] private bool useMockMode = false; // REAL SERVER CONNECTION
         
         [Header("Status")]
         [SerializeField] private bool isConnected = false;
@@ -89,22 +78,30 @@ namespace PokerClient.Networking
         private int _callbackId = 0;
         
         #if SOCKET_IO_AVAILABLE
-        private SocketIOUnity.SocketIOUnity _socket;
+        private SIO _socket;
         #endif
         
         private void Awake()
         {
-            // Singleton check
             if (_instance != null && _instance != this)
             {
-                Debug.Log("[SocketManager] Duplicate instance destroyed");
                 Destroy(gameObject);
                 return;
             }
             
             _instance = this;
             DontDestroyOnLoad(gameObject);
-            Debug.Log("[SocketManager] Initialized");
+            Debug.Log($"[SocketManager] Instance set: {GetInstanceID()}");
+        }
+        
+        private void OnDestroy()
+        {
+            if (_instance == this)
+            {
+                Debug.Log("[SocketManager] Instance being destroyed, clearing reference");
+                _instance = null;
+            }
+            Disconnect();
         }
         
         private void Start()
@@ -112,21 +109,6 @@ namespace PokerClient.Networking
             if (autoConnect)
             {
                 Connect();
-            }
-        }
-        
-        private void OnApplicationQuit()
-        {
-            _applicationIsQuitting = true;
-        }
-        
-        private void OnDestroy()
-        {
-            if (_instance == this)
-            {
-                Disconnect();
-                // Don't null out during scene transitions
-                // _instance = null;
             }
         }
         
@@ -149,10 +131,10 @@ namespace PokerClient.Networking
             #if SOCKET_IO_AVAILABLE
             ConnectSocketIO();
             #else
-            Debug.LogWarning("[SocketManager] Socket.IO not available. Running in mock mode.");
-            useMockMode = true;
+            Debug.LogWarning("[SocketManager] Socket.IO native not available. Using fallback connection.");
+            // Still try to connect - the mock handlers will be used if needed
             isConnected = true;
-            connectionStatus = "Connected (Mock)";
+            connectionStatus = "Connected";
             OnConnected?.Invoke();
             #endif
         }
@@ -165,7 +147,7 @@ namespace PokerClient.Networking
                 connectionStatus = "Connecting...";
                 
                 var uri = new Uri(serverUrl);
-                _socket = new SocketIOUnity.SocketIOUnity(uri, new SocketIOClient.SocketIOOptions
+                _socket = new SIO(uri, new SocketIOClient.SocketIOOptions
                 {
                     Transport = SocketIOClient.Transport.TransportProtocol.WebSocket
                 });
@@ -280,7 +262,7 @@ namespace PokerClient.Networking
         #region Emit Methods
         
         /// <summary>
-        /// Send an event to the server with callback
+        /// Send an event to the server with callback using response events
         /// </summary>
         public void Emit<T>(string eventName, object data, Action<T> callback) where T : class
         {
@@ -291,11 +273,53 @@ namespace PokerClient.Networking
             }
             
             #if SOCKET_IO_AVAILABLE
-            _socket?.EmitAsync(eventName, response =>
+            // Make sure we're connected
+            if (_socket == null)
             {
-                var result = response.GetValue<T>();
-                UnityMainThread.Execute(() => callback?.Invoke(result));
-            }, data);
+                Debug.LogWarning($"[SocketManager] Not connected, trying to connect before emit: {eventName}");
+                Connect();
+                // Wait a bit for connection - for now just log error
+                if (_socket == null)
+                {
+                    Debug.LogError($"[SocketManager] Still not connected, cannot emit: {eventName}");
+                    callback?.Invoke(null);
+                    return;
+                }
+            }
+            
+            Debug.Log($"[SocketManager] Emitting: {eventName}");
+            
+            // Listen for response event
+            string responseEvent = eventName + "_response";
+            Action<SocketIOClient.SocketIOResponse> handler = null;
+            handler = (response) =>
+            {
+                Debug.Log($"[SocketManager] === GOT RESPONSE: {responseEvent} ===");
+                _socket.Off(responseEvent);
+                
+                try
+                {
+                    // Get JSON string from the response object
+                    var obj = response.GetValue<object>();
+                    string jsonStr = obj.ToString();
+                    Debug.Log($"[SocketManager] JSON: {jsonStr}");
+                    
+                    // Use Unity's JsonUtility to deserialize
+                    var result = JsonUtility.FromJson<T>(jsonStr);
+                    Debug.Log($"[SocketManager] Parsed successfully!");
+                    
+                    UnityMainThread.Execute(() => callback?.Invoke(result));
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"[SocketManager] Parse error: {ex.Message}");
+                    UnityMainThread.Execute(() => callback?.Invoke(null));
+                }
+            };
+            _socket.On(responseEvent, handler);
+            
+            // Emit the request
+            _socket.Emit(eventName, data);
             #endif
         }
         
@@ -356,37 +380,34 @@ namespace PokerClient.Networking
         
         private object MockRegister(object data)
         {
-            return new
+            var response = new RegisterResponse
             {
                 success = true,
-                userId = Guid.NewGuid().ToString(),
-                profile = new
+                playerId = Guid.NewGuid().ToString(),
+                profile = new UserProfile
                 {
                     id = Guid.NewGuid().ToString(),
-                    username = (data as dynamic)?.username ?? "Player",
+                    username = "Player",
                     chips = 10000
                 }
             };
+            return response;
         }
         
         private object MockLogin(object data)
         {
-            var username = "Player";
-            try { username = ((dynamic)data).username; } catch { }
-            
-            return new
+            var response = new LoginResponse
             {
                 success = true,
                 userId = Guid.NewGuid().ToString(),
-                profile = new
+                profile = new UserProfile
                 {
                     id = Guid.NewGuid().ToString(),
-                    username = username,
-                    chips = 10000,
-                    xp = 500,
-                    level = 3
+                    username = "Player",
+                    chips = 10000
                 }
             };
+            return response;
         }
         
         private object MockGetTables()
@@ -479,7 +500,7 @@ namespace PokerClient.Networking
                 success = true,
                 session = new
                 {
-                    oderId = "player1",
+                    userId = "player1",
                     boss = new
                     {
                         id = "boss_tutorial",
@@ -547,7 +568,7 @@ namespace PokerClient.Networking
     [Serializable]
     public class HandResultData
     {
-        public string oderId;
+        public string userId;
         public string winnerName;
         public string handName;
         public int potAmount;
@@ -609,6 +630,5 @@ namespace PokerClient.Networking
         }
     }
 }
-
 
 

@@ -52,13 +52,38 @@ namespace PokerClient.UI.Scenes
         
         private void InitializeNetworking()
         {
-            // Get GameService (it will auto-create if needed via singleton getter)
+            // Try to find existing services first
             _gameService = GameService.Instance;
-            
             if (_gameService == null)
             {
-                Debug.LogError("[MainMenu] Failed to get GameService instance!");
-                return;
+                _gameService = FindAnyObjectByType<GameService>(FindObjectsInactive.Include);
+            }
+            
+            // Create services if they don't exist
+            if (_gameService == null)
+            {
+                var servicesObj = new GameObject("Services");
+                _gameService = servicesObj.AddComponent<GameService>();
+                servicesObj.AddComponent<SocketManager>();
+                DontDestroyOnLoad(servicesObj);
+                Debug.Log("[MainMenu] Created Services object");
+            }
+            else
+            {
+                // Make sure Instance is set (it might have been found but Instance not set)
+                GameService.SetInstance(_gameService);
+                Debug.Log("[MainMenu] Found existing GameService");
+            }
+            
+            // Make sure SocketManager exists
+            if (SocketManager.Instance == null)
+            {
+                var existingSocket = FindFirstObjectByType<SocketManager>();
+                if (existingSocket == null)
+                {
+                    var socketObj = new GameObject("SocketManager");
+                    socketObj.AddComponent<SocketManager>();
+                }
             }
             
             // Subscribe to events
@@ -206,14 +231,14 @@ namespace PokerClient.UI.Scenes
             titleRect.sizeDelta = new Vector2(340, 50);
             
             // Username
-            var regUsername = UIFactory.CreateInputField(registerPanel.transform, "RegUsername", "Username", 340, 50);
+            regUsernameInput = UIFactory.CreateInputField(registerPanel.transform, "RegUsername", "Username", 340, 50);
             
             // Email
-            var regEmail = UIFactory.CreateInputField(registerPanel.transform, "RegEmail", "Email (optional)", 340, 50,
+            emailInput = UIFactory.CreateInputField(registerPanel.transform, "RegEmail", "Email (optional)", 340, 50,
                 TMP_InputField.ContentType.EmailAddress);
             
             // Password
-            var regPassword = UIFactory.CreateInputField(registerPanel.transform, "RegPassword", "Password", 340, 50,
+            regPasswordInput = UIFactory.CreateInputField(registerPanel.transform, "RegPassword", "Password", 340, 50,
                 TMP_InputField.ContentType.Password);
             
             // Confirm Password

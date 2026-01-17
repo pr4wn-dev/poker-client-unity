@@ -6,6 +6,28 @@ using TMPro;
 namespace PokerClient.UI
 {
     /// <summary>
+    /// Extension methods for UI components
+    /// </summary>
+    public static class UIExtensions
+    {
+        /// <summary>
+        /// Get LayoutElement, adding it if it doesn't exist
+        /// </summary>
+        public static LayoutElement GetOrAddLayoutElement(this GameObject go)
+        {
+            var le = go.GetComponent<LayoutElement>();
+            if (le == null)
+                le = go.AddComponent<LayoutElement>();
+            return le;
+        }
+        
+        public static LayoutElement GetOrAddLayoutElement(this Component comp)
+        {
+            return comp.gameObject.GetOrAddLayoutElement();
+        }
+    }
+    
+    /// <summary>
     /// Factory for creating UI elements with consistent styling.
     /// All visuals are created programmatically - easy to swap for custom assets later.
     /// </summary>
@@ -338,6 +360,5 @@ namespace PokerClient.UI
         #endregion
     }
 }
-
 
 

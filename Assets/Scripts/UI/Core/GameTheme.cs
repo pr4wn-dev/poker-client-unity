@@ -69,6 +69,11 @@ namespace PokerClient.UI
         public Color rarityEpic = new Color(0.7f, 0.3f, 0.9f);
         public Color rarityLegendary = new Color(1f, 0.7f, 0.2f);
         
+        [Header("=== STATUS COLORS ===")]
+        public Color dangerColor = new Color(0.9f, 0.3f, 0.3f);
+        public Color successColor = new Color(0.3f, 0.85f, 0.4f);
+        public Color warningColor = new Color(0.95f, 0.75f, 0.2f);
+        
         [Header("=== SIZING ===")]
         public float cardWidth = 70f;
         public float cardHeight = 100f;
@@ -137,6 +142,5 @@ namespace PokerClient.UI
         }
     }
 }
-
 
 

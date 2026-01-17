@@ -47,9 +47,11 @@ namespace PokerClient.UI.Scenes
         private void Start()
         {
             _gameService = GameService.Instance;
-            if (_gameService == null)
+            Debug.Log($"[LobbyScene] GameService: {_gameService != null}, IsLoggedIn: {_gameService?.IsLoggedIn}");
+            
+            if (_gameService == null || !_gameService.IsLoggedIn)
             {
-                Debug.LogError("GameService not found! Going back to main menu.");
+                Debug.Log("[LobbyScene] Not logged in, going to MainMenu");
                 SceneManager.LoadScene("MainMenuScene");
                 return;
             }
@@ -253,48 +255,48 @@ namespace PokerClient.UI.Scenes
             
             // Title
             var title = UIFactory.CreateTitle(createTablePanel.transform, "Title", "CREATE TABLE", 32f);
-            title.GetComponent<LayoutElement>().preferredHeight = 50;
+            title.GetOrAddLayoutElement().preferredHeight = 50;
             
             // Table Name
             var nameLabel = UIFactory.CreateText(createTablePanel.transform, "NameLabel", "Table Name:", 18f, theme.textSecondary);
-            nameLabel.GetComponent<LayoutElement>().preferredHeight = 25;
+            nameLabel.GetOrAddLayoutElement().preferredHeight = 25;
             
             tableNameInput = UIFactory.CreateInputField(createTablePanel.transform, "TableName", "Enter table name...");
-            tableNameInput.GetComponent<LayoutElement>().preferredHeight = 50;
+            tableNameInput.GetOrAddLayoutElement().preferredHeight = 50;
             
             // Max Players Slider
             var playersLabel = UIFactory.CreateText(createTablePanel.transform, "PlayersLabel", "Max Players:", 18f, theme.textSecondary);
-            playersLabel.GetComponent<LayoutElement>().preferredHeight = 25;
+            playersLabel.GetOrAddLayoutElement().preferredHeight = 25;
             
             var playersRow = UIFactory.CreatePanel(createTablePanel.transform, "PlayersRow", Color.clear);
-            playersRow.GetComponent<LayoutElement>().preferredHeight = 40;
+            playersRow.GetOrAddLayoutElement().preferredHeight = 40;
             var playersHlg = playersRow.AddComponent<HorizontalLayoutGroup>();
             playersHlg.spacing = 10;
             playersHlg.childAlignment = TextAnchor.MiddleCenter;
             
             maxPlayersSlider = CreateSlider(playersRow.transform, 2, 9, 6);
             maxPlayersValue = UIFactory.CreateText(playersRow.transform, "Value", "6", 24f, theme.primaryColor);
-            maxPlayersValue.GetComponent<LayoutElement>().preferredWidth = 50;
+            maxPlayersValue.GetOrAddLayoutElement().preferredWidth = 50;
             maxPlayersSlider.onValueChanged.AddListener(v => maxPlayersValue.text = ((int)v).ToString());
             
             // Blinds Slider
             var blindsLabel = UIFactory.CreateText(createTablePanel.transform, "BlindsLabel", "Blinds:", 18f, theme.textSecondary);
-            blindsLabel.GetComponent<LayoutElement>().preferredHeight = 25;
+            blindsLabel.GetOrAddLayoutElement().preferredHeight = 25;
             
             var blindsRow = UIFactory.CreatePanel(createTablePanel.transform, "BlindsRow", Color.clear);
-            blindsRow.GetComponent<LayoutElement>().preferredHeight = 40;
+            blindsRow.GetOrAddLayoutElement().preferredHeight = 40;
             var blindsHlg = blindsRow.AddComponent<HorizontalLayoutGroup>();
             blindsHlg.spacing = 10;
             blindsHlg.childAlignment = TextAnchor.MiddleCenter;
             
             smallBlindSlider = CreateSlider(blindsRow.transform, 1, 6, 1); // 1=25/50, 6=5000/10000
             blindsValue = UIFactory.CreateText(blindsRow.transform, "Value", "25/50", 24f, theme.primaryColor);
-            blindsValue.GetComponent<LayoutElement>().preferredWidth = 150;
+            blindsValue.GetOrAddLayoutElement().preferredWidth = 150;
             smallBlindSlider.onValueChanged.AddListener(UpdateBlindsDisplay);
             
             // Private Toggle
             var privateRow = UIFactory.CreatePanel(createTablePanel.transform, "PrivateRow", Color.clear);
-            privateRow.GetComponent<LayoutElement>().preferredHeight = 50;
+            privateRow.GetOrAddLayoutElement().preferredHeight = 50;
             var privateHlg = privateRow.AddComponent<HorizontalLayoutGroup>();
             privateHlg.spacing = 20;
             privateHlg.childAlignment = TextAnchor.MiddleCenter;
@@ -306,12 +308,12 @@ namespace PokerClient.UI.Scenes
             // Password
             passwordInput = UIFactory.CreateInputField(createTablePanel.transform, "Password", "Password (optional)");
             passwordInput.contentType = TMP_InputField.ContentType.Password;
-            passwordInput.GetComponent<LayoutElement>().preferredHeight = 50;
+            passwordInput.GetOrAddLayoutElement().preferredHeight = 50;
             passwordInput.gameObject.SetActive(false);
             
             // Buttons
             var buttonRow = UIFactory.CreatePanel(createTablePanel.transform, "ButtonRow", Color.clear);
-            buttonRow.GetComponent<LayoutElement>().preferredHeight = 60;
+            buttonRow.GetOrAddLayoutElement().preferredHeight = 60;
             var btnHlg = buttonRow.AddComponent<HorizontalLayoutGroup>();
             btnHlg.spacing = 20;
             btnHlg.childAlignment = TextAnchor.MiddleCenter;
@@ -348,10 +350,10 @@ namespace PokerClient.UI.Scenes
             vlg.childForceExpandWidth = true;
             
             var title = UIFactory.CreateTitle(invitePanel.transform, "Title", "INVITE PLAYER", 28f);
-            title.GetComponent<LayoutElement>().preferredHeight = 40;
+            title.GetOrAddLayoutElement().preferredHeight = 40;
             
             var searchRow = UIFactory.CreatePanel(invitePanel.transform, "SearchRow", Color.clear);
-            searchRow.GetComponent<LayoutElement>().preferredHeight = 50;
+            searchRow.GetOrAddLayoutElement().preferredHeight = 50;
             var hlg = searchRow.AddComponent<HorizontalLayoutGroup>();
             hlg.spacing = 10;
             hlg.childControlWidth = true;
@@ -359,15 +361,15 @@ namespace PokerClient.UI.Scenes
             
             inviteSearchInput = UIFactory.CreateInputField(searchRow.transform, "Search", "Enter username...");
             var searchBtn = UIFactory.CreateButton(searchRow.transform, "SearchBtn", "Search", OnSearchUsers);
-            searchBtn.GetComponent<LayoutElement>().preferredWidth = 100;
+            searchBtn.GetOrAddLayoutElement().preferredWidth = 100;
             
             // Results container
             var resultsPanel = UIFactory.CreatePanel(invitePanel.transform, "Results", theme.backgroundColor);
-            resultsPanel.GetComponent<LayoutElement>().preferredHeight = 150;
+            resultsPanel.GetOrAddLayoutElement().preferredHeight = 150;
             searchResultsContainer = resultsPanel.transform;
             
             var closeBtn = UIFactory.CreateButton(invitePanel.transform, "Close", "Close", () => invitePanel.SetActive(false));
-            closeBtn.GetComponent<LayoutElement>().preferredHeight = 45;
+            closeBtn.GetOrAddLayoutElement().preferredHeight = 45;
             
             invitePanel.SetActive(false);
         }
@@ -452,7 +454,7 @@ namespace PokerClient.UI.Scenes
             var item = UIFactory.CreatePanel(tableListContainer, $"Table_{table.id}", theme.cardPanelColor);
             var itemRect = item.GetComponent<RectTransform>();
             itemRect.sizeDelta = new Vector2(0, 80);
-            item.GetComponent<LayoutElement>().preferredHeight = 80;
+            item.GetOrAddLayoutElement().preferredHeight = 80;
             
             var hlg = item.AddComponent<HorizontalLayoutGroup>();
             hlg.spacing = 20;
@@ -463,21 +465,21 @@ namespace PokerClient.UI.Scenes
             
             // Table Name
             var nameText = UIFactory.CreateTitle(item.transform, "Name", table.name, 24f);
-            nameText.GetComponent<LayoutElement>().preferredWidth = 300;
+            nameText.GetOrAddLayoutElement().preferredWidth = 300;
             
             // Players
             var playersText = UIFactory.CreateText(item.transform, "Players", $"{table.playerCount}/{table.maxPlayers} Players", 18f, theme.textSecondary);
-            playersText.GetComponent<LayoutElement>().preferredWidth = 150;
+            playersText.GetOrAddLayoutElement().preferredWidth = 150;
             
             // Blinds
             var blindsText = UIFactory.CreateText(item.transform, "Blinds", $"{table.smallBlind}/{table.bigBlind}", 18f, theme.accentColor);
-            blindsText.GetComponent<LayoutElement>().preferredWidth = 150;
+            blindsText.GetOrAddLayoutElement().preferredWidth = 150;
             
             // Lock icon for private
             if (table.isPrivate)
             {
                 var lockText = UIFactory.CreateText(item.transform, "Lock", "🔒", 24f, theme.dangerColor);
-                lockText.GetComponent<LayoutElement>().preferredWidth = 40;
+                lockText.GetOrAddLayoutElement().preferredWidth = 40;
             }
             
             // Spacer
@@ -487,7 +489,7 @@ namespace PokerClient.UI.Scenes
             
             // Join Button
             var joinBtn = UIFactory.CreateButton(item.transform, "Join", "JOIN", () => OnJoinTableClick(table));
-            joinBtn.GetComponent<LayoutElement>().preferredWidth = 100;
+            joinBtn.GetOrAddLayoutElement().preferredWidth = 100;
             joinBtn.GetComponent<Image>().color = theme.primaryColor;
             
             return item;
@@ -535,28 +537,21 @@ namespace PokerClient.UI.Scenes
             
             loadingPanel.SetActive(true);
             
-            // Subscribe to OnTableJoined to load scene AFTER CurrentTableId is set
-            _gameService.OnTableJoined -= OnTableJoinedForCreate;
-            _gameService.OnTableJoined += OnTableJoinedForCreate;
-            
             _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, isPrivate, password, (success, result) =>
             {
-                if (!success)
+                loadingPanel.SetActive(false);
+                if (success)
                 {
-                    loadingPanel.SetActive(false);
-                    _gameService.OnTableJoined -= OnTableJoinedForCreate;
-                    Debug.LogError($"[LobbyScene] Failed to create/join table: {result}");
+                    // Auto-join the table we just created
+                    _gameService.JoinTable(result, null, password, (joinSuccess, error) =>
+                    {
+                        if (joinSuccess)
+                        {
+                            SceneManager.LoadScene("TableScene");
+                        }
+                    });
                 }
-                // If success, OnTableJoined event will fire and load the scene
             });
-        }
-        
-        private void OnTableJoinedForCreate(TableState state)
-        {
-            _gameService.OnTableJoined -= OnTableJoinedForCreate;
-            loadingPanel.SetActive(false);
-            Debug.Log($"[LobbyScene] OnTableJoined fired! IsInGame: {_gameService.IsInGame}, TableId: {_gameService.CurrentTableId}");
-            SceneManager.LoadScene("TableScene");
         }
         
         private void OnSearchUsers()
@@ -584,21 +579,21 @@ namespace PokerClient.UI.Scenes
             var theme = Theme.Current;
             
             var row = UIFactory.CreatePanel(searchResultsContainer, $"User_{user.id}", Color.clear);
-            row.GetComponent<LayoutElement>().preferredHeight = 40;
+            row.GetOrAddLayoutElement().preferredHeight = 40;
             
             var hlg = row.AddComponent<HorizontalLayoutGroup>();
             hlg.spacing = 10;
             hlg.childAlignment = TextAnchor.MiddleLeft;
             
             var nameText = UIFactory.CreateText(row.transform, "Name", user.username, 18f, theme.textPrimary);
-            nameText.GetComponent<LayoutElement>().flexibleWidth = 1;
+            nameText.GetOrAddLayoutElement().flexibleWidth = 1;
             
             var statusText = UIFactory.CreateText(row.transform, "Status", user.isOnline ? "●" : "○", 18f, 
                 user.isOnline ? theme.successColor : theme.textSecondary);
-            statusText.GetComponent<LayoutElement>().preferredWidth = 30;
+            statusText.GetOrAddLayoutElement().preferredWidth = 30;
             
             var inviteBtn = UIFactory.CreateButton(row.transform, "Invite", "Invite", () => OnInviteUser(user.id));
-            inviteBtn.GetComponent<LayoutElement>().preferredWidth = 80;
+            inviteBtn.GetOrAddLayoutElement().preferredWidth = 80;
         }
         
         private void OnInviteUser(string oderId)

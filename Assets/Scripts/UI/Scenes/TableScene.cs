@@ -55,10 +55,11 @@ namespace PokerClient.UI.Scenes
         private void Start()
         {
             _gameService = GameService.Instance;
-            Debug.Log($"[TableScene] Start - GameService: {_gameService != null}, IsInGame: {_gameService?.IsInGame}, CurrentTableId: {_gameService?.CurrentTableId}");
+            Debug.Log($"[TableScene] GameService: {_gameService != null}, IsInGame: {_gameService?.IsInGame}");
+            
             if (_gameService == null || !_gameService.IsInGame)
             {
-                Debug.LogError($"Not in a game! Going back to lobby. IsInGame={_gameService?.IsInGame}, TableId={_gameService?.CurrentTableId}");
+                Debug.LogError("Not in a game! Going back to lobby.");
                 SceneManager.LoadScene("LobbyScene");
                 return;
             }
@@ -219,7 +220,7 @@ namespace PokerClient.UI.Scenes
             
             // Call Button
             var callContainer = UIFactory.CreatePanel(actionPanel.transform, "CallContainer", Color.clear);
-            callContainer.GetComponent<LayoutElement>().preferredWidth = 150;
+            callContainer.GetOrAddLayoutElement().preferredWidth = 150;
             
             callButton = UIFactory.CreateButton(callContainer.transform, "CallBtn", "CALL", OnCallClick).GetComponent<Button>();
             var callRect = callButton.GetComponent<RectTransform>();
@@ -237,7 +238,7 @@ namespace PokerClient.UI.Scenes
             
             // Bet/Raise Slider Section
             var betSection = UIFactory.CreatePanel(actionPanel.transform, "BetSection", Color.clear);
-            betSection.GetComponent<LayoutElement>().preferredWidth = 400;
+            betSection.GetOrAddLayoutElement().preferredWidth = 400;
             
             // Slider row
             var sliderRow = UIFactory.CreatePanel(betSection.transform, "SliderRow", Color.clear);
@@ -295,13 +296,13 @@ namespace PokerClient.UI.Scenes
             vlg.childControlHeight = false;
             
             inviteButton = UIFactory.CreateButton(menuPanel.transform, "InviteBtn", "Invite Player", OnInviteClick).GetComponent<Button>();
-            inviteButton.GetComponent<LayoutElement>().preferredHeight = 50;
+            inviteButton.GetOrAddLayoutElement().preferredHeight = 50;
             
             chatButton = UIFactory.CreateButton(menuPanel.transform, "ChatBtn", "Chat", OnChatClick).GetComponent<Button>();
-            chatButton.GetComponent<LayoutElement>().preferredHeight = 50;
+            chatButton.GetOrAddLayoutElement().preferredHeight = 50;
             
             leaveButton = UIFactory.CreateButton(menuPanel.transform, "LeaveBtn", "Leave Table", OnLeaveClick).GetComponent<Button>();
-            leaveButton.GetComponent<LayoutElement>().preferredHeight = 50;
+            leaveButton.GetOrAddLayoutElement().preferredHeight = 50;
             leaveButton.GetComponent<Image>().color = theme.dangerColor;
             
             menuPanel.SetActive(false);

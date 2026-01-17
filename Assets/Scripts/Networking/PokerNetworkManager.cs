@@ -78,7 +78,7 @@ namespace PokerClient.Networking
         #endregion
         
 #if SOCKETIO_INSTALLED
-        private SocketIO _socket;
+        private SocketIOUnity _socket;
         
         private void Awake()
         {
@@ -99,7 +99,8 @@ namespace PokerClient.Networking
             
             try
             {
-                _socket = new SocketIO(serverUrl);
+                var uri = new Uri(serverUrl);
+                _socket = new SocketIOUnity(uri);
                 
                 SetupEventListeners();
                 
@@ -200,29 +201,58 @@ namespace PokerClient.Networking
         
         #region API Methods
         
-        public async Task<RegisterResponse> RegisterAsync(string playerName)
+        public Task<RegisterResponse> RegisterAsync(string playerName)
         {
+            var tcs = new TaskCompletionSource<RegisterResponse>();
             var request = new RegisterRequest { playerName = playerName };
-            var response = await _socket.EmitAsync<RegisterResponse>(PokerEvents.Register, request);
             
-            if (response.success)
+            _socket.Emit(PokerEvents.Register, response => 
             {
-                PlayerId = response.playerId;
-                Debug.Log($"[PokerNetwork] Registered as {playerName} ({PlayerId})");
-            }
+                try
+                {
+                    var result = response.GetValue<RegisterResponse>();
+                    if (result.success)
+                    {
+                        PlayerId = result.playerId;
+                        Debug.Log($"[PokerNetwork] Registered as {playerName} ({PlayerId})");
+                    }
+                    UnityMainThreadDispatcher.Enqueue(() => tcs.SetResult(result));
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[PokerNetwork] Register error: {e.Message}");
+                    UnityMainThreadDispatcher.Enqueue(() => tcs.SetResult(new RegisterResponse { success = false, error = e.Message }));
+                }
+            }, request);
             
-            return response;
+            return tcs.Task;
         }
         
-        public async Task<List<TableInfo>> GetTablesAsync()
+        public Task<List<TableInfo>> GetTablesAsync()
         {
-            var response = await _socket.EmitAsync<TablesResponse>(PokerEvents.GetTables);
-            return response.tables ?? new List<TableInfo>();
+            var tcs = new TaskCompletionSource<List<TableInfo>>();
+            
+            _socket.Emit(PokerEvents.GetTables, response =>
+            {
+                try
+                {
+                    var result = response.GetValue<TablesResponse>();
+                    UnityMainThreadDispatcher.Enqueue(() => tcs.SetResult(result.tables ?? new List<TableInfo>()));
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[PokerNetwork] GetTables error: {e.Message}");
+                    UnityMainThreadDispatcher.Enqueue(() => tcs.SetResult(new List<TableInfo>()));
+                }
+            });
+            
+            return tcs.Task;
         }
         
-        public async Task<CreateTableResponse> CreateTableAsync(string name, int maxPlayers = 9, 
+        public Task<CreateTableResponse> CreateTableAsync(string name, int maxPlayers = 9, 
             int smallBlind = 50, int bigBlind = 100, bool isPrivate = false)
         {
+            var tcs = new TaskCompletionSource<CreateTableResponse>();
             var request = new CreateTableRequest
             {
                 name = name,
@@ -232,46 +262,101 @@ namespace PokerClient.Networking
                 isPrivate = isPrivate
             };
             
-            return await _socket.EmitAsync<CreateTableResponse>(PokerEvents.CreateTable, request);
+            _socket.Emit(PokerEvents.CreateTable, response =>
+            {
+                try
+                {
+                    var result = response.GetValue<CreateTableResponse>();
+                    UnityMainThreadDispatcher.Enqueue(() => tcs.SetResult(result));
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[PokerNetwork] CreateTable error: {e.Message}");
+                    UnityMainThreadDispatcher.Enqueue(() => tcs.SetResult(new CreateTableResponse { success = false, error = e.Message }));
+                }
+            }, request);
+            
+            return tcs.Task;
         }
         
-        public async Task<JoinTableResponse> JoinTableAsync(string tableId, int? seatIndex = null)
+        public Task<JoinTableResponse> JoinTableAsync(string tableId, int? seatIndex = null)
         {
+            var tcs = new TaskCompletionSource<JoinTableResponse>();
             var request = new JoinTableRequest { tableId = tableId, seatIndex = seatIndex };
-            var response = await _socket.EmitAsync<JoinTableResponse>(PokerEvents.JoinTable, request);
             
-            if (response.success)
+            _socket.Emit(PokerEvents.JoinTable, response =>
             {
-                CurrentTableId = tableId;
-                _currentTableState = response.state;
-                Debug.Log($"[PokerNetwork] Joined table {tableId} at seat {response.seatIndex}");
-            }
+                try
+                {
+                    var result = response.GetValue<JoinTableResponse>();
+                    if (result.success)
+                    {
+                        CurrentTableId = tableId;
+                        _currentTableState = result.state;
+                        Debug.Log($"[PokerNetwork] Joined table {tableId} at seat {result.seatIndex}");
+                    }
+                    UnityMainThreadDispatcher.Enqueue(() => tcs.SetResult(result));
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[PokerNetwork] JoinTable error: {e.Message}");
+                    UnityMainThreadDispatcher.Enqueue(() => tcs.SetResult(new JoinTableResponse { success = false, error = e.Message }));
+                }
+            }, request);
             
-            return response;
+            return tcs.Task;
         }
         
-        public async Task<ActionResponse> LeaveTableAsync()
+        public Task<ActionResponse> LeaveTableAsync()
         {
-            var response = await _socket.EmitAsync<ActionResponse>(PokerEvents.LeaveTable);
+            var tcs = new TaskCompletionSource<ActionResponse>();
             
-            if (response.success)
+            _socket.Emit(PokerEvents.LeaveTable, response =>
             {
-                CurrentTableId = null;
-                _currentTableState = null;
-            }
+                try
+                {
+                    var result = response.GetValue<ActionResponse>();
+                    if (result.success)
+                    {
+                        CurrentTableId = null;
+                        _currentTableState = null;
+                    }
+                    UnityMainThreadDispatcher.Enqueue(() => tcs.SetResult(result));
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[PokerNetwork] LeaveTable error: {e.Message}");
+                    UnityMainThreadDispatcher.Enqueue(() => tcs.SetResult(new ActionResponse { success = false, error = e.Message }));
+                }
+            });
             
-            return response;
+            return tcs.Task;
         }
         
-        public async Task<ActionResponse> SendActionAsync(PokerAction action, int amount = 0)
+        public Task<ActionResponse> SendActionAsync(PokerAction action, int amount = 0)
         {
+            var tcs = new TaskCompletionSource<ActionResponse>();
             var request = new ActionRequest
             {
                 action = ActionStrings.FromAction(action),
                 amount = amount
             };
             
-            return await _socket.EmitAsync<ActionResponse>(PokerEvents.Action, request);
+            _socket.Emit(PokerEvents.Action, response =>
+            {
+                try
+                {
+                    var result = response.GetValue<ActionResponse>();
+                    UnityMainThreadDispatcher.Enqueue(() => tcs.SetResult(result));
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"[PokerNetwork] Action error: {e.Message}");
+                    UnityMainThreadDispatcher.Enqueue(() => tcs.SetResult(new ActionResponse { success = false, error = e.Message }));
+                }
+            }, request);
+            
+            return tcs.Task;
         }
         
         public async Task SendChatAsync(string message)
@@ -324,6 +409,26 @@ namespace PokerClient.Networking
             Debug.LogError("SocketIOClient not installed");
             return Task.FromResult(false);
         }
+        
+        public Task<ActionResponse> SendActionAsync(PokerAction action, int amount = 0)
+        {
+            return Task.FromResult(new ActionResponse { success = false, error = "Not connected" });
+        }
+        
+        public bool IsMyTurn()
+        {
+            return false;
+        }
+        
+        public SeatInfo GetMySeat()
+        {
+            return null;
+        }
+        
+        public int GetCallAmount()
+        {
+            return 0;
+        }
 #endif
     }
     
@@ -366,6 +471,5 @@ namespace PokerClient.Networking
         }
     }
 }
-
 
 
