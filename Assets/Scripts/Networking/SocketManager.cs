@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 #if SOCKET_IO_AVAILABLE
 using SocketIOClient;
-using SocketIOUnity;
+// SocketIOUnity class is in global namespace, no using needed
 #endif
 
 namespace PokerClient.Networking
