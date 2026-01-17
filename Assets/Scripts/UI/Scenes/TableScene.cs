@@ -642,7 +642,7 @@ namespace PokerClient.UI.Scenes
             overlayRect.sizeDelta = Vector2.zero;
             
             // Create popup panel
-            var popup = UIFactory.CreatePanel(overlay.transform, "GameOverPopup", theme.panelBackground);
+            var popup = UIFactory.CreatePanel(overlay.transform, "GameOverPopup", theme.panelColor);
             var popupRect = popup.GetComponent<RectTransform>();
             popupRect.anchorMin = new Vector2(0.5f, 0.5f);
             popupRect.anchorMax = new Vector2(0.5f, 0.5f);
@@ -650,9 +650,9 @@ namespace PokerClient.UI.Scenes
             
             // Title
             bool iWon = data.winnerId == _gameService.CurrentUser?.id;
-            string titleText = iWon ? "🏆 YOU WIN! 🏆" : "GAME OVER";
+            string titleText = iWon ? "YOU WIN!" : "GAME OVER";
             var title = UIFactory.CreateTitle(popup.transform, "Title", titleText, 48f);
-            title.color = iWon ? theme.success : theme.textPrimary;
+            title.color = iWon ? theme.textSuccess : theme.textPrimary;
             var titleRect = title.GetComponent<RectTransform>();
             titleRect.anchorMin = new Vector2(0.5f, 0.85f);
             titleRect.anchorMax = new Vector2(0.5f, 0.85f);
@@ -661,8 +661,8 @@ namespace PokerClient.UI.Scenes
             // Winner info
             string winnerMsg = iWon ? 
                 $"You collected all the chips!\n\nFinal Stack: {ChipStack.FormatChipValue(data.winnerChips)}" :
-                $"{(data.isBot ? "🤖 " : "")}{data.winnerName} wins!\n\nYou've been eliminated.";
-            var info = UIFactory.CreateText(popup.transform, "Info", winnerMsg, theme.textSecondary, 24f);
+                $"{(data.isBot ? "[BOT] " : "")}{data.winnerName} wins!\n\nYou've been eliminated.";
+            var info = UIFactory.CreateText(popup.transform, "Info", winnerMsg, 24f, theme.textSecondary);
             var infoRect = info.GetComponent<RectTransform>();
             infoRect.anchorMin = new Vector2(0.1f, 0.4f);
             infoRect.anchorMax = new Vector2(0.9f, 0.7f);
@@ -670,7 +670,7 @@ namespace PokerClient.UI.Scenes
             info.alignment = TextAlignmentOptions.Center;
             
             // Leave Table button
-            var leaveBtn = UIFactory.CreateButton(popup.transform, "LeaveBtn", "LEAVE TABLE", theme.primary, () =>
+            var leaveBtn = UIFactory.CreateButton(popup.transform, "LeaveBtn", "LEAVE TABLE", theme.buttonPrimary, () =>
             {
                 Destroy(overlay);
                 _gameService.LeaveTable();
