@@ -363,10 +363,10 @@ namespace PokerClient.UI.Components
             var texture = new Texture2D(width, height, TextureFormat.RGBA32, false);
             texture.filterMode = FilterMode.Bilinear;
             
-            // Rich navy blue card back with subtle dark border
+            // Rich navy blue card back with white border (matches card face sprites)
             Color backColor = new Color(0.1f, 0.15f, 0.4f);
             Color patternColor = new Color(0.15f, 0.22f, 0.55f);
-            Color borderColor = new Color(0.05f, 0.08f, 0.2f); // Dark navy border (no red)
+            Color borderColor = Color.white; // White border to match card sprites
             Color[] pixels = new Color[width * height];
             
             for (int y = 0; y < height; y++)

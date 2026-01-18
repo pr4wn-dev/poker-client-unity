@@ -251,8 +251,11 @@ namespace PokerClient.UI.Scenes
             panelRect.sizeDelta = new Vector2(0, 120);
             panelRect.anchoredPosition = Vector2.zero;
             
-            // Ensure action panel renders on top of everything
-            actionPanel.transform.SetAsLastSibling();
+            // Ensure action panel renders on top with its own canvas
+            var actionCanvas = actionPanel.AddComponent<Canvas>();
+            actionCanvas.overrideSorting = true;
+            actionCanvas.sortingOrder = 100;
+            actionPanel.AddComponent<UnityEngine.UI.GraphicRaycaster>();
             
             var hlg = actionPanel.AddComponent<HorizontalLayoutGroup>();
             hlg.spacing = 15;
