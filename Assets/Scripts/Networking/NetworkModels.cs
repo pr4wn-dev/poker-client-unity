@@ -822,7 +822,7 @@ namespace PokerClient.Networking
         public string GetDisplayName()
         {
             string displayName = !string.IsNullOrEmpty(playerName) ? playerName : name ?? "Player";
-            return isBot ? $"🤖 {displayName}" : displayName;
+            return isBot ? $"[BOT] {displayName}" : displayName;
         }
     }
     

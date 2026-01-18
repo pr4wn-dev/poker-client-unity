@@ -62,7 +62,7 @@ namespace PokerClient.UI.Scenes
             headerRect.sizeDelta = Vector2.zero;
             
             // Title
-            var title = UIFactory.CreateTitle(header.transform, "Title", "🏆 LEADERBOARD", 42f);
+            var title = UIFactory.CreateTitle(header.transform, "Title", "LEADERBOARD", 42f);
             var titleRect = title.GetComponent<RectTransform>();
             titleRect.anchorMin = new Vector2(0.03f, 0);
             titleRect.anchorMax = new Vector2(0.5f, 1);
@@ -102,11 +102,11 @@ namespace PokerClient.UI.Scenes
             hlg.childForceExpandWidth = true;
             hlg.padding = new RectOffset(0, 0, 5, 5);
             
-            CreateTabButton("💰 CHIPS", LeaderboardCategory.Chips);
+            CreateTabButton("CHIPS", LeaderboardCategory.Chips);
             CreateTabButton("🏅 WINS", LeaderboardCategory.Wins);
-            CreateTabButton("⭐ LEVEL", LeaderboardCategory.Level);
-            CreateTabButton("💎 BIGGEST POT", LeaderboardCategory.BiggestPot);
-            CreateTabButton("🔥 WIN STREAK", LeaderboardCategory.WinStreak);
+            CreateTabButton("LEVEL", LeaderboardCategory.Level);
+            CreateTabButton("BIGGEST POT", LeaderboardCategory.BiggestPot);
+            CreateTabButton("WIN STREAK", LeaderboardCategory.WinStreak);
         }
         
         private void CreateTabButton(string label, LeaderboardCategory category)

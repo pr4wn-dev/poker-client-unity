@@ -479,7 +479,7 @@ namespace PokerClient.UI.Scenes
             vlg.childControlHeight = false;
             
             // Add Bots button (for table creator)
-            var addBotsBtn = UIFactory.CreateButton(menuPanel.transform, "AddBotsBtn", "🤖 Add Bots", OnAddBotsClick);
+            var addBotsBtn = UIFactory.CreateButton(menuPanel.transform, "AddBotsBtn", "Add Bots", OnAddBotsClick);
             addBotsBtn.GetOrAddComponent<LayoutElement>().preferredHeight = 50;
             addBotsBtn.GetComponent<Image>().color = theme.primaryColor;
             
@@ -591,7 +591,7 @@ namespace PokerClient.UI.Scenes
             hlg.childControlWidth = false;
             hlg.childControlHeight = false;
             
-            var approveBtn = UIFactory.CreateButton(buttonRow.transform, "ApproveBtn", "✓ APPROVE", OnApproveBot);
+            var approveBtn = UIFactory.CreateButton(buttonRow.transform, "ApproveBtn", "APPROVE", OnApproveBot);
             approveBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 45);
             approveBtn.GetComponent<Image>().color = theme.successColor;
             
@@ -720,7 +720,7 @@ namespace PokerClient.UI.Scenes
             btnRect.anchorMax = new Vector2(0.65f, 0.55f);
             btnRect.sizeDelta = Vector2.zero;
             
-            var btn = UIFactory.CreateButton(_startGameButton.transform, "Btn", "🎮 START GAME", OnStartGameClick);
+            var btn = UIFactory.CreateButton(_startGameButton.transform, "Btn", "START GAME", OnStartGameClick);
             var innerRect = btn.GetComponent<RectTransform>();
             innerRect.anchorMin = Vector2.zero;
             innerRect.anchorMax = Vector2.one;
@@ -782,7 +782,7 @@ namespace PokerClient.UI.Scenes
             countRect.sizeDelta = Vector2.zero;
             
             // Big READY button
-            var readyBtn = UIFactory.CreateButton(innerPanel.transform, "ReadyBtn", "✓ I'M READY!", OnReadyClick);
+            var readyBtn = UIFactory.CreateButton(innerPanel.transform, "ReadyBtn", "I'M READY!", OnReadyClick);
             var readyBtnRect = readyBtn.GetComponent<RectTransform>();
             readyBtnRect.anchorMin = new Vector2(0.2f, 0.08f);
             readyBtnRect.anchorMax = new Vector2(0.8f, 0.35f);
@@ -1068,12 +1068,12 @@ namespace PokerClient.UI.Scenes
             
             if (isYou)
             {
-                message = $"🎉 YOU WIN! 🎉\n{handName}\n+{potAmount}";
+                message = $"YOU WIN!\n{handName}\n+{potAmount}";
                 winColor = new Color(0.3f, 1f, 0.5f); // Bright green
             }
             else
             {
-                message = $"🏆 {winnerName} wins!\n{handName}\n+{potAmount}";
+                message = $"{winnerName} WINS!\n{handName}\n+{potAmount}";
                 winColor = new Color(1f, 0.84f, 0f); // Gold
             }
             

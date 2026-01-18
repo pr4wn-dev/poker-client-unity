@@ -336,7 +336,7 @@ namespace PokerClient.UI.Scenes
             
             UIFactory.CreateDivider(innerPanel.transform, "Divider", true, 200, 1);
             
-            UIFactory.CreatePrimaryButton(innerPanel.transform, "AddBotsBtn", "🤖 ADD BOTS", OnShowBotPanel, 200, 45);
+            UIFactory.CreatePrimaryButton(innerPanel.transform, "AddBotsBtn", "ADD BOTS", OnShowBotPanel, 200, 45);
             UIFactory.CreateSecondaryButton(innerPanel.transform, "SitOutBtn", "SIT OUT", OnSitOut, 200, 45);
             UIFactory.CreateSecondaryButton(innerPanel.transform, "SettingsBtn", "SETTINGS", null, 200, 45);
             UIFactory.CreateDangerButton(innerPanel.transform, "LeaveBtn", "LEAVE TABLE", OnLeaveTable, 200, 45);
@@ -450,7 +450,7 @@ namespace PokerClient.UI.Scenes
             hlg.childControlWidth = false;
             hlg.childControlHeight = false;
             
-            UIFactory.CreatePrimaryButton(buttonRow.transform, "ApproveBtn", "✓ APPROVE", OnApproveBot, 120, 45);
+            UIFactory.CreatePrimaryButton(buttonRow.transform, "ApproveBtn", "APPROVE", OnApproveBot, 120, 45);
             UIFactory.CreateDangerButton(buttonRow.transform, "RejectBtn", "✗ REJECT", OnRejectBot, 120, 45);
             
             _botApprovalPopup.SetActive(false);

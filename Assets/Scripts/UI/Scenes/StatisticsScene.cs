@@ -64,7 +64,7 @@ namespace PokerClient.UI.Scenes
             headerRect.anchorMax = Vector2.one;
             headerRect.sizeDelta = Vector2.zero;
             
-            var title = UIFactory.CreateTitle(header.transform, "Title", "📊 MY STATISTICS", 42f);
+            var title = UIFactory.CreateTitle(header.transform, "Title", "MY STATISTICS", 42f);
             title.color = theme.accentColor;
             var titleRect = title.GetComponent<RectTransform>();
             titleRect.anchorMin = new Vector2(0.03f, 0);
@@ -135,11 +135,11 @@ namespace PokerClient.UI.Scenes
             glg.padding = new RectOffset(20, 20, 10, 10);
             glg.childAlignment = TextAnchor.UpperCenter;
             
-            handsPlayedText = CreateStatCard(grid.transform, "Hands Played", "0", "🃏");
-            handsWonText = CreateStatCard(grid.transform, "Hands Won", "0", "🏆");
+            handsPlayedText = CreateStatCard(grid.transform, "Hands Played", "0", "#");
+            handsWonText = CreateStatCard(grid.transform, "Hands Won", "0", "*");
             winRateText = CreateStatCard(grid.transform, "Win Rate", "0%", "📈");
-            totalWinningsText = CreateStatCard(grid.transform, "Total Winnings", "0", "💰");
-            biggestPotText = CreateStatCard(grid.transform, "Biggest Pot", "0", "💎");
+            totalWinningsText = CreateStatCard(grid.transform, "Total Winnings", "0", "$");
+            biggestPotText = CreateStatCard(grid.transform, "Biggest Pot", "0", "$");
             tournamentWinsText = CreateStatCard(grid.transform, "Tournament Wins", "0", "🏅");
             adventureProgressText = CreateStatCard(grid.transform, "Bosses Defeated", "0", "👹");
             playtimeText = CreateStatCard(grid.transform, "Playtime", "0h", "⏱️");

@@ -141,7 +141,7 @@ namespace PokerClient.UI.Scenes
                 
                 if (lastServerWorks)
                 {
-                    UpdateConnectionStatus($"✓ Connected!");
+                    UpdateConnectionStatus($"Connected!");
                     yield return new WaitForSeconds(0.5f);
                     ConnectAndShowLogin(serverUrl);
                     yield break;
@@ -172,7 +172,7 @@ namespace PokerClient.UI.Scenes
                         
                         if (found)
                         {
-                            UpdateConnectionStatus($"✓ Found server at {testIP}!");
+                            UpdateConnectionStatus($"Found server at {testIP}!");
                             yield return StartCoroutine(SaveServerWithPublicIP(testUrl));
                             yield return new WaitForSeconds(0.5f);
                             ConnectAndShowLogin(testUrl);
@@ -204,7 +204,7 @@ namespace PokerClient.UI.Scenes
                     
                     if (foundLocal)
                     {
-                        UpdateConnectionStatus($"✓ Connected to {server.name}!");
+                        UpdateConnectionStatus($"Connected to {server.name}!");
                         yield return new WaitForSeconds(0.5f);
                         ConnectAndShowLogin(localUrl);
                         yield break;
@@ -222,7 +222,7 @@ namespace PokerClient.UI.Scenes
                     
                     if (foundRemote)
                     {
-                        UpdateConnectionStatus($"✓ Connected to {server.name}!");
+                        UpdateConnectionStatus($"Connected to {server.name}!");
                         yield return new WaitForSeconds(0.5f);
                         ConnectAndShowLogin(remoteUrl);
                         yield break;
@@ -246,7 +246,7 @@ namespace PokerClient.UI.Scenes
                 
                 if (tunnelWorks)
                 {
-                    UpdateConnectionStatus($"✓ Connected via tunnel!");
+                    UpdateConnectionStatus($"Connected via tunnel!");
                     yield return new WaitForSeconds(0.5f);
                     ConnectAndShowLogin(tunnelUrl);
                     yield break;
@@ -482,7 +482,7 @@ namespace PokerClient.UI.Scenes
             statusLayout.minWidth = 260;
             
             // Scan button - big and prominent
-            var scanBtn = UIFactory.CreatePrimaryButton(dialog.transform, "Scan", "🔍 SCAN NETWORK", StartNetworkScan, 260, 40);
+            var scanBtn = UIFactory.CreatePrimaryButton(dialog.transform, "Scan", "SCAN NETWORK", StartNetworkScan, 260, 40);
             var scanLayout = scanBtn.gameObject.AddComponent<LayoutElement>();
             scanLayout.preferredHeight = 40;
             scanLayout.minWidth = 260;
@@ -578,7 +578,7 @@ namespace PokerClient.UI.Scenes
                             if (serverUrlInput != null)
                                 serverUrlInput.text = testUrl;
                             if (_scanStatusText != null)
-                                _scanStatusText.text = $"✓ Found server at {testIP}!";
+                                _scanStatusText.text = $"Found server at {testIP}!";
                             _isScanning = false;
                             yield break;
                         }
@@ -612,7 +612,7 @@ namespace PokerClient.UI.Scenes
                     if (serverUrlInput != null)
                         serverUrlInput.text = remoteUrl;
                     if (_scanStatusText != null)
-                        _scanStatusText.text = $"✓ Found {server.name}!";
+                        _scanStatusText.text = $"Found {server.name}!";
                     _isScanning = false;
                     yield break;
                 }
@@ -638,7 +638,7 @@ namespace PokerClient.UI.Scenes
                     if (serverUrlInput != null)
                         serverUrlInput.text = tunnelUrl;
                     if (_scanStatusText != null)
-                        _scanStatusText.text = $"✓ Found tunnel server!";
+                        _scanStatusText.text = $"Found tunnel server!";
                     _isScanning = false;
                     yield break;
                 }
