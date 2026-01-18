@@ -384,19 +384,19 @@ namespace PokerClient.UI.Scenes
             
             // Login button
             var loginBtn = UIFactory.CreatePrimaryButton(loginPanel.transform, "LoginBtn", "LOGIN", OnLoginClick, 300, 50);
-            var loginLayout = loginBtn.AddComponent<LayoutElement>();
+            var loginLayout = loginBtn.gameObject.AddComponent<LayoutElement>();
             loginLayout.preferredHeight = 50;
             loginLayout.preferredWidth = 300;
             
             // Divider
             var divider = UIFactory.CreateDivider(loginPanel.transform, "Divider", true, 180, 1);
-            var dividerLayout = divider.AddComponent<LayoutElement>();
+            var dividerLayout = divider.gameObject.AddComponent<LayoutElement>();
             dividerLayout.preferredHeight = 15;
             
             // Register link
             var registerBtn = UIFactory.CreateSecondaryButton(loginPanel.transform, "RegisterLink", "CREATE ACCOUNT", 
                 ShowRegisterPanel, 180, 35);
-            var regLayout = registerBtn.AddComponent<LayoutElement>();
+            var regLayout = registerBtn.gameObject.AddComponent<LayoutElement>();
             regLayout.preferredHeight = 35;
             regLayout.preferredWidth = 180;
             
@@ -479,14 +479,14 @@ namespace PokerClient.UI.Scenes
             // Register button
             var registerBtn = UIFactory.CreatePrimaryButton(registerPanel.transform, "RegisterBtn", "CREATE ACCOUNT", 
                 OnRegisterClick, 300, 45);
-            var regBtnLayout = registerBtn.AddComponent<LayoutElement>();
+            var regBtnLayout = registerBtn.gameObject.AddComponent<LayoutElement>();
             regBtnLayout.preferredHeight = 45;
             regBtnLayout.preferredWidth = 300;
             
             // Back button
             var backBtn = UIFactory.CreateSecondaryButton(registerPanel.transform, "BackBtn", "BACK TO LOGIN",
                 ShowLoginPanel, 180, 32);
-            var backLayout = backBtn.AddComponent<LayoutElement>();
+            var backLayout = backBtn.gameObject.AddComponent<LayoutElement>();
             backLayout.preferredHeight = 32;
             backLayout.preferredWidth = 180;
             
