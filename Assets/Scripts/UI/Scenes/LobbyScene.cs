@@ -31,9 +31,11 @@ namespace PokerClient.UI.Scenes
         private TMP_InputField passwordInput;
         private Slider maxPlayersSlider;
         private Slider smallBlindSlider;
+        private Slider buyInSlider;
         private Toggle privateToggle;
         private TextMeshProUGUI maxPlayersValue;
         private TextMeshProUGUI blindsValue;
+        private TextMeshProUGUI buyInValue;
         
         [Header("Invite Form")]
         private TMP_InputField inviteSearchInput;
@@ -259,7 +261,7 @@ namespace PokerClient.UI.Scenes
             panelRect.anchorMin = new Vector2(0.5f, 0.5f);
             panelRect.anchorMax = new Vector2(0.5f, 0.5f);
             panelRect.pivot = new Vector2(0.5f, 0.5f);
-            panelRect.sizeDelta = new Vector2(320, 280);
+            panelRect.sizeDelta = new Vector2(320, 320); // Taller for buy-in row
             panelRect.anchoredPosition = Vector2.zero;
             
             float y = -20; // Start from top with padding
@@ -342,6 +344,34 @@ namespace PokerClient.UI.Scenes
             bvRect.anchoredPosition = new Vector2(leftPad + 200, y - 12);
             bvRect.sizeDelta = new Vector2(60, 24);
             smallBlindSlider.onValueChanged.AddListener(UpdateBlindsDisplay);
+            y -= 32;
+            
+            // Buy-In Row
+            var buyInLabel = UIFactory.CreateText(createTablePanel.transform, "BuyInLabel", "Buy-In:", 12f, theme.textSecondary);
+            var biLRect = buyInLabel.GetComponent<RectTransform>();
+            biLRect.anchorMin = new Vector2(0, 1);
+            biLRect.anchorMax = new Vector2(0, 1);
+            biLRect.pivot = new Vector2(0, 0.5f);
+            biLRect.anchoredPosition = new Vector2(leftPad, y - 12);
+            biLRect.sizeDelta = new Vector2(50, 24);
+            
+            buyInSlider = CreateSlider(createTablePanel.transform, 1, 8, 5); // 1=1M, 5=20M, 8=100M
+            var biSRect = buyInSlider.GetComponent<RectTransform>();
+            biSRect.anchorMin = new Vector2(0, 1);
+            biSRect.anchorMax = new Vector2(0, 1);
+            biSRect.pivot = new Vector2(0, 0.5f);
+            biSRect.anchoredPosition = new Vector2(leftPad + 55, y - 12);
+            biSRect.sizeDelta = new Vector2(140, 20);
+            
+            buyInValue = UIFactory.CreateText(createTablePanel.transform, "BuyInValue", "20M", 14f, theme.primaryColor);
+            buyInValue.fontStyle = FontStyles.Bold;
+            var biVRect = buyInValue.GetComponent<RectTransform>();
+            biVRect.anchorMin = new Vector2(0, 1);
+            biVRect.anchorMax = new Vector2(0, 1);
+            biVRect.pivot = new Vector2(0, 0.5f);
+            biVRect.anchoredPosition = new Vector2(leftPad + 200, y - 12);
+            biVRect.sizeDelta = new Vector2(60, 24);
+            buyInSlider.onValueChanged.AddListener(UpdateBuyInDisplay);
             y -= 32;
             
             // Private Row
@@ -597,6 +627,7 @@ namespace PokerClient.UI.Scenes
             
             int maxPlayers = maxPlayersSlider != null ? (int)maxPlayersSlider.value : 6;
             var blinds = GetBlindsFromSlider((int)smallBlindSlider.value);
+            int buyIn = buyInSlider != null ? GetBuyInFromSlider((int)buyInSlider.value) : 20000000;
             bool isPrivate = privateToggle != null && privateToggle.isOn;
             string password = isPrivate ? passwordInput?.text : null;
             
@@ -606,7 +637,7 @@ namespace PokerClient.UI.Scenes
             _gameService.OnTableJoined -= OnTableJoinedForCreate;
             _gameService.OnTableJoined += OnTableJoinedForCreate;
             
-            _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, isPrivate, password, (success, result) =>
+            _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, buyIn, isPrivate, password, (success, result) =>
             {
                 if (!success)
                 {
@@ -800,6 +831,37 @@ namespace PokerClient.UI.Scenes
                 6 => (5000, 10000),
                 _ => (50, 100)
             };
+        }
+        
+        private void UpdateBuyInDisplay(float value)
+        {
+            var buyIn = GetBuyInFromSlider((int)value);
+            buyInValue.text = FormatBuyIn(buyIn);
+        }
+        
+        private int GetBuyInFromSlider(int level)
+        {
+            return level switch
+            {
+                1 => 1000000,      // 1M
+                2 => 2000000,      // 2M
+                3 => 5000000,      // 5M
+                4 => 10000000,     // 10M
+                5 => 20000000,     // 20M (default)
+                6 => 50000000,     // 50M
+                7 => 75000000,     // 75M
+                8 => 100000000,    // 100M
+                _ => 20000000      // Default 20M
+            };
+        }
+        
+        private string FormatBuyIn(int amount)
+        {
+            if (amount >= 1000000)
+                return $"{amount / 1000000}M";
+            if (amount >= 1000)
+                return $"{amount / 1000}K";
+            return amount.ToString();
         }
         
         #endregion
