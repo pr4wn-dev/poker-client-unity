@@ -164,8 +164,8 @@ namespace PokerClient.UI.Scenes
                 
                 var scaler = canvasObj.GetComponent<CanvasScaler>();
                 scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-                scaler.referenceResolution = new Vector2(1920, 1080);
-                scaler.matchWidthOrHeight = 0.5f;
+                scaler.referenceResolution = new Vector2(1080, 1920); // Mobile-friendly (portrait)
+                scaler.matchWidthOrHeight = 0f; // Match width for consistent sizing
             }
             
             // Background

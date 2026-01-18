@@ -88,8 +88,10 @@ namespace PokerClient.UI.Scenes
                 var canvasObj = new GameObject("Canvas");
                 _canvas = canvasObj.AddComponent<Canvas>();
                 _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-                canvasObj.AddComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-                canvasObj.GetComponent<CanvasScaler>().referenceResolution = new Vector2(1920, 1080);
+                var scaler = canvasObj.AddComponent<CanvasScaler>();
+                scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+                scaler.referenceResolution = new Vector2(1080, 1920); // Mobile-friendly
+                scaler.matchWidthOrHeight = 0f;
                 canvasObj.AddComponent<GraphicRaycaster>();
             }
             
