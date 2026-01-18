@@ -315,14 +315,8 @@ namespace PokerClient.UI.Components
             
             if (isPlayerSeat)
             {
-                // Player's chips: positioned to the LEFT of cards, easy to see
-                chipsRect.anchorMin = new Vector2(0, 0.5f);
-                chipsRect.anchorMax = new Vector2(0, 0.5f);
-                chipsRect.pivot = new Vector2(1, 0.5f);
-                chipsRect.anchoredPosition = new Vector2(-60, 0);
-                chipsRect.sizeDelta = new Vector2(100, 20);
-                _chipsText.alignment = TextAlignmentOptions.Right;
-                _chipsText.fontSize = 16f; // Bigger text for player's chips
+                // Player's seat chips - hidden here, shown in dedicated panel above action bar
+                _chipsText.gameObject.SetActive(false);
             }
             else
             {

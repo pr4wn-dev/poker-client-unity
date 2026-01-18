@@ -37,6 +37,11 @@ namespace PokerClient.UI.Scenes
         private TextMeshProUGUI timerText;
         private TextMeshProUGUI blindTimerText;
         
+        [Header("My Chips Display")]
+        private GameObject _myChipsPanel;
+        private TextMeshProUGUI _myChipsText;
+        private int _lastDisplayedChips = -1;
+        
         [Header("Menu")]
         private GameObject menuPanel;
         private Button leaveButton;
@@ -288,6 +293,9 @@ namespace PokerClient.UI.Scenes
             
             // Action Panel (bottom)
             BuildActionPanel();
+            
+            // My Chips Display (above action panel, left side)
+            BuildMyChipsPanel();
             
             // Side Menu (includes bot panel which should be on top of start button)
             BuildSideMenu();
@@ -589,6 +597,106 @@ namespace PokerClient.UI.Scenes
             allInButton = UIFactory.CreateButton(actionPanel.transform, "AllInBtn", "ALL IN", OnAllInClick).GetComponent<Button>();
             allInButton.GetComponent<RectTransform>().sizeDelta = new Vector2(140, 70);
             allInButton.GetComponent<Image>().color = new Color(0.8f, 0.2f, 0.5f);
+        }
+        
+        private void BuildMyChipsPanel()
+        {
+            var theme = Theme.Current;
+            
+            // Create a stylish chips display panel - bottom left, above action panel
+            _myChipsPanel = UIFactory.CreatePanel(_canvas.transform, "MyChipsPanel", new Color(0.05f, 0.05f, 0.1f, 0.9f));
+            var panelRect = _myChipsPanel.GetComponent<RectTransform>();
+            panelRect.anchorMin = new Vector2(0, 0);
+            panelRect.anchorMax = new Vector2(0, 0);
+            panelRect.pivot = new Vector2(0, 0);
+            panelRect.anchoredPosition = new Vector2(15, 115); // Above action panel
+            panelRect.sizeDelta = new Vector2(180, 55);
+            
+            // Ensure it renders on top
+            var chipsPanelCanvas = _myChipsPanel.AddComponent<Canvas>();
+            chipsPanelCanvas.overrideSorting = true;
+            chipsPanelCanvas.sortingOrder = 90;
+            _myChipsPanel.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+            
+            // Add a subtle gold border/glow effect
+            var outline = _myChipsPanel.AddComponent<UnityEngine.UI.Outline>();
+            outline.effectColor = new Color(1f, 0.85f, 0.2f, 0.6f);
+            outline.effectDistance = new Vector2(2, 2);
+            
+            // Chip icon/label
+            var chipLabel = UIFactory.CreateText(_myChipsPanel.transform, "ChipLabel", "CHIPS", 11f, new Color(0.7f, 0.7f, 0.7f));
+            var labelRect = chipLabel.GetComponent<RectTransform>();
+            labelRect.anchorMin = new Vector2(0, 0.6f);
+            labelRect.anchorMax = new Vector2(1, 1);
+            labelRect.sizeDelta = Vector2.zero;
+            labelRect.offsetMin = new Vector2(10, 0);
+            labelRect.offsetMax = new Vector2(-10, -5);
+            chipLabel.alignment = TextAlignmentOptions.Left;
+            chipLabel.fontStyle = FontStyles.Bold;
+            
+            // Large chip amount with gold color
+            _myChipsText = UIFactory.CreateTitle(_myChipsPanel.transform, "ChipAmount", "0", 26f);
+            var amountRect = _myChipsText.GetComponent<RectTransform>();
+            amountRect.anchorMin = new Vector2(0, 0);
+            amountRect.anchorMax = new Vector2(1, 0.65f);
+            amountRect.sizeDelta = Vector2.zero;
+            amountRect.offsetMin = new Vector2(10, 5);
+            amountRect.offsetMax = new Vector2(-10, 0);
+            _myChipsText.color = new Color(1f, 0.85f, 0.2f); // Gold
+            _myChipsText.fontStyle = FontStyles.Bold;
+            _myChipsText.alignment = TextAlignmentOptions.Left;
+            
+            // Initially hidden until we have data
+            _myChipsPanel.SetActive(false);
+        }
+        
+        private void UpdateMyChipsDisplay(int chips)
+        {
+            if (_myChipsText == null || _myChipsPanel == null) return;
+            
+            _myChipsPanel.SetActive(true);
+            
+            // Animate chip changes
+            if (_lastDisplayedChips >= 0 && chips != _lastDisplayedChips)
+            {
+                // Flash effect on change
+                StartCoroutine(FlashChipsChange(chips > _lastDisplayedChips));
+            }
+            
+            _myChipsText.text = ChipStack.FormatChipValueFull(chips);
+            _lastDisplayedChips = chips;
+        }
+        
+        private System.Collections.IEnumerator FlashChipsChange(bool isGain)
+        {
+            if (_myChipsText == null) yield break;
+            
+            Color flashColor = isGain ? new Color(0.3f, 1f, 0.3f) : new Color(1f, 0.3f, 0.3f);
+            Color normalColor = new Color(1f, 0.85f, 0.2f);
+            
+            // Flash the color
+            _myChipsText.color = flashColor;
+            
+            // Quick scale bump
+            Vector3 originalScale = _myChipsText.transform.localScale;
+            _myChipsText.transform.localScale = originalScale * 1.2f;
+            
+            yield return new WaitForSeconds(0.15f);
+            
+            // Animate back to normal
+            float elapsed = 0f;
+            float duration = 0.3f;
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / duration;
+                _myChipsText.color = Color.Lerp(flashColor, normalColor, t);
+                _myChipsText.transform.localScale = Vector3.Lerp(originalScale * 1.2f, originalScale, t);
+                yield return null;
+            }
+            
+            _myChipsText.color = normalColor;
+            _myChipsText.transform.localScale = originalScale;
         }
         
         private void BuildSideMenu()
@@ -1065,6 +1173,16 @@ namespace PokerClient.UI.Scenes
             
             // Update table view with seat rotation
             _tableView?.UpdateFromState(state, _mySeatIndex);
+            
+            // Update My Chips display
+            if (_mySeatIndex >= 0 && state.seats != null && _mySeatIndex < state.seats.Count)
+            {
+                var mySeat = state.seats[_mySeatIndex];
+                if (mySeat != null)
+                {
+                    UpdateMyChipsDisplay((int)mySeat.chips);
+                }
+            }
             
             // Check if it's my turn (myId already declared above)
             _isMyTurn = state.currentPlayerId == myId;
