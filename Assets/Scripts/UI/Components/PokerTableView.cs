@@ -70,15 +70,16 @@ namespace PokerClient.UI.Components
             cardsRect.sizeDelta = Vector2.zero;
             
             var hlg = cardsArea.AddComponent<HorizontalLayoutGroup>();
-            hlg.spacing = 10;
+            hlg.spacing = 8; // Slightly tighter to fit larger cards
             hlg.childAlignment = TextAnchor.MiddleCenter;
             hlg.childControlWidth = false;
             hlg.childForceExpandWidth = false;
             
-            // Create 5 card slots
+            // Create 5 card slots - LARGER cards for better visibility on mobile
+            var communityCardSize = new Vector2(72, 100); // Bigger than default theme size (55x77)
             for (int i = 0; i < 5; i++)
             {
-                var cardView = CardView.Create(cardsArea.transform, $"CommunityCard{i}");
+                var cardView = CardView.Create(cardsArea.transform, $"CommunityCard{i}", communityCardSize);
                 cardView.SetEmpty();
                 _communityCards.Add(cardView);
             }
@@ -312,18 +313,23 @@ namespace PokerClient.UI.Components
             _chipsText.fontStyle = FontStyles.Bold;
             _chipsText.alignment = TextAlignmentOptions.Center;
             
-            // Hole cards - LARGE cards overlapping bottom of seat
+            // Hole cards - Use LARGER cards for seat 0 (player's own seat)
+            // Seat 0 is always the player's perspective after rotation
+            bool isPlayerSeat = (seatIndex == 0);
+            Vector2 cardSize = isPlayerSeat ? new Vector2(90, 126) : new Vector2(70, 98);
+            float xSpacing = isPlayerSeat ? 36 : 28;
+            
             for (int i = 0; i < 2; i++)
             {
-                var cardView = CardView.Create(transform, $"Card{i}", new Vector2(70, 98));
+                var cardView = CardView.Create(transform, $"Card{i}", cardSize);
                 var cardRect = cardView.GetComponent<RectTransform>();
                 // Force the size directly
-                cardRect.sizeDelta = new Vector2(70, 98);
+                cardRect.sizeDelta = cardSize;
                 cardRect.anchorMin = new Vector2(0.5f, 0);
                 cardRect.anchorMax = new Vector2(0.5f, 0);
                 cardRect.pivot = new Vector2(0.5f, 0.3f); // Higher pivot = cards sit higher
-                float xOffset = (i == 0) ? -28 : 28;
-                cardRect.anchoredPosition = new Vector2(xOffset, 0);
+                float xOffset = (i == 0) ? -xSpacing : xSpacing;
+                cardRect.anchoredPosition = new Vector2(xOffset, isPlayerSeat ? -10 : 0);
                 cardView.SetHidden();
                 _holeCards.Add(cardView);
             }
