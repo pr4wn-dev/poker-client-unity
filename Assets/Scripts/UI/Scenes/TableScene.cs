@@ -602,20 +602,79 @@ namespace PokerClient.UI.Scenes
             _botApprovalPopup.SetActive(false);
         }
         
+        // Winner announcement components
+        private TextMeshProUGUI _winnerNameText;
+        private TextMeshProUGUI _winnerHandText;
+        private TextMeshProUGUI _winnerPotText;
+        private Image _winnerGlow;
+        private CanvasGroup _resultCanvasGroup;
+        
         private void BuildResultPanel()
         {
             var theme = Theme.Current;
             
-            resultPanel = UIFactory.CreatePanel(_canvas.transform, "ResultPanel", new Color(0, 0, 0, 0.8f));
-            var resultRect = resultPanel.GetComponent<RectTransform>();
-            resultRect.anchorMin = new Vector2(0.25f, 0.35f);
-            resultRect.anchorMax = new Vector2(0.75f, 0.65f);
-            resultRect.sizeDelta = Vector2.zero;
+            // Full-screen overlay with gradient
+            resultPanel = UIFactory.CreatePanel(_canvas.transform, "WinnerOverlay", new Color(0, 0, 0, 0.85f));
+            var overlayRect = resultPanel.GetComponent<RectTransform>();
+            overlayRect.anchorMin = Vector2.zero;
+            overlayRect.anchorMax = Vector2.one;
+            overlayRect.sizeDelta = Vector2.zero;
             
-            resultText = UIFactory.CreateTitle(resultPanel.transform, "ResultText", "", 36f);
+            // Add canvas group for fade animation
+            _resultCanvasGroup = resultPanel.AddComponent<CanvasGroup>();
+            _resultCanvasGroup.alpha = 0f;
+            
+            // Glow effect behind text (big colored circle)
+            var glowObj = new GameObject("WinnerGlow", typeof(RectTransform), typeof(Image));
+            glowObj.transform.SetParent(resultPanel.transform, false);
+            _winnerGlow = glowObj.GetComponent<Image>();
+            _winnerGlow.color = new Color(1f, 0.84f, 0f, 0.3f); // Gold glow
+            var glowRect = glowObj.GetComponent<RectTransform>();
+            glowRect.anchorMin = new Vector2(0.5f, 0.5f);
+            glowRect.anchorMax = new Vector2(0.5f, 0.5f);
+            glowRect.sizeDelta = new Vector2(500, 500);
+            
+            // Main content container
+            var content = UIFactory.CreateVerticalGroup(resultPanel.transform, "WinnerContent", 15);
+            var contentRect = content.GetComponent<RectTransform>();
+            contentRect.anchorMin = new Vector2(0.1f, 0.3f);
+            contentRect.anchorMax = new Vector2(0.9f, 0.7f);
+            contentRect.sizeDelta = Vector2.zero;
+            var layout = content.GetComponent<VerticalLayoutGroup>();
+            layout.childAlignment = TextAnchor.MiddleCenter;
+            layout.childControlWidth = true;
+            layout.childControlHeight = false;
+            
+            // "WINNER" label
+            resultText = UIFactory.CreateTitle(content.transform, "WinnerLabel", "🏆 WINNER 🏆", 28f);
             resultText.alignment = TextAlignmentOptions.Center;
+            resultText.color = new Color(1f, 0.84f, 0f); // Gold
+            var labelLE = resultText.gameObject.AddComponent<LayoutElement>();
+            labelLE.preferredHeight = 40;
             
-            // Auto-hide after 3 seconds
+            // Winner name (BIG)
+            _winnerNameText = UIFactory.CreateTitle(content.transform, "WinnerName", "Player Name", 52f);
+            _winnerNameText.alignment = TextAlignmentOptions.Center;
+            _winnerNameText.color = Color.white;
+            _winnerNameText.fontStyle = FontStyles.Bold;
+            var nameLE = _winnerNameText.gameObject.AddComponent<LayoutElement>();
+            nameLE.preferredHeight = 70;
+            
+            // Hand name
+            _winnerHandText = UIFactory.CreateText(content.transform, "WinnerHand", "Royal Flush", 32f, theme.textSecondary);
+            _winnerHandText.alignment = TextAlignmentOptions.Center;
+            _winnerHandText.fontStyle = FontStyles.Italic;
+            var handLE = _winnerHandText.gameObject.AddComponent<LayoutElement>();
+            handLE.preferredHeight = 45;
+            
+            // Pot amount (with chip icon feel)
+            _winnerPotText = UIFactory.CreateTitle(content.transform, "WinnerPot", "+$1,000,000", 44f);
+            _winnerPotText.alignment = TextAlignmentOptions.Center;
+            _winnerPotText.color = theme.secondaryColor; // Gold/yellow
+            _winnerPotText.fontStyle = FontStyles.Bold;
+            var potLE = _winnerPotText.gameObject.AddComponent<LayoutElement>();
+            potLE.preferredHeight = 60;
+            
             resultPanel.SetActive(false);
         }
         
@@ -1044,26 +1103,82 @@ namespace PokerClient.UI.Scenes
         
         private void OnHandComplete(HandResultData result)
         {
-            // Play win/lose sound
-            bool iWon = result.oderId == _gameService.CurrentUser?.id;
+            bool iWon = result.GetWinnerId() == _gameService.CurrentUser?.id;
+            
+            // Play sounds
             if (iWon)
+            {
                 AudioManager.Instance?.PlayHandWin();
+                AudioManager.Instance?.PlayChipWin();
+            }
+            else
+            {
+                AudioManager.Instance?.PlayChipWin();
+            }
             
-            // Play chip win sound
-            AudioManager.Instance?.PlayChipWin();
+            // Update winner display
+            string displayName = result.winnerName ?? "Unknown";
+            if (iWon)
+            {
+                displayName = "YOU";
+                resultText.text = "🎉 YOU WIN! 🎉";
+                resultText.color = new Color(0.2f, 1f, 0.4f); // Bright green
+                _winnerGlow.color = new Color(0.2f, 1f, 0.4f, 0.4f); // Green glow
+            }
+            else
+            {
+                resultText.text = "🏆 WINNER 🏆";
+                resultText.color = new Color(1f, 0.84f, 0f); // Gold
+                _winnerGlow.color = new Color(1f, 0.84f, 0f, 0.3f); // Gold glow
+            }
             
-            // Show result
-            resultText.text = $"{result.winnerName} wins with {result.handName}!\n+{ChipStack.FormatChipValue(result.potAmount)}";
-            resultPanel.SetActive(true);
+            _winnerNameText.text = displayName;
+            _winnerNameText.color = iWon ? new Color(0.2f, 1f, 0.4f) : Color.white;
             
-            // Auto-hide after 3 seconds
-            StartCoroutine(HideResultAfterDelay());
+            _winnerHandText.text = result.handName ?? "High Card";
+            
+            _winnerPotText.text = $"+{ChipStack.FormatChipValue(result.potAmount)}";
+            
+            // Show with animation
+            StartCoroutine(ShowWinnerAnimation());
         }
         
-        private System.Collections.IEnumerator HideResultAfterDelay()
+        private System.Collections.IEnumerator ShowWinnerAnimation()
         {
-            yield return new WaitForSeconds(3f);
+            resultPanel.SetActive(true);
+            
+            // Fade in
+            float fadeTime = 0.3f;
+            float elapsed = 0f;
+            while (elapsed < fadeTime)
+            {
+                elapsed += Time.deltaTime;
+                _resultCanvasGroup.alpha = Mathf.Lerp(0f, 1f, elapsed / fadeTime);
+                yield return null;
+            }
+            _resultCanvasGroup.alpha = 1f;
+            
+            // Pulse the glow
+            float pulseTime = 0f;
+            while (pulseTime < 2.5f)
+            {
+                pulseTime += Time.deltaTime;
+                float scale = 1f + Mathf.Sin(pulseTime * 4f) * 0.1f;
+                _winnerGlow.transform.localScale = new Vector3(scale, scale, 1f);
+                yield return null;
+            }
+            
+            // Fade out
+            elapsed = 0f;
+            while (elapsed < fadeTime)
+            {
+                elapsed += Time.deltaTime;
+                _resultCanvasGroup.alpha = Mathf.Lerp(1f, 0f, elapsed / fadeTime);
+                yield return null;
+            }
+            
             resultPanel.SetActive(false);
+            _resultCanvasGroup.alpha = 0f;
         }
         
         private void OnTableLeft()

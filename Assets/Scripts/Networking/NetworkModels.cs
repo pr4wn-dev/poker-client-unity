@@ -1270,11 +1270,15 @@ namespace PokerClient.Networking
     [Serializable]
     public class HandResultData
     {
-        public string oderId;
+        public string oderId;       // Legacy field name
+        public string winnerId;     // Winner's player ID
         public string winnerName;
         public string handName;
         public int potAmount;
         public List<Card> winningCards;
+        
+        // Helper to get winner ID regardless of which field server sends
+        public string GetWinnerId() => !string.IsNullOrEmpty(winnerId) ? winnerId : oderId;
     }
     
     [Serializable]
