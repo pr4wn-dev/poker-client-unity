@@ -609,7 +609,7 @@ namespace PokerClient.UI.Scenes
             panelRect.anchorMin = new Vector2(1, 0);  // Bottom-right anchor
             panelRect.anchorMax = new Vector2(1, 0);
             panelRect.pivot = new Vector2(1, 0);      // Right-aligned pivot
-            panelRect.anchoredPosition = new Vector2(-10, 105); // 10px from right edge, 105px up from bottom
+            panelRect.anchoredPosition = new Vector2(-10, 5); // 10px from right, 5px from bottom - AT THE BOTTOM
             panelRect.sizeDelta = new Vector2(170, 50);
             
             // Ensure it renders ABOVE everything - use high sorting order
