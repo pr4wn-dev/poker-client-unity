@@ -74,6 +74,8 @@ namespace PokerClient.Networking
         public event Action<string, string, int?> OnPlayerActionReceived; // playerId, action, amount
         public event Action<string, string, int> OnPlayerJoinedTable; // playerId, name, seat
         public event Action<string> OnPlayerLeftTable; // playerId
+        public event Action<string, string> OnSpectatorJoined; // userId, name
+        public event Action<string> OnSpectatorLeft; // userId
         public event Action<HandResultData> OnHandComplete;
         public event Action<GameOverData> OnGameOver;
         public event Action<TableInviteData> OnInviteReceived;
@@ -114,6 +116,8 @@ namespace PokerClient.Networking
                 _socket.OnPlayerAction += HandlePlayerAction;
                 _socket.OnPlayerJoined += HandlePlayerJoined;
                 _socket.OnPlayerLeft += HandlePlayerLeft;
+                _socket.OnSpectatorJoined += HandleSpectatorJoined;
+                _socket.OnSpectatorLeft += HandleSpectatorLeft;
                 _socket.OnHandResult += HandleHandResult;
                 _socket.OnGameOver += HandleGameOver;
                 _socket.OnTableInvite += HandleTableInvite;
@@ -146,6 +150,8 @@ namespace PokerClient.Networking
                     _socket.OnPlayerAction -= HandlePlayerAction;
                     _socket.OnPlayerJoined -= HandlePlayerJoined;
                     _socket.OnPlayerLeft -= HandlePlayerLeft;
+                    _socket.OnSpectatorJoined -= HandleSpectatorJoined;
+                    _socket.OnSpectatorLeft -= HandleSpectatorLeft;
                     _socket.OnHandResult -= HandleHandResult;
                     _socket.OnGameOver -= HandleGameOver;
                     _socket.OnTableInvite -= HandleTableInvite;
@@ -964,6 +970,16 @@ namespace PokerClient.Networking
         private void HandlePlayerLeft(string oderId)
         {
             OnPlayerLeftTable?.Invoke(oderId);
+        }
+        
+        private void HandleSpectatorJoined(string userId, string name)
+        {
+            OnSpectatorJoined?.Invoke(userId, name);
+        }
+        
+        private void HandleSpectatorLeft(string userId)
+        {
+            OnSpectatorLeft?.Invoke(userId);
         }
         
         private void HandleHandResult(HandResultData data)

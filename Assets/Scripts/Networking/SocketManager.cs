@@ -80,6 +80,8 @@ namespace PokerClient.Networking
         public event Action<PlayerActionData> OnPlayerAction;
         public event Action<PlayerJoinedData> OnPlayerJoined;
         public event Action<string> OnPlayerLeft;
+        public event Action<string, string> OnSpectatorJoined; // userId, name
+        public event Action<string> OnSpectatorLeft; // userId
         public event Action<ChatMessageData> OnChatMessage;
         public event Action<HandResultData> OnHandResult;
         public event Action<GameOverData> OnGameOver;
@@ -249,6 +251,18 @@ namespace PokerClient.Networking
                 // player_left sends just a string (player ID)
                 var data = response.GetValue<string>();
                 UnityMainThread.Execute(() => OnPlayerLeft?.Invoke(data));
+            });
+            
+            _socket.On("spectator_joined", response =>
+            {
+                var data = ParseResponse<SpectatorEventData>(response);
+                if (data != null) UnityMainThread.Execute(() => OnSpectatorJoined?.Invoke(data.userId, data.name));
+            });
+            
+            _socket.On("spectator_left", response =>
+            {
+                var data = ParseResponse<SpectatorEventData>(response);
+                if (data != null) UnityMainThread.Execute(() => OnSpectatorLeft?.Invoke(data.userId));
             });
             
             _socket.On("chat", response =>

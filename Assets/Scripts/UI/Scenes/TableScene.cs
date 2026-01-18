@@ -118,6 +118,8 @@ namespace PokerClient.UI.Scenes
             _gameService.OnPlayerActionReceived += OnPlayerActionReceived;
             _gameService.OnPlayerJoinedTable += OnPlayerJoinedTable;
             _gameService.OnPlayerLeftTable += OnPlayerLeftTable;
+            _gameService.OnSpectatorJoined += OnSpectatorJoined;
+            _gameService.OnSpectatorLeft += OnSpectatorLeft;
             _gameService.OnHandComplete += OnHandComplete;
             _gameService.OnGameOver += OnGameOver;
             _gameService.OnTableLeft += OnTableLeft;
@@ -216,6 +218,8 @@ namespace PokerClient.UI.Scenes
                 _gameService.OnPlayerActionReceived -= OnPlayerActionReceived;
                 _gameService.OnPlayerJoinedTable -= OnPlayerJoinedTable;
                 _gameService.OnPlayerLeftTable -= OnPlayerLeftTable;
+                _gameService.OnSpectatorJoined -= OnSpectatorJoined;
+                _gameService.OnSpectatorLeft -= OnSpectatorLeft;
                 _gameService.OnHandComplete -= OnHandComplete;
                 _gameService.OnGameOver -= OnGameOver;
                 _gameService.OnTableLeft -= OnTableLeft;
@@ -1412,6 +1416,35 @@ namespace PokerClient.UI.Scenes
             catch (System.Exception e)
             {
                 Debug.LogError($"Error in ShowPlayerNotification: {e.Message}");
+            }
+        }
+        
+        private void OnSpectatorJoined(string userId, string name)
+        {
+            try
+            {
+                // Don't show notification for yourself
+                if (userId == _gameService.CurrentUser?.id) return;
+                
+                string displayName = string.IsNullOrEmpty(name) ? "Someone" : name;
+                ShowPlayerNotification($"{displayName} is now spectating", new Color(0.5f, 0.7f, 1f)); // Light blue
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Error in OnSpectatorJoined: {e.Message}");
+            }
+        }
+        
+        private void OnSpectatorLeft(string userId)
+        {
+            try
+            {
+                // Don't need to show spectator left notifications - less important
+                Debug.Log($"Spectator {userId} left");
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Error in OnSpectatorLeft: {e.Message}");
             }
         }
         

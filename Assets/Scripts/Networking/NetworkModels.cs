@@ -1266,6 +1266,13 @@ namespace PokerClient.Networking
     }
     
     [Serializable]
+    public class SpectatorEventData
+    {
+        public string userId;
+        public string name;
+    }
+    
+    [Serializable]
     public class ChatMessageData
     {
         public string playerId;
