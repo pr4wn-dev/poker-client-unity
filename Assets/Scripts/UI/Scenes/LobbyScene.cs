@@ -33,6 +33,7 @@ namespace PokerClient.UI.Scenes
         private Slider smallBlindSlider;
         private Slider buyInSlider;
         private Toggle privateToggle;
+        private Toggle practiceModeToggle;
         private TextMeshProUGUI maxPlayersValue;
         private TextMeshProUGUI blindsValue;
         private TextMeshProUGUI buyInValue;
@@ -262,7 +263,7 @@ namespace PokerClient.UI.Scenes
             panelRect.anchorMin = new Vector2(0.5f, 0.5f);
             panelRect.anchorMax = new Vector2(0.5f, 0.5f);
             panelRect.pivot = new Vector2(0.5f, 0.5f);
-            panelRect.sizeDelta = new Vector2(320, 320); // Taller for buy-in row
+            panelRect.sizeDelta = new Vector2(320, 360); // Taller for practice mode row
             panelRect.anchoredPosition = Vector2.zero;
             
             // Ensure this panel renders on top of header
@@ -398,6 +399,33 @@ namespace PokerClient.UI.Scenes
             toggleRect.anchoredPosition = new Vector2(leftPad + 55, y - 12);
             toggleRect.sizeDelta = new Vector2(20, 20); // Small checkbox
             privateToggle.onValueChanged.AddListener(v => passwordInput.gameObject.SetActive(v));
+            y -= 32;
+            
+            // Practice Mode Row (allows players without enough chips to play for fun)
+            var practiceLabel = UIFactory.CreateText(createTablePanel.transform, "PracticeLabel", "Practice:", 12f, theme.textSecondary);
+            var pmRect = practiceLabel.GetComponent<RectTransform>();
+            pmRect.anchorMin = new Vector2(0, 1);
+            pmRect.anchorMax = new Vector2(0, 1);
+            pmRect.pivot = new Vector2(0, 0.5f);
+            pmRect.anchoredPosition = new Vector2(leftPad, y - 12);
+            pmRect.sizeDelta = new Vector2(50, 24);
+            
+            practiceModeToggle = CreateToggle(createTablePanel.transform);
+            var pmToggleRect = practiceModeToggle.GetComponent<RectTransform>();
+            pmToggleRect.anchorMin = new Vector2(0, 1);
+            pmToggleRect.anchorMax = new Vector2(0, 1);
+            pmToggleRect.pivot = new Vector2(0, 0.5f);
+            pmToggleRect.anchoredPosition = new Vector2(leftPad + 55, y - 12);
+            pmToggleRect.sizeDelta = new Vector2(20, 20);
+            
+            // Help text for practice mode
+            var practiceHelp = UIFactory.CreateText(createTablePanel.transform, "PracticeHelp", "(no $ needed)", 10f, theme.textSecondary);
+            var phRect = practiceHelp.GetComponent<RectTransform>();
+            phRect.anchorMin = new Vector2(0, 1);
+            phRect.anchorMax = new Vector2(0, 1);
+            phRect.pivot = new Vector2(0, 0.5f);
+            phRect.anchoredPosition = new Vector2(leftPad + 80, y - 12);
+            phRect.sizeDelta = new Vector2(100, 24);
             y -= 32;
             
             // Password (hidden by default)
@@ -649,6 +677,7 @@ namespace PokerClient.UI.Scenes
             int buyIn = buyInSlider != null ? GetBuyInFromSlider((int)buyInSlider.value) : 20000000;
             bool isPrivate = privateToggle != null && privateToggle.isOn;
             string password = isPrivate ? passwordInput?.text : null;
+            bool practiceMode = practiceModeToggle != null && practiceModeToggle.isOn;
             
             loadingPanel.SetActive(true);
             
@@ -656,7 +685,7 @@ namespace PokerClient.UI.Scenes
             _gameService.OnTableJoined -= OnTableJoinedForCreate;
             _gameService.OnTableJoined += OnTableJoinedForCreate;
             
-            _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, buyIn, isPrivate, password, (success, result) =>
+            _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, buyIn, isPrivate, password, practiceMode, (success, result) =>
             {
                 if (!success)
                 {

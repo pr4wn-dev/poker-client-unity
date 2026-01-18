@@ -229,7 +229,8 @@ namespace PokerClient.Networking
         }
         
         public void CreateTable(string name, int maxPlayers = 9, int smallBlind = 50, int bigBlind = 100, 
-            int buyIn = 20000000, bool isPrivate = false, string password = null, Action<bool, string> callback = null)
+            int buyIn = 20000000, bool isPrivate = false, string password = null, bool practiceMode = false,
+            Action<bool, string> callback = null)
         {
             var data = new
             {
@@ -239,7 +240,8 @@ namespace PokerClient.Networking
                 bigBlind,
                 buyIn,
                 isPrivate,
-                password
+                password,
+                practiceMode
             };
             
             _socket.Emit<CreateTableResponse>("create_table", data, response =>
