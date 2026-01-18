@@ -67,6 +67,7 @@ namespace PokerClient.UI.Components
             // Card background (white face)
             var bgObj = UIFactory.CreatePanel(transform, "Background", theme.cardFaceColor);
             cardBackground = bgObj.GetComponent<Image>();
+            cardBackground.preserveAspect = true;
             var bgRect = bgObj.GetComponent<RectTransform>();
             bgRect.anchorMin = Vector2.zero;
             bgRect.anchorMax = Vector2.one;
@@ -138,6 +139,7 @@ namespace PokerClient.UI.Components
             
             // Add image for card back sprite
             backImage = backContent.GetComponent<Image>();
+            backImage.preserveAspect = true;
             
             // Try to load card back sprite
             if (SpriteManager.Instance != null)

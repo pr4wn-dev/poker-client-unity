@@ -524,6 +524,7 @@ namespace PokerClient.UI.Components
             // Card background
             _background = gameObject.AddComponent<Image>();
             _background.color = Color.white;
+            _background.preserveAspect = true;
             
             // Rank (top-left)
             _rankText = UIFactory.CreateText(transform, "Rank", "", 18f, Color.black);
