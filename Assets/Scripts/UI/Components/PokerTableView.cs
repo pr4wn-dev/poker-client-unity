@@ -91,8 +91,8 @@ namespace PokerClient.UI.Components
             
             var potPanel = UIFactory.CreatePanel(_tableCenter.transform, "PotPanel", new Color(0, 0, 0, 0.5f));
             var potRect = potPanel.GetComponent<RectTransform>();
-            potRect.anchorMin = new Vector2(0.35f, 0.7f);
-            potRect.anchorMax = new Vector2(0.65f, 0.85f);
+            potRect.anchorMin = new Vector2(0.35f, 0.78f);  // Moved up to avoid covering community cards
+            potRect.anchorMax = new Vector2(0.65f, 0.93f);
             potRect.sizeDelta = Vector2.zero;
             
             _potText = UIFactory.CreateTitle(potPanel.transform, "PotText", "Pot: 0", 28f);
@@ -302,22 +302,38 @@ namespace PokerClient.UI.Components
             nameRect.sizeDelta = new Vector2(0, 16);
             _nameText.alignment = TextAlignmentOptions.Center;
             
-            // Chips below name - manually positioned
-            _chipsText = UIFactory.CreateText(transform, "Chips", "", 12f, new Color(1f, 0.85f, 0.2f));
-            var chipsRect = _chipsText.GetComponent<RectTransform>();
-            chipsRect.anchorMin = new Vector2(0, 1);
-            chipsRect.anchorMax = new Vector2(1, 1);
-            chipsRect.pivot = new Vector2(0.5f, 1);
-            chipsRect.anchoredPosition = new Vector2(0, -20);
-            chipsRect.sizeDelta = new Vector2(0, 16);
-            _chipsText.fontStyle = FontStyles.Bold;
-            _chipsText.alignment = TextAlignmentOptions.Center;
-            
             // Hole cards - Use LARGER cards for seat 0 (player's own seat)
             // Seat 0 is always the player's perspective after rotation
             bool isPlayerSeat = (seatIndex == 0);
-            Vector2 cardSize = isPlayerSeat ? new Vector2(90, 126) : new Vector2(70, 98);
-            float xSpacing = isPlayerSeat ? 36 : 28;
+            Vector2 cardSize = isPlayerSeat ? new Vector2(105, 147) : new Vector2(70, 98);
+            float xSpacing = isPlayerSeat ? 42 : 28;
+            
+            // Chips - position differently for player seat vs other seats
+            _chipsText = UIFactory.CreateText(transform, "Chips", "", 12f, new Color(1f, 0.85f, 0.2f));
+            var chipsRect = _chipsText.GetComponent<RectTransform>();
+            _chipsText.fontStyle = FontStyles.Bold;
+            
+            if (isPlayerSeat)
+            {
+                // Player's chips: positioned to the LEFT of cards, easy to see
+                chipsRect.anchorMin = new Vector2(0, 0.5f);
+                chipsRect.anchorMax = new Vector2(0, 0.5f);
+                chipsRect.pivot = new Vector2(1, 0.5f);
+                chipsRect.anchoredPosition = new Vector2(-60, 0);
+                chipsRect.sizeDelta = new Vector2(100, 20);
+                _chipsText.alignment = TextAlignmentOptions.Right;
+                _chipsText.fontSize = 16f; // Bigger text for player's chips
+            }
+            else
+            {
+                // Other players: chips below name as before
+                chipsRect.anchorMin = new Vector2(0, 1);
+                chipsRect.anchorMax = new Vector2(1, 1);
+                chipsRect.pivot = new Vector2(0.5f, 1);
+                chipsRect.anchoredPosition = new Vector2(0, -20);
+                chipsRect.sizeDelta = new Vector2(0, 16);
+                _chipsText.alignment = TextAlignmentOptions.Center;
+            }
             
             for (int i = 0; i < 2; i++)
             {
@@ -329,7 +345,7 @@ namespace PokerClient.UI.Components
                 cardRect.anchorMax = new Vector2(0.5f, 0);
                 cardRect.pivot = new Vector2(0.5f, 0.3f); // Higher pivot = cards sit higher
                 float xOffset = (i == 0) ? -xSpacing : xSpacing;
-                cardRect.anchoredPosition = new Vector2(xOffset, isPlayerSeat ? -10 : 0);
+                cardRect.anchoredPosition = new Vector2(xOffset, isPlayerSeat ? -15 : 0);
                 cardView.SetHidden();
                 _holeCards.Add(cardView);
             }
