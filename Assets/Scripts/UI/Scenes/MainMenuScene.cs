@@ -34,6 +34,7 @@ namespace PokerClient.UI.Scenes
         [SerializeField] private TMP_InputField regUsernameInput;
         [SerializeField] private TMP_InputField regPasswordInput;
         [SerializeField] private TextMeshProUGUI errorText;
+        [SerializeField] private TextMeshProUGUI regErrorText;
         [SerializeField] private TextMeshProUGUI loadingText;
         
         [Header("Player Info")]
@@ -271,14 +272,14 @@ namespace PokerClient.UI.Scenes
             titleRect.sizeDelta = new Vector2(340, 50);
             
             // Username
-            var regUsername = UIFactory.CreateInputField(registerPanel.transform, "RegUsername", "Username", 340, 50);
+            regUsernameInput = UIFactory.CreateInputField(registerPanel.transform, "RegUsername", "Username", 340, 50);
             
             // Email
-            var regEmail = UIFactory.CreateInputField(registerPanel.transform, "RegEmail", "Email (optional)", 340, 50,
+            emailInput = UIFactory.CreateInputField(registerPanel.transform, "RegEmail", "Email (optional)", 340, 50,
                 TMP_InputField.ContentType.EmailAddress);
             
             // Password
-            var regPassword = UIFactory.CreateInputField(registerPanel.transform, "RegPassword", "Password", 340, 50,
+            regPasswordInput = UIFactory.CreateInputField(registerPanel.transform, "RegPassword", "Password", 340, 50,
                 TMP_InputField.ContentType.Password);
             
             // Confirm Password
@@ -286,9 +287,9 @@ namespace PokerClient.UI.Scenes
                 TMP_InputField.ContentType.Password);
             
             // Error text
-            var regError = UIFactory.CreateText(registerPanel.transform, "RegError", "", 14f, theme.textDanger);
-            var errorRect = regError.GetComponent<RectTransform>();
-            errorRect.sizeDelta = new Vector2(340, 25);
+            regErrorText = UIFactory.CreateText(registerPanel.transform, "RegError", "", 14f, theme.textDanger);
+            var regErrorRect = regErrorText.GetComponent<RectTransform>();
+            regErrorRect.sizeDelta = new Vector2(340, 25);
             
             // Register button
             var registerBtn = UIFactory.CreatePrimaryButton(registerPanel.transform, "RegisterBtn", "CREATE ACCOUNT", 
@@ -527,8 +528,15 @@ namespace PokerClient.UI.Scenes
             _gameService.Register(username, password, email, (success, error) =>
             {
                 HideLoading();
-                if (!success)
+                if (success)
                 {
+                    Debug.Log("[MainMenu] Registration successful!");
+                    // Show success message - auto-login will redirect to main menu via OnLoginSuccessHandler
+                    ShowSuccess("Account created! Logging you in...");
+                }
+                else
+                {
+                    Debug.Log($"[MainMenu] Registration failed: {error}");
                     ShowError(error ?? "Registration failed");
                 }
             });
@@ -601,14 +609,40 @@ namespace PokerClient.UI.Scenes
         
         public void ShowError(string message)
         {
-            if (errorText != null)
+            // Show error on the currently active panel
+            if (registerPanel != null && registerPanel.activeSelf && regErrorText != null)
+            {
+                regErrorText.text = message;
+                regErrorText.color = Theme.Current.textDanger;
+            }
+            else if (errorText != null)
+            {
                 errorText.text = message;
+                errorText.color = Theme.Current.textDanger;
+            }
+        }
+        
+        public void ShowSuccess(string message)
+        {
+            // Show success message on the currently active panel
+            if (registerPanel != null && registerPanel.activeSelf && regErrorText != null)
+            {
+                regErrorText.text = message;
+                regErrorText.color = Theme.Current.textSuccess;
+            }
+            else if (errorText != null)
+            {
+                errorText.text = message;
+                errorText.color = Theme.Current.textSuccess;
+            }
         }
         
         public void ClearError()
         {
             if (errorText != null)
                 errorText.text = "";
+            if (regErrorText != null)
+                regErrorText.text = "";
         }
         
         public void ShowLoading(string message = "Loading...")
