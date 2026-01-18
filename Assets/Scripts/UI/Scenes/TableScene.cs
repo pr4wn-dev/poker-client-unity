@@ -1157,9 +1157,9 @@ namespace PokerClient.UI.Scenes
             {
                 if (seat != null && seat.playerId == playerId)
                 {
-                    string name = seat.playerName ?? "Player";
-                    if (seat.isBot) name = $"[BOT] {name}";
-                    return name;
+                    // Use name field (server sends 'name', not 'playerName')
+                    string displayName = seat.name ?? seat.playerName ?? "Player";
+                    return displayName; // Don't add [BOT] prefix here - keep it clean
                 }
             }
             
