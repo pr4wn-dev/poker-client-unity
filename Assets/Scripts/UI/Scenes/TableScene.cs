@@ -265,33 +265,36 @@ namespace PokerClient.UI.Scenes
             
             string message;
             Color actionColor = Color.white;
+            bool isYou = playerName == "You";
             
             switch (action.ToLower())
             {
                 case "fold":
-                    message = $"{playerName} folds";
+                    message = isYou ? "You folded" : $"{playerName} folds";
                     actionColor = new Color(0.7f, 0.7f, 0.7f); // Gray
                     break;
                 case "check":
-                    message = $"{playerName} checks";
+                    message = isYou ? "You checked" : $"{playerName} checks";
                     actionColor = new Color(0.5f, 0.8f, 1f); // Light blue
                     break;
                 case "call":
-                    message = amount > 0 ? $"{playerName} calls ${amount:N0}" : $"{playerName} calls";
+                    message = isYou 
+                        ? (amount > 0 ? $"You called ${amount:N0}" : "You called")
+                        : (amount > 0 ? $"{playerName} calls ${amount:N0}" : $"{playerName} calls");
                     actionColor = new Color(0.5f, 1f, 0.5f); // Light green
                     break;
                 case "bet":
-                    message = $"{playerName} bets ${amount:N0}";
+                    message = isYou ? $"You bet ${amount:N0}" : $"{playerName} bets ${amount:N0}";
                     actionColor = new Color(1f, 0.9f, 0.3f); // Yellow/gold
                     break;
                 case "raise":
-                    message = $"{playerName} raises to ${amount:N0}";
+                    message = isYou ? $"You raised to ${amount:N0}" : $"{playerName} raises to ${amount:N0}";
                     actionColor = new Color(1f, 0.6f, 0.2f); // Orange
                     break;
                 case "allin":
                 case "all-in":
                 case "all_in":
-                    message = $"{playerName} is ALL IN! ${amount:N0}";
+                    message = isYou ? $"You went ALL IN! ${amount:N0}" : $"{playerName} is ALL IN! ${amount:N0}";
                     actionColor = new Color(1f, 0.3f, 0.3f); // Red
                     break;
                 default:
