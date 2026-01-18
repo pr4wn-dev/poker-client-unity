@@ -160,6 +160,14 @@ namespace PokerClient.UI.Scenes
             
             var theme = Theme.Current;
             
+            // FULL-SCREEN BACKGROUND - covers entire canvas so no Unity blue shows through
+            var fullBg = UIFactory.CreatePanel(_canvas.transform, "FullScreenBackground", theme.backgroundColor);
+            var fullBgRect = fullBg.GetComponent<RectTransform>();
+            fullBgRect.anchorMin = Vector2.zero;
+            fullBgRect.anchorMax = Vector2.one;
+            fullBgRect.sizeDelta = Vector2.zero;
+            fullBg.transform.SetAsFirstSibling(); // Ensure it's behind everything
+            
             // Table View (the main poker table with seats)
             BuildTableView();
             

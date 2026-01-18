@@ -507,3 +507,4 @@ namespace PokerClient.UI.Scenes
     }
 }
 
+
