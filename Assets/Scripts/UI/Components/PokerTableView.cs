@@ -252,7 +252,7 @@ namespace PokerClient.UI.Components
             SeatIndex = seatIndex;
             
             _rect = gameObject.AddComponent<RectTransform>();
-            _rect.sizeDelta = new Vector2(180, 140);
+            _rect.sizeDelta = new Vector2(150, 180); // Taller to fit cards inside
             
             var theme = Theme.Current;
             
@@ -268,65 +268,54 @@ namespace PokerClient.UI.Components
             borderRect.sizeDelta = new Vector2(6, 6);
             _turnIndicator = turnBorder.GetComponent<Image>();
             
-            // Content layout
+            // Content layout - everything INSIDE the seat
             var content = UIFactory.CreatePanel(transform, "Content", Color.clear);
             var contentRect = content.GetComponent<RectTransform>();
             contentRect.anchorMin = Vector2.zero;
             contentRect.anchorMax = Vector2.one;
-            contentRect.sizeDelta = new Vector2(-10, -10);
+            contentRect.sizeDelta = new Vector2(-8, -8);
             contentRect.anchoredPosition = Vector2.zero;
             
             var vlg = content.AddComponent<VerticalLayoutGroup>();
-            vlg.spacing = 4;
-            vlg.padding = new RectOffset(5, 5, 5, 5);
+            vlg.spacing = 2;
+            vlg.padding = new RectOffset(4, 4, 4, 4);
             vlg.childAlignment = TextAnchor.UpperCenter;
             vlg.childControlHeight = false;
             vlg.childForceExpandHeight = false;
             vlg.childControlWidth = true;
             vlg.childForceExpandWidth = true;
             
-            // Name
-            _nameText = UIFactory.CreateText(content.transform, "Name", "Empty", 16f, theme.textSecondary);
-            _nameText.GetOrAddComponent<LayoutElement>().preferredHeight = 22;
+            // Name at top
+            _nameText = UIFactory.CreateText(content.transform, "Name", "Empty", 15f, theme.textSecondary);
+            _nameText.GetOrAddComponent<LayoutElement>().preferredHeight = 20;
             _nameText.alignment = TextAlignmentOptions.Center;
             
-            // Chips - circular badge below name
-            var chipsBadge = UIFactory.CreatePanel(content.transform, "ChipsBadge", new Color(0.15f, 0.15f, 0.15f, 0.95f));
-            chipsBadge.GetOrAddComponent<LayoutElement>().preferredHeight = 28;
-            var badgeImg = chipsBadge.GetComponent<Image>();
-            
-            _chipsText = UIFactory.CreateText(chipsBadge.transform, "Chips", "", 16f, new Color(1f, 0.85f, 0.2f)); // Gold color
+            // Chips - gold text directly below name
+            _chipsText = UIFactory.CreateText(content.transform, "Chips", "", 18f, new Color(1f, 0.85f, 0.2f));
+            _chipsText.GetOrAddComponent<LayoutElement>().preferredHeight = 22;
             _chipsText.fontStyle = FontStyles.Bold;
             _chipsText.alignment = TextAlignmentOptions.Center;
-            var chipsRect = _chipsText.GetComponent<RectTransform>();
-            chipsRect.anchorMin = Vector2.zero;
-            chipsRect.anchorMax = Vector2.one;
-            chipsRect.sizeDelta = Vector2.zero;
             
-            // Hole cards - centered at bottom of seat, BIGGER cards
-            var cardsRow = UIFactory.CreatePanel(transform, "CardsRow", Color.clear);
-            var cardsRowRect = cardsRow.GetComponent<RectTransform>();
-            cardsRowRect.anchorMin = new Vector2(0.5f, 0f);
-            cardsRowRect.anchorMax = new Vector2(0.5f, 0f);
-            cardsRowRect.pivot = new Vector2(0.5f, 1f);
-            cardsRowRect.anchoredPosition = new Vector2(0, 5);
-            cardsRowRect.sizeDelta = new Vector2(140, 90);
+            // Hole cards row - INSIDE the content layout
+            var cardsRow = UIFactory.CreatePanel(content.transform, "CardsRow", Color.clear);
+            cardsRow.GetOrAddComponent<LayoutElement>().preferredHeight = 95;
             
             var hlg = cardsRow.AddComponent<HorizontalLayoutGroup>();
-            hlg.spacing = 6;
+            hlg.spacing = 4;
             hlg.childAlignment = TextAnchor.MiddleCenter;
             hlg.childControlWidth = false;
             hlg.childForceExpandWidth = false;
+            hlg.padding = new RectOffset(10, 10, 5, 5);
             
-            // Hole cards - BIGGER (60x84)
+            // Hole cards (55x77 - fits inside seat)
             for (int i = 0; i < 2; i++)
             {
-                var cardView = CardView.Create(cardsRow.transform, $"Card{i}", new Vector2(60, 84));
+                var cardView = CardView.Create(cardsRow.transform, $"Card{i}", new Vector2(55, 77));
                 cardView.SetHidden();
                 _holeCards.Add(cardView);
             }
             
-            // Action text (Fold, Call, etc.)
+            // Action text (Fold, Call, etc.) - at bottom
             _actionText = UIFactory.CreateText(content.transform, "Action", "", 14f, theme.primaryColor);
             _actionText.GetOrAddComponent<LayoutElement>().preferredHeight = 18;
             _actionText.alignment = TextAlignmentOptions.Center;
