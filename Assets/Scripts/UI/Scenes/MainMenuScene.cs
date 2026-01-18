@@ -25,10 +25,11 @@ namespace PokerClient.UI.Scenes
         private const string KNOWN_SERVERS_RESOURCE = "known_servers";
         
         // Tunnel URLs for bypassing NAT/CGNAT - checked automatically on startup
-        // These are fixed subdomain tunnels that work even when port forwarding fails
+        // These work even when port forwarding fails (CGNAT, Spectrum, etc.)
+        // cloudflared tunnel gives random URLs - update this when you restart the tunnel!
         private static readonly string[] TUNNEL_URLS = new string[]
         {
-            "https://pr4wn-poker.loca.lt"  // localtunnel with fixed subdomain
+            "https://floor-known-glasgow-society.trycloudflare.com"  // cloudflare tunnel (no password!)
         };
         
         [Header("Scene References")]
