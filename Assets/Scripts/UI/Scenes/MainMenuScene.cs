@@ -374,20 +374,21 @@ namespace PokerClient.UI.Scenes
             loginLayout.minWidth = 280;
             
             // Button row for Register and Server
-            var buttonRow = UIFactory.CreateHorizontalGroup(loginPanel.transform, "ButtonRow", 10);
+            var buttonRow = UIFactory.CreateHorizontalGroup(loginPanel.transform, "ButtonRow", 15);
             var rowLayout = buttonRow.AddComponent<LayoutElement>();
-            rowLayout.preferredHeight = 28;
+            rowLayout.preferredHeight = 32;
             var rowGroup = buttonRow.GetComponent<HorizontalLayoutGroup>();
             rowGroup.childControlWidth = false; // Don't stretch children
             rowGroup.childForceExpandWidth = false;
+            rowGroup.childAlignment = TextAnchor.MiddleCenter;
             
-            // Register link
-            var registerBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "RegisterLink", "REGISTER", 
-                ShowRegisterPanel, 90, 26);
+            // Register link - wider to fit text
+            var registerBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "RegisterLink", "NEW", 
+                ShowRegisterPanel, 60, 28);
             
-            // Server settings button  
+            // Server settings button - wider to fit text
             var settingsBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "ServerSettings", "SERVER", 
-                ShowServerSettings, 70, 26);
+                ShowServerSettings, 75, 28);
         }
         
         private void BuildRegisterPanel(Transform parent)

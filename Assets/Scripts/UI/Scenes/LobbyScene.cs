@@ -166,30 +166,26 @@ namespace PokerClient.UI.Scenes
             var buttonRow = UIFactory.CreatePanel(header.transform, "ButtonRow", Color.clear);
             var rowRect = buttonRow.GetComponent<RectTransform>();
             rowRect.anchorMin = new Vector2(0, 0);
-            rowRect.anchorMax = new Vector2(1, 0.5f);
+            rowRect.anchorMax = new Vector2(1, 0.55f);
             rowRect.sizeDelta = Vector2.zero;
             
             var hlg = buttonRow.AddComponent<HorizontalLayoutGroup>();
-            hlg.spacing = 8; // Smaller spacing for mobile
-            hlg.padding = new RectOffset(10, 10, 5, 5);
+            hlg.spacing = 10;
+            hlg.padding = new RectOffset(15, 15, 0, 5);
             hlg.childAlignment = TextAnchor.MiddleCenter;
             hlg.childControlWidth = false;
             hlg.childForceExpandWidth = false;
             
-            // Smaller buttons for mobile
-            var tablesBtn = UIFactory.CreateButton(buttonRow.transform, "TablesBtn", "Browse", () => ShowTableListPanel());
-            tablesBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(80, 38);
+            // Visible buttons with proper sizing
+            var tablesBtn = UIFactory.CreateButton(buttonRow.transform, "TablesBtn", "BROWSE", () => ShowTableListPanel());
+            tablesBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 45);
             
-            var createBtn = UIFactory.CreateButton(buttonRow.transform, "CreateBtn", "Create", () => ShowCreateTablePanel());
-            createBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(80, 38);
+            var createBtn = UIFactory.CreateButton(buttonRow.transform, "CreateBtn", "CREATE", () => ShowCreateTablePanel());
+            createBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 45);
             createBtn.GetComponent<Image>().color = theme.primaryColor;
             
-            var tournamentsBtn = UIFactory.CreateButton(buttonRow.transform, "TournamentsBtn", "🏆", OnTournamentsClick);
-            tournamentsBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 38);
-            tournamentsBtn.GetComponent<Image>().color = theme.accentColor;
-            
-            var refreshBtn = UIFactory.CreateButton(buttonRow.transform, "RefreshBtn", "↻", RefreshTableList);
-            refreshBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(45, 38);
+            var refreshBtn = UIFactory.CreateButton(buttonRow.transform, "RefreshBtn", "REFRESH", RefreshTableList);
+            refreshBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 45);
         }
         
         private void OnTournamentsClick()
