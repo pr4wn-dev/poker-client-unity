@@ -88,6 +88,13 @@ namespace PokerClient.UI.Scenes
         private Color _timerNormalColor;
         private Color _timerUrgentColor;
         
+        // Local blind timer (counts down between server updates)
+        private float _localBlindTimeRemaining = -1f;
+        private bool _blindIncreaseEnabled = false;
+        private int _currentBlindLevel = 1;
+        private int _currentSmallBlind = 0;
+        private int _currentBigBlind = 0;
+        
         private void Start()
         {
             _gameService = GameService.Instance;
@@ -165,6 +172,31 @@ namespace PokerClient.UI.Scenes
             {
                 timerText.gameObject.SetActive(false);
                 timerText.transform.localScale = Vector3.one;
+            }
+            
+            // Local countdown for blind timer (smoother UI updates)
+            if (_blindIncreaseEnabled && _localBlindTimeRemaining > 0 && blindTimerText != null)
+            {
+                _localBlindTimeRemaining -= Time.deltaTime;
+                
+                int totalSeconds = Mathf.CeilToInt(_localBlindTimeRemaining);
+                if (totalSeconds < 0) totalSeconds = 0;
+                
+                int minutes = totalSeconds / 60;
+                int seconds = totalSeconds % 60;
+                
+                blindTimerText.text = $"Blinds: {_currentSmallBlind}/{_currentBigBlind} (Lv.{_currentBlindLevel}) - Next in {minutes}:{seconds:D2}";
+                blindTimerText.gameObject.SetActive(true);
+                
+                // Color warning when under 1 minute
+                if (totalSeconds <= 60)
+                {
+                    blindTimerText.color = Theme.Current.accentColor;
+                }
+                else
+                {
+                    blindTimerText.color = Theme.Current.textSecondary;
+                }
             }
         }
         
@@ -1023,40 +1055,26 @@ namespace PokerClient.UI.Scenes
         
         private void UpdateBlindTimerDisplay(TableState state)
         {
-            if (blindTimerText == null) return;
+            // Sync local blind timer state from server
+            _blindIncreaseEnabled = state.blindIncreaseEnabled;
+            _currentBlindLevel = state.blindLevel;
+            _currentSmallBlind = state.smallBlind;
+            _currentBigBlind = state.bigBlind;
             
             if (state.blindIncreaseEnabled && state.blindTimeRemaining > 0)
             {
-                blindTimerText.gameObject.SetActive(true);
-                
-                int totalSeconds = state.blindTimeRemaining;
-                int minutes = totalSeconds / 60;
-                int seconds = totalSeconds % 60;
-                
-                // Show current blinds and time until increase
-                blindTimerText.text = $"Blinds: {state.smallBlind}/{state.bigBlind} (Lv.{state.blindLevel}) - Next in {minutes}:{seconds:D2}";
-                
-                // Color warning when under 1 minute
-                if (totalSeconds <= 60)
+                // Sync from server - use server value as authoritative
+                _localBlindTimeRemaining = state.blindTimeRemaining;
+            }
+            else if (!state.blindIncreaseEnabled)
+            {
+                _localBlindTimeRemaining = -1f;
+                if (blindTimerText != null)
                 {
-                    blindTimerText.color = Theme.Current.accentColor;
-                }
-                else
-                {
-                    blindTimerText.color = Theme.Current.textSecondary;
+                    blindTimerText.gameObject.SetActive(false);
                 }
             }
-            else if (state.blindIncreaseEnabled && state.blindLevel > 1)
-            {
-                // Show that blinds increased (no timer running between hands maybe)
-                blindTimerText.gameObject.SetActive(true);
-                blindTimerText.text = $"Blinds: {state.smallBlind}/{state.bigBlind} (Lv.{state.blindLevel})";
-                blindTimerText.color = Theme.Current.textSecondary;
-            }
-            else
-            {
-                blindTimerText.gameObject.SetActive(false);
-            }
+            // Note: Update() handles the actual display now for smooth countdown
         }
         
         private void ShowActionButtons(TableState state)
