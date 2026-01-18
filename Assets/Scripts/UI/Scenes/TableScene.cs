@@ -57,6 +57,8 @@ namespace PokerClient.UI.Scenes
         
         // Bot UI
         private bool _isTableCreator = false;
+        private bool _isPracticeMode = false;
+        private Button _addBotsButton;
         private GameObject _botPanel;
         private GameObject _botApprovalPopup;
         private int _pendingBotSeat = -1;
@@ -527,10 +529,12 @@ namespace PokerClient.UI.Scenes
             vlg.childForceExpandWidth = true;
             vlg.childControlHeight = false;
             
-            // Add Bots button (for table creator)
+            // Add Bots button (only for table creator in practice mode)
             var addBotsBtn = UIFactory.CreateButton(menuPanel.transform, "AddBotsBtn", "Add Bots", OnAddBotsClick);
             addBotsBtn.GetOrAddComponent<LayoutElement>().preferredHeight = 50;
             addBotsBtn.GetComponent<Image>().color = theme.primaryColor;
+            _addBotsButton = addBotsBtn.GetComponent<Button>();
+            _addBotsButton.gameObject.SetActive(false); // Hidden by default, shown when state confirms creator + practice mode
             
             inviteButton = UIFactory.CreateButton(menuPanel.transform, "InviteBtn", "Invite Player", OnInviteClick).GetComponent<Button>();
             inviteButton.GetOrAddComponent<LayoutElement>().preferredHeight = 50;
@@ -924,6 +928,13 @@ namespace PokerClient.UI.Scenes
             // Check if current user is the table creator
             var myId = _gameService.CurrentUser?.id;
             _isTableCreator = myId != null && state.creatorId == myId;
+            _isPracticeMode = state.practiceMode;
+            
+            // Show Add Bots button only for table creator in practice mode
+            if (_addBotsButton != null)
+            {
+                _addBotsButton.gameObject.SetActive(_isTableCreator && _isPracticeMode);
+            }
             
             // Update pot
             potText.text = $"Pot: {ChipStack.FormatChipValue((int)state.pot)}";

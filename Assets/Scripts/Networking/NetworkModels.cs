@@ -850,6 +850,7 @@ namespace PokerClient.Networking
         public int spectatorCount;
         public bool isSpectating;
         public string creatorId;
+        public bool practiceMode;
         public HouseRules houseRules;
         public SidePotState sidePot;  // Item side pot state
         public List<SeatInfo> seats;

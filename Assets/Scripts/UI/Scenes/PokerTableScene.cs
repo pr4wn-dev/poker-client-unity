@@ -46,8 +46,10 @@ namespace PokerClient.UI.Scenes
         private bool _isMyTurn;
         private int _mySeatIndex = -1;
         private bool _isTableCreator;
+        private bool _isPracticeMode;
         
         // Bot UI
+        private Button _addBotsButton;
         private GameObject _botPanel;
         private GameObject _botApprovalPopup;
         
@@ -336,7 +338,9 @@ namespace PokerClient.UI.Scenes
             
             UIFactory.CreateDivider(innerPanel.transform, "Divider", true, 200, 1);
             
-            UIFactory.CreatePrimaryButton(innerPanel.transform, "AddBotsBtn", "ADD BOTS", OnShowBotPanel, 200, 45);
+            var addBotsBtn = UIFactory.CreatePrimaryButton(innerPanel.transform, "AddBotsBtn", "ADD BOTS", OnShowBotPanel, 200, 45);
+            _addBotsButton = addBotsBtn.GetComponent<Button>();
+            _addBotsButton.gameObject.SetActive(false); // Hidden by default, shown when state confirms creator + practice mode
             UIFactory.CreateSecondaryButton(innerPanel.transform, "SitOutBtn", "SIT OUT", OnSitOut, 200, 45);
             UIFactory.CreateSecondaryButton(innerPanel.transform, "SettingsBtn", "SETTINGS", null, 200, 45);
             UIFactory.CreateDangerButton(innerPanel.transform, "LeaveBtn", "LEAVE TABLE", OnLeaveTable, 200, 45);
@@ -598,6 +602,13 @@ namespace PokerClient.UI.Scenes
             // Check if current user is the table creator
             var currentUser = GameService.Instance?.CurrentUser;
             _isTableCreator = currentUser != null && state.creatorId == currentUser.id;
+            _isPracticeMode = state.practiceMode;
+            
+            // Show Add Bots button only for table creator in practice mode
+            if (_addBotsButton != null)
+            {
+                _addBotsButton.gameObject.SetActive(_isTableCreator && _isPracticeMode);
+            }
             
             // Update header
             tableNameText.text = state.name ?? "Poker Table";
