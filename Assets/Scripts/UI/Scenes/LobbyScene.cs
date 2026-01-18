@@ -256,109 +256,139 @@ namespace PokerClient.UI.Scenes
             
             createTablePanel = UIFactory.CreatePanel(_canvas.transform, "CreateTablePanel", theme.panelColor);
             var panelRect = createTablePanel.GetComponent<RectTransform>();
-            // Fixed centered size - wide enough for all content
             panelRect.anchorMin = new Vector2(0.5f, 0.5f);
             panelRect.anchorMax = new Vector2(0.5f, 0.5f);
             panelRect.pivot = new Vector2(0.5f, 0.5f);
-            panelRect.sizeDelta = new Vector2(340, 300);
+            panelRect.sizeDelta = new Vector2(320, 280);
             panelRect.anchoredPosition = Vector2.zero;
             
-            var vlg = createTablePanel.AddComponent<VerticalLayoutGroup>();
-            vlg.spacing = 8;
-            vlg.padding = new RectOffset(15, 15, 15, 15);
-            vlg.childAlignment = TextAnchor.UpperCenter;
-            vlg.childControlHeight = false;
-            vlg.childForceExpandHeight = false;
-            vlg.childControlWidth = true;
-            vlg.childForceExpandWidth = true;
+            float y = -20; // Start from top with padding
+            float contentWidth = 280; // 320 - 40 padding
+            float leftPad = 20;
             
             // Title
-            var title = UIFactory.CreateTitle(createTablePanel.transform, "Title", "CREATE TABLE", 22f);
+            var title = UIFactory.CreateTitle(createTablePanel.transform, "Title", "CREATE TABLE", 20f);
             title.color = theme.secondaryColor;
-            title.GetOrAddComponent<LayoutElement>().preferredHeight = 28;
+            title.alignment = TextAlignmentOptions.Center;
+            var titleRect = title.GetComponent<RectTransform>();
+            titleRect.anchorMin = new Vector2(0, 1);
+            titleRect.anchorMax = new Vector2(1, 1);
+            titleRect.pivot = new Vector2(0.5f, 1);
+            titleRect.anchoredPosition = new Vector2(0, y);
+            titleRect.sizeDelta = new Vector2(0, 25);
+            y -= 30;
             
             // Table Name Input
-            tableNameInput = UIFactory.CreateInputField(createTablePanel.transform, "TableName", "Table name...", 300, 36);
-            tableNameInput.GetOrAddComponent<LayoutElement>().preferredHeight = 36;
+            tableNameInput = UIFactory.CreateInputField(createTablePanel.transform, "TableName", "Table name...", contentWidth, 32);
+            var inputRect = tableNameInput.GetComponent<RectTransform>();
+            inputRect.anchorMin = new Vector2(0, 1);
+            inputRect.anchorMax = new Vector2(0, 1);
+            inputRect.pivot = new Vector2(0, 1);
+            inputRect.anchoredPosition = new Vector2(leftPad, y);
+            inputRect.sizeDelta = new Vector2(contentWidth, 32);
+            y -= 40;
             
-            // Max Players Row - all content fits in 310px (340 - 30 padding)
-            var playersRow = UIFactory.CreatePanel(createTablePanel.transform, "PlayersRow", Color.clear);
-            playersRow.GetOrAddComponent<LayoutElement>().preferredHeight = 28;
-            var playersHlg = playersRow.AddComponent<HorizontalLayoutGroup>();
-            playersHlg.spacing = 8;
-            playersHlg.childAlignment = TextAnchor.MiddleLeft;
-            playersHlg.childControlWidth = false;
-            playersHlg.childForceExpandWidth = false;
+            // Max Players Row
+            var playersLabel = UIFactory.CreateText(createTablePanel.transform, "PlayersLabel", "Players:", 12f, theme.textSecondary);
+            var plRect = playersLabel.GetComponent<RectTransform>();
+            plRect.anchorMin = new Vector2(0, 1);
+            plRect.anchorMax = new Vector2(0, 1);
+            plRect.pivot = new Vector2(0, 0.5f);
+            plRect.anchoredPosition = new Vector2(leftPad, y - 12);
+            plRect.sizeDelta = new Vector2(50, 24);
             
-            var playersLabel = UIFactory.CreateText(playersRow.transform, "PlayersLabel", "Players:", 13f, theme.textSecondary);
-            playersLabel.GetOrAddComponent<LayoutElement>().preferredWidth = 55;
+            maxPlayersSlider = CreateSlider(createTablePanel.transform, 2, 9, 6);
+            var sliderRect = maxPlayersSlider.GetComponent<RectTransform>();
+            sliderRect.anchorMin = new Vector2(0, 1);
+            sliderRect.anchorMax = new Vector2(0, 1);
+            sliderRect.pivot = new Vector2(0, 0.5f);
+            sliderRect.anchoredPosition = new Vector2(leftPad + 55, y - 12);
+            sliderRect.sizeDelta = new Vector2(140, 20);
             
-            maxPlayersSlider = CreateSlider(playersRow.transform, 2, 9, 6);
-            var sliderLE = maxPlayersSlider.GetOrAddComponent<LayoutElement>();
-            sliderLE.preferredWidth = 120;
-            sliderLE.preferredHeight = 20;
-            
-            maxPlayersValue = UIFactory.CreateText(playersRow.transform, "Value", "6", 16f, theme.primaryColor);
+            maxPlayersValue = UIFactory.CreateText(createTablePanel.transform, "PlayersValue", "6", 14f, theme.primaryColor);
             maxPlayersValue.fontStyle = FontStyles.Bold;
-            maxPlayersValue.GetOrAddComponent<LayoutElement>().preferredWidth = 25;
+            var pvRect = maxPlayersValue.GetComponent<RectTransform>();
+            pvRect.anchorMin = new Vector2(0, 1);
+            pvRect.anchorMax = new Vector2(0, 1);
+            pvRect.pivot = new Vector2(0, 0.5f);
+            pvRect.anchoredPosition = new Vector2(leftPad + 200, y - 12);
+            pvRect.sizeDelta = new Vector2(60, 24);
             maxPlayersSlider.onValueChanged.AddListener(v => maxPlayersValue.text = ((int)v).ToString());
+            y -= 32;
             
             // Blinds Row
-            var blindsRow = UIFactory.CreatePanel(createTablePanel.transform, "BlindsRow", Color.clear);
-            blindsRow.GetOrAddComponent<LayoutElement>().preferredHeight = 28;
-            var blindsHlg = blindsRow.AddComponent<HorizontalLayoutGroup>();
-            blindsHlg.spacing = 8;
-            blindsHlg.childAlignment = TextAnchor.MiddleLeft;
-            blindsHlg.childControlWidth = false;
-            blindsHlg.childForceExpandWidth = false;
+            var blindsLabel = UIFactory.CreateText(createTablePanel.transform, "BlindsLabel", "Blinds:", 12f, theme.textSecondary);
+            var blRect = blindsLabel.GetComponent<RectTransform>();
+            blRect.anchorMin = new Vector2(0, 1);
+            blRect.anchorMax = new Vector2(0, 1);
+            blRect.pivot = new Vector2(0, 0.5f);
+            blRect.anchoredPosition = new Vector2(leftPad, y - 12);
+            blRect.sizeDelta = new Vector2(50, 24);
             
-            var blindsLabel = UIFactory.CreateText(blindsRow.transform, "BlindsLabel", "Blinds:", 13f, theme.textSecondary);
-            blindsLabel.GetOrAddComponent<LayoutElement>().preferredWidth = 55;
+            smallBlindSlider = CreateSlider(createTablePanel.transform, 1, 6, 1);
+            var bsRect = smallBlindSlider.GetComponent<RectTransform>();
+            bsRect.anchorMin = new Vector2(0, 1);
+            bsRect.anchorMax = new Vector2(0, 1);
+            bsRect.pivot = new Vector2(0, 0.5f);
+            bsRect.anchoredPosition = new Vector2(leftPad + 55, y - 12);
+            bsRect.sizeDelta = new Vector2(140, 20);
             
-            smallBlindSlider = CreateSlider(blindsRow.transform, 1, 6, 1);
-            var blindsSliderLE = smallBlindSlider.GetOrAddComponent<LayoutElement>();
-            blindsSliderLE.preferredWidth = 120;
-            blindsSliderLE.preferredHeight = 20;
-            
-            blindsValue = UIFactory.CreateText(blindsRow.transform, "Value", "25/50", 16f, theme.primaryColor);
+            blindsValue = UIFactory.CreateText(createTablePanel.transform, "BlindsValue", "25/50", 14f, theme.primaryColor);
             blindsValue.fontStyle = FontStyles.Bold;
-            blindsValue.GetOrAddComponent<LayoutElement>().preferredWidth = 55;
+            var bvRect = blindsValue.GetComponent<RectTransform>();
+            bvRect.anchorMin = new Vector2(0, 1);
+            bvRect.anchorMax = new Vector2(0, 1);
+            bvRect.pivot = new Vector2(0, 0.5f);
+            bvRect.anchoredPosition = new Vector2(leftPad + 200, y - 12);
+            bvRect.sizeDelta = new Vector2(60, 24);
             smallBlindSlider.onValueChanged.AddListener(UpdateBlindsDisplay);
+            y -= 32;
             
-            // Private Toggle Row
-            var privateRow = UIFactory.CreatePanel(createTablePanel.transform, "PrivateRow", Color.clear);
-            privateRow.GetOrAddComponent<LayoutElement>().preferredHeight = 28;
-            var privateHlg = privateRow.AddComponent<HorizontalLayoutGroup>();
-            privateHlg.spacing = 8;
-            privateHlg.childAlignment = TextAnchor.MiddleLeft;
-            privateHlg.childControlWidth = false;
-            privateHlg.childForceExpandWidth = false;
+            // Private Row
+            var privateLabel = UIFactory.CreateText(createTablePanel.transform, "PrivateLabel", "Private:", 12f, theme.textSecondary);
+            var prRect = privateLabel.GetComponent<RectTransform>();
+            prRect.anchorMin = new Vector2(0, 1);
+            prRect.anchorMax = new Vector2(0, 1);
+            prRect.pivot = new Vector2(0, 0.5f);
+            prRect.anchoredPosition = new Vector2(leftPad, y - 12);
+            prRect.sizeDelta = new Vector2(50, 24);
             
-            var privateLabel = UIFactory.CreateText(privateRow.transform, "PrivateLabel", "Private:", 13f, theme.textSecondary);
-            privateLabel.GetOrAddComponent<LayoutElement>().preferredWidth = 55;
-            privateToggle = CreateToggle(privateRow.transform);
+            privateToggle = CreateToggle(createTablePanel.transform);
+            var toggleRect = privateToggle.GetComponent<RectTransform>();
+            toggleRect.anchorMin = new Vector2(0, 1);
+            toggleRect.anchorMax = new Vector2(0, 1);
+            toggleRect.pivot = new Vector2(0, 0.5f);
+            toggleRect.anchoredPosition = new Vector2(leftPad + 55, y - 12);
             privateToggle.onValueChanged.AddListener(v => passwordInput.gameObject.SetActive(v));
+            y -= 32;
             
             // Password (hidden by default)
-            passwordInput = UIFactory.CreateInputField(createTablePanel.transform, "Password", "Password", 300, 36,
+            passwordInput = UIFactory.CreateInputField(createTablePanel.transform, "Password", "Password", contentWidth, 32,
                 TMP_InputField.ContentType.Password);
-            passwordInput.GetOrAddComponent<LayoutElement>().preferredHeight = 36;
+            var pwRect = passwordInput.GetComponent<RectTransform>();
+            pwRect.anchorMin = new Vector2(0, 1);
+            pwRect.anchorMax = new Vector2(0, 1);
+            pwRect.pivot = new Vector2(0, 1);
+            pwRect.anchoredPosition = new Vector2(leftPad, y);
+            pwRect.sizeDelta = new Vector2(contentWidth, 32);
             passwordInput.gameObject.SetActive(false);
             
-            // Buttons Row
-            var buttonRow = UIFactory.CreatePanel(createTablePanel.transform, "ButtonRow", Color.clear);
-            buttonRow.GetOrAddComponent<LayoutElement>().preferredHeight = 45;
-            var buttonHlg = buttonRow.AddComponent<HorizontalLayoutGroup>();
-            buttonHlg.spacing = 10;
-            buttonHlg.childAlignment = TextAnchor.MiddleCenter;
-            buttonHlg.childControlWidth = false;
-            buttonHlg.childForceExpandWidth = false;
+            // Buttons at bottom
+            var cancelBtn = UIFactory.CreateButton(createTablePanel.transform, "Cancel", "CANCEL", () => ShowTableListPanel());
+            var cancelRect = cancelBtn.GetComponent<RectTransform>();
+            cancelRect.anchorMin = new Vector2(0.5f, 0);
+            cancelRect.anchorMax = new Vector2(0.5f, 0);
+            cancelRect.pivot = new Vector2(1, 0);
+            cancelRect.anchoredPosition = new Vector2(-5, 15);
+            cancelRect.sizeDelta = new Vector2(90, 35);
             
-            var cancelBtn = UIFactory.CreateButton(buttonRow.transform, "Cancel", "CANCEL", () => ShowTableListPanel());
-            cancelBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 38);
-            
-            var createBtn = UIFactory.CreateButton(buttonRow.transform, "Create", "CREATE", OnCreateTableClick);
-            createBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(130, 38);
+            var createBtn = UIFactory.CreateButton(createTablePanel.transform, "Create", "CREATE", OnCreateTableClick);
+            var createRect = createBtn.GetComponent<RectTransform>();
+            createRect.anchorMin = new Vector2(0.5f, 0);
+            createRect.anchorMax = new Vector2(0.5f, 0);
+            createRect.pivot = new Vector2(0, 0);
+            createRect.anchoredPosition = new Vector2(5, 15);
+            createRect.sizeDelta = new Vector2(110, 35);
             createBtn.GetComponent<Image>().color = theme.primaryColor;
             
             createTablePanel.SetActive(false);
