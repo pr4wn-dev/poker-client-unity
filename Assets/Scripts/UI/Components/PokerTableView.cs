@@ -127,27 +127,27 @@ namespace PokerClient.UI.Components
             {
                 return new List<Vector2>
                 {
-                    new Vector2(0.5f, 0.22f),   // Bottom center (player's seat) - RAISED
-                    new Vector2(0.15f, 0.25f),  // Bottom left - RAISED
-                    new Vector2(0.06f, 0.45f),  // Left
-                    new Vector2(0.10f, 0.70f),  // Top left
-                    new Vector2(0.35f, 0.85f),  // Top left-center
-                    new Vector2(0.65f, 0.85f),  // Top right-center
-                    new Vector2(0.90f, 0.70f),  // Top right
-                    new Vector2(0.94f, 0.45f),  // Right
-                    new Vector2(0.85f, 0.25f),  // Bottom right - RAISED
+                    new Vector2(0.5f, 0.22f),   // Bottom center (player's seat)
+                    new Vector2(0.15f, 0.25f),  // Bottom left
+                    new Vector2(0.06f, 0.42f),  // Left side (lowered slightly)
+                    new Vector2(0.08f, 0.80f),  // Top left - RAISED to avoid overlap
+                    new Vector2(0.35f, 0.88f),  // Top left-center
+                    new Vector2(0.65f, 0.88f),  // Top right-center
+                    new Vector2(0.92f, 0.80f),  // Top right - RAISED to avoid overlap
+                    new Vector2(0.94f, 0.42f),  // Right side (lowered slightly)
+                    new Vector2(0.85f, 0.25f),  // Bottom right
                 };
             }
             else if (count >= 6)
             {
                 return new List<Vector2>
                 {
-                    new Vector2(0.5f, 0.22f),   // Bottom center - RAISED
-                    new Vector2(0.10f, 0.35f),  // Left lower
-                    new Vector2(0.12f, 0.70f),  // Top left
-                    new Vector2(0.5f, 0.85f),   // Top center
-                    new Vector2(0.88f, 0.70f),  // Top right
-                    new Vector2(0.90f, 0.35f),  // Right lower
+                    new Vector2(0.5f, 0.22f),   // Bottom center
+                    new Vector2(0.08f, 0.40f),  // Left lower
+                    new Vector2(0.10f, 0.78f),  // Top left - RAISED
+                    new Vector2(0.5f, 0.88f),   // Top center
+                    new Vector2(0.90f, 0.78f),  // Top right - RAISED
+                    new Vector2(0.92f, 0.40f),  // Right lower
                 };
             }
             else
