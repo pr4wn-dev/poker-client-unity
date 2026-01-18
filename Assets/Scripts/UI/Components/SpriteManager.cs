@@ -363,49 +363,18 @@ namespace PokerClient.UI.Components
             var texture = new Texture2D(width, height, TextureFormat.RGBA32, false);
             texture.filterMode = FilterMode.Bilinear;
             
-            // Rich navy blue card back with white border (matches card face sprites)
-            Color backColor = new Color(0.1f, 0.15f, 0.4f);
-            Color patternColor = new Color(0.15f, 0.22f, 0.55f);
-            Color borderColor = Color.white; // White border to match card sprites
+            // Simple navy blue card back - NO border (sprites have their own)
+            Color backColor = new Color(0.15f, 0.2f, 0.5f);
+            Color patternColor = new Color(0.2f, 0.28f, 0.6f);
             Color[] pixels = new Color[width * height];
             
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    // Diamond/checker pattern
-                    bool pattern = ((x / 5 + y / 5) % 2 == 0);
+                    // Simple diagonal stripe pattern
+                    bool pattern = ((x + y) / 6) % 2 == 0;
                     pixels[y * width + x] = pattern ? patternColor : backColor;
-                }
-            }
-            
-            // Inner white border
-            for (int x = 4; x < width - 4; x++)
-            {
-                pixels[4 * width + x] = Color.white;
-                pixels[(height - 5) * width + x] = Color.white;
-            }
-            for (int y = 4; y < height - 4; y++)
-            {
-                pixels[y * width + 4] = Color.white;
-                pixels[y * width + width - 5] = Color.white;
-            }
-            
-            // Outer red border
-            for (int x = 0; x < width; x++)
-            {
-                for (int b = 0; b < 3; b++)
-                {
-                    pixels[b * width + x] = borderColor;
-                    pixels[(height - 1 - b) * width + x] = borderColor;
-                }
-            }
-            for (int y = 0; y < height; y++)
-            {
-                for (int b = 0; b < 3; b++)
-                {
-                    pixels[y * width + b] = borderColor;
-                    pixels[y * width + width - 1 - b] = borderColor;
                 }
             }
             
