@@ -47,8 +47,19 @@ namespace PokerClient.UI.Scenes
         private bool _isLoggedIn = false;
         private GameService _gameService;
         
+        // Server settings
+        private GameObject serverSettingsPanel;
+        private TMP_InputField serverUrlInput;
+        private const string SERVER_URL_KEY = "ServerUrl";
+        
         private void Start()
         {
+            // Load saved server URL if exists
+            if (PlayerPrefs.HasKey(SERVER_URL_KEY))
+            {
+                serverUrl = PlayerPrefs.GetString(SERVER_URL_KEY);
+            }
+            
             InitializeNetworking();
             BuildScene();
             
@@ -172,6 +183,97 @@ namespace PokerClient.UI.Scenes
             
             // === LOADING PANEL (on top) ===
             BuildLoadingPanel();
+            
+            // === SERVER SETTINGS PANEL (on top of everything) ===
+            BuildServerSettingsPanel();
+        }
+        
+        private void BuildServerSettingsPanel()
+        {
+            var theme = Theme.Current;
+            
+            // Semi-transparent overlay
+            serverSettingsPanel = UIFactory.CreatePanel(canvas.transform, "ServerSettingsPanel", new Color(0, 0, 0, 0.85f));
+            var overlayRect = serverSettingsPanel.GetComponent<RectTransform>();
+            overlayRect.anchorMin = Vector2.zero;
+            overlayRect.anchorMax = Vector2.one;
+            overlayRect.sizeDelta = Vector2.zero;
+            
+            // Dialog box
+            var dialog = UIFactory.CreatePanel(serverSettingsPanel.transform, "Dialog", theme.panelColor);
+            var dialogRect = dialog.GetComponent<RectTransform>();
+            dialogRect.anchorMin = new Vector2(0.5f, 0.5f);
+            dialogRect.anchorMax = new Vector2(0.5f, 0.5f);
+            dialogRect.pivot = new Vector2(0.5f, 0.5f);
+            dialogRect.sizeDelta = new Vector2(450, 280);
+            
+            var layout = dialog.AddComponent<VerticalLayoutGroup>();
+            layout.spacing = 15;
+            layout.padding = new RectOffset(25, 25, 25, 25);
+            layout.childAlignment = TextAnchor.UpperCenter;
+            layout.childControlWidth = true;
+            layout.childControlHeight = false;
+            
+            // Title
+            var title = UIFactory.CreateTitle(dialog.transform, "Title", "⚙️ Server Settings", 28f);
+            title.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 40);
+            
+            // Description
+            var desc = UIFactory.CreateText(dialog.transform, "Desc", "Enter the server IP address:", 16f, theme.textSecondary);
+            desc.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 25);
+            
+            // Server URL input
+            serverUrlInput = UIFactory.CreateInputField(dialog.transform, "ServerUrl", "http://192.168.1.23:3000", 400, 50);
+            serverUrlInput.text = serverUrl;
+            serverUrlInput.contentType = TMP_InputField.ContentType.Standard;
+            
+            // Current status
+            var status = UIFactory.CreateText(dialog.transform, "Status", $"Current: {serverUrl}", 14f, theme.textSuccess);
+            status.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 20);
+            
+            // Button row
+            var buttonRow = UIFactory.CreateHorizontalGroup(dialog.transform, "Buttons", 15);
+            buttonRow.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 50);
+            
+            // Cancel button
+            var cancelBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "Cancel", "CANCEL", HideServerSettings, 180, 45);
+            
+            // Save button
+            var saveBtn = UIFactory.CreatePrimaryButton(buttonRow.transform, "Save", "SAVE & RECONNECT", SaveServerSettings, 180, 45);
+            
+            serverSettingsPanel.SetActive(false);
+        }
+        
+        private void ShowServerSettings()
+        {
+            if (serverUrlInput != null)
+                serverUrlInput.text = serverUrl;
+            serverSettingsPanel?.SetActive(true);
+        }
+        
+        private void HideServerSettings()
+        {
+            serverSettingsPanel?.SetActive(false);
+        }
+        
+        private void SaveServerSettings()
+        {
+            if (serverUrlInput != null && !string.IsNullOrEmpty(serverUrlInput.text))
+            {
+                serverUrl = serverUrlInput.text.Trim();
+                
+                // Save to PlayerPrefs
+                PlayerPrefs.SetString(SERVER_URL_KEY, serverUrl);
+                PlayerPrefs.Save();
+                
+                Debug.Log($"[MainMenu] Server URL saved: {serverUrl}");
+                
+                // Disconnect and reconnect with new URL
+                HideServerSettings();
+                ShowLoading("Connecting to new server...");
+                _gameService.Connect(serverUrl);
+                StartCoroutine(CheckConnectionStatus());
+            }
         }
         
         private void BuildLoadingPanel()
@@ -250,6 +352,17 @@ namespace PokerClient.UI.Scenes
             // Register link
             var registerBtn = UIFactory.CreateSecondaryButton(loginPanel.transform, "RegisterLink", "CREATE ACCOUNT", 
                 ShowRegisterPanel, 200, 40);
+            
+            // Server settings button (gear icon in top-right corner)
+            var settingsBtn = UIFactory.CreateButton(loginPanel.transform, "ServerSettings", "⚙️ SERVER", ShowServerSettings);
+            var settingsBtnRect = settingsBtn.GetComponent<RectTransform>();
+            settingsBtnRect.anchorMin = new Vector2(1, 1);
+            settingsBtnRect.anchorMax = new Vector2(1, 1);
+            settingsBtnRect.pivot = new Vector2(1, 1);
+            settingsBtnRect.anchoredPosition = new Vector2(-10, -10);
+            settingsBtnRect.sizeDelta = new Vector2(100, 30);
+            var settingsBtnImg = settingsBtn.GetComponent<Image>();
+            settingsBtnImg.color = new Color(0.3f, 0.3f, 0.3f, 0.8f);
         }
         
         private void BuildRegisterPanel(Transform parent)
