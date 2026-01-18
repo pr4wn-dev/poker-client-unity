@@ -886,22 +886,60 @@ namespace PokerClient.UI.Scenes
             try
             {
                 var host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
+                string bestIP = null;
+                
                 foreach (var ip in host.AddressList)
                 {
-                    if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                    if (ip.AddressFamily != System.Net.Sockets.AddressFamily.InterNetwork)
+                        continue;
+                    
+                    string ipStr = ip.ToString();
+                    
+                    // Skip loopback
+                    if (ipStr.StartsWith("127."))
+                        continue;
+                    
+                    // Skip CGNAT range (often VPNs like Tailscale)
+                    if (ipStr.StartsWith("100."))
+                        continue;
+                    
+                    // Skip link-local
+                    if (ipStr.StartsWith("169.254."))
+                        continue;
+                    
+                    // Prefer common home network ranges
+                    if (ipStr.StartsWith("192.168."))
                     {
-                        string ipStr = ip.ToString();
-                        // Prefer 192.168.x.x or 10.x.x.x (common local networks)
-                        if (ipStr.StartsWith("192.168.") || ipStr.StartsWith("10."))
-                            return ipStr;
+                        Debug.Log($"[MainMenu] Found local IP: {ipStr} (192.168.x.x)");
+                        return ipStr;
+                    }
+                    
+                    // Second preference: 10.x.x.x (also common for home/office)
+                    if (ipStr.StartsWith("10.") && bestIP == null)
+                    {
+                        bestIP = ipStr;
+                    }
+                    
+                    // Third preference: 172.16-31.x.x (private range, less common at home)
+                    if (ipStr.StartsWith("172.") && bestIP == null)
+                    {
+                        var parts = ipStr.Split('.');
+                        if (parts.Length >= 2)
+                        {
+                            int secondOctet = int.Parse(parts[1]);
+                            if (secondOctet >= 16 && secondOctet <= 31)
+                                bestIP = ipStr;
+                        }
                     }
                 }
-                // Fallback to any IPv4
-                foreach (var ip in host.AddressList)
+                
+                if (bestIP != null)
                 {
-                    if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                        return ip.ToString();
+                    Debug.Log($"[MainMenu] Found local IP: {bestIP}");
+                    return bestIP;
                 }
+                
+                Debug.LogWarning("[MainMenu] No suitable local IP found");
             }
             catch (System.Exception e)
             {
