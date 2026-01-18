@@ -19,6 +19,24 @@ namespace PokerClient.UI.Scenes
         // Use network IP for phone testing, localhost for Unity Editor only
         [SerializeField] private string serverUrl = "http://192.168.1.23:3000";
         
+        // BAKED-IN SERVER IPS - Add your public IPs here before building APK!
+        // These will be tried automatically if local scan fails
+        // Format: "http://PUBLIC_IP:3000" or "http://DOMAIN:3000"
+        private readonly string[] KNOWN_SERVERS = new string[]
+        {
+            // === ADD YOUR SERVER IPS HERE ===
+            // Home server (pr4wn's house) - UPDATE WITH YOUR PUBLIC IP!
+            // "http://YOUR_PUBLIC_IP:3000",
+            
+            // Boss's server - UPDATE AFTER MONDAY SETUP!
+            // "http://BOSS_PUBLIC_IP:3000",
+            
+            // Local development (only works on same network)
+            "http://192.168.1.23:3000",
+            
+            // === END OF SERVER LIST ===
+        };
+        
         [Header("Scene References")]
         [SerializeField] private Canvas canvas;
         
@@ -172,7 +190,7 @@ namespace PokerClient.UI.Scenes
             }
             
             // STEP 3: Check saved remote servers
-            UpdateConnectionStatus("Checking remote servers...");
+            UpdateConnectionStatus("Checking saved servers...");
             yield return new WaitForSeconds(0.3f);
             
             var savedServers = GetSavedServers();
@@ -197,7 +215,35 @@ namespace PokerClient.UI.Scenes
                 yield return null;
             }
             
-            // STEP 4: No server found - show manual entry
+            // STEP 4: Check BAKED-IN known servers (hardcoded public IPs)
+            UpdateConnectionStatus("Checking known servers...");
+            yield return new WaitForSeconds(0.3f);
+            
+            foreach (var knownUrl in KNOWN_SERVERS)
+            {
+                if (string.IsNullOrEmpty(knownUrl)) continue;
+                
+                // Extract display name from URL
+                string displayName = knownUrl.Replace("http://", "").Replace("https://", "");
+                UpdateConnectionStatus($"Trying {displayName}...");
+                
+                bool found = false;
+                yield return StartCoroutine(TestServerConnection(knownUrl, (success) => found = success));
+                
+                if (found)
+                {
+                    UpdateConnectionStatus($"✓ Connected to {displayName}!");
+                    // Save this server for future use
+                    yield return StartCoroutine(SaveServerWithPublicIP(knownUrl));
+                    yield return new WaitForSeconds(0.5f);
+                    ConnectAndShowLogin(knownUrl);
+                    yield break;
+                }
+                
+                yield return null;
+            }
+            
+            // STEP 5: No server found - show manual entry
             UpdateConnectionStatus("No server found");
             yield return new WaitForSeconds(1f);
             _autoConnecting = false;
