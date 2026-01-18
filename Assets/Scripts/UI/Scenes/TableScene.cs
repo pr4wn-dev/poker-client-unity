@@ -184,13 +184,16 @@ namespace PokerClient.UI.Scenes
             // Table View (the main poker table with seats)
             BuildTableView();
             
+            // Start Game button (for table creator) - built early so dialogs appear on top
+            BuildStartGameButton();
+            
             // Top Info Bar
             BuildTopBar();
             
             // Action Panel (bottom)
             BuildActionPanel();
             
-            // Side Menu
+            // Side Menu (includes bot panel which should be on top of start button)
             BuildSideMenu();
             
             // Result Panel (shown after hands)
@@ -199,10 +202,7 @@ namespace PokerClient.UI.Scenes
             // Countdown Overlay (shown before game starts)
             BuildCountdownOverlay();
             
-            // Start Game button (for table creator)
-            BuildStartGameButton();
-            
-            // Ready overlay (for ready-up phase)
+            // Ready overlay (for ready-up phase) - on top of everything except dialogs
             BuildReadyOverlay();
             
             // Hide action panel initially
