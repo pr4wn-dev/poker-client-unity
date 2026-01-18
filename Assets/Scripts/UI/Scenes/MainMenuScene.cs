@@ -19,23 +19,10 @@ namespace PokerClient.UI.Scenes
         // Use network IP for phone testing, localhost for Unity Editor only
         [SerializeField] private string serverUrl = "http://192.168.1.23:3000";
         
-        // BAKED-IN SERVER IPS - Add your public IPs here before building APK!
-        // These will be tried automatically if local scan fails
-        // Format: "http://PUBLIC_IP:3000" or "http://DOMAIN:3000"
-        private readonly string[] KNOWN_SERVERS = new string[]
-        {
-            // === ADD YOUR SERVER IPS HERE ===
-            // Home server (pr4wn's house) - UPDATE WITH YOUR PUBLIC IP!
-            // "http://YOUR_PUBLIC_IP:3000",
-            
-            // Boss's server - UPDATE AFTER MONDAY SETUP!
-            // "http://BOSS_PUBLIC_IP:3000",
-            
-            // Local development (only works on same network)
-            "http://192.168.1.23:3000",
-            
-            // === END OF SERVER LIST ===
-        };
+        // Known servers are loaded from Resources/known_servers.json
+        // This file is automatically updated when you discover new servers in the Unity Editor
+        // When you build an APK, all discovered servers are baked in!
+        private const string KNOWN_SERVERS_RESOURCE = "known_servers";
         
         [Header("Scene References")]
         [SerializeField] private Canvas canvas;
@@ -215,35 +202,7 @@ namespace PokerClient.UI.Scenes
                 yield return null;
             }
             
-            // STEP 4: Check BAKED-IN known servers (hardcoded public IPs)
-            UpdateConnectionStatus("Checking known servers...");
-            yield return new WaitForSeconds(0.3f);
-            
-            foreach (var knownUrl in KNOWN_SERVERS)
-            {
-                if (string.IsNullOrEmpty(knownUrl)) continue;
-                
-                // Extract display name from URL
-                string displayName = knownUrl.Replace("http://", "").Replace("https://", "");
-                UpdateConnectionStatus($"Trying {displayName}...");
-                
-                bool found = false;
-                yield return StartCoroutine(TestServerConnection(knownUrl, (success) => found = success));
-                
-                if (found)
-                {
-                    UpdateConnectionStatus($"✓ Connected to {displayName}!");
-                    // Save this server for future use
-                    yield return StartCoroutine(SaveServerWithPublicIP(knownUrl));
-                    yield return new WaitForSeconds(0.5f);
-                    ConnectAndShowLogin(knownUrl);
-                    yield break;
-                }
-                
-                yield return null;
-            }
-            
-            // STEP 5: No server found - show manual entry
+            // STEP 4: No server found - show manual entry
             UpdateConnectionStatus("No server found");
             yield return new WaitForSeconds(1f);
             _autoConnecting = false;
@@ -632,31 +591,97 @@ namespace PokerClient.UI.Scenes
         
         private System.Collections.Generic.List<SavedServer> GetSavedServers()
         {
+            var allServers = new System.Collections.Generic.List<SavedServer>();
+            
+            // 1. Load from Resources (baked into build)
+            try
+            {
+                var textAsset = Resources.Load<TextAsset>(KNOWN_SERVERS_RESOURCE);
+                if (textAsset != null)
+                {
+                    var bakedList = JsonUtility.FromJson<SavedServerList>(textAsset.text);
+                    if (bakedList?.servers != null)
+                    {
+                        allServers.AddRange(bakedList.servers);
+                        Debug.Log($"[MainMenu] Loaded {bakedList.servers.Count} baked-in servers from Resources");
+                    }
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning($"[MainMenu] Failed to load baked servers: {e.Message}");
+            }
+            
+            // 2. Load from PlayerPrefs (runtime discoveries)
+            try
+            {
+                string json = PlayerPrefs.GetString(SAVED_SERVERS_KEY, "");
+                if (!string.IsNullOrEmpty(json))
+                {
+                    var runtimeList = JsonUtility.FromJson<SavedServerList>(json);
+                    if (runtimeList?.servers != null)
+                    {
+                        // Merge - add new servers, update existing ones
+                        foreach (var server in runtimeList.servers)
+                        {
+                            var existing = allServers.Find(s => 
+                                (!string.IsNullOrEmpty(s.publicIP) && s.publicIP == server.publicIP) ||
+                                (!string.IsNullOrEmpty(s.localIP) && s.localIP == server.localIP));
+                            
+                            if (existing != null)
+                            {
+                                // Update with newer info
+                                if (server.lastSeen > existing.lastSeen)
+                                {
+                                    existing.name = server.name;
+                                    existing.localIP = server.localIP;
+                                    existing.publicIP = server.publicIP;
+                                    existing.lastSeen = server.lastSeen;
+                                }
+                            }
+                            else
+                            {
+                                allServers.Add(server);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning($"[MainMenu] Failed to load runtime servers: {e.Message}");
+            }
+            
+            // Sort by last seen (most recent first)
+            allServers.Sort((a, b) => b.lastSeen.CompareTo(a.lastSeen));
+            
+            return allServers;
+        }
+        
+        private void SaveServer(SavedServer server)
+        {
+            // Get current runtime servers (not baked ones)
+            var servers = new System.Collections.Generic.List<SavedServer>();
             try
             {
                 string json = PlayerPrefs.GetString(SAVED_SERVERS_KEY, "");
                 if (!string.IsNullOrEmpty(json))
                 {
                     var list = JsonUtility.FromJson<SavedServerList>(json);
-                    return list?.servers ?? new System.Collections.Generic.List<SavedServer>();
+                    servers = list?.servers ?? new System.Collections.Generic.List<SavedServer>();
                 }
             }
-            catch (System.Exception e)
-            {
-                Debug.LogWarning($"[MainMenu] Failed to load saved servers: {e.Message}");
-            }
-            return new System.Collections.Generic.List<SavedServer>();
-        }
-        
-        private void SaveServer(SavedServer server)
-        {
-            var servers = GetSavedServers();
+            catch { }
             
             // Update existing or add new
-            var existing = servers.Find(s => s.publicIP == server.publicIP);
+            var existing = servers.Find(s => 
+                (!string.IsNullOrEmpty(s.publicIP) && s.publicIP == server.publicIP) ||
+                (!string.IsNullOrEmpty(s.localIP) && s.localIP == server.localIP));
+            
             if (existing != null)
             {
                 existing.localIP = server.localIP;
+                existing.publicIP = server.publicIP;
                 existing.name = server.name;
                 existing.lastSeen = server.lastSeen;
             }
@@ -665,17 +690,86 @@ namespace PokerClient.UI.Scenes
                 servers.Add(server);
             }
             
-            // Keep only the 10 most recent servers
+            // Keep only the 20 most recent servers
             servers.Sort((a, b) => b.lastSeen.CompareTo(a.lastSeen));
-            if (servers.Count > 10)
-                servers.RemoveRange(10, servers.Count - 10);
+            if (servers.Count > 20)
+                servers.RemoveRange(20, servers.Count - 20);
             
-            var list = new SavedServerList { servers = servers };
-            PlayerPrefs.SetString(SAVED_SERVERS_KEY, JsonUtility.ToJson(list));
+            var serverList = new SavedServerList { servers = servers };
+            string jsonOutput = JsonUtility.ToJson(serverList, true);
+            
+            // Save to PlayerPrefs (works everywhere)
+            PlayerPrefs.SetString(SAVED_SERVERS_KEY, jsonOutput);
             PlayerPrefs.Save();
+            
+            // In Editor: Also save to Resources file so it's baked into builds!
+            #if UNITY_EDITOR
+            SaveToResourcesFile(serverList);
+            #endif
             
             Debug.Log($"[MainMenu] Saved server: {server.name} (local: {server.localIP}, public: {server.publicIP})");
         }
+        
+        #if UNITY_EDITOR
+        private void SaveToResourcesFile(SavedServerList serverList)
+        {
+            try
+            {
+                // Load existing baked servers and merge
+                var bakedServers = new System.Collections.Generic.List<SavedServer>();
+                var textAsset = Resources.Load<TextAsset>(KNOWN_SERVERS_RESOURCE);
+                if (textAsset != null)
+                {
+                    var existing = JsonUtility.FromJson<SavedServerList>(textAsset.text);
+                    if (existing?.servers != null)
+                        bakedServers.AddRange(existing.servers);
+                }
+                
+                // Merge new servers into baked list
+                foreach (var server in serverList.servers)
+                {
+                    if (string.IsNullOrEmpty(server.publicIP) && string.IsNullOrEmpty(server.localIP))
+                        continue;
+                    
+                    var existingBaked = bakedServers.Find(s => 
+                        (!string.IsNullOrEmpty(s.publicIP) && s.publicIP == server.publicIP) ||
+                        (!string.IsNullOrEmpty(s.localIP) && s.localIP == server.localIP));
+                    
+                    if (existingBaked != null)
+                    {
+                        existingBaked.name = server.name;
+                        existingBaked.localIP = server.localIP;
+                        existingBaked.publicIP = server.publicIP;
+                        existingBaked.lastSeen = server.lastSeen;
+                    }
+                    else
+                    {
+                        bakedServers.Add(server);
+                    }
+                }
+                
+                // Sort and limit
+                bakedServers.Sort((a, b) => b.lastSeen.CompareTo(a.lastSeen));
+                if (bakedServers.Count > 20)
+                    bakedServers.RemoveRange(20, bakedServers.Count - 20);
+                
+                // Write to file
+                var finalList = new SavedServerList { servers = bakedServers };
+                string jsonOutput = JsonUtility.ToJson(finalList, true);
+                string filePath = System.IO.Path.Combine(Application.dataPath, "Resources", "known_servers.json");
+                System.IO.File.WriteAllText(filePath, jsonOutput);
+                
+                Debug.Log($"[MainMenu] Updated Resources/known_servers.json with {bakedServers.Count} servers");
+                
+                // Refresh Unity's asset database
+                UnityEditor.AssetDatabase.Refresh();
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning($"[MainMenu] Failed to save to Resources file: {e.Message}");
+            }
+        }
+        #endif
         
         private System.Collections.IEnumerator SaveServerWithPublicIP(string localUrl)
         {
