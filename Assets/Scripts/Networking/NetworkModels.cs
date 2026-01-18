@@ -842,6 +842,9 @@ namespace PokerClient.Networking
         public int currentPlayerIndex;
         public string currentPlayerId;  // ID of player whose turn it is
         public float turnTimeRemaining; // Seconds left in turn (-1 if not active)
+        public int blindTimeRemaining; // Seconds until blinds increase (-1 if disabled)
+        public int blindLevel; // Current blind level (1 = starting blinds)
+        public bool blindIncreaseEnabled; // Whether blind increases are enabled
         public int startCountdownRemaining; // Seconds until game starts (0 or -1 if not counting)
         public int readyUpTimeRemaining; // Seconds left in ready-up phase (0 if not active)
         public int readyPlayerCount; // Number of players who have clicked Ready

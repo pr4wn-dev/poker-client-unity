@@ -35,6 +35,7 @@ namespace PokerClient.UI.Scenes
         private TextMeshProUGUI potText;
         private TextMeshProUGUI phaseText;
         private TextMeshProUGUI timerText;
+        private TextMeshProUGUI blindTimerText;
         
         [Header("Menu")]
         private GameObject menuPanel;
@@ -414,6 +415,17 @@ namespace PokerClient.UI.Scenes
             timerText.color = theme.textPrimary;
             timerText.fontStyle = FontStyles.Bold;
             timerText.alignment = TextAlignmentOptions.Center;
+            
+            // Blind timer (below top bar, left side) - shows when blinds will increase
+            blindTimerText = UIFactory.CreateText(_canvas.transform, "BlindTimerText", "", 14f, theme.textSecondary);
+            var blindRect = blindTimerText.GetComponent<RectTransform>();
+            blindRect.anchorMin = new Vector2(0, 1);
+            blindRect.anchorMax = new Vector2(0, 1);
+            blindRect.pivot = new Vector2(0, 1);
+            blindRect.anchoredPosition = new Vector2(10, -50);
+            blindRect.sizeDelta = new Vector2(200, 24);
+            blindTimerText.alignment = TextAlignmentOptions.Left;
+            blindTimerText.gameObject.SetActive(false); // Hidden by default (shown if blinds increase enabled)
         }
         
         private void BuildActionPanel()
@@ -1003,6 +1015,47 @@ namespace PokerClient.UI.Scenes
                     timerText.gameObject.SetActive(false);
                     timerText.transform.localScale = Vector3.one;
                 }
+            }
+            
+            // Update blind timer display
+            UpdateBlindTimerDisplay(state);
+        }
+        
+        private void UpdateBlindTimerDisplay(TableState state)
+        {
+            if (blindTimerText == null) return;
+            
+            if (state.blindIncreaseEnabled && state.blindTimeRemaining > 0)
+            {
+                blindTimerText.gameObject.SetActive(true);
+                
+                int totalSeconds = state.blindTimeRemaining;
+                int minutes = totalSeconds / 60;
+                int seconds = totalSeconds % 60;
+                
+                // Show current blinds and time until increase
+                blindTimerText.text = $"Blinds: {state.smallBlind}/{state.bigBlind} (Lv.{state.blindLevel}) - Next in {minutes}:{seconds:D2}";
+                
+                // Color warning when under 1 minute
+                if (totalSeconds <= 60)
+                {
+                    blindTimerText.color = Theme.Current.accentColor;
+                }
+                else
+                {
+                    blindTimerText.color = Theme.Current.textSecondary;
+                }
+            }
+            else if (state.blindIncreaseEnabled && state.blindLevel > 1)
+            {
+                // Show that blinds increased (no timer running between hands maybe)
+                blindTimerText.gameObject.SetActive(true);
+                blindTimerText.text = $"Blinds: {state.smallBlind}/{state.bigBlind} (Lv.{state.blindLevel})";
+                blindTimerText.color = Theme.Current.textSecondary;
+            }
+            else
+            {
+                blindTimerText.gameObject.SetActive(false);
             }
         }
         
