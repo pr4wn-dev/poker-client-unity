@@ -79,6 +79,12 @@ namespace PokerClient.UI.Scenes
         private TextMeshProUGUI _actionText;
         private string _lastActionPlayerId = null;
         
+        // Local turn timer (counts down between server updates)
+        private float _localTurnTimeRemaining = 0f;
+        private bool _isGamePhaseActive = false;
+        private Color _timerNormalColor;
+        private Color _timerUrgentColor;
+        
         private void Start()
         {
             _gameService = GameService.Instance;
@@ -115,6 +121,47 @@ namespace PokerClient.UI.Scenes
             if (_gameService.CurrentTableState != null)
             {
                 OnTableStateUpdate(_gameService.CurrentTableState);
+            }
+            
+            // Initialize timer colors
+            _timerNormalColor = Theme.Current.textPrimary;
+            _timerUrgentColor = Theme.Current.dangerColor;
+        }
+        
+        private void Update()
+        {
+            // Local countdown for turn timer (smoother than waiting for server updates)
+            if (_isGamePhaseActive && _localTurnTimeRemaining > 0)
+            {
+                _localTurnTimeRemaining -= Time.deltaTime;
+                
+                int displaySeconds = Mathf.CeilToInt(_localTurnTimeRemaining);
+                if (displaySeconds < 0) displaySeconds = 0;
+                
+                timerText.text = displaySeconds.ToString();
+                timerText.gameObject.SetActive(true);
+                
+                // Pulsing effect when 10 seconds or less
+                if (_localTurnTimeRemaining <= 10f)
+                {
+                    // Pulse between normal and urgent colors
+                    float pulse = (Mathf.Sin(Time.time * 6f) + 1f) / 2f; // 0-1 oscillating
+                    timerText.color = Color.Lerp(_timerNormalColor, _timerUrgentColor, pulse);
+                    
+                    // Scale pulse for extra urgency
+                    float scale = 1f + (0.15f * pulse);
+                    timerText.transform.localScale = new Vector3(scale, scale, 1f);
+                }
+                else
+                {
+                    timerText.color = _timerNormalColor;
+                    timerText.transform.localScale = Vector3.one;
+                }
+            }
+            else if (timerText != null && timerText.gameObject.activeSelf && !_isGamePhaseActive)
+            {
+                timerText.gameObject.SetActive(false);
+                timerText.transform.localScale = Vector3.one;
             }
         }
         
@@ -354,15 +401,16 @@ namespace PokerClient.UI.Scenes
             phaseRect.sizeDelta = new Vector2(180, 35);
             phaseText.alignment = TextAlignmentOptions.Center;
             
-            // Timer (right)
-            timerText = UIFactory.CreateTitle(topBar.transform, "TimerText", "", 24f);
+            // Timer (right) - shows countdown during player turns
+            timerText = UIFactory.CreateTitle(topBar.transform, "TimerText", "", 28f);
             var timerRect = timerText.GetComponent<RectTransform>();
             timerRect.anchorMin = new Vector2(1, 0.5f);
             timerRect.anchorMax = new Vector2(1, 0.5f);
             timerRect.pivot = new Vector2(1, 0.5f);
             timerRect.anchoredPosition = new Vector2(-15, 0);
-            timerRect.sizeDelta = new Vector2(60, 35);
-            timerText.color = theme.dangerColor;
+            timerRect.sizeDelta = new Vector2(70, 40);
+            timerText.color = theme.textPrimary;
+            timerText.fontStyle = FontStyles.Bold;
             timerText.alignment = TextAlignmentOptions.Center;
         }
         
@@ -928,15 +976,21 @@ namespace PokerClient.UI.Scenes
                 actionPanel.SetActive(false);
             }
             
-            // Update turn timer (only if game is in progress)
-            if (isGamePhase && state.turnTimeRemaining > 0)
+            // Sync local turn timer from server (for smooth countdown between updates)
+            _isGamePhaseActive = isGamePhase && state.turnTimeRemaining > 0;
+            if (_isGamePhaseActive)
             {
-                timerText.text = Mathf.CeilToInt(state.turnTimeRemaining).ToString();
-                timerText.gameObject.SetActive(true);
+                // Sync from server - use server value as authoritative
+                _localTurnTimeRemaining = state.turnTimeRemaining;
             }
             else
             {
-                timerText.gameObject.SetActive(false);
+                _localTurnTimeRemaining = 0f;
+                if (timerText != null)
+                {
+                    timerText.gameObject.SetActive(false);
+                    timerText.transform.localScale = Vector3.one;
+                }
             }
         }
         

@@ -948,6 +948,7 @@ namespace PokerClient.Networking
         public string password;
         public string houseRulesPreset;
         public HouseRules customRules;
+        public int turnTimeLimit; // Turn time in milliseconds
     }
     
     [Serializable]

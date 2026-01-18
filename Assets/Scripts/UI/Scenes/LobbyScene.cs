@@ -32,11 +32,13 @@ namespace PokerClient.UI.Scenes
         private Slider maxPlayersSlider;
         private Slider smallBlindSlider;
         private Slider buyInSlider;
+        private Slider turnTimeSlider;
         private Toggle privateToggle;
         private Toggle practiceModeToggle;
         private TextMeshProUGUI maxPlayersValue;
         private TextMeshProUGUI blindsValue;
         private TextMeshProUGUI buyInValue;
+        private TextMeshProUGUI turnTimeValue;
         
         [Header("Invite Form")]
         private TMP_InputField inviteSearchInput;
@@ -246,7 +248,7 @@ namespace PokerClient.UI.Scenes
             panelRect.anchorMin = new Vector2(0.5f, 0.5f);
             panelRect.anchorMax = new Vector2(0.5f, 0.5f);
             panelRect.pivot = new Vector2(0.5f, 0.5f);
-            panelRect.sizeDelta = new Vector2(320, 360); // Taller for practice mode row
+            panelRect.sizeDelta = new Vector2(320, 400); // Taller for turn time slider
             panelRect.anchoredPosition = Vector2.zero;
             
             // Ensure this panel renders on top of header
@@ -409,6 +411,34 @@ namespace PokerClient.UI.Scenes
             phRect.pivot = new Vector2(0, 0.5f);
             phRect.anchoredPosition = new Vector2(leftPad + 80, y - 12);
             phRect.sizeDelta = new Vector2(100, 24);
+            y -= 32;
+            
+            // Turn Time Row
+            var turnTimeLabel = UIFactory.CreateText(createTablePanel.transform, "TurnTimeLabel", "Turn Time:", 12f, theme.textSecondary);
+            var ttlRect = turnTimeLabel.GetComponent<RectTransform>();
+            ttlRect.anchorMin = new Vector2(0, 1);
+            ttlRect.anchorMax = new Vector2(0, 1);
+            ttlRect.pivot = new Vector2(0, 0.5f);
+            ttlRect.anchoredPosition = new Vector2(leftPad, y - 12);
+            ttlRect.sizeDelta = new Vector2(60, 24);
+            
+            turnTimeSlider = CreateSlider(createTablePanel.transform, 1, 6, 4); // 1=5s, 2=10s, 3=15s, 4=20s (default), 5=30s, 6=60s
+            var ttsRect = turnTimeSlider.GetComponent<RectTransform>();
+            ttsRect.anchorMin = new Vector2(0, 1);
+            ttsRect.anchorMax = new Vector2(0, 1);
+            ttsRect.pivot = new Vector2(0, 0.5f);
+            ttsRect.anchoredPosition = new Vector2(leftPad + 70, y - 12);
+            ttsRect.sizeDelta = new Vector2(125, 20);
+            
+            turnTimeValue = UIFactory.CreateText(createTablePanel.transform, "TurnTimeValue", "20s", 14f, theme.primaryColor);
+            turnTimeValue.fontStyle = FontStyles.Bold;
+            var ttvRect = turnTimeValue.GetComponent<RectTransform>();
+            ttvRect.anchorMin = new Vector2(0, 1);
+            ttvRect.anchorMax = new Vector2(0, 1);
+            ttvRect.pivot = new Vector2(0, 0.5f);
+            ttvRect.anchoredPosition = new Vector2(leftPad + 200, y - 12);
+            ttvRect.sizeDelta = new Vector2(60, 24);
+            turnTimeSlider.onValueChanged.AddListener(UpdateTurnTimeDisplay);
             y -= 32;
             
             // Password (hidden by default)
@@ -688,6 +718,7 @@ namespace PokerClient.UI.Scenes
             bool isPrivate = privateToggle != null && privateToggle.isOn;
             string password = isPrivate ? passwordInput?.text : null;
             bool practiceMode = practiceModeToggle != null && practiceModeToggle.isOn;
+            int turnTimeLimit = turnTimeSlider != null ? GetTurnTimeFromSlider((int)turnTimeSlider.value) : 20000;
             
             loadingPanel.SetActive(true);
             
@@ -695,7 +726,7 @@ namespace PokerClient.UI.Scenes
             _gameService.OnTableJoined -= OnTableJoinedForCreate;
             _gameService.OnTableJoined += OnTableJoinedForCreate;
             
-            _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, buyIn, isPrivate, password, practiceMode, (success, result) =>
+            _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, buyIn, isPrivate, password, practiceMode, turnTimeLimit, (success, result) =>
             {
                 if (!success)
                 {
@@ -920,6 +951,26 @@ namespace PokerClient.UI.Scenes
             if (amount >= 1000)
                 return $"{amount / 1000}K";
             return amount.ToString();
+        }
+        
+        private void UpdateTurnTimeDisplay(float value)
+        {
+            var turnTime = GetTurnTimeFromSlider((int)value);
+            turnTimeValue.text = $"{turnTime / 1000}s";
+        }
+        
+        private int GetTurnTimeFromSlider(int level)
+        {
+            return level switch
+            {
+                1 => 5000,      // 5 seconds
+                2 => 10000,     // 10 seconds
+                3 => 15000,     // 15 seconds
+                4 => 20000,     // 20 seconds (default)
+                5 => 30000,     // 30 seconds
+                6 => 60000,     // 60 seconds
+                _ => 20000      // Default 20 seconds
+            };
         }
         
         #endregion
