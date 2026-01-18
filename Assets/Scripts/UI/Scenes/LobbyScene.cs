@@ -359,6 +359,7 @@ namespace PokerClient.UI.Scenes
             toggleRect.anchorMax = new Vector2(0, 1);
             toggleRect.pivot = new Vector2(0, 0.5f);
             toggleRect.anchoredPosition = new Vector2(leftPad + 55, y - 12);
+            toggleRect.sizeDelta = new Vector2(20, 20); // Small checkbox
             privateToggle.onValueChanged.AddListener(v => passwordInput.gameObject.SetActive(v));
             y -= 32;
             
@@ -758,9 +759,8 @@ namespace PokerClient.UI.Scenes
         {
             var toggleObj = new GameObject("Toggle");
             toggleObj.transform.SetParent(parent, false);
-            var le = toggleObj.AddComponent<LayoutElement>();
-            le.preferredWidth = 24;
-            le.preferredHeight = 24;
+            var rect = toggleObj.AddComponent<RectTransform>();
+            rect.sizeDelta = new Vector2(20, 20); // Fixed small size
             
             var toggle = toggleObj.AddComponent<Toggle>();
             
@@ -772,8 +772,8 @@ namespace PokerClient.UI.Scenes
             
             var checkmark = UIFactory.CreatePanel(bg.transform, "Checkmark", Theme.Current.primaryColor);
             var checkRect = checkmark.GetComponent<RectTransform>();
-            checkRect.anchorMin = new Vector2(0.15f, 0.15f);
-            checkRect.anchorMax = new Vector2(0.85f, 0.85f);
+            checkRect.anchorMin = new Vector2(0.2f, 0.2f);
+            checkRect.anchorMax = new Vector2(0.8f, 0.8f);
             checkRect.sizeDelta = Vector2.zero;
             
             toggle.targetGraphic = bg.GetComponent<Image>();
