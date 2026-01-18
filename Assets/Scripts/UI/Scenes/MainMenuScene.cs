@@ -176,27 +176,49 @@ namespace PokerClient.UI.Scenes
                 }
             }
             
-            // STEP 3: Check saved remote servers
+            // STEP 3: Check saved servers (try both local and public IPs)
             UpdateConnectionStatus("Checking saved servers...");
             yield return new WaitForSeconds(0.3f);
             
             var savedServers = GetSavedServers();
+            Debug.Log($"[MainMenu] Found {savedServers.Count} saved servers to check");
+            
             foreach (var server in savedServers)
             {
-                if (string.IsNullOrEmpty(server.publicIP)) continue;
-                
-                string remoteUrl = $"http://{server.publicIP}:{server.port}";
-                UpdateConnectionStatus($"Trying {server.name}...");
-                
-                bool found = false;
-                yield return StartCoroutine(TestServerConnection(remoteUrl, (success) => found = success));
-                
-                if (found)
+                // Try local IP first (faster if on same network)
+                if (!string.IsNullOrEmpty(server.localIP))
                 {
-                    UpdateConnectionStatus($"✓ Connected to {server.name}!");
-                    yield return new WaitForSeconds(0.5f);
-                    ConnectAndShowLogin(remoteUrl);
-                    yield break;
+                    string localUrl = $"http://{server.localIP}:{server.port}";
+                    UpdateConnectionStatus($"Trying {server.name} (local)...");
+                    
+                    bool foundLocal = false;
+                    yield return StartCoroutine(TestServerConnection(localUrl, (success) => foundLocal = success));
+                    
+                    if (foundLocal)
+                    {
+                        UpdateConnectionStatus($"✓ Connected to {server.name}!");
+                        yield return new WaitForSeconds(0.5f);
+                        ConnectAndShowLogin(localUrl);
+                        yield break;
+                    }
+                }
+                
+                // Try public IP (for remote access)
+                if (!string.IsNullOrEmpty(server.publicIP))
+                {
+                    string remoteUrl = $"http://{server.publicIP}:{server.port}";
+                    UpdateConnectionStatus($"Trying {server.name} (remote)...");
+                    
+                    bool foundRemote = false;
+                    yield return StartCoroutine(TestServerConnection(remoteUrl, (success) => foundRemote = success));
+                    
+                    if (foundRemote)
+                    {
+                        UpdateConnectionStatus($"✓ Connected to {server.name}!");
+                        yield return new WaitForSeconds(0.5f);
+                        ConnectAndShowLogin(remoteUrl);
+                        yield break;
+                    }
                 }
                 
                 yield return null;
@@ -771,6 +793,14 @@ namespace PokerClient.UI.Scenes
         }
         #endif
         
+        // Result container for async server info fetch
+        private class ServerInfoResult
+        {
+            public string publicIP;
+            public string serverName = "Poker Server";
+            public bool success;
+        }
+        
         private System.Collections.IEnumerator SaveServerWithPublicIP(string localUrl)
         {
             // Extract IP from URL
@@ -785,8 +815,9 @@ namespace PokerClient.UI.Scenes
             
             // Fetch server info to get public IP
             string serverInfoUrl = $"http://{ip}:{port}/api/server-info";
-            string publicIP = null;
-            string serverName = "Poker Server";
+            var result = new ServerInfoResult();
+            
+            Debug.Log($"[MainMenu] Fetching server info from: {serverInfoUrl}");
             
             var infoTask = System.Threading.Tasks.Task.Run(() =>
             {
@@ -796,42 +827,56 @@ namespace PokerClient.UI.Scenes
                     {
                         client.Headers.Add("User-Agent", "PokerClient/1.0");
                         string json = client.DownloadString(serverInfoUrl);
-                        // Parse manually since we're on a background thread
-                        if (json.Contains("\"publicIP\""))
+                        Debug.Log($"[MainMenu] Server info response: {json}");
+                        
+                        // Parse publicIP - handle both "publicIP":"value" and "publicIP":null
+                        if (json.Contains("\"publicIP\":\""))
                         {
                             int start = json.IndexOf("\"publicIP\":\"") + 12;
                             int end = json.IndexOf("\"", start);
-                            if (start > 11 && end > start)
-                                publicIP = json.Substring(start, end - start);
+                            if (end > start)
+                            {
+                                result.publicIP = json.Substring(start, end - start);
+                                Debug.Log($"[MainMenu] Parsed publicIP: {result.publicIP}");
+                            }
                         }
-                        if (json.Contains("\"name\""))
+                        
+                        // Parse name
+                        if (json.Contains("\"name\":\""))
                         {
                             int start = json.IndexOf("\"name\":\"") + 8;
                             int end = json.IndexOf("\"", start);
-                            if (start > 7 && end > start)
-                                serverName = json.Substring(start, end - start);
+                            if (end > start)
+                            {
+                                result.serverName = json.Substring(start, end - start);
+                                Debug.Log($"[MainMenu] Parsed serverName: {result.serverName}");
+                            }
                         }
+                        
+                        result.success = true;
                     }
                 }
                 catch (System.Exception e)
                 {
                     Debug.Log($"[MainMenu] Could not fetch server info: {e.Message}");
+                    result.success = false;
                 }
             });
             
             while (!infoTask.IsCompleted)
                 yield return null;
             
-            // Save the server
+            // Save the server (even without public IP - local IP is still useful)
             var server = new SavedServer
             {
-                name = serverName,
+                name = result.serverName,
                 localIP = ip,
-                publicIP = publicIP,
+                publicIP = result.publicIP ?? "",
                 port = port,
                 lastSeen = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds()
             };
             
+            Debug.Log($"[MainMenu] Saving server - name: {server.name}, local: {server.localIP}, public: {server.publicIP}");
             SaveServer(server);
         }
         
