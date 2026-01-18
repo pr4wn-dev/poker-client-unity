@@ -481,13 +481,14 @@ namespace PokerClient.UI.Scenes
             betSlider = CreateBetSlider(sliderRow.transform);
             betSlider.onValueChanged.AddListener(OnBetSliderChanged);
             
-            // Amount display - smaller font
-            betAmountText = UIFactory.CreateTitle(betSection.transform, "BetAmount", "0", 18f);
+            // Amount display - LARGE and clear so player can see bet amount
+            betAmountText = UIFactory.CreateTitle(betSection.transform, "BetAmount", "0", 28f);
             var amtRect = betAmountText.GetComponent<RectTransform>();
             amtRect.anchorMin = new Vector2(0, 0);
             amtRect.anchorMax = new Vector2(1, 0.5f);
             amtRect.sizeDelta = Vector2.zero;
             betAmountText.alignment = TextAlignmentOptions.Center;
+            betAmountText.fontStyle = FontStyles.Bold;
             betAmountText.color = theme.accentColor;
             
             // Bet Button - smaller
@@ -1033,12 +1034,14 @@ namespace PokerClient.UI.Scenes
             betButton.gameObject.SetActive(!hasBet);
             raiseButton.gameObject.SetActive(hasBet);
             
-            // Update slider
-            int minRaise = hasBet ? currentBet * 2 : _minBet;
-            betSlider.minValue = minRaise;
+            // Update slider - start at call amount so player can see what's needed
+            // If no bet to call, start at minimum bet; otherwise start at call amount
+            int sliderMin = hasBet ? _callAmount : _minBet;
+            int sliderDefault = hasBet ? _callAmount : _minBet;
+            betSlider.minValue = sliderMin;
             betSlider.maxValue = myChips;
-            betSlider.value = minRaise;
-            OnBetSliderChanged(minRaise);
+            betSlider.value = sliderDefault;
+            OnBetSliderChanged(sliderDefault);
             
             // All-in always available
             allInButton.gameObject.SetActive(true);
