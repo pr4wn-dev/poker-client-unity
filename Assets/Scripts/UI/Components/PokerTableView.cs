@@ -290,35 +290,38 @@ namespace PokerClient.UI.Components
             _nameText.GetOrAddComponent<LayoutElement>().preferredHeight = 22;
             _nameText.alignment = TextAlignmentOptions.Center;
             
-            // Chips text - simple text below the name, inside the content layout
-            _chipsText = UIFactory.CreateText(content.transform, "Chips", "", 18f, new Color(0.3f, 1f, 0.3f)); // Bright green
-            _chipsText.GetOrAddComponent<LayoutElement>().preferredHeight = 24;
+            // Chips - circular badge below name
+            var chipsBadge = UIFactory.CreatePanel(content.transform, "ChipsBadge", new Color(0.15f, 0.15f, 0.15f, 0.95f));
+            chipsBadge.GetOrAddComponent<LayoutElement>().preferredHeight = 28;
+            var badgeImg = chipsBadge.GetComponent<Image>();
+            
+            _chipsText = UIFactory.CreateText(chipsBadge.transform, "Chips", "", 16f, new Color(1f, 0.85f, 0.2f)); // Gold color
             _chipsText.fontStyle = FontStyles.Bold;
             _chipsText.alignment = TextAlignmentOptions.Center;
-            _chipsText.enableAutoSizing = true;
-            _chipsText.fontSizeMin = 12;
-            _chipsText.fontSizeMax = 18;
+            var chipsRect = _chipsText.GetComponent<RectTransform>();
+            chipsRect.anchorMin = Vector2.zero;
+            chipsRect.anchorMax = Vector2.one;
+            chipsRect.sizeDelta = Vector2.zero;
             
-            // Hole cards - positioned centered at bottom of seat
+            // Hole cards - centered at bottom of seat, BIGGER cards
             var cardsRow = UIFactory.CreatePanel(transform, "CardsRow", Color.clear);
             var cardsRowRect = cardsRow.GetComponent<RectTransform>();
             cardsRowRect.anchorMin = new Vector2(0.5f, 0f);
             cardsRowRect.anchorMax = new Vector2(0.5f, 0f);
-            cardsRowRect.pivot = new Vector2(0.5f, 0f);
-            cardsRowRect.anchoredPosition = new Vector2(0, -5); // Slightly below seat
-            cardsRowRect.sizeDelta = new Vector2(110, 60);
+            cardsRowRect.pivot = new Vector2(0.5f, 1f);
+            cardsRowRect.anchoredPosition = new Vector2(0, 5);
+            cardsRowRect.sizeDelta = new Vector2(140, 90);
             
             var hlg = cardsRow.AddComponent<HorizontalLayoutGroup>();
-            hlg.spacing = 4;
+            hlg.spacing = 6;
             hlg.childAlignment = TextAnchor.MiddleCenter;
             hlg.childControlWidth = false;
             hlg.childForceExpandWidth = false;
-            hlg.padding = new RectOffset(5, 5, 0, 0);
             
-            // Hole cards (compact size)
+            // Hole cards - BIGGER (60x84)
             for (int i = 0; i < 2; i++)
             {
-                var cardView = CardView.Create(cardsRow.transform, $"Card{i}", new Vector2(45, 63));
+                var cardView = CardView.Create(cardsRow.transform, $"Card{i}", new Vector2(60, 84));
                 cardView.SetHidden();
                 _holeCards.Add(cardView);
             }
