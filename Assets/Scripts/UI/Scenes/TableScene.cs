@@ -1187,20 +1187,21 @@ namespace PokerClient.UI.Scenes
             
             var theme = Theme.Current;
             
-            // Background
+            // Background - thin track
             var bg = UIFactory.CreatePanel(sliderObj.transform, "Background", theme.backgroundColor);
             var bgRect = bg.GetComponent<RectTransform>();
-            bgRect.anchorMin = new Vector2(0, 0.35f);
-            bgRect.anchorMax = new Vector2(1, 0.65f);
+            bgRect.anchorMin = new Vector2(0, 0.4f);
+            bgRect.anchorMax = new Vector2(1, 0.6f);
             bgRect.sizeDelta = Vector2.zero;
             
-            // Fill Area
+            // Fill Area - thin track
             var fillArea = new GameObject("FillArea");
             fillArea.transform.SetParent(sliderObj.transform, false);
             var fillAreaRect = fillArea.AddComponent<RectTransform>();
-            fillAreaRect.anchorMin = new Vector2(0, 0.35f);
-            fillAreaRect.anchorMax = new Vector2(1, 0.65f);
-            fillAreaRect.sizeDelta = Vector2.zero;
+            fillAreaRect.anchorMin = new Vector2(0, 0.4f);
+            fillAreaRect.anchorMax = new Vector2(1, 0.6f);
+            fillAreaRect.offsetMin = new Vector2(10, 0);
+            fillAreaRect.offsetMax = new Vector2(-10, 0);
             
             var fill = UIFactory.CreatePanel(fillArea.transform, "Fill", theme.accentColor);
             var fillRect = fill.GetComponent<RectTransform>();
@@ -1209,17 +1210,24 @@ namespace PokerClient.UI.Scenes
             fillRect.sizeDelta = Vector2.zero;
             slider.fillRect = fillRect;
             
-            // Handle
-            var handleArea = new GameObject("HandleArea");
+            // Handle slide area - constrained to vertical center
+            var handleArea = new GameObject("HandleSlideArea");
             handleArea.transform.SetParent(sliderObj.transform, false);
             var handleAreaRect = handleArea.AddComponent<RectTransform>();
-            handleAreaRect.anchorMin = Vector2.zero;
-            handleAreaRect.anchorMax = Vector2.one;
-            handleAreaRect.sizeDelta = Vector2.zero;
+            handleAreaRect.anchorMin = new Vector2(0, 0.5f);
+            handleAreaRect.anchorMax = new Vector2(1, 0.5f);
+            handleAreaRect.sizeDelta = new Vector2(-20, 0);
+            handleAreaRect.anchoredPosition = Vector2.zero;
             
+            // Handle - fixed size, centered vertically
             var handle = UIFactory.CreatePanel(handleArea.transform, "Handle", Color.white);
             var handleRect = handle.GetComponent<RectTransform>();
-            handleRect.sizeDelta = new Vector2(25, 40);
+            handleRect.anchorMin = new Vector2(0, 0.5f);
+            handleRect.anchorMax = new Vector2(0, 0.5f);
+            handleRect.pivot = new Vector2(0.5f, 0.5f);
+            handleRect.sizeDelta = new Vector2(18, 18);
+            handleRect.anchoredPosition = Vector2.zero;
+            
             slider.handleRect = handleRect;
             slider.targetGraphic = handle.GetComponent<Image>();
             
