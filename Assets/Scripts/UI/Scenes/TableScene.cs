@@ -375,7 +375,7 @@ namespace PokerClient.UI.Scenes
             panelRect.anchorMin = new Vector2(0, 0);
             panelRect.anchorMax = new Vector2(1, 0);
             panelRect.pivot = new Vector2(0.5f, 0);
-            panelRect.sizeDelta = new Vector2(0, 120);
+            panelRect.sizeDelta = new Vector2(0, 100); // Reduced height
             panelRect.anchoredPosition = Vector2.zero;
             
             // Ensure action panel renders on top with its own canvas
@@ -385,43 +385,43 @@ namespace PokerClient.UI.Scenes
             actionPanel.AddComponent<UnityEngine.UI.GraphicRaycaster>();
             
             var hlg = actionPanel.AddComponent<HorizontalLayoutGroup>();
-            hlg.spacing = 15;
-            hlg.padding = new RectOffset(30, 30, 15, 15);
+            hlg.spacing = 8; // Reduced spacing
+            hlg.padding = new RectOffset(10, 10, 8, 8); // Reduced padding
             hlg.childAlignment = TextAnchor.MiddleCenter;
             hlg.childControlWidth = false;
             hlg.childForceExpandWidth = false;
             
-            // Fold Button
+            // Fold Button - smaller
             foldButton = UIFactory.CreateButton(actionPanel.transform, "FoldBtn", "FOLD", OnFoldClick).GetComponent<Button>();
-            foldButton.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 70);
+            foldButton.GetComponent<RectTransform>().sizeDelta = new Vector2(70, 50);
             foldButton.GetComponent<Image>().color = theme.dangerColor;
             
-            // Check Button
+            // Check Button - smaller
             checkButton = UIFactory.CreateButton(actionPanel.transform, "CheckBtn", "CHECK", OnCheckClick).GetComponent<Button>();
-            checkButton.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 70);
+            checkButton.GetComponent<RectTransform>().sizeDelta = new Vector2(80, 50);
             checkButton.GetComponent<Image>().color = theme.successColor;
             
-            // Call Button
+            // Call Button - smaller
             var callContainer = UIFactory.CreatePanel(actionPanel.transform, "CallContainer", Color.clear);
-            callContainer.GetOrAddComponent<LayoutElement>().preferredWidth = 150;
+            callContainer.GetOrAddComponent<LayoutElement>().preferredWidth = 90;
             
             callButton = UIFactory.CreateButton(callContainer.transform, "CallBtn", "CALL", OnCallClick).GetComponent<Button>();
             var callRect = callButton.GetComponent<RectTransform>();
-            callRect.anchorMin = new Vector2(0, 0.2f);
+            callRect.anchorMin = new Vector2(0, 0.25f);
             callRect.anchorMax = new Vector2(1, 1);
             callRect.sizeDelta = Vector2.zero;
             callButton.GetComponent<Image>().color = theme.primaryColor;
             
-            callAmountText = UIFactory.CreateText(callContainer.transform, "CallAmount", "", 16f, theme.textSecondary);
+            callAmountText = UIFactory.CreateText(callContainer.transform, "CallAmount", "", 12f, theme.textSecondary);
             var callAmtRect = callAmountText.GetComponent<RectTransform>();
             callAmtRect.anchorMin = new Vector2(0, 0);
             callAmtRect.anchorMax = new Vector2(1, 0.3f);
             callAmtRect.sizeDelta = Vector2.zero;
             callAmountText.alignment = TextAlignmentOptions.Center;
             
-            // Bet/Raise Slider Section
+            // Bet/Raise Slider Section - more compact
             var betSection = UIFactory.CreatePanel(actionPanel.transform, "BetSection", Color.clear);
-            betSection.GetOrAddComponent<LayoutElement>().preferredWidth = 400;
+            betSection.GetOrAddComponent<LayoutElement>().preferredWidth = 200; // Reduced
             
             // Slider row
             var sliderRow = UIFactory.CreatePanel(betSection.transform, "SliderRow", Color.clear);
@@ -433,8 +433,8 @@ namespace PokerClient.UI.Scenes
             betSlider = CreateBetSlider(sliderRow.transform);
             betSlider.onValueChanged.AddListener(OnBetSliderChanged);
             
-            // Amount display
-            betAmountText = UIFactory.CreateTitle(betSection.transform, "BetAmount", "0", 24f);
+            // Amount display - smaller font
+            betAmountText = UIFactory.CreateTitle(betSection.transform, "BetAmount", "0", 18f);
             var amtRect = betAmountText.GetComponent<RectTransform>();
             amtRect.anchorMin = new Vector2(0, 0);
             amtRect.anchorMax = new Vector2(1, 0.5f);
@@ -442,9 +442,9 @@ namespace PokerClient.UI.Scenes
             betAmountText.alignment = TextAlignmentOptions.Center;
             betAmountText.color = theme.accentColor;
             
-            // Bet Button
+            // Bet Button - smaller
             betButton = UIFactory.CreateButton(actionPanel.transform, "BetBtn", "BET", OnBetClick).GetComponent<Button>();
-            betButton.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 70);
+            betButton.GetComponent<RectTransform>().sizeDelta = new Vector2(70, 50);
             betButton.GetComponent<Image>().color = theme.accentColor;
             
             // Raise Button
