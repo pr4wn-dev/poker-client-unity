@@ -836,6 +836,7 @@ namespace PokerClient.Networking
         public List<Card> communityCards;
         public int currentBet;
         public int minBet;          // Minimum bet amount
+        public int minRaise;        // Minimum raise amount
         public int smallBlind;      // Small blind amount
         public int bigBlind;        // Big blind amount
         public int dealerIndex;

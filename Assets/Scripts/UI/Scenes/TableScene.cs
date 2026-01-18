@@ -506,10 +506,11 @@ namespace PokerClient.UI.Scenes
             callRect.sizeDelta = Vector2.zero;
             callButton.GetComponent<Image>().color = theme.primaryColor;
             
-            callAmountText = UIFactory.CreateText(callContainer.transform, "CallAmount", "", 12f, theme.textSecondary);
+            callAmountText = UIFactory.CreateText(callContainer.transform, "CallAmount", "", 16f, theme.accentColor);
+            callAmountText.fontStyle = FontStyles.Bold;
             var callAmtRect = callAmountText.GetComponent<RectTransform>();
             callAmtRect.anchorMin = new Vector2(0, 0);
-            callAmtRect.anchorMax = new Vector2(1, 0.3f);
+            callAmtRect.anchorMax = new Vector2(1, 0.35f);
             callAmtRect.sizeDelta = Vector2.zero;
             callAmountText.alignment = TextAlignmentOptions.Center;
             
@@ -1116,14 +1117,15 @@ namespace PokerClient.UI.Scenes
             betButton.gameObject.SetActive(!hasBet);
             raiseButton.gameObject.SetActive(hasBet);
             
-            // Update slider - start at call amount so player can see what's needed
-            // If no bet to call, start at minimum bet; otherwise start at call amount
-            int sliderMin = hasBet ? _callAmount : _minBet;
-            int sliderDefault = hasBet ? _callAmount : _minBet;
+            // Update slider - minimum must be at least the minimum valid raise/bet
+            // For betting (no current bet): minimum is minBet (big blind)
+            // For raising: minimum is minRaise from server (typically current bet + big blind)
+            int minRaise = state.minRaise > 0 ? state.minRaise : (currentBet + _minBet);
+            int sliderMin = hasBet ? minRaise : _minBet;
             betSlider.minValue = sliderMin;
             betSlider.maxValue = myChips;
-            betSlider.value = sliderDefault;
-            OnBetSliderChanged(sliderDefault);
+            betSlider.value = sliderMin; // Start at minimum valid amount
+            OnBetSliderChanged(sliderMin);
             
             // All-in always available
             allInButton.gameObject.SetActive(true);
