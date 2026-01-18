@@ -24,6 +24,13 @@ namespace PokerClient.UI.Scenes
         // When you build an APK, all discovered servers are baked in!
         private const string KNOWN_SERVERS_RESOURCE = "known_servers";
         
+        // Tunnel URLs for bypassing NAT/CGNAT - checked automatically on startup
+        // These are fixed subdomain tunnels that work even when port forwarding fails
+        private static readonly string[] TUNNEL_URLS = new string[]
+        {
+            "https://pr4wn-poker.loca.lt"  // localtunnel with fixed subdomain
+        };
+        
         [Header("Scene References")]
         [SerializeField] private Canvas canvas;
         
@@ -224,7 +231,30 @@ namespace PokerClient.UI.Scenes
                 yield return null;
             }
             
-            // STEP 4: No server found - show manual entry
+            // STEP 4: Try tunnel URLs (for CGNAT/NAT bypass)
+            UpdateConnectionStatus("Trying tunnel servers...");
+            yield return new WaitForSeconds(0.3f);
+            
+            foreach (var tunnelUrl in TUNNEL_URLS)
+            {
+                UpdateConnectionStatus($"Trying tunnel...");
+                Debug.Log($"[AutoConnect] Testing tunnel: {tunnelUrl}");
+                
+                bool tunnelWorks = false;
+                yield return StartCoroutine(TestServerConnection(tunnelUrl, (success) => tunnelWorks = success, 8000));
+                
+                if (tunnelWorks)
+                {
+                    UpdateConnectionStatus($"✓ Connected via tunnel!");
+                    yield return new WaitForSeconds(0.5f);
+                    ConnectAndShowLogin(tunnelUrl);
+                    yield break;
+                }
+                
+                yield return null;
+            }
+            
+            // STEP 5: No server found - show manual entry
             UpdateConnectionStatus("No server found");
             yield return new WaitForSeconds(1f);
             _autoConnecting = false;
@@ -582,6 +612,32 @@ namespace PokerClient.UI.Scenes
                         serverUrlInput.text = remoteUrl;
                     if (_scanStatusText != null)
                         _scanStatusText.text = $"✓ Found {server.name}!";
+                    _isScanning = false;
+                    yield break;
+                }
+                
+                yield return null;
+            }
+            
+            // STEP 3: Try tunnel URLs
+            if (_scanStatusText != null)
+                _scanStatusText.text = "Trying tunnel servers...";
+            
+            foreach (var tunnelUrl in TUNNEL_URLS)
+            {
+                if (_scanStatusText != null)
+                    _scanStatusText.text = $"Tunnel: {tunnelUrl.Replace("https://", "")}";
+                
+                bool found = false;
+                yield return StartCoroutine(TestServerConnection(tunnelUrl, (success) => found = success, 8000));
+                
+                if (found)
+                {
+                    Debug.Log($"[MainMenu] Found tunnel server: {tunnelUrl}");
+                    if (serverUrlInput != null)
+                        serverUrlInput.text = tunnelUrl;
+                    if (_scanStatusText != null)
+                        _scanStatusText.text = $"✓ Found tunnel server!";
                     _isScanning = false;
                     yield break;
                 }
