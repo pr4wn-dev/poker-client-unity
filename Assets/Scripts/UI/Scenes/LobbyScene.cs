@@ -104,14 +104,14 @@ namespace PokerClient.UI.Scenes
             bgRect.anchorMax = Vector2.one;
             bgRect.sizeDelta = Vector2.zero;
             
-            // Header
-            BuildHeader();
-            
-            // Main Content Area
+            // Main Content Area (build BEFORE header so header renders on top)
             BuildTableListPanel();
             BuildCreateTablePanel();
             BuildInvitePanel();
             BuildLoadingPanel();
+            
+            // Header (build LAST so it renders on top of content)
+            BuildHeader();
             
             // Show table list by default
             ShowTableListPanel();
@@ -197,10 +197,11 @@ namespace PokerClient.UI.Scenes
         {
             var theme = Theme.Current;
             
+            // Position below header (header is 120px, ~6% of 1920)
             tableListPanel = UIFactory.CreatePanel(_canvas.transform, "TableListPanel", theme.backgroundColor);
             var panelRect = tableListPanel.GetComponent<RectTransform>();
-            panelRect.anchorMin = new Vector2(0.1f, 0.1f);
-            panelRect.anchorMax = new Vector2(0.9f, 0.85f);
+            panelRect.anchorMin = new Vector2(0.02f, 0.05f);
+            panelRect.anchorMax = new Vector2(0.98f, 0.92f); // Leave room for 120px header at top
             panelRect.sizeDelta = Vector2.zero;
             
             // Scroll view
