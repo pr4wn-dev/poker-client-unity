@@ -134,9 +134,13 @@ namespace PokerClient.UI.Scenes
             backRect.anchoredPosition = new Vector2(20, 0);
             backRect.sizeDelta = new Vector2(120, 50);
             
-            // Title
-            var title = UIFactory.CreateTitle(header.transform, "Title", "MULTIPLAYER LOBBY", 36f);
+            // Title - properly sized to fit container
+            var title = UIFactory.CreateTitle(header.transform, "Title", "MULTIPLAYER LOBBY", 28f);
             title.alignment = TextAlignmentOptions.Center;
+            var titleRect = title.GetComponent<RectTransform>();
+            titleRect.anchorMin = new Vector2(0.25f, 0);
+            titleRect.anchorMax = new Vector2(0.75f, 1);
+            titleRect.sizeDelta = Vector2.zero;
             
             // Player Info
             playerInfoText = UIFactory.CreateText(header.transform, "PlayerInfo", "", 18f, theme.textSecondary);
@@ -250,15 +254,14 @@ namespace PokerClient.UI.Scenes
         {
             var theme = Theme.Current;
             
-            createTablePanel = UIFactory.CreatePanel(_canvas.transform, "CreateTablePanel", theme.cardPanelColor);
+            createTablePanel = UIFactory.CreatePanel(_canvas.transform, "CreateTablePanel", theme.panelColor);
             var panelRect = createTablePanel.GetComponent<RectTransform>();
-            panelRect.anchorMin = new Vector2(0.25f, 0.2f);
-            panelRect.anchorMax = new Vector2(0.75f, 0.8f);
-            panelRect.sizeDelta = Vector2.zero;
+            // Fixed centered size like login panel
+            UIFactory.Center(panelRect, new Vector2(420, 520));
             
             var vlg = createTablePanel.AddComponent<VerticalLayoutGroup>();
-            vlg.spacing = 20;
-            vlg.padding = new RectOffset(40, 40, 40, 40);
+            vlg.spacing = 12;
+            vlg.padding = new RectOffset(25, 25, 20, 20);
             vlg.childAlignment = TextAnchor.UpperCenter;
             vlg.childControlHeight = false;
             vlg.childForceExpandHeight = false;
@@ -266,78 +269,98 @@ namespace PokerClient.UI.Scenes
             vlg.childForceExpandWidth = true;
             
             // Title
-            var title = UIFactory.CreateTitle(createTablePanel.transform, "Title", "CREATE TABLE", 32f);
-            title.GetOrAddComponent<LayoutElement>().preferredHeight = 50;
+            var title = UIFactory.CreateTitle(createTablePanel.transform, "Title", "CREATE TABLE", 28f);
+            title.color = theme.secondaryColor;
+            var titleRect = title.GetComponent<RectTransform>();
+            titleRect.sizeDelta = new Vector2(360, 40);
+            title.GetOrAddComponent<LayoutElement>().preferredHeight = 40;
+            
+            // Subtitle
+            var subtitle = UIFactory.CreateText(createTablePanel.transform, "Subtitle", "Set up your poker table", 14f, theme.textSecondary);
+            subtitle.GetOrAddComponent<LayoutElement>().preferredHeight = 20;
             
             // Table Name
-            var nameLabel = UIFactory.CreateText(createTablePanel.transform, "NameLabel", "Table Name:", 18f, theme.textSecondary);
-            nameLabel.GetOrAddComponent<LayoutElement>().preferredHeight = 25;
+            var nameLabel = UIFactory.CreateText(createTablePanel.transform, "NameLabel", "Table Name", 14f, theme.textSecondary);
+            nameLabel.alignment = TextAlignmentOptions.Left;
+            nameLabel.GetOrAddComponent<LayoutElement>().preferredHeight = 20;
             
-            tableNameInput = UIFactory.CreateInputField(createTablePanel.transform, "TableName", "Enter table name...");
-            tableNameInput.GetOrAddComponent<LayoutElement>().preferredHeight = 50;
+            tableNameInput = UIFactory.CreateInputField(createTablePanel.transform, "TableName", "Enter table name...", 360, 40);
+            tableNameInput.GetOrAddComponent<LayoutElement>().preferredHeight = 40;
             
-            // Max Players Slider
-            var playersLabel = UIFactory.CreateText(createTablePanel.transform, "PlayersLabel", "Max Players:", 18f, theme.textSecondary);
-            playersLabel.GetOrAddComponent<LayoutElement>().preferredHeight = 25;
-            
+            // Max Players Row
             var playersRow = UIFactory.CreatePanel(createTablePanel.transform, "PlayersRow", Color.clear);
-            playersRow.GetOrAddComponent<LayoutElement>().preferredHeight = 40;
+            playersRow.GetOrAddComponent<LayoutElement>().preferredHeight = 35;
             var playersHlg = playersRow.AddComponent<HorizontalLayoutGroup>();
             playersHlg.spacing = 10;
-            playersHlg.childAlignment = TextAnchor.MiddleCenter;
+            playersHlg.childAlignment = TextAnchor.MiddleLeft;
+            playersHlg.childControlWidth = false;
+            playersHlg.childForceExpandWidth = false;
+            
+            var playersLabel = UIFactory.CreateText(playersRow.transform, "PlayersLabel", "Max Players:", 14f, theme.textSecondary);
+            playersLabel.GetOrAddComponent<LayoutElement>().preferredWidth = 100;
             
             maxPlayersSlider = CreateSlider(playersRow.transform, 2, 9, 6);
-            maxPlayersValue = UIFactory.CreateText(playersRow.transform, "Value", "6", 24f, theme.primaryColor);
-            maxPlayersValue.GetOrAddComponent<LayoutElement>().preferredWidth = 50;
+            maxPlayersSlider.GetOrAddComponent<LayoutElement>().preferredWidth = 180;
+            maxPlayersSlider.GetOrAddComponent<LayoutElement>().preferredHeight = 30;
+            
+            maxPlayersValue = UIFactory.CreateText(playersRow.transform, "Value", "6", 18f, theme.primaryColor);
+            maxPlayersValue.fontStyle = FontStyles.Bold;
+            maxPlayersValue.GetOrAddComponent<LayoutElement>().preferredWidth = 40;
             maxPlayersSlider.onValueChanged.AddListener(v => maxPlayersValue.text = ((int)v).ToString());
             
-            // Blinds Slider
-            var blindsLabel = UIFactory.CreateText(createTablePanel.transform, "BlindsLabel", "Blinds:", 18f, theme.textSecondary);
-            blindsLabel.GetOrAddComponent<LayoutElement>().preferredHeight = 25;
-            
+            // Blinds Row
             var blindsRow = UIFactory.CreatePanel(createTablePanel.transform, "BlindsRow", Color.clear);
-            blindsRow.GetOrAddComponent<LayoutElement>().preferredHeight = 40;
+            blindsRow.GetOrAddComponent<LayoutElement>().preferredHeight = 35;
             var blindsHlg = blindsRow.AddComponent<HorizontalLayoutGroup>();
             blindsHlg.spacing = 10;
-            blindsHlg.childAlignment = TextAnchor.MiddleCenter;
+            blindsHlg.childAlignment = TextAnchor.MiddleLeft;
+            blindsHlg.childControlWidth = false;
+            blindsHlg.childForceExpandWidth = false;
             
-            smallBlindSlider = CreateSlider(blindsRow.transform, 1, 6, 1); // 1=25/50, 6=5000/10000
-            blindsValue = UIFactory.CreateText(blindsRow.transform, "Value", "25/50", 24f, theme.primaryColor);
-            blindsValue.GetOrAddComponent<LayoutElement>().preferredWidth = 150;
+            var blindsLabel = UIFactory.CreateText(blindsRow.transform, "BlindsLabel", "Blinds:", 14f, theme.textSecondary);
+            blindsLabel.GetOrAddComponent<LayoutElement>().preferredWidth = 100;
+            
+            smallBlindSlider = CreateSlider(blindsRow.transform, 1, 6, 1);
+            smallBlindSlider.GetOrAddComponent<LayoutElement>().preferredWidth = 180;
+            smallBlindSlider.GetOrAddComponent<LayoutElement>().preferredHeight = 30;
+            
+            blindsValue = UIFactory.CreateText(blindsRow.transform, "Value", "25/50", 18f, theme.primaryColor);
+            blindsValue.fontStyle = FontStyles.Bold;
+            blindsValue.GetOrAddComponent<LayoutElement>().preferredWidth = 80;
             smallBlindSlider.onValueChanged.AddListener(UpdateBlindsDisplay);
             
-            // Private Toggle
+            // Private Toggle Row
             var privateRow = UIFactory.CreatePanel(createTablePanel.transform, "PrivateRow", Color.clear);
-            privateRow.GetOrAddComponent<LayoutElement>().preferredHeight = 50;
+            privateRow.GetOrAddComponent<LayoutElement>().preferredHeight = 35;
             var privateHlg = privateRow.AddComponent<HorizontalLayoutGroup>();
-            privateHlg.spacing = 20;
-            privateHlg.childAlignment = TextAnchor.MiddleCenter;
+            privateHlg.spacing = 15;
+            privateHlg.childAlignment = TextAnchor.MiddleLeft;
+            privateHlg.childControlWidth = false;
+            privateHlg.childForceExpandWidth = false;
             
-            var privateLabel = UIFactory.CreateText(privateRow.transform, "PrivateLabel", "Private Table:", 18f, theme.textSecondary);
+            var privateLabel = UIFactory.CreateText(privateRow.transform, "PrivateLabel", "Private Table:", 14f, theme.textSecondary);
+            privateLabel.GetOrAddComponent<LayoutElement>().preferredWidth = 100;
             privateToggle = CreateToggle(privateRow.transform);
             privateToggle.onValueChanged.AddListener(v => passwordInput.gameObject.SetActive(v));
             
-            // Password
-            passwordInput = UIFactory.CreateInputField(createTablePanel.transform, "Password", "Password (optional)");
-            passwordInput.contentType = TMP_InputField.ContentType.Password;
-            passwordInput.GetOrAddComponent<LayoutElement>().preferredHeight = 50;
+            // Password (hidden by default)
+            passwordInput = UIFactory.CreateInputField(createTablePanel.transform, "Password", "Password", 360, 40,
+                TMP_InputField.ContentType.Password);
+            passwordInput.GetOrAddComponent<LayoutElement>().preferredHeight = 40;
             passwordInput.gameObject.SetActive(false);
             
-            // Buttons
-            var buttonRow = UIFactory.CreatePanel(createTablePanel.transform, "ButtonRow", Color.clear);
-            buttonRow.GetOrAddComponent<LayoutElement>().preferredHeight = 60;
-            var btnHlg = buttonRow.AddComponent<HorizontalLayoutGroup>();
-            btnHlg.spacing = 20;
-            btnHlg.childAlignment = TextAnchor.MiddleCenter;
-            btnHlg.childControlWidth = false;
-            btnHlg.childForceExpandWidth = false;
+            // Spacer
+            var spacer = new GameObject("Spacer", typeof(RectTransform));
+            spacer.transform.SetParent(createTablePanel.transform, false);
+            spacer.GetComponent<RectTransform>().sizeDelta = new Vector2(360, 10);
             
-            var cancelBtn = UIFactory.CreateButton(buttonRow.transform, "Cancel", "Cancel", () => ShowTableListPanel());
-            cancelBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 50);
+            // Buttons - use styled buttons like login
+            var createBtn = UIFactory.CreatePrimaryButton(createTablePanel.transform, "Create", "CREATE TABLE", OnCreateTableClick, 360, 45);
             
-            var createBtn = UIFactory.CreateButton(buttonRow.transform, "Create", "Create", OnCreateTableClick);
-            createBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(150, 50);
-            createBtn.GetComponent<Image>().color = theme.primaryColor;
+            // Divider
+            UIFactory.CreateDivider(createTablePanel.transform, "Divider", true, 200, 1);
+            
+            var cancelBtn = UIFactory.CreateSecondaryButton(createTablePanel.transform, "Cancel", "CANCEL", () => ShowTableListPanel(), 160, 35);
             
             createTablePanel.SetActive(false);
         }
