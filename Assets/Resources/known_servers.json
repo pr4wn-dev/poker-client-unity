@@ -1,12 +1,11 @@
 {
     "servers": [
         {
-            "name": "Local Dev",
+            "name": "Poker Game Server",
             "localIP": "192.168.1.23",
-            "publicIP": "",
+            "publicIP": "76.37.183.166",
             "port": 3000,
-            "lastSeen": 0
+            "lastSeen": 1737244800
         }
     ]
 }
-
