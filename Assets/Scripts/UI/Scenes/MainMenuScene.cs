@@ -203,14 +203,14 @@ namespace PokerClient.UI.Scenes
                     }
                 }
                 
-                // Try public IP (for remote access)
+                // Try public IP (for remote access) - use longer timeout for internet
                 if (!string.IsNullOrEmpty(server.publicIP))
                 {
                     string remoteUrl = $"http://{server.publicIP}:{server.port}";
                     UpdateConnectionStatus($"Trying {server.name} (remote)...");
                     
                     bool foundRemote = false;
-                    yield return StartCoroutine(TestServerConnection(remoteUrl, (success) => foundRemote = success));
+                    yield return StartCoroutine(TestServerConnection(remoteUrl, (success) => foundRemote = success, 5000));
                     
                     if (foundRemote)
                     {
@@ -573,7 +573,7 @@ namespace PokerClient.UI.Scenes
                     _scanStatusText.text = $"Remote: {server.name}...";
                 
                 bool found = false;
-                yield return StartCoroutine(TestServerConnection(remoteUrl, (success) => found = success));
+                yield return StartCoroutine(TestServerConnection(remoteUrl, (success) => found = success, 5000));
                 
                 if (found)
                 {
@@ -880,7 +880,7 @@ namespace PokerClient.UI.Scenes
             SaveServer(server);
         }
         
-        private System.Collections.IEnumerator TestServerConnection(string url, System.Action<bool> callback)
+        private System.Collections.IEnumerator TestServerConnection(string url, System.Action<bool> callback, int timeoutMs = 2000)
         {
             bool success = false;
             
@@ -896,6 +896,8 @@ namespace PokerClient.UI.Scenes
                 int.TryParse(parts[1], out port);
             }
             
+            Debug.Log($"[TestConnection] Testing {ip}:{port} (timeout: {timeoutMs}ms)");
+            
             // Try TCP connection
             var connectTask = System.Threading.Tasks.Task.Run(() =>
             {
@@ -904,15 +906,20 @@ namespace PokerClient.UI.Scenes
                     using (var client = new System.Net.Sockets.TcpClient())
                     {
                         var result = client.BeginConnect(ip, port, null, null);
-                        bool connected = result.AsyncWaitHandle.WaitOne(System.TimeSpan.FromMilliseconds(500));
+                        bool connected = result.AsyncWaitHandle.WaitOne(System.TimeSpan.FromMilliseconds(timeoutMs));
                         if (connected)
                         {
                             client.EndConnect(result);
+                            Debug.Log($"[TestConnection] SUCCESS: {ip}:{port}");
                             return true;
                         }
+                        Debug.Log($"[TestConnection] TIMEOUT: {ip}:{port}");
                     }
                 }
-                catch { }
+                catch (System.Exception ex)
+                {
+                    Debug.Log($"[TestConnection] FAILED: {ip}:{port} - {ex.Message}");
+                }
                 return false;
             });
             
