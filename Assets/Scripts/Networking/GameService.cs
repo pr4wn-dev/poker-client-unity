@@ -323,6 +323,40 @@ namespace PokerClient.Networking
         }
         
         /// <summary>
+        /// Start the game - initiates ready-up phase (table creator only)
+        /// </summary>
+        public void StartGame(Action<bool, string> callback = null)
+        {
+            if (string.IsNullOrEmpty(CurrentTableId))
+            {
+                callback?.Invoke(false, "Not at a table");
+                return;
+            }
+            
+            _socket.Emit<SimpleResponse>("start_game", new { tableId = CurrentTableId }, response =>
+            {
+                callback?.Invoke(response.success, response.error);
+            });
+        }
+        
+        /// <summary>
+        /// Player clicks Ready during ready-up phase
+        /// </summary>
+        public void PlayerReady(Action<bool, string> callback = null)
+        {
+            if (string.IsNullOrEmpty(CurrentTableId))
+            {
+                callback?.Invoke(false, "Not at a table");
+                return;
+            }
+            
+            _socket.Emit<SimpleResponse>("player_ready", new { tableId = CurrentTableId }, response =>
+            {
+                callback?.Invoke(response.success, response.error);
+            });
+        }
+        
+        /// <summary>
         /// Check if user has an active table session to reconnect to
         /// </summary>
         public void CheckActiveSession(Action<bool, string, string> callback)

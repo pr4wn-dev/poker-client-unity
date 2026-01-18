@@ -66,6 +66,13 @@ namespace PokerClient.UI.Scenes
         private TextMeshProUGUI _countdownLabel;
         private int _lastCountdownValue = -1;
         
+        // Ready-Up UI
+        private GameObject _startGameButton;
+        private GameObject _readyOverlay;
+        private TextMeshProUGUI _readyTimerText;
+        private TextMeshProUGUI _readyCountText;
+        private bool _hasClickedReady = false;
+        
         private void Start()
         {
             _gameService = GameService.Instance;
@@ -191,6 +198,12 @@ namespace PokerClient.UI.Scenes
             
             // Countdown Overlay (shown before game starts)
             BuildCountdownOverlay();
+            
+            // Start Game button (for table creator)
+            BuildStartGameButton();
+            
+            // Ready overlay (for ready-up phase)
+            BuildReadyOverlay();
             
             // Hide action panel initially
             actionPanel.SetActive(false);
@@ -606,14 +619,168 @@ namespace PokerClient.UI.Scenes
             _countdownNumber.transform.localScale = endScale;
         }
         
+        private void BuildStartGameButton()
+        {
+            var theme = Theme.Current;
+            
+            // Big "START GAME" button for table creator - shown in center during waiting phase
+            _startGameButton = UIFactory.CreatePanel(_canvas.transform, "StartGameButton", Color.clear);
+            var btnRect = _startGameButton.GetComponent<RectTransform>();
+            btnRect.anchorMin = new Vector2(0.35f, 0.45f);
+            btnRect.anchorMax = new Vector2(0.65f, 0.55f);
+            btnRect.sizeDelta = Vector2.zero;
+            
+            var btn = UIFactory.CreateButton(_startGameButton.transform, "Btn", "🎮 START GAME", OnStartGameClick);
+            var innerRect = btn.GetComponent<RectTransform>();
+            innerRect.anchorMin = Vector2.zero;
+            innerRect.anchorMax = Vector2.one;
+            innerRect.sizeDelta = Vector2.zero;
+            btn.GetComponent<Image>().color = theme.successColor;
+            
+            // Get the text and make it bigger
+            var text = btn.GetComponentInChildren<TextMeshProUGUI>();
+            if (text != null)
+            {
+                text.fontSize = 32f;
+                text.fontStyle = FontStyles.Bold;
+            }
+            
+            _startGameButton.SetActive(false);
+        }
+        
+        private void BuildReadyOverlay()
+        {
+            var theme = Theme.Current;
+            
+            // Ready overlay - shown during ready_up phase
+            _readyOverlay = UIFactory.CreatePanel(_canvas.transform, "ReadyOverlay", new Color(0, 0, 0, 0.7f));
+            var overlayRect = _readyOverlay.GetComponent<RectTransform>();
+            overlayRect.anchorMin = new Vector2(0.25f, 0.3f);
+            overlayRect.anchorMax = new Vector2(0.75f, 0.7f);
+            overlayRect.sizeDelta = Vector2.zero;
+            
+            var innerPanel = UIFactory.CreatePanel(_readyOverlay.transform, "Inner", theme.panelColor);
+            var innerRect = innerPanel.GetComponent<RectTransform>();
+            innerRect.anchorMin = new Vector2(0.05f, 0.05f);
+            innerRect.anchorMax = new Vector2(0.95f, 0.95f);
+            innerRect.sizeDelta = Vector2.zero;
+            
+            // Title
+            var title = UIFactory.CreateTitle(innerPanel.transform, "Title", "GET READY!", 36f);
+            title.color = theme.accentColor;
+            title.alignment = TextAlignmentOptions.Center;
+            var titleRect = title.GetComponent<RectTransform>();
+            titleRect.anchorMin = new Vector2(0, 0.75f);
+            titleRect.anchorMax = new Vector2(1, 0.95f);
+            titleRect.sizeDelta = Vector2.zero;
+            
+            // Timer
+            _readyTimerText = UIFactory.CreateTitle(innerPanel.transform, "Timer", "60", 48f);
+            _readyTimerText.color = Color.white;
+            _readyTimerText.alignment = TextAlignmentOptions.Center;
+            var timerRect = _readyTimerText.GetComponent<RectTransform>();
+            timerRect.anchorMin = new Vector2(0, 0.55f);
+            timerRect.anchorMax = new Vector2(1, 0.75f);
+            timerRect.sizeDelta = Vector2.zero;
+            
+            // Ready count
+            _readyCountText = UIFactory.CreateText(innerPanel.transform, "Count", "0/0 players ready", 20f, theme.textSecondary);
+            _readyCountText.alignment = TextAlignmentOptions.Center;
+            var countRect = _readyCountText.GetComponent<RectTransform>();
+            countRect.anchorMin = new Vector2(0, 0.42f);
+            countRect.anchorMax = new Vector2(1, 0.55f);
+            countRect.sizeDelta = Vector2.zero;
+            
+            // Big READY button
+            var readyBtn = UIFactory.CreateButton(innerPanel.transform, "ReadyBtn", "✓ I'M READY!", OnReadyClick);
+            var readyBtnRect = readyBtn.GetComponent<RectTransform>();
+            readyBtnRect.anchorMin = new Vector2(0.2f, 0.08f);
+            readyBtnRect.anchorMax = new Vector2(0.8f, 0.35f);
+            readyBtnRect.sizeDelta = Vector2.zero;
+            readyBtn.GetComponent<Image>().color = theme.successColor;
+            
+            var readyText = readyBtn.GetComponentInChildren<TextMeshProUGUI>();
+            if (readyText != null)
+            {
+                readyText.fontSize = 28f;
+                readyText.fontStyle = FontStyles.Bold;
+            }
+            
+            _readyOverlay.SetActive(false);
+        }
+        
+        private void OnStartGameClick()
+        {
+            Debug.Log("[TableScene] Start Game clicked!");
+            _gameService.StartGame((success, error) =>
+            {
+                if (!success)
+                {
+                    Debug.LogError($"Failed to start game: {error}");
+                }
+            });
+        }
+        
+        private void OnReadyClick()
+        {
+            Debug.Log("[TableScene] Ready clicked!");
+            _hasClickedReady = true;
+            
+            _gameService.PlayerReady((success, error) =>
+            {
+                if (!success)
+                {
+                    Debug.LogError($"Failed to ready up: {error}");
+                    _hasClickedReady = false;
+                }
+            });
+        }
+        
+        private void UpdateReadyUI(TableState state)
+        {
+            var myId = _gameService.CurrentUser?.id;
+            bool isCreator = myId != null && state.creatorId == myId;
+            
+            // Show START GAME button for creator during waiting phase
+            bool showStartButton = state.phase == "waiting" && isCreator && state.totalPlayerCount >= 2;
+            _startGameButton?.SetActive(showStartButton);
+            
+            // Show READY overlay during ready_up phase (not for bots, and only if not already ready)
+            if (state.phase == "ready_up" || state.phase == "countdown")
+            {
+                var mySeat = state.seats?.Find(s => s?.playerId == myId);
+                bool amIReady = mySeat?.isReady ?? false;
+                bool amIBot = mySeat?.isBot ?? false;
+                
+                // Show overlay if I'm not ready and I'm not a bot
+                bool showReadyOverlay = !amIReady && !amIBot && !_hasClickedReady;
+                _readyOverlay?.SetActive(showReadyOverlay);
+                
+                if (_readyTimerText != null && _readyCountText != null)
+                {
+                    if (state.phase == "ready_up")
+                    {
+                        _readyTimerText.text = state.readyUpTimeRemaining.ToString();
+                    }
+                    else
+                    {
+                        _readyTimerText.text = state.startCountdownRemaining.ToString();
+                    }
+                    _readyCountText.text = $"{state.readyPlayerCount}/{state.totalPlayerCount} players ready";
+                }
+            }
+            else
+            {
+                _readyOverlay?.SetActive(false);
+                _hasClickedReady = false; // Reset for next time
+            }
+        }
+        
         #region Event Handlers
         
         private void OnTableStateUpdate(TableState state)
         {
             _currentState = state;
-            
-            // DEBUG: Log countdown state
-            Debug.Log($"[TableScene] State update - phase: {state.phase}, countdown: {state.startCountdownRemaining}");
             
             // Check if current user is the table creator
             var myId = _gameService.CurrentUser?.id;
@@ -622,20 +789,22 @@ namespace PokerClient.UI.Scenes
             // Update pot
             potText.text = $"Pot: {ChipStack.FormatChipValue((int)state.pot)}";
             
-            // Update phase (show countdown if waiting and countdown active)
-            if (state.phase == "waiting" && state.startCountdownRemaining > 0)
+            // Update phase display
+            phaseText.text = GetPhaseDisplayName(state.phase);
+            
+            // Handle countdown display based on phase
+            if (state.phase == "countdown" && state.startCountdownRemaining > 0)
             {
-                Debug.Log($"[TableScene] SHOWING COUNTDOWN: {state.startCountdownRemaining}");
-                phaseText.text = "Waiting for Players...";
-                // Show big countdown overlay
+                // Show final countdown overlay
                 UpdateCountdownDisplay(state.startCountdownRemaining);
             }
             else
             {
-                phaseText.text = GetPhaseDisplayName(state.phase);
-                // Hide countdown overlay when game starts
                 UpdateCountdownDisplay(0);
             }
+            
+            // Update ready-up UI (START GAME button, READY overlay)
+            UpdateReadyUI(state);
             
             // Update table view
             _tableView?.UpdateFromState(state);
@@ -643,7 +812,11 @@ namespace PokerClient.UI.Scenes
             // Check if it's my turn (myId already declared above)
             _isMyTurn = state.currentPlayerId == myId;
             
-            if (_isMyTurn && state.phase != "waiting" && state.phase != "showdown")
+            // Only show action buttons during actual gameplay
+            bool isGamePhase = state.phase == "preflop" || state.phase == "flop" || 
+                               state.phase == "turn" || state.phase == "river";
+            
+            if (_isMyTurn && isGamePhase)
             {
                 ShowActionButtons(state);
             }
@@ -653,12 +826,12 @@ namespace PokerClient.UI.Scenes
             }
             
             // Update turn timer (only if game is in progress)
-            if (state.phase != "waiting" && state.turnTimeRemaining > 0)
+            if (isGamePhase && state.turnTimeRemaining > 0)
             {
                 timerText.text = Mathf.CeilToInt(state.turnTimeRemaining).ToString();
                 timerText.gameObject.SetActive(true);
             }
-            else if (state.startCountdownRemaining <= 0)
+            else
             {
                 timerText.gameObject.SetActive(false);
             }
@@ -987,6 +1160,8 @@ namespace PokerClient.UI.Scenes
             return phase?.ToLower() switch
             {
                 "waiting" => "Waiting for Players",
+                "ready_up" => "Ready Up!",
+                "countdown" => "Starting Soon...",
                 "preflop" => "Pre-Flop",
                 "flop" => "Flop",
                 "turn" => "Turn",

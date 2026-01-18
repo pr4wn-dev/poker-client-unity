@@ -19,6 +19,8 @@ namespace PokerClient.Networking
     public enum GamePhase
     {
         Waiting,
+        ReadyUp,    // Players clicking ready
+        Countdown,  // Final 10-second countdown
         PreFlop,
         Flop,
         Turn,
@@ -809,6 +811,7 @@ namespace PokerClient.Networking
         public bool isConnected;
         public bool isBot;         // True if this seat is occupied by a bot
         public bool isSittingOut;  // True if player is sitting out
+        public bool isReady;       // True if player clicked Ready during ready-up phase
         public bool inSidePot;     // Whether player is participating in item side pot
         public List<Card> cards;
         
@@ -840,6 +843,9 @@ namespace PokerClient.Networking
         public string currentPlayerId;  // ID of player whose turn it is
         public float turnTimeRemaining; // Seconds left in turn (-1 if not active)
         public int startCountdownRemaining; // Seconds until game starts (0 or -1 if not counting)
+        public int readyUpTimeRemaining; // Seconds left in ready-up phase (0 if not active)
+        public int readyPlayerCount; // Number of players who have clicked Ready
+        public int totalPlayerCount; // Total number of players at table
         public int handsPlayed;
         public int spectatorCount;
         public bool isSpectating;
@@ -853,6 +859,8 @@ namespace PokerClient.Networking
             return phase?.ToLower() switch
             {
                 "waiting" => GamePhase.Waiting,
+                "ready_up" => GamePhase.ReadyUp,
+                "countdown" => GamePhase.Countdown,
                 "preflop" => GamePhase.PreFlop,
                 "flop" => GamePhase.Flop,
                 "turn" => GamePhase.Turn,
@@ -861,6 +869,8 @@ namespace PokerClient.Networking
                 _ => GamePhase.Waiting
             };
         }
+        
+        public bool IsInReadyPhase => phase == "ready_up" || phase == "countdown";
         
         public SeatInfo GetCurrentPlayer()
         {
