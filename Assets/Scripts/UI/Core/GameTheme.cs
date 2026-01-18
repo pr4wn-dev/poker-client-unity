@@ -75,8 +75,8 @@ namespace PokerClient.UI
         public Color warningColor = new Color(0.95f, 0.75f, 0.2f);
         
         [Header("=== SIZING ===")]
-        public float cardWidth = 70f;
-        public float cardHeight = 100f;
+        public float cardWidth = 65f;
+        public float cardHeight = 90f;
         public float chipSize = 40f;
         public float buttonHeight = 50f;
         public float avatarSize = 60f;

@@ -326,8 +326,8 @@ namespace PokerClient.UI.Components
         
         private Sprite GenerateCardSprite(string rank, string suit)
         {
-            int width = 60;
-            int height = 84;
+            int width = 65;
+            int height = 90;
             var texture = new Texture2D(width, height, TextureFormat.RGBA32, false);
             texture.filterMode = FilterMode.Point;
             
@@ -358,8 +358,8 @@ namespace PokerClient.UI.Components
         
         private Sprite GenerateCardBackSprite()
         {
-            int width = 70;
-            int height = 100;
+            int width = 65;
+            int height = 90;
             var texture = new Texture2D(width, height, TextureFormat.RGBA32, false);
             texture.filterMode = FilterMode.Bilinear;
             
