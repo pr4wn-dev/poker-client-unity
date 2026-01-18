@@ -942,15 +942,22 @@ namespace PokerClient.UI.Scenes
             bool success = false;
             
             // Use Socket connection test instead of HTTP (avoids Android's HTTP security block)
+            bool isHttps = url.StartsWith("https://");
             string ip = url.Replace("http://", "").Replace("https://", "");
-            int port = 3000;
+            int port = isHttps ? 443 : 3000;  // HTTPS uses port 443!
             
-            // Parse IP and port
+            // Parse IP and port (if explicitly specified in URL)
             if (ip.Contains(":"))
             {
                 var parts = ip.Split(':');
                 ip = parts[0];
                 int.TryParse(parts[1], out port);
+            }
+            
+            // Remove any path from the URL (e.g., /api/server-info)
+            if (ip.Contains("/"))
+            {
+                ip = ip.Split('/')[0];
             }
             
             Debug.Log($"[TestConnection] Testing {ip}:{port} (timeout: {timeoutMs}ms)");
