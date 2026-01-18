@@ -510,7 +510,7 @@ namespace PokerClient.UI.Components
             var go = new GameObject(name);
             go.transform.SetParent(parent, false);
             var view = go.AddComponent<CardView>();
-            view.Initialize(size ?? new Vector2(55, 77));
+            view.Initialize(size ?? new Vector2(50, 68));
             return view;
         }
         
