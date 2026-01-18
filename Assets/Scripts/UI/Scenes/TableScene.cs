@@ -149,7 +149,7 @@ namespace PokerClient.UI.Scenes
         private void Update()
         {
             // Local countdown for turn timer (smoother than waiting for server updates)
-            if (_isGamePhaseActive && _localTurnTimeRemaining > 0)
+            if (_isGamePhaseActive && _localTurnTimeRemaining > 0 && timerText != null)
             {
                 _localTurnTimeRemaining -= Time.deltaTime;
                 
@@ -1116,24 +1116,30 @@ namespace PokerClient.UI.Scenes
         
         private void OnTableStateUpdate(TableState state)
         {
-            _currentState = state;
-            
-            // Check if current user is the table creator
-            var myId = _gameService.CurrentUser?.id;
-            _isTableCreator = myId != null && state.creatorId == myId;
-            _isPracticeMode = state.practiceMode;
-            
-            // Show Add Bots button only for table creator in practice mode
-            if (_addBotsButton != null)
+            try
             {
-                _addBotsButton.gameObject.SetActive(_isTableCreator && _isPracticeMode);
-            }
-            
-            // Update pot
-            potText.text = $"Pot: {ChipStack.FormatChipValue((int)state.pot)}";
-            
-            // Update phase display
-            phaseText.text = GetPhaseDisplayName(state.phase);
+                if (state == null) return;
+                
+                _currentState = state;
+                
+                // Check if current user is the table creator
+                var myId = _gameService.CurrentUser?.id;
+                _isTableCreator = myId != null && state.creatorId == myId;
+                _isPracticeMode = state.practiceMode;
+                
+                // Show Add Bots button only for table creator in practice mode
+                if (_addBotsButton != null)
+                {
+                    _addBotsButton.gameObject.SetActive(_isTableCreator && _isPracticeMode);
+                }
+                
+                // Update pot
+                if (potText != null)
+                    potText.text = $"Pot: {ChipStack.FormatChipValue((int)state.pot)}";
+                
+                // Update phase display
+                if (phaseText != null)
+                    phaseText.text = GetPhaseDisplayName(state.phase);
             
             // Detect phase change and show phase announcement
             if (!string.IsNullOrEmpty(state.phase) && state.phase != _previousPhase)
@@ -1198,7 +1204,7 @@ namespace PokerClient.UI.Scenes
             {
                 ShowActionButtons(state);
             }
-            else
+            else if (actionPanel != null)
             {
                 actionPanel.SetActive(false);
             }
@@ -1222,6 +1228,11 @@ namespace PokerClient.UI.Scenes
             
             // Update blind timer display
             UpdateBlindTimerDisplay(state);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Error in OnTableStateUpdate: {e.Message}\n{e.StackTrace}");
+            }
         }
         
         private void UpdateBlindTimerDisplay(TableState state)
