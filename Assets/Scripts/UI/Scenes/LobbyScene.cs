@@ -736,10 +736,18 @@ namespace PokerClient.UI.Scenes
         
         private void OnCreateTableClick()
         {
-            string name = tableNameInput?.text;
+            string name = tableNameInput?.text?.Trim();
             if (string.IsNullOrEmpty(name))
             {
-                name = $"{_gameService.CurrentUser?.username}'s Table";
+                // Require a table name
+                Debug.LogWarning("Table name is required!");
+                // Flash the input field or show error
+                if (tableNameInput != null)
+                {
+                    tableNameInput.placeholder.GetComponent<TextMeshProUGUI>().text = "TABLE NAME REQUIRED!";
+                    tableNameInput.placeholder.GetComponent<TextMeshProUGUI>().color = Theme.Current.dangerColor;
+                }
+                return;
             }
             
             int maxPlayers = maxPlayersSlider != null ? (int)maxPlayersSlider.value : 6;

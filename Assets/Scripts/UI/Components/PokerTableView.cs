@@ -420,7 +420,7 @@ namespace PokerClient.UI.Components
             PlayerId = info.playerId;
             _nameText.text = info.GetDisplayName();
             _nameText.color = info.isFolded ? Theme.Current.textSecondary : Theme.Current.textPrimary;
-            _chipsText.text = ChipStack.FormatChipValue((int)info.chips);
+            _chipsText.text = ChipStack.FormatChipValueFull((int)info.chips);
             
             // Hole cards
             if (info.cards != null && info.cards.Count > 0)

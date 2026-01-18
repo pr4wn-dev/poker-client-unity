@@ -187,7 +187,7 @@ namespace PokerClient.UI.Components
             
             nameText.text = seat.GetDisplayName();
             nameText.color = Theme.Current.textPrimary;
-            chipsText.text = ChipStack.FormatChipValue(seat.chips);
+            chipsText.text = ChipStack.FormatChipValueFull(seat.chips);
             
             // Set avatar - use bot avatar or player avatar
             if (SpriteManager.Instance != null)

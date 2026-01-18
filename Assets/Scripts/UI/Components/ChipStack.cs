@@ -139,7 +139,7 @@ namespace PokerClient.UI.Components
         }
         
         /// <summary>
-        /// Format chip value for display
+        /// Format chip value for display (abbreviated: 1.5M, 20K)
         /// </summary>
         public static string FormatChipValue(int value)
         {
@@ -148,6 +148,15 @@ namespace PokerClient.UI.Components
             if (value >= 1000)
                 return $"{value / 1000f:0.#}K";
             return value.ToString();
+        }
+        
+        /// <summary>
+        /// Format chip value with full digits and commas (20,000,000)
+        /// Use this for player stack displays where precision matters
+        /// </summary>
+        public static string FormatChipValueFull(int value)
+        {
+            return value.ToString("N0"); // Adds commas: 20,000,000
         }
         
         /// <summary>
