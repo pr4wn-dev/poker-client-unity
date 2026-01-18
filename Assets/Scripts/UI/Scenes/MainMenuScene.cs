@@ -199,60 +199,62 @@ namespace PokerClient.UI.Scenes
             overlayRect.anchorMax = Vector2.one;
             overlayRect.sizeDelta = Vector2.zero;
             
-            // Dialog box - use percentage sizing for mobile
+            // Dialog box - fixed size, centered
             var dialog = UIFactory.CreatePanel(serverSettingsPanel.transform, "Dialog", theme.panelColor);
             var dialogRect = dialog.GetComponent<RectTransform>();
-            dialogRect.anchorMin = new Vector2(0.1f, 0.3f);
-            dialogRect.anchorMax = new Vector2(0.9f, 0.7f);
-            dialogRect.offsetMin = Vector2.zero;
-            dialogRect.offsetMax = Vector2.zero;
+            dialogRect.anchorMin = new Vector2(0.5f, 0.5f);
+            dialogRect.anchorMax = new Vector2(0.5f, 0.5f);
+            dialogRect.pivot = new Vector2(0.5f, 0.5f);
+            dialogRect.sizeDelta = new Vector2(300, 220);
             
             var layout = dialog.AddComponent<VerticalLayoutGroup>();
-            layout.spacing = 10;
-            layout.padding = new RectOffset(20, 20, 20, 20);
+            layout.spacing = 8;
+            layout.padding = new RectOffset(15, 15, 15, 15);
             layout.childAlignment = TextAnchor.UpperCenter;
             layout.childControlWidth = true;
             layout.childControlHeight = false;
             layout.childForceExpandHeight = false;
             
             // Title
-            var title = UIFactory.CreateTitle(dialog.transform, "Title", "Server Settings", 24f);
+            var title = UIFactory.CreateTitle(dialog.transform, "Title", "Server Settings", 20f);
             var titleLayout = title.gameObject.AddComponent<LayoutElement>();
-            titleLayout.preferredHeight = 35;
-            
-            // Description
-            var desc = UIFactory.CreateText(dialog.transform, "Desc", "Enter server IP:", 14f, theme.textSecondary);
-            var descLayout = desc.gameObject.AddComponent<LayoutElement>();
-            descLayout.preferredHeight = 22;
+            titleLayout.preferredHeight = 28;
+            titleLayout.minWidth = 260;
             
             // Server URL input
-            serverUrlInput = UIFactory.CreateInputField(dialog.transform, "ServerUrl", "http://192.168.1.23:3000", 280, 42);
+            serverUrlInput = UIFactory.CreateInputField(dialog.transform, "ServerUrl", "http://192.168.1.23:3000", 260, 38);
             serverUrlInput.text = serverUrl;
             serverUrlInput.contentType = TMP_InputField.ContentType.Standard;
             var urlLayout = serverUrlInput.gameObject.AddComponent<LayoutElement>();
-            urlLayout.preferredHeight = 42;
-            urlLayout.flexibleWidth = 1;
+            urlLayout.preferredHeight = 38;
+            urlLayout.minWidth = 260;
             
             // Current status
-            var status = UIFactory.CreateText(dialog.transform, "Status", $"Current: {serverUrl}", 12f, theme.textSuccess);
+            var status = UIFactory.CreateText(dialog.transform, "Status", $"Current: {serverUrl}", 10f, theme.textSuccess);
             var statusLayout = status.gameObject.AddComponent<LayoutElement>();
-            statusLayout.preferredHeight = 18;
+            statusLayout.preferredHeight = 16;
+            statusLayout.minWidth = 260;
             
             // Spacer
             var spacer = new GameObject("Spacer", typeof(RectTransform), typeof(LayoutElement));
             spacer.transform.SetParent(dialog.transform, false);
-            spacer.GetComponent<LayoutElement>().flexibleHeight = 1;
+            spacer.GetComponent<LayoutElement>().preferredHeight = 10;
             
             // Button row
             var buttonRow = UIFactory.CreateHorizontalGroup(dialog.transform, "Buttons", 10);
             var buttonRowLayout = buttonRow.AddComponent<LayoutElement>();
-            buttonRowLayout.preferredHeight = 40;
+            buttonRowLayout.preferredHeight = 36;
+            buttonRowLayout.minWidth = 260;
+            var rowGroup = buttonRow.GetComponent<HorizontalLayoutGroup>();
+            rowGroup.childControlWidth = false;
+            rowGroup.childForceExpandWidth = false;
+            rowGroup.childAlignment = TextAnchor.MiddleCenter;
             
             // Cancel button
-            var cancelBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "Cancel", "CANCEL", HideServerSettings, 120, 38);
+            var cancelBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "Cancel", "CANCEL", HideServerSettings, 100, 32);
             
             // Save button
-            var saveBtn = UIFactory.CreatePrimaryButton(buttonRow.transform, "Save", "SAVE", SaveServerSettings, 120, 38);
+            var saveBtn = UIFactory.CreatePrimaryButton(buttonRow.transform, "Save", "SAVE", SaveServerSettings, 100, 32);
             
             serverSettingsPanel.SetActive(false);
         }
@@ -372,21 +374,20 @@ namespace PokerClient.UI.Scenes
             loginLayout.minWidth = 280;
             
             // Button row for Register and Server
-            var buttonRow = UIFactory.CreateHorizontalGroup(loginPanel.transform, "ButtonRow", 8);
+            var buttonRow = UIFactory.CreateHorizontalGroup(loginPanel.transform, "ButtonRow", 10);
             var rowLayout = buttonRow.AddComponent<LayoutElement>();
             rowLayout.preferredHeight = 28;
-            rowLayout.minWidth = 280;
+            var rowGroup = buttonRow.GetComponent<HorizontalLayoutGroup>();
+            rowGroup.childControlWidth = false; // Don't stretch children
+            rowGroup.childForceExpandWidth = false;
             
             // Register link
-            var registerBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "RegisterLink", "CREATE ACCOUNT", 
-                ShowRegisterPanel, 140, 26);
+            var registerBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "RegisterLink", "REGISTER", 
+                ShowRegisterPanel, 90, 26);
             
-            // Server settings button
-            var settingsBtn = UIFactory.CreateButton(buttonRow.transform, "ServerSettings", "⚙ SERVER", ShowServerSettings);
-            var settingsBtnRect = settingsBtn.GetComponent<RectTransform>();
-            settingsBtnRect.sizeDelta = new Vector2(80, 26);
-            var settingsBtnImg = settingsBtn.GetComponent<Image>();
-            settingsBtnImg.color = new Color(0.3f, 0.3f, 0.3f, 0.8f);
+            // Server settings button  
+            var settingsBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "ServerSettings", "SERVER", 
+                ShowServerSettings, 70, 26);
         }
         
         private void BuildRegisterPanel(Transform parent)
