@@ -59,7 +59,8 @@ namespace PokerClient.Networking
         public static bool HasInstance => _instance != null;
         
         [Header("Server Configuration")]
-        [SerializeField] private string serverUrl = "http://localhost:3000";
+        // Use network IP for phone testing
+        [SerializeField] private string serverUrl = "http://192.168.1.23:3000";
         [SerializeField] private bool autoConnect = false;
         
         [Header("Status")]

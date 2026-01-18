@@ -16,7 +16,8 @@ namespace PokerClient.UI.Scenes
     public class MainMenuScene : MonoBehaviour
     {
         [Header("Server Configuration")]
-        [SerializeField] private string serverUrl = "http://localhost:3000";
+        // Use network IP for phone testing, localhost for Unity Editor only
+        [SerializeField] private string serverUrl = "http://192.168.1.23:3000";
         
         [Header("Scene References")]
         [SerializeField] private Canvas canvas;
