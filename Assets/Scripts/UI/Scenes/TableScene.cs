@@ -95,6 +95,9 @@ namespace PokerClient.UI.Scenes
         private int _currentSmallBlind = 0;
         private int _currentBigBlind = 0;
         
+        // Track phase changes to show phase announcements
+        private string _previousPhase = "";
+        
         private void Start()
         {
             _gameService = GameService.Instance;
@@ -400,6 +403,40 @@ namespace PokerClient.UI.Scenes
         {
             if (_actionAnnouncement != null)
                 _actionAnnouncement.SetActive(false);
+        }
+        
+        private void ShowPhaseAnnouncement(string phase)
+        {
+            if (_actionAnnouncement == null || _actionText == null) return;
+            
+            string message;
+            Color phaseColor;
+            
+            switch (phase.ToLower())
+            {
+                case "flop":
+                    message = "--- FLOP ---";
+                    phaseColor = new Color(0.3f, 0.8f, 1f); // Cyan
+                    break;
+                case "turn":
+                    message = "--- TURN ---";
+                    phaseColor = new Color(1f, 0.8f, 0.3f); // Gold
+                    break;
+                case "river":
+                    message = "--- RIVER ---";
+                    phaseColor = new Color(1f, 0.5f, 0.3f); // Orange-red
+                    break;
+                default:
+                    return; // Don't show for other phases
+            }
+            
+            _actionText.text = message;
+            _actionText.color = phaseColor;
+            _actionAnnouncement.SetActive(true);
+            
+            // Shorter display for phase announcements (1.5 seconds)
+            CancelInvoke(nameof(HideActionAnnouncement));
+            Invoke(nameof(HideActionAnnouncement), 1.5f);
         }
         
         private void BuildTopBar()
@@ -986,6 +1023,18 @@ namespace PokerClient.UI.Scenes
             
             // Update phase display
             phaseText.text = GetPhaseDisplayName(state.phase);
+            
+            // Detect phase change and show phase announcement
+            if (!string.IsNullOrEmpty(state.phase) && state.phase != _previousPhase)
+            {
+                // Show phase announcement for game phases (flop, turn, river)
+                // Skip preflop since it's the start of a new hand
+                if (state.phase == "flop" || state.phase == "turn" || state.phase == "river")
+                {
+                    ShowPhaseAnnouncement(state.phase);
+                }
+                _previousPhase = state.phase;
+            }
             
             // Handle countdown display based on phase
             if (state.phase == "countdown" && state.startCountdownRemaining > 0)
