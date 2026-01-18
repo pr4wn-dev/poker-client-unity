@@ -295,19 +295,25 @@ namespace PokerClient.UI.Components
             _chipsText.GetOrAddComponent<LayoutElement>().preferredHeight = 18;
             _chipsText.alignment = TextAlignmentOptions.Center;
             
-            // Cards row
-            var cardsRow = UIFactory.CreatePanel(content.transform, "CardsRow", Color.clear);
-            cardsRow.GetOrAddComponent<LayoutElement>().preferredHeight = 55;
+            // Hole cards - positioned ON the seat (overlay at bottom)
+            var cardsRow = UIFactory.CreatePanel(transform, "CardsRow", Color.clear);
+            var cardsRowRect = cardsRow.GetComponent<RectTransform>();
+            cardsRowRect.anchorMin = new Vector2(0.5f, 0f);
+            cardsRowRect.anchorMax = new Vector2(0.5f, 0f);
+            cardsRowRect.pivot = new Vector2(0.5f, 0.5f);
+            cardsRowRect.anchoredPosition = new Vector2(0, 20); // Position at bottom of seat
+            cardsRowRect.sizeDelta = new Vector2(120, 75);
+            
             var hlg = cardsRow.AddComponent<HorizontalLayoutGroup>();
             hlg.spacing = 5;
             hlg.childAlignment = TextAnchor.MiddleCenter;
             hlg.childControlWidth = false;
             hlg.childForceExpandWidth = false;
             
-            // Hole cards
+            // Hole cards (slightly smaller than community cards)
             for (int i = 0; i < 2; i++)
             {
-                var cardView = CardView.Create(cardsRow.transform, $"Card{i}", new Vector2(35, 50));
+                var cardView = CardView.Create(cardsRow.transform, $"Card{i}", new Vector2(50, 70));
                 cardView.SetHidden();
                 _holeCards.Add(cardView);
             }
@@ -510,7 +516,7 @@ namespace PokerClient.UI.Components
             var go = new GameObject(name);
             go.transform.SetParent(parent, false);
             var view = go.AddComponent<CardView>();
-            view.Initialize(size ?? new Vector2(50, 68));
+            view.Initialize(size ?? new Vector2(Theme.Current.cardWidth, Theme.Current.cardHeight));
             return view;
         }
         
