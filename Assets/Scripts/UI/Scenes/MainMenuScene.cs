@@ -314,85 +314,77 @@ namespace PokerClient.UI.Scenes
         {
             var theme = Theme.Current;
             
-            // Fixed size panel, centered
+            // Compact fixed size panel, centered
             loginPanel = UIFactory.CreatePanel(parent, "LoginPanel", theme.panelColor);
             var panelRect = loginPanel.GetComponent<RectTransform>();
             panelRect.anchorMin = new Vector2(0.5f, 0.5f);
             panelRect.anchorMax = new Vector2(0.5f, 0.5f);
             panelRect.pivot = new Vector2(0.5f, 0.5f);
-            panelRect.sizeDelta = new Vector2(340, 420); // Fixed size that fits mobile
+            panelRect.sizeDelta = new Vector2(320, 340); // Compact size
             
             var layout = loginPanel.AddComponent<VerticalLayoutGroup>();
-            layout.spacing = 8;
-            layout.padding = new RectOffset(20, 20, 15, 15);
+            layout.spacing = 5;
+            layout.padding = new RectOffset(15, 15, 12, 12);
             layout.childAlignment = TextAnchor.UpperCenter;
             layout.childControlWidth = true;
             layout.childControlHeight = false;
             layout.childForceExpandWidth = false;
             
             // Title
-            var title = UIFactory.CreateTitle(loginPanel.transform, "Title", "POKER GAME", 32f);
+            var title = UIFactory.CreateTitle(loginPanel.transform, "Title", "POKER GAME", 28f);
             title.color = theme.secondaryColor;
             var titleLayout = title.gameObject.AddComponent<LayoutElement>();
-            titleLayout.preferredHeight = 45;
+            titleLayout.preferredHeight = 36;
             titleLayout.minWidth = 280;
             
             // Subtitle
-            var subtitle = UIFactory.CreateText(loginPanel.transform, "Subtitle", "Login to Play", 14f, theme.textSecondary);
+            var subtitle = UIFactory.CreateText(loginPanel.transform, "Subtitle", "Login to Play", 12f, theme.textSecondary);
             var subLayout = subtitle.gameObject.AddComponent<LayoutElement>();
-            subLayout.preferredHeight = 22;
+            subLayout.preferredHeight = 18;
             subLayout.minWidth = 280;
             
-            // Spacer
-            var spacer = new GameObject("Spacer", typeof(RectTransform), typeof(LayoutElement));
-            spacer.transform.SetParent(loginPanel.transform, false);
-            spacer.GetComponent<LayoutElement>().preferredHeight = 8;
-            
             // Username input
-            usernameInput = UIFactory.CreateInputField(loginPanel.transform, "Username", "Username", 280, 42);
+            usernameInput = UIFactory.CreateInputField(loginPanel.transform, "Username", "Username", 280, 38);
             var usernameLayout = usernameInput.gameObject.AddComponent<LayoutElement>();
-            usernameLayout.preferredHeight = 42;
+            usernameLayout.preferredHeight = 38;
             usernameLayout.minWidth = 280;
             
             // Password input
-            passwordInput = UIFactory.CreateInputField(loginPanel.transform, "Password", "Password", 280, 42, 
+            passwordInput = UIFactory.CreateInputField(loginPanel.transform, "Password", "Password", 280, 38, 
                 TMP_InputField.ContentType.Password);
             var passwordLayout = passwordInput.gameObject.AddComponent<LayoutElement>();
-            passwordLayout.preferredHeight = 42;
+            passwordLayout.preferredHeight = 38;
             passwordLayout.minWidth = 280;
             
             // Load saved credentials
             LoadSavedCredentials();
             
             // Error text
-            errorText = UIFactory.CreateText(loginPanel.transform, "Error", "", 11f, theme.textDanger);
+            errorText = UIFactory.CreateText(loginPanel.transform, "Error", "", 10f, theme.textDanger);
             var errorLayout = errorText.gameObject.AddComponent<LayoutElement>();
-            errorLayout.preferredHeight = 18;
+            errorLayout.preferredHeight = 14;
             errorLayout.minWidth = 280;
             
             // Login button
-            var loginBtn = UIFactory.CreatePrimaryButton(loginPanel.transform, "LoginBtn", "LOGIN", OnLoginClick, 280, 45);
+            var loginBtn = UIFactory.CreatePrimaryButton(loginPanel.transform, "LoginBtn", "LOGIN", OnLoginClick, 280, 40);
             var loginLayout = loginBtn.gameObject.AddComponent<LayoutElement>();
-            loginLayout.preferredHeight = 45;
+            loginLayout.preferredHeight = 40;
             loginLayout.minWidth = 280;
             
-            // Divider
-            var divider = UIFactory.CreateDivider(loginPanel.transform, "Divider", true, 160, 1);
-            var dividerLayout = divider.gameObject.AddComponent<LayoutElement>();
-            dividerLayout.preferredHeight = 12;
+            // Button row for Register and Server
+            var buttonRow = UIFactory.CreateHorizontalGroup(loginPanel.transform, "ButtonRow", 8);
+            var rowLayout = buttonRow.AddComponent<LayoutElement>();
+            rowLayout.preferredHeight = 28;
+            rowLayout.minWidth = 280;
             
             // Register link
-            var registerBtn = UIFactory.CreateSecondaryButton(loginPanel.transform, "RegisterLink", "CREATE ACCOUNT", 
-                ShowRegisterPanel, 160, 32);
-            var regLayout = registerBtn.gameObject.AddComponent<LayoutElement>();
-            regLayout.preferredHeight = 32;
-            regLayout.minWidth = 160;
+            var registerBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "RegisterLink", "CREATE ACCOUNT", 
+                ShowRegisterPanel, 140, 26);
             
             // Server settings button
-            var settingsBtn = UIFactory.CreateButton(loginPanel.transform, "ServerSettings", "⚙ SERVER", ShowServerSettings);
-            var settingsBtnLayout = settingsBtn.gameObject.AddComponent<LayoutElement>();
-            settingsBtnLayout.preferredHeight = 26;
-            settingsBtnLayout.minWidth = 90;
+            var settingsBtn = UIFactory.CreateButton(buttonRow.transform, "ServerSettings", "⚙ SERVER", ShowServerSettings);
+            var settingsBtnRect = settingsBtn.GetComponent<RectTransform>();
+            settingsBtnRect.sizeDelta = new Vector2(80, 26);
             var settingsBtnImg = settingsBtn.GetComponent<Image>();
             settingsBtnImg.color = new Color(0.3f, 0.3f, 0.3f, 0.8f);
         }
@@ -401,74 +393,74 @@ namespace PokerClient.UI.Scenes
         {
             var theme = Theme.Current;
             
-            // Fixed size panel, centered
+            // Compact fixed size panel, centered
             registerPanel = UIFactory.CreatePanel(parent, "RegisterPanel", theme.panelColor);
             var panelRect = registerPanel.GetComponent<RectTransform>();
             panelRect.anchorMin = new Vector2(0.5f, 0.5f);
             panelRect.anchorMax = new Vector2(0.5f, 0.5f);
             panelRect.pivot = new Vector2(0.5f, 0.5f);
-            panelRect.sizeDelta = new Vector2(340, 380); // Fixed size
+            panelRect.sizeDelta = new Vector2(320, 320); // Compact size
             
             var layout = registerPanel.AddComponent<VerticalLayoutGroup>();
-            layout.spacing = 6;
-            layout.padding = new RectOffset(20, 20, 12, 12);
+            layout.spacing = 4;
+            layout.padding = new RectOffset(15, 15, 10, 10);
             layout.childAlignment = TextAnchor.UpperCenter;
             layout.childControlWidth = true;
             layout.childControlHeight = false;
             layout.childForceExpandWidth = false;
             
             // Title
-            var title = UIFactory.CreateTitle(registerPanel.transform, "Title", "CREATE ACCOUNT", 24f);
+            var title = UIFactory.CreateTitle(registerPanel.transform, "Title", "CREATE ACCOUNT", 22f);
             var titleLayout = title.gameObject.AddComponent<LayoutElement>();
-            titleLayout.preferredHeight = 35;
+            titleLayout.preferredHeight = 30;
             titleLayout.minWidth = 280;
             
             // Username
-            regUsernameInput = UIFactory.CreateInputField(registerPanel.transform, "RegUsername", "Username", 280, 38);
+            regUsernameInput = UIFactory.CreateInputField(registerPanel.transform, "RegUsername", "Username", 280, 34);
             var usernameLayout = regUsernameInput.gameObject.AddComponent<LayoutElement>();
-            usernameLayout.preferredHeight = 38;
+            usernameLayout.preferredHeight = 34;
             usernameLayout.minWidth = 280;
             
             // Email
-            emailInput = UIFactory.CreateInputField(registerPanel.transform, "RegEmail", "Email (optional)", 280, 38,
+            emailInput = UIFactory.CreateInputField(registerPanel.transform, "RegEmail", "Email (optional)", 280, 34,
                 TMP_InputField.ContentType.EmailAddress);
             var emailLayout = emailInput.gameObject.AddComponent<LayoutElement>();
-            emailLayout.preferredHeight = 38;
+            emailLayout.preferredHeight = 34;
             emailLayout.minWidth = 280;
             
             // Password
-            regPasswordInput = UIFactory.CreateInputField(registerPanel.transform, "RegPassword", "Password", 280, 38,
+            regPasswordInput = UIFactory.CreateInputField(registerPanel.transform, "RegPassword", "Password", 280, 34,
                 TMP_InputField.ContentType.Password);
             var passLayout = regPasswordInput.gameObject.AddComponent<LayoutElement>();
-            passLayout.preferredHeight = 38;
+            passLayout.preferredHeight = 34;
             passLayout.minWidth = 280;
             
             // Confirm Password
-            var regConfirm = UIFactory.CreateInputField(registerPanel.transform, "RegConfirm", "Confirm Password", 280, 38,
+            var regConfirm = UIFactory.CreateInputField(registerPanel.transform, "RegConfirm", "Confirm Password", 280, 34,
                 TMP_InputField.ContentType.Password);
             var confirmLayout = regConfirm.gameObject.AddComponent<LayoutElement>();
-            confirmLayout.preferredHeight = 38;
+            confirmLayout.preferredHeight = 34;
             confirmLayout.minWidth = 280;
             
             // Error text
-            regErrorText = UIFactory.CreateText(registerPanel.transform, "RegError", "", 11f, theme.textDanger);
+            regErrorText = UIFactory.CreateText(registerPanel.transform, "RegError", "", 10f, theme.textDanger);
             var errorLayout = regErrorText.gameObject.AddComponent<LayoutElement>();
-            errorLayout.preferredHeight = 16;
+            errorLayout.preferredHeight = 14;
             errorLayout.minWidth = 280;
             
             // Register button
-            var registerBtn = UIFactory.CreatePrimaryButton(registerPanel.transform, "RegisterBtn", "CREATE ACCOUNT", 
-                OnRegisterClick, 280, 42);
+            var registerBtn = UIFactory.CreatePrimaryButton(registerPanel.transform, "RegisterBtn", "CREATE", 
+                OnRegisterClick, 280, 36);
             var regBtnLayout = registerBtn.gameObject.AddComponent<LayoutElement>();
-            regBtnLayout.preferredHeight = 42;
+            regBtnLayout.preferredHeight = 36;
             regBtnLayout.minWidth = 280;
             
             // Back button
-            var backBtn = UIFactory.CreateSecondaryButton(registerPanel.transform, "BackBtn", "BACK TO LOGIN",
-                ShowLoginPanel, 160, 30);
+            var backBtn = UIFactory.CreateSecondaryButton(registerPanel.transform, "BackBtn", "BACK",
+                ShowLoginPanel, 100, 26);
             var backLayout = backBtn.gameObject.AddComponent<LayoutElement>();
-            backLayout.preferredHeight = 30;
-            backLayout.minWidth = 160;
+            backLayout.preferredHeight = 26;
+            backLayout.minWidth = 100;
             
             registerPanel.SetActive(false);
         }
