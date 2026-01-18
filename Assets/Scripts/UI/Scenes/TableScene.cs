@@ -557,17 +557,20 @@ namespace PokerClient.UI.Scenes
             _countdownOverlay.SetActive(false);
         }
         
-        private void UpdateCountdownDisplay(int? countdownValue)
+        private void UpdateCountdownDisplay(int countdownValue)
         {
-            if (countdownValue.HasValue && countdownValue.Value > 0)
+            Debug.Log($"[TableScene] UpdateCountdownDisplay called with: {countdownValue}, overlay exists: {_countdownOverlay != null}");
+            
+            if (countdownValue > 0)
             {
+                Debug.Log($"[TableScene] Activating countdown overlay with value: {countdownValue}");
                 _countdownOverlay.SetActive(true);
-                _countdownNumber.text = countdownValue.Value.ToString();
+                _countdownNumber.text = countdownValue.ToString();
                 
                 // Play tick sound on each countdown change
-                if (countdownValue.Value != _lastCountdownValue)
+                if (countdownValue != _lastCountdownValue)
                 {
-                    _lastCountdownValue = countdownValue.Value;
+                    _lastCountdownValue = countdownValue;
                     // Could add a tick sound here: AudioManager.Instance?.PlayCountdownTick();
                     
                     // Pulse animation effect - scale up then back
@@ -609,6 +612,9 @@ namespace PokerClient.UI.Scenes
         {
             _currentState = state;
             
+            // DEBUG: Log countdown state
+            Debug.Log($"[TableScene] State update - phase: {state.phase}, countdown: {state.startCountdownRemaining}");
+            
             // Check if current user is the table creator
             var myId = _gameService.CurrentUser?.id;
             _isTableCreator = myId != null && state.creatorId == myId;
@@ -617,8 +623,9 @@ namespace PokerClient.UI.Scenes
             potText.text = $"Pot: {ChipStack.FormatChipValue((int)state.pot)}";
             
             // Update phase (show countdown if waiting and countdown active)
-            if (state.phase == "waiting" && state.startCountdownRemaining.HasValue && state.startCountdownRemaining.Value > 0)
+            if (state.phase == "waiting" && state.startCountdownRemaining > 0)
             {
+                Debug.Log($"[TableScene] SHOWING COUNTDOWN: {state.startCountdownRemaining}");
                 phaseText.text = "Waiting for Players...";
                 // Show big countdown overlay
                 UpdateCountdownDisplay(state.startCountdownRemaining);
@@ -627,7 +634,7 @@ namespace PokerClient.UI.Scenes
             {
                 phaseText.text = GetPhaseDisplayName(state.phase);
                 // Hide countdown overlay when game starts
-                UpdateCountdownDisplay(null);
+                UpdateCountdownDisplay(0);
             }
             
             // Update table view
@@ -646,12 +653,12 @@ namespace PokerClient.UI.Scenes
             }
             
             // Update turn timer (only if game is in progress)
-            if (state.phase != "waiting" && state.turnTimeRemaining.HasValue && state.turnTimeRemaining.Value > 0)
+            if (state.phase != "waiting" && state.turnTimeRemaining > 0)
             {
-                timerText.text = Mathf.CeilToInt(state.turnTimeRemaining.Value).ToString();
+                timerText.text = Mathf.CeilToInt(state.turnTimeRemaining).ToString();
                 timerText.gameObject.SetActive(true);
             }
-            else if (!state.startCountdownRemaining.HasValue || state.startCountdownRemaining.Value <= 0)
+            else if (state.startCountdownRemaining <= 0)
             {
                 timerText.gameObject.SetActive(false);
             }
