@@ -1339,11 +1339,53 @@ namespace PokerClient.UI.Scenes
         private void OnPlayerJoinedTable(string oderId, string name, int seatIndex)
         {
             Debug.Log($"{name} joined at seat {seatIndex}");
+            
+            // Don't show notification for yourself joining
+            if (oderId == _gameService.CurrentUser?.id) return;
+            
+            // Show join notification
+            ShowPlayerNotification($"{name} joined the table", new Color(0.3f, 0.8f, 0.3f)); // Green
+            
+            // Play sound
+            AudioManager.Instance?.PlaySFX(AudioManager.Instance?.playerJoin);
         }
         
-        private void OnPlayerLeftTable(string oderId)
+        private void OnPlayerLeftTable(string playerId)
         {
-            Debug.Log($"Player {oderId} left");
+            Debug.Log($"Player {playerId} left");
+            
+            // Try to find the player's name from current state
+            string playerName = "A player";
+            if (_currentState?.seats != null)
+            {
+                foreach (var seat in _currentState.seats)
+                {
+                    if (seat != null && seat.playerId == playerId)
+                    {
+                        playerName = seat.name ?? seat.playerName ?? "A player";
+                        break;
+                    }
+                }
+            }
+            
+            // Show leave notification
+            ShowPlayerNotification($"{playerName} left the table", new Color(0.7f, 0.7f, 0.7f)); // Gray
+            
+            // Play sound
+            AudioManager.Instance?.PlaySFX(AudioManager.Instance?.playerLeave);
+        }
+        
+        private void ShowPlayerNotification(string message, Color color)
+        {
+            if (_actionAnnouncement == null || _actionText == null) return;
+            
+            _actionText.text = message;
+            _actionText.color = color;
+            _actionAnnouncement.SetActive(true);
+            
+            // Auto-hide after 2.5 seconds
+            CancelInvoke(nameof(HideActionAnnouncement));
+            Invoke(nameof(HideActionAnnouncement), 2.5f);
         }
         
         private void OnHandComplete(HandResultData result)
