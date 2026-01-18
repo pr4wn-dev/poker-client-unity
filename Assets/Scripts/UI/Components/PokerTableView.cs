@@ -121,33 +121,34 @@ namespace PokerClient.UI.Components
         {
             // Standard poker table layout for different player counts
             // Positions are anchor positions (0-1)
+            // Well-spaced for mobile - NO overlaps
             
-            // 9-player layout - Y positions raised to avoid action panel overlap
+            // 9-player layout - side players pushed to corners
             if (count >= 9)
             {
                 return new List<Vector2>
                 {
-                    new Vector2(0.5f, 0.22f),   // Bottom center (player's seat)
-                    new Vector2(0.15f, 0.25f),  // Bottom left
-                    new Vector2(0.06f, 0.42f),  // Left side (lowered slightly)
-                    new Vector2(0.08f, 0.80f),  // Top left - RAISED to avoid overlap
-                    new Vector2(0.35f, 0.88f),  // Top left-center
-                    new Vector2(0.65f, 0.88f),  // Top right-center
-                    new Vector2(0.92f, 0.80f),  // Top right - RAISED to avoid overlap
-                    new Vector2(0.94f, 0.42f),  // Right side (lowered slightly)
-                    new Vector2(0.85f, 0.25f),  // Bottom right
+                    new Vector2(0.50f, 0.12f),  // 0: Bottom center (player)
+                    new Vector2(0.25f, 0.15f),  // 1: Bottom left
+                    new Vector2(0.06f, 0.28f),  // 2: Left lower
+                    new Vector2(0.06f, 0.78f),  // 3: Left upper (HIGHER)
+                    new Vector2(0.25f, 0.90f),  // 4: Top left
+                    new Vector2(0.75f, 0.90f),  // 5: Top right
+                    new Vector2(0.94f, 0.78f),  // 6: Right upper (HIGHER)
+                    new Vector2(0.94f, 0.28f),  // 7: Right lower
+                    new Vector2(0.75f, 0.15f),  // 8: Bottom right
                 };
             }
             else if (count >= 6)
             {
                 return new List<Vector2>
                 {
-                    new Vector2(0.5f, 0.22f),   // Bottom center
-                    new Vector2(0.08f, 0.40f),  // Left lower
-                    new Vector2(0.10f, 0.78f),  // Top left - RAISED
-                    new Vector2(0.5f, 0.88f),   // Top center
-                    new Vector2(0.90f, 0.78f),  // Top right - RAISED
-                    new Vector2(0.92f, 0.40f),  // Right lower
+                    new Vector2(0.50f, 0.12f),  // Bottom center
+                    new Vector2(0.06f, 0.28f),  // Left lower
+                    new Vector2(0.06f, 0.78f),  // Top left (HIGHER)
+                    new Vector2(0.50f, 0.90f),  // Top center
+                    new Vector2(0.94f, 0.78f),  // Top right (HIGHER)
+                    new Vector2(0.94f, 0.28f),  // Right lower
                 };
             }
             else
@@ -155,13 +156,13 @@ namespace PokerClient.UI.Components
                 // Heads-up or small game
                 return new List<Vector2>
                 {
-                    new Vector2(0.5f, 0.25f),   // Bottom (you) - RAISED
-                    new Vector2(0.5f, 0.80f),   // Top (opponent)
+                    new Vector2(0.50f, 0.12f),  // Bottom (you)
+                    new Vector2(0.50f, 0.82f),  // Top (opponent)
                 };
             }
         }
         
-        public void UpdateFromState(TableState state)
+        public void UpdateFromState(TableState state, int mySeatIndex = -1)
         {
             if (state == null) return;
             
@@ -174,17 +175,40 @@ namespace PokerClient.UI.Components
             // Update seats
             if (_seats == null || state.seats == null) return;
             
-            for (int i = 0; i < _seats.Count; i++)
+            // Use maxPlayers for rotation to avoid wrapping issues
+            int maxSeats = _maxPlayers;
+            
+            for (int visualIndex = 0; visualIndex < _seats.Count; visualIndex++)
             {
-                if (_seats[i] == null) continue;
+                if (_seats[visualIndex] == null) continue;
                 
-                if (i < state.seats.Count && state.seats[i] != null)
+                // Rotate seats so player's seat is always at visual position 0 (bottom center)
+                // If mySeatIndex is 3, then:
+                //   visual 0 -> server seat 3 (me)
+                //   visual 1 -> server seat 4
+                //   visual 2 -> server seat 5
+                //   etc.
+                int serverSeatIndex;
+                if (mySeatIndex >= 0 && maxSeats > 0)
                 {
-                    _seats[i].UpdateFromState(state.seats[i], state.currentPlayerId == state.seats[i].playerId, state.dealerIndex == i);
+                    serverSeatIndex = (visualIndex + mySeatIndex) % maxSeats;
                 }
                 else
                 {
-                    _seats[i].SetEmpty();
+                    serverSeatIndex = visualIndex;
+                }
+                
+                // Check bounds and if seat has a player
+                if (serverSeatIndex < state.seats.Count && state.seats[serverSeatIndex] != null && 
+                    !string.IsNullOrEmpty(state.seats[serverSeatIndex].playerId))
+                {
+                    bool isCurrentTurn = state.currentPlayerId == state.seats[serverSeatIndex].playerId;
+                    bool isDealer = state.dealerIndex == serverSeatIndex;
+                    _seats[visualIndex].UpdateFromState(state.seats[serverSeatIndex], isCurrentTurn, isDealer);
+                }
+                else
+                {
+                    _seats[visualIndex].SetEmpty();
                 }
             }
         }
@@ -251,7 +275,7 @@ namespace PokerClient.UI.Components
             SeatIndex = seatIndex;
             
             _rect = gameObject.AddComponent<RectTransform>();
-            _rect.sizeDelta = new Vector2(150, 180); // Taller to fit cards inside
+            _rect.sizeDelta = new Vector2(100, 110); // Bigger seats
             
             var theme = Theme.Current;
             
@@ -264,80 +288,75 @@ namespace PokerClient.UI.Components
             var borderRect = turnBorder.GetComponent<RectTransform>();
             borderRect.anchorMin = Vector2.zero;
             borderRect.anchorMax = Vector2.one;
-            borderRect.sizeDelta = new Vector2(6, 6);
+            borderRect.sizeDelta = new Vector2(4, 4);
             _turnIndicator = turnBorder.GetComponent<Image>();
             
-            // Content layout - everything INSIDE the seat
-            var content = UIFactory.CreatePanel(transform, "Content", Color.clear);
-            var contentRect = content.GetComponent<RectTransform>();
-            contentRect.anchorMin = Vector2.zero;
-            contentRect.anchorMax = Vector2.one;
-            contentRect.sizeDelta = new Vector2(-8, -8);
-            contentRect.anchoredPosition = Vector2.zero;
-            
-            var vlg = content.AddComponent<VerticalLayoutGroup>();
-            vlg.spacing = 2;
-            vlg.padding = new RectOffset(4, 4, 4, 4);
-            vlg.childAlignment = TextAnchor.UpperCenter;
-            vlg.childControlHeight = false;
-            vlg.childForceExpandHeight = false;
-            vlg.childControlWidth = true;
-            vlg.childForceExpandWidth = true;
-            
-            // Name at top
-            _nameText = UIFactory.CreateText(content.transform, "Name", "Empty", 15f, theme.textSecondary);
-            _nameText.GetOrAddComponent<LayoutElement>().preferredHeight = 20;
+            // Name at top - manually positioned
+            _nameText = UIFactory.CreateText(transform, "Name", "Empty", 11f, theme.textSecondary);
+            var nameRect = _nameText.GetComponent<RectTransform>();
+            nameRect.anchorMin = new Vector2(0, 1);
+            nameRect.anchorMax = new Vector2(1, 1);
+            nameRect.pivot = new Vector2(0.5f, 1);
+            nameRect.anchoredPosition = new Vector2(0, -4);
+            nameRect.sizeDelta = new Vector2(0, 16);
             _nameText.alignment = TextAlignmentOptions.Center;
             
-            // Chips - gold text directly below name
-            _chipsText = UIFactory.CreateText(content.transform, "Chips", "", 18f, new Color(1f, 0.85f, 0.2f));
-            _chipsText.GetOrAddComponent<LayoutElement>().preferredHeight = 22;
+            // Chips below name - manually positioned
+            _chipsText = UIFactory.CreateText(transform, "Chips", "", 12f, new Color(1f, 0.85f, 0.2f));
+            var chipsRect = _chipsText.GetComponent<RectTransform>();
+            chipsRect.anchorMin = new Vector2(0, 1);
+            chipsRect.anchorMax = new Vector2(1, 1);
+            chipsRect.pivot = new Vector2(0.5f, 1);
+            chipsRect.anchoredPosition = new Vector2(0, -20);
+            chipsRect.sizeDelta = new Vector2(0, 16);
             _chipsText.fontStyle = FontStyles.Bold;
             _chipsText.alignment = TextAlignmentOptions.Center;
             
-            // Hole cards row - INSIDE the content layout
-            var cardsRow = UIFactory.CreatePanel(content.transform, "CardsRow", Color.clear);
-            cardsRow.GetOrAddComponent<LayoutElement>().preferredHeight = 95;
-            
-            var hlg = cardsRow.AddComponent<HorizontalLayoutGroup>();
-            hlg.spacing = 4;
-            hlg.childAlignment = TextAnchor.MiddleCenter;
-            hlg.childControlWidth = false;
-            hlg.childForceExpandWidth = false;
-            hlg.padding = new RectOffset(10, 10, 5, 5);
-            
-            // Hole cards (55x77 - fits inside seat)
+            // Hole cards - LARGE cards overlapping bottom of seat
             for (int i = 0; i < 2; i++)
             {
-                var cardView = CardView.Create(cardsRow.transform, $"Card{i}", new Vector2(55, 77));
+                var cardView = CardView.Create(transform, $"Card{i}", new Vector2(70, 98));
+                var cardRect = cardView.GetComponent<RectTransform>();
+                // Force the size directly
+                cardRect.sizeDelta = new Vector2(70, 98);
+                cardRect.anchorMin = new Vector2(0.5f, 0);
+                cardRect.anchorMax = new Vector2(0.5f, 0);
+                cardRect.pivot = new Vector2(0.5f, 0.3f); // Higher pivot = cards sit higher
+                float xOffset = (i == 0) ? -28 : 28;
+                cardRect.anchoredPosition = new Vector2(xOffset, 0);
                 cardView.SetHidden();
                 _holeCards.Add(cardView);
             }
             
-            // Action text (Fold, Call, etc.) - at bottom
-            _actionText = UIFactory.CreateText(content.transform, "Action", "", 14f, theme.primaryColor);
-            _actionText.GetOrAddComponent<LayoutElement>().preferredHeight = 18;
+            // Action text above cards - manually positioned
+            _actionText = UIFactory.CreateText(transform, "Action", "", 9f, theme.primaryColor);
+            var actionRect = _actionText.GetComponent<RectTransform>();
+            actionRect.anchorMin = new Vector2(0, 0);
+            actionRect.anchorMax = new Vector2(1, 0);
+            actionRect.pivot = new Vector2(0.5f, 0);
+            actionRect.anchoredPosition = new Vector2(0, 48);
+            actionRect.sizeDelta = new Vector2(0, 14);
             _actionText.alignment = TextAlignmentOptions.Center;
             _actionText.fontStyle = FontStyles.Bold;
             _actionText.gameObject.SetActive(false);
             
-            // Bet chips (visual chip stack) - positioned toward table center
+            // Bet chips - positioned outside seat toward table center
             _betChips = ChipStack.Create(transform, 0);
             var betChipsRect = _betChips.GetComponent<RectTransform>();
             betChipsRect.anchorMin = new Vector2(0.5f, 0.5f);
             betChipsRect.anchorMax = new Vector2(0.5f, 0.5f);
             betChipsRect.pivot = new Vector2(0.5f, 0.5f);
-            betChipsRect.anchoredPosition = new Vector2(60, 0); // To the right of the seat
-            betChipsRect.localScale = new Vector3(1.5f, 1.5f, 1f); // Make larger
+            betChipsRect.anchoredPosition = new Vector2(50, 0);
+            betChipsRect.localScale = new Vector3(0.8f, 0.8f, 1f);
             
-            // Bet text (chips in front)
-            _betText = UIFactory.CreateText(transform, "Bet", "", 16f, theme.accentColor);
+            // Bet text
+            _betText = UIFactory.CreateText(transform, "Bet", "", 10f, theme.accentColor);
             var betRect = _betText.GetComponent<RectTransform>();
             betRect.anchorMin = new Vector2(0.5f, 0);
             betRect.anchorMax = new Vector2(0.5f, 0);
             betRect.pivot = new Vector2(0.5f, 1);
-            betRect.anchoredPosition = new Vector2(0, -55);
-            betRect.sizeDelta = new Vector2(100, 25);
+            betRect.anchoredPosition = new Vector2(0, -30);
+            betRect.sizeDelta = new Vector2(60, 16);
             _betText.alignment = TextAlignmentOptions.Center;
             _betText.gameObject.SetActive(false);
             
@@ -347,10 +366,10 @@ namespace PokerClient.UI.Components
             dbRect.anchorMin = new Vector2(1, 1);
             dbRect.anchorMax = new Vector2(1, 1);
             dbRect.pivot = new Vector2(1, 1);
-            dbRect.anchoredPosition = new Vector2(5, 5);
-            dbRect.sizeDelta = new Vector2(30, 30);
+            dbRect.anchoredPosition = new Vector2(3, 3);
+            dbRect.sizeDelta = new Vector2(20, 20);
             
-            var dbText = UIFactory.CreateText(_dealerButton.transform, "D", "D", 18f, Color.black);
+            var dbText = UIFactory.CreateText(_dealerButton.transform, "D", "D", 11f, Color.black);
             dbText.alignment = TextAlignmentOptions.Center;
             var dbTextRect = dbText.GetComponent<RectTransform>();
             dbTextRect.anchorMin = Vector2.zero;
@@ -521,27 +540,32 @@ namespace PokerClient.UI.Components
             _rect = gameObject.AddComponent<RectTransform>();
             _rect.sizeDelta = size;
             
-            gameObject.AddComponent<LayoutElement>().preferredWidth = size.x;
+            var layout = gameObject.AddComponent<LayoutElement>();
+            layout.preferredWidth = size.x;
+            layout.preferredHeight = size.y;
+            layout.minWidth = size.x;
+            layout.minHeight = size.y;
             
-            // Card background
+            // Card background - NO preserveAspect so cards fill the full size
             _background = gameObject.AddComponent<Image>();
             _background.color = Color.white;
-            _background.preserveAspect = true;
+            _background.preserveAspect = false;
+            _background.type = Image.Type.Simple;
             
-            // Rank (top-left)
-            _rankText = UIFactory.CreateText(transform, "Rank", "", 18f, Color.black);
+            // Rank (top-left) - smaller text for compact cards
+            _rankText = UIFactory.CreateText(transform, "Rank", "", 12f, Color.black);
             var rankRect = _rankText.GetComponent<RectTransform>();
-            rankRect.anchorMin = new Vector2(0.1f, 0.6f);
-            rankRect.anchorMax = new Vector2(0.9f, 0.95f);
+            rankRect.anchorMin = new Vector2(0.05f, 0.65f);
+            rankRect.anchorMax = new Vector2(0.95f, 0.95f);
             rankRect.sizeDelta = Vector2.zero;
             _rankText.alignment = TextAlignmentOptions.TopLeft;
             _rankText.fontStyle = FontStyles.Bold;
             
-            // Suit (center)
-            _suitText = UIFactory.CreateText(transform, "Suit", "", 28f, Color.black);
+            // Suit (center) - smaller text
+            _suitText = UIFactory.CreateText(transform, "Suit", "", 18f, Color.black);
             var suitRect = _suitText.GetComponent<RectTransform>();
-            suitRect.anchorMin = new Vector2(0, 0.1f);
-            suitRect.anchorMax = new Vector2(1, 0.6f);
+            suitRect.anchorMin = new Vector2(0, 0.15f);
+            suitRect.anchorMax = new Vector2(1, 0.65f);
             suitRect.sizeDelta = Vector2.zero;
             _suitText.alignment = TextAlignmentOptions.Center;
             
@@ -617,12 +641,10 @@ namespace PokerClient.UI.Components
             gameObject.SetActive(true);
             _background.sprite = null;
             _background.color = new Color(0.3f, 0.3f, 0.3f, 0.3f);
-            _background.preserveAspect = false; // Allow placeholder to be sized by rect
+            _background.preserveAspect = false;
             _rankText.gameObject.SetActive(false);
             _suitText.gameObject.SetActive(false);
-            
-            // Force correct aspect ratio for placeholder
-            _rect.sizeDelta = new Vector2(Theme.Current.cardWidth, Theme.Current.cardHeight);
+            // DO NOT reset sizeDelta here - let the caller control the size
         }
         
         private string GetSuitSymbol(string suit)

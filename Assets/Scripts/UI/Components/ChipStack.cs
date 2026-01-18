@@ -65,20 +65,20 @@ namespace PokerClient.UI.Components
                 chipRect.anchorMin = new Vector2(0.5f, 0);
                 chipRect.anchorMax = new Vector2(0.5f, 0);
                 chipRect.pivot = new Vector2(0.5f, 0);
-                chipRect.anchoredPosition = new Vector2(0, i * 6); // Stack with slight overlap
+                chipRect.anchoredPosition = new Vector2(0, i * 4); // Stack with slight overlap
                 
                 // Set color - will be updated by SetValue
                 chipImages[i].color = theme.chipGreen;
             }
             
             // Value text
-            valueText = UIFactory.CreateText(transform, "Value", "0", 14f, theme.textPrimary);
+            valueText = UIFactory.CreateText(transform, "Value", "0", 11f, theme.textPrimary);
             var textRect = valueText.GetComponent<RectTransform>();
             textRect.anchorMin = new Vector2(0.5f, 0);
             textRect.anchorMax = new Vector2(0.5f, 0);
             textRect.pivot = new Vector2(0.5f, 0);
-            textRect.anchoredPosition = new Vector2(0, -5);
-            textRect.sizeDelta = new Vector2(80, 20);
+            textRect.anchoredPosition = new Vector2(0, -3);
+            textRect.sizeDelta = new Vector2(60, 16);
             valueText.fontStyle = FontStyles.Bold;
             
             SetValue(0);

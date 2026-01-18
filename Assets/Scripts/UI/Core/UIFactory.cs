@@ -236,6 +236,20 @@ namespace PokerClient.UI
             inputField.placeholder = placeholderText;
             inputField.contentType = contentType;
             
+            // Mobile-friendly settings
+            inputField.shouldHideMobileInput = false; // Show native keyboard with text visible
+            inputField.richText = false;
+            inputField.lineType = TMP_InputField.LineType.SingleLine;
+            inputField.caretWidth = 2;
+            inputField.customCaretColor = true;
+            inputField.caretColor = Theme.Current.primaryColor;
+            inputField.selectionColor = new Color(Theme.Current.primaryColor.r, 
+                Theme.Current.primaryColor.g, Theme.Current.primaryColor.b, 0.3f);
+            
+            // Ensure text component is set up for proper mobile editing
+            inputText.enableWordWrapping = false;
+            inputText.overflowMode = TextOverflowModes.Ellipsis;
+            
             return inputField;
         }
         

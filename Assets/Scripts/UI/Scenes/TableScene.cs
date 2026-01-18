@@ -53,6 +53,7 @@ namespace PokerClient.UI.Scenes
         private int _minBet = 0;
         private int _maxBet = 0;
         private int _callAmount = 0;
+        private int _mySeatIndex = -1;
         
         // Bot UI
         private bool _isTableCreator = false;
@@ -323,12 +324,13 @@ namespace PokerClient.UI.Scenes
         {
             var theme = Theme.Current;
             
-            var topBar = UIFactory.CreatePanel(_canvas.transform, "TopBar", theme.cardPanelColor);
+            // Slim, semi-transparent top bar - just menu and phase/timer
+            var topBar = UIFactory.CreatePanel(_canvas.transform, "TopBar", new Color(0.1f, 0.1f, 0.1f, 0.7f));
             var topRect = topBar.GetComponent<RectTransform>();
             topRect.anchorMin = new Vector2(0, 1);
             topRect.anchorMax = new Vector2(1, 1);
             topRect.pivot = new Vector2(0.5f, 1);
-            topRect.sizeDelta = new Vector2(0, 70);
+            topRect.sizeDelta = new Vector2(0, 45);
             topRect.anchoredPosition = Vector2.zero;
             
             // Menu button (left)
@@ -337,31 +339,29 @@ namespace PokerClient.UI.Scenes
             menuRect.anchorMin = new Vector2(0, 0.5f);
             menuRect.anchorMax = new Vector2(0, 0.5f);
             menuRect.pivot = new Vector2(0, 0.5f);
-            menuRect.anchoredPosition = new Vector2(20, 0);
-            menuRect.sizeDelta = new Vector2(60, 50);
+            menuRect.anchoredPosition = new Vector2(10, 0);
+            menuRect.sizeDelta = new Vector2(45, 35);
             
-            // Pot (center-left)
-            potText = UIFactory.CreateTitle(topBar.transform, "PotText", "Pot: 0", 28f);
-            var potRect = potText.GetComponent<RectTransform>();
-            potRect.anchorMin = new Vector2(0.3f, 0.5f);
-            potRect.anchorMax = new Vector2(0.3f, 0.5f);
-            potRect.sizeDelta = new Vector2(250, 50);
-            potText.color = theme.accentColor;
+            // Pot text - hidden, we use the one on the table
+            potText = UIFactory.CreateText(topBar.transform, "PotText", "", 1f, Color.clear);
+            potText.gameObject.SetActive(false);
             
             // Phase (center)
-            phaseText = UIFactory.CreateTitle(topBar.transform, "PhaseText", "Waiting...", 24f);
+            phaseText = UIFactory.CreateTitle(topBar.transform, "PhaseText", "Waiting...", 18f);
             var phaseRect = phaseText.GetComponent<RectTransform>();
             phaseRect.anchorMin = new Vector2(0.5f, 0.5f);
             phaseRect.anchorMax = new Vector2(0.5f, 0.5f);
-            phaseRect.sizeDelta = new Vector2(200, 50);
+            phaseRect.sizeDelta = new Vector2(180, 35);
             phaseText.alignment = TextAlignmentOptions.Center;
             
-            // Timer (center-right)
-            timerText = UIFactory.CreateTitle(topBar.transform, "TimerText", "", 32f);
+            // Timer (right)
+            timerText = UIFactory.CreateTitle(topBar.transform, "TimerText", "", 24f);
             var timerRect = timerText.GetComponent<RectTransform>();
-            timerRect.anchorMin = new Vector2(0.7f, 0.5f);
-            timerRect.anchorMax = new Vector2(0.7f, 0.5f);
-            timerRect.sizeDelta = new Vector2(100, 50);
+            timerRect.anchorMin = new Vector2(1, 0.5f);
+            timerRect.anchorMax = new Vector2(1, 0.5f);
+            timerRect.pivot = new Vector2(1, 0.5f);
+            timerRect.anchoredPosition = new Vector2(-15, 0);
+            timerRect.sizeDelta = new Vector2(60, 35);
             timerText.color = theme.dangerColor;
             timerText.alignment = TextAlignmentOptions.Center;
         }
@@ -903,8 +903,21 @@ namespace PokerClient.UI.Scenes
             // Update ready-up UI (START GAME button, READY overlay)
             UpdateReadyUI(state);
             
-            // Update table view
-            _tableView?.UpdateFromState(state);
+            // Find my seat index for proper perspective rotation
+            if (state.seats != null)
+            {
+                for (int i = 0; i < state.seats.Count; i++)
+                {
+                    if (state.seats[i]?.playerId == myId)
+                    {
+                        _mySeatIndex = i;
+                        break;
+                    }
+                }
+            }
+            
+            // Update table view with seat rotation
+            _tableView?.UpdateFromState(state, _mySeatIndex);
             
             // Check if it's my turn (myId already declared above)
             _isMyTurn = state.currentPlayerId == myId;

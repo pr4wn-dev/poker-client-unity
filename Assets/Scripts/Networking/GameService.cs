@@ -218,12 +218,20 @@ namespace PokerClient.Networking
         
         public void GetTables(Action<List<TableInfo>> callback = null)
         {
+            Debug.Log("[GameService] GetTables called");
             _socket.Emit<GetTablesResponse>("get_tables", null, response =>
             {
-                if (response.success)
+                Debug.Log($"[GameService] GetTables response: success={response?.success}, tables={response?.tables?.Count ?? 0}");
+                if (response != null && response.success)
                 {
-                    OnTablesReceived?.Invoke(response.tables);
-                    callback?.Invoke(response.tables);
+                    OnTablesReceived?.Invoke(response.tables ?? new List<TableInfo>());
+                    callback?.Invoke(response.tables ?? new List<TableInfo>());
+                }
+                else
+                {
+                    Debug.LogWarning("[GameService] GetTables failed or null response");
+                    OnTablesReceived?.Invoke(new List<TableInfo>());
+                    callback?.Invoke(new List<TableInfo>());
                 }
             });
         }

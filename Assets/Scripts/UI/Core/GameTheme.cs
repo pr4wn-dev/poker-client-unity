@@ -75,12 +75,12 @@ namespace PokerClient.UI
         public Color warningColor = new Color(0.95f, 0.75f, 0.2f);
         
         [Header("=== SIZING ===")]
-        public float cardWidth = 80f;
-        public float cardHeight = 112f;
-        public float chipSize = 40f;
-        public float buttonHeight = 50f;
-        public float avatarSize = 60f;
-        public float cornerRadius = 8f;
+        public float cardWidth = 55f;     // Good size for table cards
+        public float cardHeight = 77f;    // 55 * 1.4 ratio
+        public float chipSize = 24f;
+        public float buttonHeight = 40f;
+        public float avatarSize = 40f;
+        public float cornerRadius = 5f;
         
         /// <summary>
         /// Get rarity color by name

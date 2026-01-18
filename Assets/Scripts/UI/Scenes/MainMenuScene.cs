@@ -50,7 +50,15 @@ namespace PokerClient.UI.Scenes
         // Server settings
         private GameObject serverSettingsPanel;
         private TMP_InputField serverUrlInput;
+        private TextMeshProUGUI _scanStatusText;
+        private bool _isScanning = false;
         private const string SERVER_URL_KEY = "ServerUrl";
+        private const string SAVED_SERVERS_KEY = "SavedServers"; // JSON list of known servers
+        
+        // Auto-connect UI
+        private GameObject _connectionPanel;
+        private TextMeshProUGUI _connectionStatusText;
+        private bool _autoConnecting = false;
         
         private void Start()
         {
@@ -60,14 +68,26 @@ namespace PokerClient.UI.Scenes
                 serverUrl = PlayerPrefs.GetString(SERVER_URL_KEY);
             }
             
-            InitializeNetworking();
+            // Build scene first (includes connection panel)
             BuildScene();
             
             // Play menu music
             AudioManager.Instance?.PlayMenuMusic();
             
+            // Initialize game service reference
+            _gameService = GameService.Instance;
+            if (_gameService == null)
+            {
+                Debug.LogError("[MainMenu] Failed to get GameService instance!");
+                return;
+            }
+            
+            // Subscribe to events
+            _gameService.OnLoginSuccess += OnLoginSuccessHandler;
+            _gameService.OnLoginFailed += OnLoginFailedHandler;
+            
             // Check if already logged in (e.g., returning from another scene)
-            if (_gameService != null && _gameService.IsLoggedIn)
+            if (_gameService.IsLoggedIn)
             {
                 _isLoggedIn = true;
                 
@@ -87,31 +107,139 @@ namespace PokerClient.UI.Scenes
             }
             else
             {
-                ShowLoginPanel();
+                // Start auto-connection process
+                StartCoroutine(AutoConnectToServer());
             }
         }
         
-        private void InitializeNetworking()
+        private System.Collections.IEnumerator AutoConnectToServer()
         {
-            // Get GameService (it will auto-create if needed via singleton getter)
-            _gameService = GameService.Instance;
+            _autoConnecting = true;
+            ShowConnectionPanel();
             
-            if (_gameService == null)
+            // STEP 1: Try last known working server first
+            if (!string.IsNullOrEmpty(serverUrl))
             {
-                Debug.LogError("[MainMenu] Failed to get GameService instance!");
-                return;
+                UpdateConnectionStatus($"Trying last server...");
+                yield return new WaitForSeconds(0.3f);
+                
+                bool lastServerWorks = false;
+                yield return StartCoroutine(TestServerConnection(serverUrl, (success) => lastServerWorks = success));
+                
+                if (lastServerWorks)
+                {
+                    UpdateConnectionStatus($"✓ Connected!");
+                    yield return new WaitForSeconds(0.5f);
+                    ConnectAndShowLogin(serverUrl);
+                    yield break;
+                }
             }
             
-            // Subscribe to events
-            _gameService.OnLoginSuccess += OnLoginSuccessHandler;
-            _gameService.OnLoginFailed += OnLoginFailedHandler;
+            // STEP 2: Scan local network
+            UpdateConnectionStatus("Scanning local network...");
+            yield return new WaitForSeconds(0.3f);
             
-            // Connect to server
-            ShowLoading("Connecting to server...");
-            _gameService.Connect(serverUrl);
+            string localIP = GetLocalIPAddress();
+            if (!string.IsNullOrEmpty(localIP))
+            {
+                string[] parts = localIP.Split('.');
+                if (parts.Length >= 4)
+                {
+                    string baseIP = $"{parts[0]}.{parts[1]}.{parts[2]}";
+                    
+                    for (int i = 1; i <= 50; i++)
+                    {
+                        string testIP = $"{baseIP}.{i}";
+                        string testUrl = $"http://{testIP}:3000";
+                        
+                        UpdateConnectionStatus($"Scanning {testIP}...");
+                        
+                        bool found = false;
+                        yield return StartCoroutine(TestServerConnection(testUrl, (success) => found = success));
+                        
+                        if (found)
+                        {
+                            UpdateConnectionStatus($"✓ Found server at {testIP}!");
+                            yield return StartCoroutine(SaveServerWithPublicIP(testUrl));
+                            yield return new WaitForSeconds(0.5f);
+                            ConnectAndShowLogin(testUrl);
+                            yield break;
+                        }
+                        
+                        yield return null;
+                    }
+                }
+            }
             
-            // Check if server is connected
-            StartCoroutine(CheckConnectionStatus());
+            // STEP 3: Check saved remote servers
+            UpdateConnectionStatus("Checking remote servers...");
+            yield return new WaitForSeconds(0.3f);
+            
+            var savedServers = GetSavedServers();
+            foreach (var server in savedServers)
+            {
+                if (string.IsNullOrEmpty(server.publicIP)) continue;
+                
+                string remoteUrl = $"http://{server.publicIP}:{server.port}";
+                UpdateConnectionStatus($"Trying {server.name}...");
+                
+                bool found = false;
+                yield return StartCoroutine(TestServerConnection(remoteUrl, (success) => found = success));
+                
+                if (found)
+                {
+                    UpdateConnectionStatus($"✓ Connected to {server.name}!");
+                    yield return new WaitForSeconds(0.5f);
+                    ConnectAndShowLogin(remoteUrl);
+                    yield break;
+                }
+                
+                yield return null;
+            }
+            
+            // STEP 4: No server found - show manual entry
+            UpdateConnectionStatus("No server found");
+            yield return new WaitForSeconds(1f);
+            _autoConnecting = false;
+            HideConnectionPanel();
+            ShowServerSettings();
+        }
+        
+        private void ConnectAndShowLogin(string url)
+        {
+            serverUrl = url;
+            PlayerPrefs.SetString(SERVER_URL_KEY, url);
+            PlayerPrefs.Save();
+            
+            _gameService.Connect(url);
+            _autoConnecting = false;
+            HideConnectionPanel();
+            ShowLoginPanel();
+        }
+        
+        private void ShowConnectionPanel()
+        {
+            if (_connectionPanel != null)
+                _connectionPanel.SetActive(true);
+            if (loginPanel != null)
+                loginPanel.SetActive(false);
+            if (registerPanel != null)
+                registerPanel.SetActive(false);
+            if (mainPanel != null)
+                mainPanel.SetActive(false);
+        }
+        
+        private void HideConnectionPanel()
+        {
+            if (_connectionPanel != null)
+                _connectionPanel.SetActive(false);
+        }
+        
+        private void UpdateConnectionStatus(string status)
+        {
+            Debug.Log($"[AutoConnect] {status}");
+            if (_connectionStatusText != null)
+                _connectionStatusText.text = status;
         }
         
         private System.Collections.IEnumerator CheckConnectionStatus()
@@ -181,11 +309,71 @@ namespace PokerClient.UI.Scenes
             // === MAIN MENU PANEL ===
             BuildMainPanel(canvas.transform);
             
+            // === CONNECTION PANEL (auto-connect status) ===
+            BuildConnectionPanel();
+            
             // === LOADING PANEL (on top) ===
             BuildLoadingPanel();
             
             // === SERVER SETTINGS PANEL (on top of everything) ===
             BuildServerSettingsPanel();
+        }
+        
+        private void BuildConnectionPanel()
+        {
+            var theme = Theme.Current;
+            
+            // Full-screen panel with nice gradient-like background
+            _connectionPanel = UIFactory.CreatePanel(canvas.transform, "ConnectionPanel", theme.backgroundColor);
+            var panelRect = _connectionPanel.GetComponent<RectTransform>();
+            panelRect.anchorMin = Vector2.zero;
+            panelRect.anchorMax = Vector2.one;
+            panelRect.sizeDelta = Vector2.zero;
+            
+            // Center content container
+            var content = UIFactory.CreatePanel(_connectionPanel.transform, "Content", Color.clear);
+            var contentRect = content.GetComponent<RectTransform>();
+            contentRect.anchorMin = new Vector2(0.1f, 0.3f);
+            contentRect.anchorMax = new Vector2(0.9f, 0.7f);
+            contentRect.sizeDelta = Vector2.zero;
+            
+            var vlg = content.AddComponent<VerticalLayoutGroup>();
+            vlg.spacing = 30;
+            vlg.childAlignment = TextAnchor.MiddleCenter;
+            vlg.childControlWidth = true;
+            vlg.childControlHeight = false;
+            vlg.childForceExpandWidth = true;
+            vlg.childForceExpandHeight = false;
+            
+            // Title
+            var title = UIFactory.CreateTitle(content.transform, "Title", "POKER", 48f);
+            title.alignment = TextAlignmentOptions.Center;
+            title.color = theme.accentColor;
+            var titleLE = title.gameObject.AddComponent<LayoutElement>();
+            titleLE.preferredHeight = 60;
+            
+            // Subtitle
+            var subtitle = UIFactory.CreateText(content.transform, "Subtitle", "Finding Server...", 24f);
+            subtitle.alignment = TextAlignmentOptions.Center;
+            subtitle.color = theme.textSecondary;
+            var subLE = subtitle.gameObject.AddComponent<LayoutElement>();
+            subLE.preferredHeight = 40;
+            
+            // Status text (the main updating text)
+            _connectionStatusText = UIFactory.CreateText(content.transform, "Status", "Initializing...", 20f);
+            _connectionStatusText.alignment = TextAlignmentOptions.Center;
+            _connectionStatusText.color = theme.textPrimary;
+            var statusLE = _connectionStatusText.gameObject.AddComponent<LayoutElement>();
+            statusLE.preferredHeight = 30;
+            
+            // Loading dots animation indicator
+            var dots = UIFactory.CreateText(content.transform, "Dots", "• • •", 28f);
+            dots.alignment = TextAlignmentOptions.Center;
+            dots.color = theme.primaryColor;
+            var dotsLE = dots.gameObject.AddComponent<LayoutElement>();
+            dotsLE.preferredHeight = 40;
+            
+            _connectionPanel.SetActive(false);
         }
         
         private void BuildServerSettingsPanel()
@@ -205,7 +393,7 @@ namespace PokerClient.UI.Scenes
             dialogRect.anchorMin = new Vector2(0.5f, 0.5f);
             dialogRect.anchorMax = new Vector2(0.5f, 0.5f);
             dialogRect.pivot = new Vector2(0.5f, 0.5f);
-            dialogRect.sizeDelta = new Vector2(300, 220);
+            dialogRect.sizeDelta = new Vector2(300, 280);
             
             var layout = dialog.AddComponent<VerticalLayoutGroup>();
             layout.spacing = 8;
@@ -229,16 +417,17 @@ namespace PokerClient.UI.Scenes
             urlLayout.preferredHeight = 38;
             urlLayout.minWidth = 260;
             
-            // Current status
-            var status = UIFactory.CreateText(dialog.transform, "Status", $"Current: {serverUrl}", 10f, theme.textSuccess);
-            var statusLayout = status.gameObject.AddComponent<LayoutElement>();
-            statusLayout.preferredHeight = 16;
+            // Scan status text
+            _scanStatusText = UIFactory.CreateText(dialog.transform, "Status", "Tap SCAN to find server", 11f, theme.textSecondary);
+            var statusLayout = _scanStatusText.gameObject.AddComponent<LayoutElement>();
+            statusLayout.preferredHeight = 18;
             statusLayout.minWidth = 260;
             
-            // Spacer
-            var spacer = new GameObject("Spacer", typeof(RectTransform), typeof(LayoutElement));
-            spacer.transform.SetParent(dialog.transform, false);
-            spacer.GetComponent<LayoutElement>().preferredHeight = 10;
+            // Scan button - big and prominent
+            var scanBtn = UIFactory.CreatePrimaryButton(dialog.transform, "Scan", "🔍 SCAN NETWORK", StartNetworkScan, 260, 40);
+            var scanLayout = scanBtn.gameObject.AddComponent<LayoutElement>();
+            scanLayout.preferredHeight = 40;
+            scanLayout.minWidth = 260;
             
             // Button row
             var buttonRow = UIFactory.CreateHorizontalGroup(dialog.transform, "Buttons", 10);
@@ -251,10 +440,10 @@ namespace PokerClient.UI.Scenes
             rowGroup.childAlignment = TextAnchor.MiddleCenter;
             
             // Cancel button
-            var cancelBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "Cancel", "CANCEL", HideServerSettings, 100, 32);
+            var cancelBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "Cancel", "CANCEL", HideServerSettings, 90, 32);
             
             // Save button
-            var saveBtn = UIFactory.CreatePrimaryButton(buttonRow.transform, "Save", "SAVE", SaveServerSettings, 100, 32);
+            var saveBtn = UIFactory.CreatePrimaryButton(buttonRow.transform, "Save", "SAVE", SaveServerSettings, 90, 32);
             
             serverSettingsPanel.SetActive(false);
         }
@@ -283,12 +472,302 @@ namespace PokerClient.UI.Scenes
                 
                 Debug.Log($"[MainMenu] Server URL saved: {serverUrl}");
                 
-                // Disconnect and reconnect with new URL
+                // Connect to new server
                 HideServerSettings();
-                ShowLoading("Connecting to new server...");
-                _gameService.Connect(serverUrl);
-                StartCoroutine(CheckConnectionStatus());
+                ConnectAndShowLogin(serverUrl);
             }
+        }
+        
+        private void StartNetworkScan()
+        {
+            if (_isScanning) return;
+            StartCoroutine(ScanForServer());
+        }
+        
+        private System.Collections.IEnumerator ScanForServer()
+        {
+            _isScanning = true;
+            if (_scanStatusText != null)
+                _scanStatusText.text = "Scanning local network...";
+            
+            // STEP 1: Scan local network
+            string localIP = GetLocalIPAddress();
+            if (!string.IsNullOrEmpty(localIP))
+            {
+                string[] parts = localIP.Split('.');
+                if (parts.Length >= 4)
+                {
+                    string baseIP = $"{parts[0]}.{parts[1]}.{parts[2]}";
+                    Debug.Log($"[MainMenu] Scanning local network: {baseIP}.x");
+                    
+                    for (int i = 1; i <= 50; i++)
+                    {
+                        string testIP = $"{baseIP}.{i}";
+                        string testUrl = $"http://{testIP}:3000";
+                        
+                        if (_scanStatusText != null)
+                            _scanStatusText.text = $"Local: {testIP}...";
+                        
+                        bool found = false;
+                        yield return StartCoroutine(TestServerConnection(testUrl, (success) => found = success));
+                        
+                        if (found)
+                        {
+                            Debug.Log($"[MainMenu] Found local server at: {testUrl}");
+                            // Save this server with its public IP
+                            yield return StartCoroutine(SaveServerWithPublicIP(testUrl));
+                            
+                            if (serverUrlInput != null)
+                                serverUrlInput.text = testUrl;
+                            if (_scanStatusText != null)
+                                _scanStatusText.text = $"✓ Found server at {testIP}!";
+                            _isScanning = false;
+                            yield break;
+                        }
+                        
+                        yield return null;
+                    }
+                }
+            }
+            
+            // STEP 2: Check saved remote servers
+            if (_scanStatusText != null)
+                _scanStatusText.text = "Checking saved servers...";
+            
+            var savedServers = GetSavedServers();
+            Debug.Log($"[MainMenu] Checking {savedServers.Count} saved remote servers");
+            
+            foreach (var server in savedServers)
+            {
+                if (string.IsNullOrEmpty(server.publicIP)) continue;
+                
+                string remoteUrl = $"http://{server.publicIP}:{server.port}";
+                if (_scanStatusText != null)
+                    _scanStatusText.text = $"Remote: {server.name}...";
+                
+                bool found = false;
+                yield return StartCoroutine(TestServerConnection(remoteUrl, (success) => found = success));
+                
+                if (found)
+                {
+                    Debug.Log($"[MainMenu] Found remote server: {remoteUrl} ({server.name})");
+                    if (serverUrlInput != null)
+                        serverUrlInput.text = remoteUrl;
+                    if (_scanStatusText != null)
+                        _scanStatusText.text = $"✓ Found {server.name}!";
+                    _isScanning = false;
+                    yield break;
+                }
+                
+                yield return null;
+            }
+            
+            if (_scanStatusText != null)
+                _scanStatusText.text = "No server found. Enter manually.";
+            _isScanning = false;
+        }
+        
+        // Saved server info
+        [System.Serializable]
+        private class SavedServer
+        {
+            public string name;
+            public string localIP;
+            public string publicIP;
+            public int port;
+            public long lastSeen;
+        }
+        
+        [System.Serializable]
+        private class SavedServerList
+        {
+            public System.Collections.Generic.List<SavedServer> servers = new System.Collections.Generic.List<SavedServer>();
+        }
+        
+        private System.Collections.Generic.List<SavedServer> GetSavedServers()
+        {
+            try
+            {
+                string json = PlayerPrefs.GetString(SAVED_SERVERS_KEY, "");
+                if (!string.IsNullOrEmpty(json))
+                {
+                    var list = JsonUtility.FromJson<SavedServerList>(json);
+                    return list?.servers ?? new System.Collections.Generic.List<SavedServer>();
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning($"[MainMenu] Failed to load saved servers: {e.Message}");
+            }
+            return new System.Collections.Generic.List<SavedServer>();
+        }
+        
+        private void SaveServer(SavedServer server)
+        {
+            var servers = GetSavedServers();
+            
+            // Update existing or add new
+            var existing = servers.Find(s => s.publicIP == server.publicIP);
+            if (existing != null)
+            {
+                existing.localIP = server.localIP;
+                existing.name = server.name;
+                existing.lastSeen = server.lastSeen;
+            }
+            else
+            {
+                servers.Add(server);
+            }
+            
+            // Keep only the 10 most recent servers
+            servers.Sort((a, b) => b.lastSeen.CompareTo(a.lastSeen));
+            if (servers.Count > 10)
+                servers.RemoveRange(10, servers.Count - 10);
+            
+            var list = new SavedServerList { servers = servers };
+            PlayerPrefs.SetString(SAVED_SERVERS_KEY, JsonUtility.ToJson(list));
+            PlayerPrefs.Save();
+            
+            Debug.Log($"[MainMenu] Saved server: {server.name} (local: {server.localIP}, public: {server.publicIP})");
+        }
+        
+        private System.Collections.IEnumerator SaveServerWithPublicIP(string localUrl)
+        {
+            // Extract IP from URL
+            string ip = localUrl.Replace("http://", "").Replace("https://", "");
+            int port = 3000;
+            if (ip.Contains(":"))
+            {
+                var parts = ip.Split(':');
+                ip = parts[0];
+                int.TryParse(parts[1], out port);
+            }
+            
+            // Fetch server info to get public IP
+            string serverInfoUrl = $"http://{ip}:{port}/api/server-info";
+            string publicIP = null;
+            string serverName = "Poker Server";
+            
+            var infoTask = System.Threading.Tasks.Task.Run(() =>
+            {
+                try
+                {
+                    using (var client = new System.Net.WebClient())
+                    {
+                        client.Headers.Add("User-Agent", "PokerClient/1.0");
+                        string json = client.DownloadString(serverInfoUrl);
+                        // Parse manually since we're on a background thread
+                        if (json.Contains("\"publicIP\""))
+                        {
+                            int start = json.IndexOf("\"publicIP\":\"") + 12;
+                            int end = json.IndexOf("\"", start);
+                            if (start > 11 && end > start)
+                                publicIP = json.Substring(start, end - start);
+                        }
+                        if (json.Contains("\"name\""))
+                        {
+                            int start = json.IndexOf("\"name\":\"") + 8;
+                            int end = json.IndexOf("\"", start);
+                            if (start > 7 && end > start)
+                                serverName = json.Substring(start, end - start);
+                        }
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.Log($"[MainMenu] Could not fetch server info: {e.Message}");
+                }
+            });
+            
+            while (!infoTask.IsCompleted)
+                yield return null;
+            
+            // Save the server
+            var server = new SavedServer
+            {
+                name = serverName,
+                localIP = ip,
+                publicIP = publicIP,
+                port = port,
+                lastSeen = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds()
+            };
+            
+            SaveServer(server);
+        }
+        
+        private System.Collections.IEnumerator TestServerConnection(string url, System.Action<bool> callback)
+        {
+            bool success = false;
+            
+            // Use Socket connection test instead of HTTP (avoids Android's HTTP security block)
+            string ip = url.Replace("http://", "").Replace("https://", "");
+            int port = 3000;
+            
+            // Parse IP and port
+            if (ip.Contains(":"))
+            {
+                var parts = ip.Split(':');
+                ip = parts[0];
+                int.TryParse(parts[1], out port);
+            }
+            
+            // Try TCP connection
+            var connectTask = System.Threading.Tasks.Task.Run(() =>
+            {
+                try
+                {
+                    using (var client = new System.Net.Sockets.TcpClient())
+                    {
+                        var result = client.BeginConnect(ip, port, null, null);
+                        bool connected = result.AsyncWaitHandle.WaitOne(System.TimeSpan.FromMilliseconds(500));
+                        if (connected)
+                        {
+                            client.EndConnect(result);
+                            return true;
+                        }
+                    }
+                }
+                catch { }
+                return false;
+            });
+            
+            // Wait for the task to complete
+            while (!connectTask.IsCompleted)
+            {
+                yield return null;
+            }
+            
+            success = connectTask.Result;
+            callback(success);
+        }
+        
+        private string GetLocalIPAddress()
+        {
+            try
+            {
+                var host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
+                foreach (var ip in host.AddressList)
+                {
+                    if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                    {
+                        string ipStr = ip.ToString();
+                        // Prefer 192.168.x.x or 10.x.x.x (common local networks)
+                        if (ipStr.StartsWith("192.168.") || ipStr.StartsWith("10."))
+                            return ipStr;
+                    }
+                }
+                // Fallback to any IPv4
+                foreach (var ip in host.AddressList)
+                {
+                    if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                        return ip.ToString();
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"[MainMenu] Failed to get local IP: {e.Message}");
+            }
+            return null;
         }
         
         private void BuildLoadingPanel()
@@ -382,13 +861,9 @@ namespace PokerClient.UI.Scenes
             rowGroup.childForceExpandWidth = false;
             rowGroup.childAlignment = TextAnchor.MiddleCenter;
             
-            // Register link - wider to fit text
-            var registerBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "RegisterLink", "NEW", 
-                ShowRegisterPanel, 60, 28);
-            
-            // Server settings button - wider to fit text
-            var settingsBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "ServerSettings", "SERVER", 
-                ShowServerSettings, 75, 28);
+            // Register link
+            var registerBtn = UIFactory.CreateSecondaryButton(buttonRow.transform, "RegisterLink", "CREATE ACCOUNT", 
+                ShowRegisterPanel, 140, 28);
         }
         
         private void BuildRegisterPanel(Transform parent)

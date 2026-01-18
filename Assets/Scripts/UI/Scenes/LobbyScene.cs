@@ -205,35 +205,14 @@ namespace PokerClient.UI.Scenes
             panelRect.anchorMax = new Vector2(0.98f, 0.92f); // Leave room for 120px header at top
             panelRect.sizeDelta = Vector2.zero;
             
-            // Scroll view
-            var scrollView = new GameObject("ScrollView");
-            scrollView.transform.SetParent(tableListPanel.transform, false);
-            var scrollRect = scrollView.AddComponent<RectTransform>();
-            scrollRect.anchorMin = Vector2.zero;
-            scrollRect.anchorMax = Vector2.one;
-            scrollRect.sizeDelta = Vector2.zero;
-            
-            var scrollComponent = scrollView.AddComponent<ScrollRect>();
-            scrollComponent.horizontal = false;
-            
-            // Viewport
-            var viewport = UIFactory.CreatePanel(scrollView.transform, "Viewport", Color.clear);
-            viewport.AddComponent<Mask>().showMaskGraphic = false;
-            var viewportRect = viewport.GetComponent<RectTransform>();
-            viewportRect.anchorMin = Vector2.zero;
-            viewportRect.anchorMax = Vector2.one;
-            viewportRect.sizeDelta = Vector2.zero;
-            scrollComponent.viewport = viewportRect;
-            
-            // Content
+            // Content container - simple vertical list, positioned below header
             var content = new GameObject("Content");
-            content.transform.SetParent(viewport.transform, false);
+            content.transform.SetParent(tableListPanel.transform, false);
             var contentRect = content.AddComponent<RectTransform>();
-            contentRect.anchorMin = new Vector2(0, 1);
-            contentRect.anchorMax = new Vector2(1, 1);
-            contentRect.pivot = new Vector2(0.5f, 1);
-            contentRect.sizeDelta = new Vector2(0, 0);
-            scrollComponent.content = contentRect;
+            contentRect.anchorMin = Vector2.zero;
+            contentRect.anchorMax = Vector2.one;
+            contentRect.offsetMin = new Vector2(0, 0);
+            contentRect.offsetMax = new Vector2(0, -130); // Leave room for header
             
             var vlg = content.AddComponent<VerticalLayoutGroup>();
             vlg.spacing = 10;
@@ -244,14 +223,18 @@ namespace PokerClient.UI.Scenes
             vlg.childControlWidth = true;
             vlg.childForceExpandWidth = true;
             
-            var csf = content.AddComponent<ContentSizeFitter>();
-            csf.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-            
             tableListContainer = content.transform;
             
-            // Status text
+            // Status text - positioned in center, only visible when no tables
             statusText = UIFactory.CreateText(tableListPanel.transform, "Status", "Loading tables...", 24f, theme.textSecondary);
             statusText.alignment = TextAlignmentOptions.Center;
+            var statusRect = statusText.GetComponent<RectTransform>();
+            statusRect.anchorMin = new Vector2(0.1f, 0.4f);
+            statusRect.anchorMax = new Vector2(0.9f, 0.6f);
+            statusRect.sizeDelta = Vector2.zero;
+            
+            // Make sure status doesn't block interactions
+            statusText.raycastTarget = false;
         }
         
         private void BuildCreateTablePanel()
@@ -566,6 +549,8 @@ namespace PokerClient.UI.Scenes
         
         private void OnTablesReceived(List<TableInfo> tables)
         {
+            Debug.Log($"[LobbyScene] OnTablesReceived: {tables?.Count ?? 0} tables");
+            
             // Clear existing items
             foreach (var item in tableListItems)
             {
@@ -584,13 +569,38 @@ namespace PokerClient.UI.Scenes
             
             foreach (var table in tables)
             {
+                Debug.Log($"[LobbyScene] Creating item for table: {table?.name}, id: {table?.id}");
                 var item = CreateTableListItem(table);
-                tableListItems.Add(item);
+                if (item != null)
+                    tableListItems.Add(item);
+            }
+            
+            Debug.Log($"[LobbyScene] Created {tableListItems.Count} table items");
+            
+            // Force layout rebuild
+            if (tableListContainer != null)
+            {
+                Canvas.ForceUpdateCanvases();
+                UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(tableListContainer.GetComponent<RectTransform>());
             }
         }
         
         private GameObject CreateTableListItem(TableInfo table)
         {
+            if (tableListContainer == null)
+            {
+                Debug.LogError("[LobbyScene] tableListContainer is null!");
+                return null;
+            }
+            
+            if (table == null)
+            {
+                Debug.LogError("[LobbyScene] table is null!");
+                return null;
+            }
+            
+            Debug.Log($"[LobbyScene] CreateTableListItem: name={table.name}, container={tableListContainer.name}");
+            
             var theme = Theme.Current;
             
             var item = UIFactory.CreatePanel(tableListContainer, $"Table_{table.id}", theme.cardPanelColor);
