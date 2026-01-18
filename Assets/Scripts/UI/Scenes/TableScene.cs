@@ -533,15 +533,15 @@ namespace PokerClient.UI.Scenes
             subtitle.GetComponent<RectTransform>().sizeDelta = new Vector2(280, 25);
             
             // Bot buttons
-            var texBtn = UIFactory.CreateButton(innerPanel.transform, "TexBtn", "🤠 TEX (Aggressive)", () => OnInviteBot("tex"));
+            var texBtn = UIFactory.CreateButton(innerPanel.transform, "TexBtn", "TEX (Aggressive)", () => OnInviteBot("tex"));
             texBtn.GetOrAddComponent<LayoutElement>().preferredHeight = 55;
             texBtn.GetComponent<Image>().color = theme.primaryColor;
             
-            var larryBtn = UIFactory.CreateButton(innerPanel.transform, "LarryBtn", "😴 LAZY LARRY (Passive)", () => OnInviteBot("lazy_larry"));
+            var larryBtn = UIFactory.CreateButton(innerPanel.transform, "LarryBtn", "LAZY LARRY (Passive)", () => OnInviteBot("lazy_larry"));
             larryBtn.GetOrAddComponent<LayoutElement>().preferredHeight = 55;
             larryBtn.GetComponent<Image>().color = theme.primaryColor;
             
-            var picklesBtn = UIFactory.CreateButton(innerPanel.transform, "PicklesBtn", "🤡 PICKLES (Random)", () => OnInviteBot("pickles"));
+            var picklesBtn = UIFactory.CreateButton(innerPanel.transform, "PicklesBtn", "PICKLES (Random)", () => OnInviteBot("pickles"));
             picklesBtn.GetOrAddComponent<LayoutElement>().preferredHeight = 55;
             picklesBtn.GetComponent<Image>().color = theme.primaryColor;
             

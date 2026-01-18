@@ -384,9 +384,9 @@ namespace PokerClient.UI.Scenes
             UIFactory.CreateDivider(innerPanel.transform, "Divider", true, 280, 1);
             
             // Bot buttons
-            CreateBotButton(innerPanel.transform, "tex", "🤠 TEX", "Aggressive - bets big, bluffs often");
-            CreateBotButton(innerPanel.transform, "lazy_larry", "😴 LAZY LARRY", "Passive - mostly checks and calls");
-            CreateBotButton(innerPanel.transform, "pickles", "🤡 PICKLES", "Unpredictable - random plays");
+            CreateBotButton(innerPanel.transform, "tex", "TEX", "Aggressive - bets big, bluffs often");
+            CreateBotButton(innerPanel.transform, "lazy_larry", "LAZY LARRY", "Passive - mostly checks and calls");
+            CreateBotButton(innerPanel.transform, "pickles", "PICKLES", "Unpredictable - random plays");
             
             UIFactory.CreateDivider(innerPanel.transform, "Divider2", true, 280, 1);
             
