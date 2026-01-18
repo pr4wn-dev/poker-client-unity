@@ -359,22 +359,33 @@ namespace PokerClient.UI.Components
         private Sprite GenerateCardBackSprite()
         {
             int width = 55;
-            int height = 75;
+            int height = 77;
             var texture = new Texture2D(width, height, TextureFormat.RGBA32, false);
             texture.filterMode = FilterMode.Bilinear;
             
-            // Simple navy blue card back - NO border (sprites have their own)
-            Color backColor = new Color(0.15f, 0.2f, 0.5f);
-            Color patternColor = new Color(0.2f, 0.28f, 0.6f);
+            Color borderColor = new Color(0.9f, 0.9f, 0.9f); // Light gray border
+            Color backColor = new Color(0.15f, 0.25f, 0.55f); // Navy blue
+            Color innerColor = new Color(0.2f, 0.35f, 0.7f); // Lighter blue center
             Color[] pixels = new Color[width * height];
             
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    // Simple diagonal stripe pattern
-                    bool pattern = ((x + y) / 6) % 2 == 0;
-                    pixels[y * width + x] = pattern ? patternColor : backColor;
+                    // 2px border
+                    if (x < 2 || x >= width - 2 || y < 2 || y >= height - 2)
+                    {
+                        pixels[y * width + x] = borderColor;
+                    }
+                    // Inner area with subtle pattern
+                    else
+                    {
+                        // Diamond pattern in center
+                        int cx = x - width / 2;
+                        int cy = y - height / 2;
+                        bool isDiamond = (Mathf.Abs(cx) + Mathf.Abs(cy)) < 25;
+                        pixels[y * width + x] = isDiamond ? innerColor : backColor;
+                    }
                 }
             }
             

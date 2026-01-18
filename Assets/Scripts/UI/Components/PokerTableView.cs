@@ -122,33 +122,32 @@ namespace PokerClient.UI.Components
             // Standard poker table layout for different player counts
             // Positions are anchor positions (0-1)
             
-            // 9-player layout (oval table) - adjusted for screen fit
-            // Y positions 0.08-0.92 within the table view area (which already accounts for action panel)
+            // 9-player layout - Y positions raised to avoid action panel overlap
             if (count >= 9)
             {
                 return new List<Vector2>
                 {
-                    new Vector2(0.5f, 0.08f),   // Bottom center (player's usual seat)
-                    new Vector2(0.18f, 0.12f),  // Bottom left
-                    new Vector2(0.08f, 0.40f),  // Left
-                    new Vector2(0.12f, 0.68f),  // Top left
-                    new Vector2(0.35f, 0.88f),  // Top left-center
-                    new Vector2(0.65f, 0.88f),  // Top right-center
-                    new Vector2(0.88f, 0.68f),  // Top right
-                    new Vector2(0.92f, 0.40f),  // Right
-                    new Vector2(0.82f, 0.12f),  // Bottom right
+                    new Vector2(0.5f, 0.22f),   // Bottom center (player's seat) - RAISED
+                    new Vector2(0.15f, 0.25f),  // Bottom left - RAISED
+                    new Vector2(0.06f, 0.45f),  // Left
+                    new Vector2(0.10f, 0.70f),  // Top left
+                    new Vector2(0.35f, 0.85f),  // Top left-center
+                    new Vector2(0.65f, 0.85f),  // Top right-center
+                    new Vector2(0.90f, 0.70f),  // Top right
+                    new Vector2(0.94f, 0.45f),  // Right
+                    new Vector2(0.85f, 0.25f),  // Bottom right - RAISED
                 };
             }
             else if (count >= 6)
             {
                 return new List<Vector2>
                 {
-                    new Vector2(0.5f, 0.08f),   // Bottom center
-                    new Vector2(0.12f, 0.30f),  // Left lower
-                    new Vector2(0.15f, 0.72f),  // Top left
-                    new Vector2(0.5f, 0.88f),   // Top center
-                    new Vector2(0.85f, 0.72f),  // Top right
-                    new Vector2(0.88f, 0.30f),  // Right lower
+                    new Vector2(0.5f, 0.22f),   // Bottom center - RAISED
+                    new Vector2(0.10f, 0.35f),  // Left lower
+                    new Vector2(0.12f, 0.70f),  // Top left
+                    new Vector2(0.5f, 0.85f),   // Top center
+                    new Vector2(0.88f, 0.70f),  // Top right
+                    new Vector2(0.90f, 0.35f),  // Right lower
                 };
             }
             else
@@ -156,8 +155,8 @@ namespace PokerClient.UI.Components
                 // Heads-up or small game
                 return new List<Vector2>
                 {
-                    new Vector2(0.5f, 0.12f),   // Bottom (you)
-                    new Vector2(0.5f, 0.85f),   // Top (opponent)
+                    new Vector2(0.5f, 0.25f),   // Bottom (you) - RAISED
+                    new Vector2(0.5f, 0.80f),   // Top (opponent)
                 };
             }
         }
