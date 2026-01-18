@@ -29,7 +29,7 @@ namespace PokerClient.UI.Scenes
         // cloudflared tunnel gives random URLs - update this when you restart the tunnel!
         private static readonly string[] TUNNEL_URLS = new string[]
         {
-            "https://addition-adventure-shades-tube.trycloudflare.com"  // cloudflare tunnel (no password!)
+            "https://continuous-affordable-sky-provisions.trycloudflare.com"  // cloudflare tunnel (no password!)
         };
         
         [Header("Scene References")]
