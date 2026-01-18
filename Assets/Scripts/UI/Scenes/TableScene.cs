@@ -603,19 +603,19 @@ namespace PokerClient.UI.Scenes
         {
             var theme = Theme.Current;
             
-            // Create a stylish chips display panel - bottom left, above action panel
+            // Create a stylish chips display panel - bottom RIGHT, above action panel
             _myChipsPanel = UIFactory.CreatePanel(_canvas.transform, "MyChipsPanel", new Color(0.05f, 0.05f, 0.1f, 0.9f));
             var panelRect = _myChipsPanel.GetComponent<RectTransform>();
-            panelRect.anchorMin = new Vector2(0, 0);
-            panelRect.anchorMax = new Vector2(0, 0);
-            panelRect.pivot = new Vector2(0, 0);
-            panelRect.anchoredPosition = new Vector2(15, 115); // Above action panel
+            panelRect.anchorMin = new Vector2(1, 0);  // Bottom-right anchor
+            panelRect.anchorMax = new Vector2(1, 0);
+            panelRect.pivot = new Vector2(1, 0);      // Right-aligned pivot
+            panelRect.anchoredPosition = new Vector2(-15, 115); // 15px from right edge, above action panel
             panelRect.sizeDelta = new Vector2(180, 55);
             
-            // Ensure it renders on top
+            // Ensure it renders ABOVE the action panel (action panel is sortingOrder 100)
             var chipsPanelCanvas = _myChipsPanel.AddComponent<Canvas>();
             chipsPanelCanvas.overrideSorting = true;
-            chipsPanelCanvas.sortingOrder = 90;
+            chipsPanelCanvas.sortingOrder = 110; // Higher than action panel's 100
             _myChipsPanel.AddComponent<UnityEngine.UI.GraphicRaycaster>();
             
             // Add a subtle gold border/glow effect
@@ -623,18 +623,18 @@ namespace PokerClient.UI.Scenes
             outline.effectColor = new Color(1f, 0.85f, 0.2f, 0.6f);
             outline.effectDistance = new Vector2(2, 2);
             
-            // Chip icon/label
-            var chipLabel = UIFactory.CreateText(_myChipsPanel.transform, "ChipLabel", "CHIPS", 11f, new Color(0.7f, 0.7f, 0.7f));
+            // Chip icon/label - right aligned for bottom-right position
+            var chipLabel = UIFactory.CreateText(_myChipsPanel.transform, "ChipLabel", "MY CHIPS", 11f, new Color(0.7f, 0.7f, 0.7f));
             var labelRect = chipLabel.GetComponent<RectTransform>();
             labelRect.anchorMin = new Vector2(0, 0.6f);
             labelRect.anchorMax = new Vector2(1, 1);
             labelRect.sizeDelta = Vector2.zero;
             labelRect.offsetMin = new Vector2(10, 0);
             labelRect.offsetMax = new Vector2(-10, -5);
-            chipLabel.alignment = TextAlignmentOptions.Left;
+            chipLabel.alignment = TextAlignmentOptions.Right;
             chipLabel.fontStyle = FontStyles.Bold;
             
-            // Large chip amount with gold color
+            // Large chip amount with gold color - right aligned
             _myChipsText = UIFactory.CreateTitle(_myChipsPanel.transform, "ChipAmount", "0", 26f);
             var amountRect = _myChipsText.GetComponent<RectTransform>();
             amountRect.anchorMin = new Vector2(0, 0);
@@ -644,7 +644,7 @@ namespace PokerClient.UI.Scenes
             amountRect.offsetMax = new Vector2(-10, 0);
             _myChipsText.color = new Color(1f, 0.85f, 0.2f); // Gold
             _myChipsText.fontStyle = FontStyles.Bold;
-            _myChipsText.alignment = TextAlignmentOptions.Left;
+            _myChipsText.alignment = TextAlignmentOptions.Right;
             
             // Initially hidden until we have data
             _myChipsPanel.SetActive(false);
