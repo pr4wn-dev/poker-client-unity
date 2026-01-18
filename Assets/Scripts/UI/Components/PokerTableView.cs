@@ -290,10 +290,27 @@ namespace PokerClient.UI.Components
             _nameText.GetOrAddComponent<LayoutElement>().preferredHeight = 22;
             _nameText.alignment = TextAlignmentOptions.Center;
             
-            // Chips
-            _chipsText = UIFactory.CreateText(content.transform, "Chips", "", 14f, theme.accentColor);
-            _chipsText.GetOrAddComponent<LayoutElement>().preferredHeight = 18;
+            // Chips - fancy badge at top-right corner (outside content layout)
+            var chipsBadge = UIFactory.CreatePanel(transform, "ChipsBadge", new Color(0.1f, 0.1f, 0.1f, 0.9f));
+            var badgeRect = chipsBadge.GetComponent<RectTransform>();
+            badgeRect.anchorMin = new Vector2(1f, 1f);
+            badgeRect.anchorMax = new Vector2(1f, 1f);
+            badgeRect.pivot = new Vector2(1f, 1f);
+            badgeRect.anchoredPosition = new Vector2(5, 5);
+            badgeRect.sizeDelta = new Vector2(70, 24);
+            
+            // Add border to badge
+            var badgeBorder = chipsBadge.AddComponent<UnityEngine.UI.Outline>();
+            badgeBorder.effectColor = theme.accentColor;
+            badgeBorder.effectDistance = new Vector2(1, 1);
+            
+            _chipsText = UIFactory.CreateText(chipsBadge.transform, "Chips", "", 14f, theme.accentColor);
+            _chipsText.fontStyle = FontStyles.Bold;
             _chipsText.alignment = TextAlignmentOptions.Center;
+            var chipsRect = _chipsText.GetComponent<RectTransform>();
+            chipsRect.anchorMin = Vector2.zero;
+            chipsRect.anchorMax = Vector2.one;
+            chipsRect.sizeDelta = Vector2.zero;
             
             // Hole cards - positioned ON the seat (overlay at bottom)
             var cardsRow = UIFactory.CreatePanel(transform, "CardsRow", Color.clear);
@@ -619,9 +636,14 @@ namespace PokerClient.UI.Components
         public void SetEmpty()
         {
             gameObject.SetActive(true);
+            _background.sprite = null;
             _background.color = new Color(0.3f, 0.3f, 0.3f, 0.3f);
+            _background.preserveAspect = false; // Allow placeholder to be sized by rect
             _rankText.gameObject.SetActive(false);
             _suitText.gameObject.SetActive(false);
+            
+            // Force correct aspect ratio for placeholder
+            _rect.sizeDelta = new Vector2(Theme.Current.cardWidth, Theme.Current.cardHeight);
         }
         
         private string GetSuitSymbol(string suit)
