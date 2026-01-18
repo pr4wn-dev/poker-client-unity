@@ -319,13 +319,14 @@ namespace PokerClient.UI.Components
             _actionText.fontStyle = FontStyles.Bold;
             _actionText.gameObject.SetActive(false);
             
-            // Bet chips (visual chip stack)
+            // Bet chips (visual chip stack) - positioned toward table center
             _betChips = ChipStack.Create(transform, 0);
             var chipsRect = _betChips.GetComponent<RectTransform>();
-            chipsRect.anchorMin = new Vector2(0.5f, 0);
-            chipsRect.anchorMax = new Vector2(0.5f, 0);
-            chipsRect.pivot = new Vector2(0.5f, 1);
-            chipsRect.anchoredPosition = new Vector2(0, -5);
+            chipsRect.anchorMin = new Vector2(0.5f, 0.5f);
+            chipsRect.anchorMax = new Vector2(0.5f, 0.5f);
+            chipsRect.pivot = new Vector2(0.5f, 0.5f);
+            chipsRect.anchoredPosition = new Vector2(60, 0); // To the right of the seat
+            chipsRect.localScale = new Vector3(1.5f, 1.5f, 1f); // Make larger
             
             // Bet text (chips in front)
             _betText = UIFactory.CreateText(transform, "Bet", "", 16f, theme.accentColor);

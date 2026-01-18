@@ -149,12 +149,8 @@ namespace PokerClient.UI.Components
         /// </summary>
         public Sprite GetCardBack()
         {
-            if (cardBackSprite != null) return cardBackSprite;
-            
-            // Try loading from Resources
-            cardBackSprite = Resources.Load<Sprite>("Sprites/Cards/card_back");
-            if (cardBackSprite != null) return cardBackSprite;
-            
+            // Always use procedural card back for reliability
+            // The PNG file has import issues that cause weird patterns
             if (!_generatedSprites.TryGetValue("card_back", out Sprite sprite))
             {
                 sprite = GenerateCardBackSprite();
@@ -362,35 +358,55 @@ namespace PokerClient.UI.Components
         
         private Sprite GenerateCardBackSprite()
         {
-            int width = 60;
-            int height = 84;
+            int width = 70;
+            int height = 100;
             var texture = new Texture2D(width, height, TextureFormat.RGBA32, false);
-            texture.filterMode = FilterMode.Point;
+            texture.filterMode = FilterMode.Bilinear;
             
-            Color backColor = new Color(0.15f, 0.25f, 0.5f);
-            Color patternColor = new Color(0.2f, 0.35f, 0.6f);
+            // Rich navy blue card back with red trim
+            Color backColor = new Color(0.1f, 0.15f, 0.4f);
+            Color patternColor = new Color(0.15f, 0.22f, 0.55f);
+            Color borderColor = new Color(0.6f, 0.1f, 0.1f); // Red border
             Color[] pixels = new Color[width * height];
             
             for (int y = 0; y < height; y++)
             {
                 for (int x = 0; x < width; x++)
                 {
-                    // Diamond pattern
-                    bool isDiamond = ((x + y) % 8 < 4) ^ ((x - y + 100) % 8 < 4);
-                    pixels[y * width + x] = isDiamond ? patternColor : backColor;
+                    // Diamond/checker pattern
+                    bool pattern = ((x / 5 + y / 5) % 2 == 0);
+                    pixels[y * width + x] = pattern ? patternColor : backColor;
                 }
             }
             
-            // Border
+            // Inner white border
+            for (int x = 4; x < width - 4; x++)
+            {
+                pixels[4 * width + x] = Color.white;
+                pixels[(height - 5) * width + x] = Color.white;
+            }
+            for (int y = 4; y < height - 4; y++)
+            {
+                pixels[y * width + 4] = Color.white;
+                pixels[y * width + width - 5] = Color.white;
+            }
+            
+            // Outer red border
             for (int x = 0; x < width; x++)
             {
-                pixels[x] = Color.white;
-                pixels[(height - 1) * width + x] = Color.white;
+                for (int b = 0; b < 3; b++)
+                {
+                    pixels[b * width + x] = borderColor;
+                    pixels[(height - 1 - b) * width + x] = borderColor;
+                }
             }
             for (int y = 0; y < height; y++)
             {
-                pixels[y * width] = Color.white;
-                pixels[y * width + width - 1] = Color.white;
+                for (int b = 0; b < 3; b++)
+                {
+                    pixels[y * width + b] = borderColor;
+                    pixels[y * width + width - 1 - b] = borderColor;
+                }
             }
             
             texture.SetPixels(pixels);
