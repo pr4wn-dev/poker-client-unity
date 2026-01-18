@@ -60,6 +60,12 @@ namespace PokerClient.UI.Scenes
         private GameObject _botApprovalPopup;
         private int _pendingBotSeat = -1;
         
+        // Countdown UI
+        private GameObject _countdownOverlay;
+        private TextMeshProUGUI _countdownNumber;
+        private TextMeshProUGUI _countdownLabel;
+        private int _lastCountdownValue = -1;
+        
         private void Start()
         {
             _gameService = GameService.Instance;
@@ -182,6 +188,9 @@ namespace PokerClient.UI.Scenes
             
             // Result Panel (shown after hands)
             BuildResultPanel();
+            
+            // Countdown Overlay (shown before game starts)
+            BuildCountdownOverlay();
             
             // Hide action panel initially
             actionPanel.SetActive(false);
@@ -500,6 +509,100 @@ namespace PokerClient.UI.Scenes
             resultPanel.SetActive(false);
         }
         
+        private void BuildCountdownOverlay()
+        {
+            var theme = Theme.Current;
+            
+            // Semi-transparent overlay
+            _countdownOverlay = UIFactory.CreatePanel(_canvas.transform, "CountdownOverlay", new Color(0, 0, 0, 0.6f));
+            var overlayRect = _countdownOverlay.GetComponent<RectTransform>();
+            overlayRect.anchorMin = new Vector2(0.3f, 0.3f);
+            overlayRect.anchorMax = new Vector2(0.7f, 0.7f);
+            overlayRect.sizeDelta = Vector2.zero;
+            
+            // Add rounded corners effect with inner panel
+            var innerPanel = UIFactory.CreatePanel(_countdownOverlay.transform, "Inner", new Color(0.1f, 0.15f, 0.2f, 0.95f));
+            var innerRect = innerPanel.GetComponent<RectTransform>();
+            innerRect.anchorMin = new Vector2(0.05f, 0.05f);
+            innerRect.anchorMax = new Vector2(0.95f, 0.95f);
+            innerRect.sizeDelta = Vector2.zero;
+            
+            // "GAME STARTING" label at top
+            _countdownLabel = UIFactory.CreateTitle(innerPanel.transform, "Label", "GAME STARTING", 32f);
+            _countdownLabel.color = theme.accentColor;
+            _countdownLabel.alignment = TextAlignmentOptions.Center;
+            var labelRect = _countdownLabel.GetComponent<RectTransform>();
+            labelRect.anchorMin = new Vector2(0, 0.65f);
+            labelRect.anchorMax = new Vector2(1, 0.9f);
+            labelRect.sizeDelta = Vector2.zero;
+            
+            // Big countdown number in center
+            _countdownNumber = UIFactory.CreateTitle(innerPanel.transform, "Number", "5", 120f);
+            _countdownNumber.color = Color.white;
+            _countdownNumber.alignment = TextAlignmentOptions.Center;
+            _countdownNumber.fontStyle = FontStyles.Bold;
+            var numberRect = _countdownNumber.GetComponent<RectTransform>();
+            numberRect.anchorMin = new Vector2(0, 0.15f);
+            numberRect.anchorMax = new Vector2(1, 0.7f);
+            numberRect.sizeDelta = Vector2.zero;
+            
+            // "Get Ready!" text at bottom
+            var readyText = UIFactory.CreateText(innerPanel.transform, "Ready", "Get Ready!", 24f, theme.textSecondary);
+            readyText.alignment = TextAlignmentOptions.Center;
+            var readyRect = readyText.GetComponent<RectTransform>();
+            readyRect.anchorMin = new Vector2(0, 0.02f);
+            readyRect.anchorMax = new Vector2(1, 0.18f);
+            readyRect.sizeDelta = Vector2.zero;
+            
+            _countdownOverlay.SetActive(false);
+        }
+        
+        private void UpdateCountdownDisplay(int? countdownValue)
+        {
+            if (countdownValue.HasValue && countdownValue.Value > 0)
+            {
+                _countdownOverlay.SetActive(true);
+                _countdownNumber.text = countdownValue.Value.ToString();
+                
+                // Play tick sound on each countdown change
+                if (countdownValue.Value != _lastCountdownValue)
+                {
+                    _lastCountdownValue = countdownValue.Value;
+                    // Could add a tick sound here: AudioManager.Instance?.PlayCountdownTick();
+                    
+                    // Pulse animation effect - scale up then back
+                    if (_countdownNumber != null)
+                    {
+                        _countdownNumber.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+                        StartCoroutine(AnimateCountdownPulse());
+                    }
+                }
+            }
+            else
+            {
+                _countdownOverlay.SetActive(false);
+                _lastCountdownValue = -1;
+            }
+        }
+        
+        private System.Collections.IEnumerator AnimateCountdownPulse()
+        {
+            float duration = 0.2f;
+            float elapsed = 0f;
+            Vector3 startScale = new Vector3(1.2f, 1.2f, 1f);
+            Vector3 endScale = Vector3.one;
+            
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / duration;
+                _countdownNumber.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+                yield return null;
+            }
+            
+            _countdownNumber.transform.localScale = endScale;
+        }
+        
         #region Event Handlers
         
         private void OnTableStateUpdate(TableState state)
@@ -516,13 +619,15 @@ namespace PokerClient.UI.Scenes
             // Update phase (show countdown if waiting and countdown active)
             if (state.phase == "waiting" && state.startCountdownRemaining.HasValue && state.startCountdownRemaining.Value > 0)
             {
-                phaseText.text = $"Starting in {state.startCountdownRemaining.Value}...";
-                timerText.text = state.startCountdownRemaining.Value.ToString();
-                timerText.gameObject.SetActive(true);
+                phaseText.text = "Waiting for Players...";
+                // Show big countdown overlay
+                UpdateCountdownDisplay(state.startCountdownRemaining);
             }
             else
             {
                 phaseText.text = GetPhaseDisplayName(state.phase);
+                // Hide countdown overlay when game starts
+                UpdateCountdownDisplay(null);
             }
             
             // Update table view
