@@ -294,14 +294,14 @@ namespace PokerClient.UI.Scenes
             // Action Panel (bottom)
             BuildActionPanel();
             
-            // My Chips Display (above action panel, left side)
-            BuildMyChipsPanel();
-            
             // Side Menu (includes bot panel which should be on top of start button)
             BuildSideMenu();
             
             // Result Panel (shown after hands)
             BuildResultPanel();
+            
+            // My Chips Display - BUILD LAST so it's on top of everything
+            BuildMyChipsPanel();
             
             // Countdown Overlay (shown before game starts)
             BuildCountdownOverlay();
@@ -604,50 +604,53 @@ namespace PokerClient.UI.Scenes
             var theme = Theme.Current;
             
             // Create a stylish chips display panel - bottom RIGHT, above action panel
-            _myChipsPanel = UIFactory.CreatePanel(_canvas.transform, "MyChipsPanel", new Color(0.05f, 0.05f, 0.1f, 0.9f));
+            _myChipsPanel = UIFactory.CreatePanel(_canvas.transform, "MyChipsPanel", new Color(0.05f, 0.05f, 0.1f, 0.95f));
             var panelRect = _myChipsPanel.GetComponent<RectTransform>();
             panelRect.anchorMin = new Vector2(1, 0);  // Bottom-right anchor
             panelRect.anchorMax = new Vector2(1, 0);
             panelRect.pivot = new Vector2(1, 0);      // Right-aligned pivot
-            panelRect.anchoredPosition = new Vector2(-15, 115); // 15px from right edge, above action panel
-            panelRect.sizeDelta = new Vector2(180, 55);
+            panelRect.anchoredPosition = new Vector2(-10, 105); // 10px from right edge, 105px up from bottom
+            panelRect.sizeDelta = new Vector2(170, 50);
             
-            // Ensure it renders ABOVE the action panel (action panel is sortingOrder 100)
+            // Ensure it renders ABOVE everything - use high sorting order
             var chipsPanelCanvas = _myChipsPanel.AddComponent<Canvas>();
             chipsPanelCanvas.overrideSorting = true;
-            chipsPanelCanvas.sortingOrder = 110; // Higher than action panel's 100
+            chipsPanelCanvas.sortingOrder = 200; // Very high to ensure visibility
             _myChipsPanel.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+            
+            // Make it the last sibling so it draws on top
+            _myChipsPanel.transform.SetAsLastSibling();
             
             // Add a subtle gold border/glow effect
             var outline = _myChipsPanel.AddComponent<UnityEngine.UI.Outline>();
-            outline.effectColor = new Color(1f, 0.85f, 0.2f, 0.6f);
+            outline.effectColor = new Color(1f, 0.85f, 0.2f, 0.7f);
             outline.effectDistance = new Vector2(2, 2);
             
             // Chip icon/label - right aligned for bottom-right position
-            var chipLabel = UIFactory.CreateText(_myChipsPanel.transform, "ChipLabel", "MY CHIPS", 11f, new Color(0.7f, 0.7f, 0.7f));
+            var chipLabel = UIFactory.CreateText(_myChipsPanel.transform, "ChipLabel", "MY CHIPS", 10f, new Color(0.8f, 0.8f, 0.8f));
             var labelRect = chipLabel.GetComponent<RectTransform>();
-            labelRect.anchorMin = new Vector2(0, 0.6f);
+            labelRect.anchorMin = new Vector2(0, 0.55f);
             labelRect.anchorMax = new Vector2(1, 1);
             labelRect.sizeDelta = Vector2.zero;
-            labelRect.offsetMin = new Vector2(10, 0);
-            labelRect.offsetMax = new Vector2(-10, -5);
+            labelRect.offsetMin = new Vector2(8, 0);
+            labelRect.offsetMax = new Vector2(-8, -3);
             chipLabel.alignment = TextAlignmentOptions.Right;
             chipLabel.fontStyle = FontStyles.Bold;
             
             // Large chip amount with gold color - right aligned
-            _myChipsText = UIFactory.CreateTitle(_myChipsPanel.transform, "ChipAmount", "0", 26f);
+            _myChipsText = UIFactory.CreateTitle(_myChipsPanel.transform, "ChipAmount", "---", 24f);
             var amountRect = _myChipsText.GetComponent<RectTransform>();
             amountRect.anchorMin = new Vector2(0, 0);
-            amountRect.anchorMax = new Vector2(1, 0.65f);
+            amountRect.anchorMax = new Vector2(1, 0.6f);
             amountRect.sizeDelta = Vector2.zero;
-            amountRect.offsetMin = new Vector2(10, 5);
-            amountRect.offsetMax = new Vector2(-10, 0);
+            amountRect.offsetMin = new Vector2(8, 3);
+            amountRect.offsetMax = new Vector2(-8, 0);
             _myChipsText.color = new Color(1f, 0.85f, 0.2f); // Gold
             _myChipsText.fontStyle = FontStyles.Bold;
             _myChipsText.alignment = TextAlignmentOptions.Right;
             
-            // Initially hidden until we have data
-            _myChipsPanel.SetActive(false);
+            // Start visible with placeholder text so we can verify positioning
+            _myChipsPanel.SetActive(true);
         }
         
         private void UpdateMyChipsDisplay(int chips)
