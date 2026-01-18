@@ -265,6 +265,12 @@ namespace PokerClient.UI.Scenes
             panelRect.sizeDelta = new Vector2(320, 320); // Taller for buy-in row
             panelRect.anchoredPosition = Vector2.zero;
             
+            // Ensure this panel renders on top of header
+            var panelCanvas = createTablePanel.AddComponent<Canvas>();
+            panelCanvas.overrideSorting = true;
+            panelCanvas.sortingOrder = 50;
+            createTablePanel.AddComponent<GraphicRaycaster>();
+            
             float y = -20; // Start from top with padding
             float contentWidth = 280; // 320 - 40 padding
             float leftPad = 20;
@@ -436,6 +442,12 @@ namespace PokerClient.UI.Scenes
             panelRect.anchorMax = new Vector2(0.7f, 0.7f);
             panelRect.sizeDelta = Vector2.zero;
             
+            // Ensure this panel renders on top
+            var panelCanvas = invitePanel.AddComponent<Canvas>();
+            panelCanvas.overrideSorting = true;
+            panelCanvas.sortingOrder = 50;
+            invitePanel.AddComponent<GraphicRaycaster>();
+            
             var vlg = invitePanel.AddComponent<VerticalLayoutGroup>();
             vlg.spacing = 15;
             vlg.padding = new RectOffset(30, 30, 30, 30);
@@ -479,6 +491,12 @@ namespace PokerClient.UI.Scenes
             panelRect.anchorMin = Vector2.zero;
             panelRect.anchorMax = Vector2.one;
             panelRect.sizeDelta = Vector2.zero;
+            
+            // Ensure this panel renders on top of everything
+            var panelCanvas = loadingPanel.AddComponent<Canvas>();
+            panelCanvas.overrideSorting = true;
+            panelCanvas.sortingOrder = 100;
+            loadingPanel.AddComponent<GraphicRaycaster>();
             
             var loadingText = UIFactory.CreateTitle(loadingPanel.transform, "LoadingText", "Loading...", 36f);
             loadingText.alignment = TextAlignmentOptions.Center;
