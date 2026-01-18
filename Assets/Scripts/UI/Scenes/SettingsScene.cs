@@ -356,7 +356,7 @@ namespace PokerClient.UI.Scenes
             toggle.onValueChanged.AddListener(isOn => bgImg.color = isOn ? theme.primaryColor : theme.backgroundColor);
             
             // Checkmark
-            var check = UIFactory.CreateText(toggleObj.transform, "Check", "✓", 20f, Color.white);
+            var check = UIFactory.CreateText(toggleObj.transform, "Check", "X", 20f, Color.white);
             var checkRect = check.GetComponent<RectTransform>();
             checkRect.anchorMin = Vector2.zero;
             checkRect.anchorMax = Vector2.one;

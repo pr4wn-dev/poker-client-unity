@@ -101,7 +101,7 @@ namespace PokerClient.UI.Scenes
             gemsRect.anchorMax = new Vector2(0.85f, 0.8f);
             gemsRect.sizeDelta = Vector2.zero;
             
-            var gemsIcon = UIFactory.CreateText(gemsPanel.transform, "Icon", "💎", 24f, Color.white);
+            var gemsIcon = UIFactory.CreateText(gemsPanel.transform, "Icon", "G", 24f, Color.white);
             var gIconRect = gemsIcon.GetComponent<RectTransform>();
             gIconRect.anchorMin = new Vector2(0.02f, 0);
             gIconRect.anchorMax = new Vector2(0.22f, 1);
@@ -276,7 +276,7 @@ namespace PokerClient.UI.Scenes
             rarityText.alignment = TextAlignmentOptions.Center;
             
             // Buy button
-            var buyBtn = UIFactory.CreateButton(item.transform, "Buy", $"💎 {gemsPrice}", () => OnBuyItem(name, gemsPrice));
+            var buyBtn = UIFactory.CreateButton(item.transform, "Buy", $"{gemsPrice}G", () => OnBuyItem(name, gemsPrice));
             buyBtn.GetOrAddComponent<LayoutElement>().preferredHeight = 40;
             buyBtn.GetComponent<Image>().color = new Color(0.1f, 0.1f, 0.15f, 0.9f);
         }
@@ -299,7 +299,7 @@ namespace PokerClient.UI.Scenes
             glg.childAlignment = TextAnchor.UpperCenter;
             
             // Cosmetics
-            CreateCosmeticForSale("Card Back: Fire", "🔥", 200, "card_back");
+            CreateCosmeticForSale("Card Back: Fire", "*", 200, "card_back");
             CreateCosmeticForSale("Card Back: Ice", "❄️", 200, "card_back");
             CreateCosmeticForSale("Avatar: Crown", "👑", 500, "avatar");
             CreateCosmeticForSale("Avatar: Sunglasses", "😎", 300, "avatar");
@@ -340,7 +340,7 @@ namespace PokerClient.UI.Scenes
             typeText.alignment = TextAlignmentOptions.Center;
             
             // Buy button
-            var buyBtn = UIFactory.CreateButton(item.transform, "Buy", $"💎 {gemsPrice}", () => OnBuyCosmetic(name, gemsPrice));
+            var buyBtn = UIFactory.CreateButton(item.transform, "Buy", $"{gemsPrice}G", () => OnBuyCosmetic(name, gemsPrice));
             buyBtn.GetOrAddComponent<LayoutElement>().preferredHeight = 40;
             buyBtn.GetComponent<Image>().color = theme.primaryColor;
         }
