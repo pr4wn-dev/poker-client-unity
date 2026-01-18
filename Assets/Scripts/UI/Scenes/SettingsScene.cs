@@ -124,8 +124,8 @@ namespace PokerClient.UI.Scenes
             _masterVolumeLabel = masterRow.label;
             _masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeChanged);
             
-            // Music volume
-            var musicRow = CreateSliderRow(section.transform, "Music Volume", 0.5f);
+            // Music volume (muted by default, user can enable)
+            var musicRow = CreateSliderRow(section.transform, "Music Volume", 0f);
             _musicVolumeSlider = musicRow.slider;
             _musicVolumeLabel = musicRow.label;
             _musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);

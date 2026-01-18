@@ -35,7 +35,7 @@ namespace PokerClient.Core
         [Header("Volume Settings")]
         [Range(0f, 1f)] public float masterVolume = 1f;
         [Range(0f, 1f)] public float sfxVolume = 1f;
-        [Range(0f, 1f)] public float musicVolume = 0.5f;
+        [Range(0f, 1f)] public float musicVolume = 0f;  // Muted by default
         [Range(0f, 1f)] public float uiVolume = 1f;
         
         [Header("=== SOUND EFFECTS - Assign or Load from Resources ===")]
@@ -199,7 +199,7 @@ namespace PokerClient.Core
         {
             masterVolume = PlayerPrefs.GetFloat(KEY_MASTER_VOL, 1f);
             sfxVolume = PlayerPrefs.GetFloat(KEY_SFX_VOL, 1f);
-            musicVolume = PlayerPrefs.GetFloat(KEY_MUSIC_VOL, 0.5f);
+            musicVolume = PlayerPrefs.GetFloat(KEY_MUSIC_VOL, 0f);  // Muted by default
             uiVolume = PlayerPrefs.GetFloat(KEY_UI_VOL, 1f);
             
             UpdateAllVolumes();
