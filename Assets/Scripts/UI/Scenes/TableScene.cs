@@ -73,6 +73,11 @@ namespace PokerClient.UI.Scenes
         private TextMeshProUGUI _readyCountText;
         private bool _hasClickedReady = false;
         
+        // Action Announcement
+        private GameObject _actionAnnouncement;
+        private TextMeshProUGUI _actionText;
+        private string _lastActionPlayerId = null;
+        
         private void Start()
         {
             _gameService = GameService.Instance;
@@ -184,6 +189,9 @@ namespace PokerClient.UI.Scenes
             // Table View (the main poker table with seats)
             BuildTableView();
             
+            // Action Announcement (shows what player just did)
+            BuildActionAnnouncement();
+            
             // Start Game button (for table creator) - built early so dialogs appear on top
             BuildStartGameButton();
             
@@ -220,6 +228,90 @@ namespace PokerClient.UI.Scenes
             rect.anchorMin = new Vector2(0, 0.18f); // Leave MORE room for action panel at bottom
             rect.anchorMax = new Vector2(1, 0.88f); // Leave room for top bar
             rect.sizeDelta = Vector2.zero;
+        }
+        
+        private void BuildActionAnnouncement()
+        {
+            var theme = Theme.Current;
+            
+            // Container positioned at center-top of the table area
+            _actionAnnouncement = UIFactory.CreatePanel(_canvas.transform, "ActionAnnouncement", new Color(0, 0, 0, 0.7f));
+            var rect = _actionAnnouncement.GetComponent<RectTransform>();
+            rect.anchorMin = new Vector2(0.5f, 0.75f);
+            rect.anchorMax = new Vector2(0.5f, 0.75f);
+            rect.pivot = new Vector2(0.5f, 0.5f);
+            rect.sizeDelta = new Vector2(300, 40);
+            rect.anchoredPosition = Vector2.zero;
+            
+            // Round corners effect (optional - just use padding)
+            _actionAnnouncement.GetComponent<Image>().pixelsPerUnitMultiplier = 1;
+            
+            // Action text
+            _actionText = UIFactory.CreateText(_actionAnnouncement.transform, "ActionText", "", 18f, Color.white);
+            _actionText.alignment = TextAlignmentOptions.Center;
+            _actionText.fontStyle = FontStyles.Bold;
+            var textRect = _actionText.GetComponent<RectTransform>();
+            textRect.anchorMin = Vector2.zero;
+            textRect.anchorMax = Vector2.one;
+            textRect.sizeDelta = Vector2.zero;
+            
+            // Start hidden
+            _actionAnnouncement.SetActive(false);
+        }
+        
+        private void ShowActionAnnouncement(string playerName, string action, int amount = 0)
+        {
+            if (_actionAnnouncement == null || _actionText == null) return;
+            
+            string message;
+            Color actionColor = Color.white;
+            
+            switch (action.ToLower())
+            {
+                case "fold":
+                    message = $"{playerName} folds";
+                    actionColor = new Color(0.7f, 0.7f, 0.7f); // Gray
+                    break;
+                case "check":
+                    message = $"{playerName} checks";
+                    actionColor = new Color(0.5f, 0.8f, 1f); // Light blue
+                    break;
+                case "call":
+                    message = amount > 0 ? $"{playerName} calls ${amount:N0}" : $"{playerName} calls";
+                    actionColor = new Color(0.5f, 1f, 0.5f); // Light green
+                    break;
+                case "bet":
+                    message = $"{playerName} bets ${amount:N0}";
+                    actionColor = new Color(1f, 0.9f, 0.3f); // Yellow/gold
+                    break;
+                case "raise":
+                    message = $"{playerName} raises to ${amount:N0}";
+                    actionColor = new Color(1f, 0.6f, 0.2f); // Orange
+                    break;
+                case "allin":
+                case "all-in":
+                case "all_in":
+                    message = $"{playerName} is ALL IN! ${amount:N0}";
+                    actionColor = new Color(1f, 0.3f, 0.3f); // Red
+                    break;
+                default:
+                    message = $"{playerName} {action}";
+                    break;
+            }
+            
+            _actionText.text = message;
+            _actionText.color = actionColor;
+            _actionAnnouncement.SetActive(true);
+            
+            // Auto-hide after 3 seconds
+            CancelInvoke(nameof(HideActionAnnouncement));
+            Invoke(nameof(HideActionAnnouncement), 3f);
+        }
+        
+        private void HideActionAnnouncement()
+        {
+            if (_actionAnnouncement != null)
+                _actionAnnouncement.SetActive(false);
         }
         
         private void BuildTopBar()
@@ -887,13 +979,39 @@ namespace PokerClient.UI.Scenes
             allInButton.gameObject.SetActive(true);
         }
         
-        private void OnPlayerActionReceived(string oderId, string action, int? amount)
+        private void OnPlayerActionReceived(string playerId, string action, int? amount)
         {
             // Show action animation on the player seat
-            _tableView.ShowPlayerAction(oderId, action, amount);
+            _tableView.ShowPlayerAction(playerId, action, amount);
             
             // Play sound for the action
             AudioManager.Instance?.PlayPokerAction(action, amount);
+            
+            // Show action announcement
+            string playerName = GetPlayerName(playerId);
+            ShowActionAnnouncement(playerName, action, amount ?? 0);
+        }
+        
+        private string GetPlayerName(string playerId)
+        {
+            if (_currentState?.seats == null) return "Player";
+            
+            // Check if it's the current user
+            if (playerId == _gameService.CurrentUser?.id)
+                return "You";
+            
+            // Find player in seats
+            foreach (var seat in _currentState.seats)
+            {
+                if (seat != null && seat.playerId == playerId)
+                {
+                    string name = seat.playerName ?? "Player";
+                    if (seat.isBot) name = $"[BOT] {name}";
+                    return name;
+                }
+            }
+            
+            return "Player";
         }
         
         private void OnPlayerJoinedTable(string oderId, string name, int seatIndex)
