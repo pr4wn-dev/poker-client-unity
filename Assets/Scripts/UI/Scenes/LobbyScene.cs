@@ -121,39 +121,40 @@ namespace PokerClient.UI.Scenes
         {
             var theme = Theme.Current;
             
+            // Taller header to fit button row inside
             var header = UIFactory.CreatePanel(_canvas.transform, "Header", theme.cardPanelColor);
             var headerRect = header.GetComponent<RectTransform>();
             headerRect.anchorMin = new Vector2(0, 1);
             headerRect.anchorMax = new Vector2(1, 1);
             headerRect.pivot = new Vector2(0.5f, 1);
-            headerRect.sizeDelta = new Vector2(0, 80);
+            headerRect.sizeDelta = new Vector2(0, 120); // Taller to fit buttons
             headerRect.anchoredPosition = Vector2.zero;
             
-            // Back button
+            // Back button - in upper left
             var backBtn = UIFactory.CreateButton(header.transform, "BackBtn", "← Back", OnBackClick);
             var backRect = backBtn.GetComponent<RectTransform>();
-            backRect.anchorMin = new Vector2(0, 0.5f);
-            backRect.anchorMax = new Vector2(0, 0.5f);
-            backRect.pivot = new Vector2(0, 0.5f);
-            backRect.anchoredPosition = new Vector2(20, 0);
-            backRect.sizeDelta = new Vector2(120, 50);
+            backRect.anchorMin = new Vector2(0, 1);
+            backRect.anchorMax = new Vector2(0, 1);
+            backRect.pivot = new Vector2(0, 1);
+            backRect.anchoredPosition = new Vector2(10, -8);
+            backRect.sizeDelta = new Vector2(90, 40);
             
-            // Title - properly sized to fit container
-            var title = UIFactory.CreateTitle(header.transform, "Title", "MULTIPLAYER LOBBY", 28f);
+            // Title - in upper center
+            var title = UIFactory.CreateTitle(header.transform, "Title", "MULTIPLAYER LOBBY", 22f);
             title.alignment = TextAlignmentOptions.Center;
             var titleRect = title.GetComponent<RectTransform>();
-            titleRect.anchorMin = new Vector2(0.25f, 0);
+            titleRect.anchorMin = new Vector2(0.25f, 0.55f);
             titleRect.anchorMax = new Vector2(0.75f, 1);
             titleRect.sizeDelta = Vector2.zero;
             
-            // Player Info
-            playerInfoText = UIFactory.CreateText(header.transform, "PlayerInfo", "", 18f, theme.textSecondary);
+            // Player Info - in upper right
+            playerInfoText = UIFactory.CreateText(header.transform, "PlayerInfo", "", 14f, theme.textSecondary);
             var infoRect = playerInfoText.GetComponent<RectTransform>();
-            infoRect.anchorMin = new Vector2(1, 0.5f);
-            infoRect.anchorMax = new Vector2(1, 0.5f);
-            infoRect.pivot = new Vector2(1, 0.5f);
-            infoRect.anchoredPosition = new Vector2(-20, 0);
-            infoRect.sizeDelta = new Vector2(300, 40);
+            infoRect.anchorMin = new Vector2(1, 1);
+            infoRect.anchorMax = new Vector2(1, 1);
+            infoRect.pivot = new Vector2(1, 1);
+            infoRect.anchoredPosition = new Vector2(-10, -12);
+            infoRect.sizeDelta = new Vector2(200, 30);
             playerInfoText.alignment = TextAlignmentOptions.Right;
             
             if (_gameService?.CurrentUser != null)
@@ -161,33 +162,34 @@ namespace PokerClient.UI.Scenes
                 playerInfoText.text = $"{_gameService.CurrentUser.username} | {ChipStack.FormatChipValue((int)_gameService.CurrentUser.chips)}";
             }
             
-            // Button row
+            // Button row - in lower half of header
             var buttonRow = UIFactory.CreatePanel(header.transform, "ButtonRow", Color.clear);
             var rowRect = buttonRow.GetComponent<RectTransform>();
-            rowRect.anchorMin = new Vector2(0.5f, 0);
-            rowRect.anchorMax = new Vector2(0.5f, 0);
-            rowRect.pivot = new Vector2(0.5f, 1);
-            rowRect.anchoredPosition = new Vector2(0, -10);
-            rowRect.sizeDelta = new Vector2(600, 50);
+            rowRect.anchorMin = new Vector2(0, 0);
+            rowRect.anchorMax = new Vector2(1, 0.5f);
+            rowRect.sizeDelta = Vector2.zero;
             
             var hlg = buttonRow.AddComponent<HorizontalLayoutGroup>();
-            hlg.spacing = 20;
+            hlg.spacing = 8; // Smaller spacing for mobile
+            hlg.padding = new RectOffset(10, 10, 5, 5);
             hlg.childAlignment = TextAnchor.MiddleCenter;
             hlg.childControlWidth = false;
             hlg.childForceExpandWidth = false;
             
-            var tablesBtn = UIFactory.CreateButton(buttonRow.transform, "TablesBtn", "Browse Tables", () => ShowTableListPanel());
-            tablesBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 45);
+            // Smaller buttons for mobile
+            var tablesBtn = UIFactory.CreateButton(buttonRow.transform, "TablesBtn", "Browse", () => ShowTableListPanel());
+            tablesBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(80, 38);
             
-            var createBtn = UIFactory.CreateButton(buttonRow.transform, "CreateBtn", "Create Table", () => ShowCreateTablePanel());
-            createBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 45);
+            var createBtn = UIFactory.CreateButton(buttonRow.transform, "CreateBtn", "Create", () => ShowCreateTablePanel());
+            createBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(80, 38);
+            createBtn.GetComponent<Image>().color = theme.primaryColor;
             
-            var tournamentsBtn = UIFactory.CreateButton(buttonRow.transform, "TournamentsBtn", "🏆 Tournaments", OnTournamentsClick);
-            tournamentsBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(170, 45);
-            tournamentsBtn.GetComponent<Image>().color = Theme.Current.accentColor;
+            var tournamentsBtn = UIFactory.CreateButton(buttonRow.transform, "TournamentsBtn", "🏆", OnTournamentsClick);
+            tournamentsBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 38);
+            tournamentsBtn.GetComponent<Image>().color = theme.accentColor;
             
             var refreshBtn = UIFactory.CreateButton(buttonRow.transform, "RefreshBtn", "↻", RefreshTableList);
-            refreshBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(50, 45);
+            refreshBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(45, 38);
         }
         
         private void OnTournamentsClick()
