@@ -1304,12 +1304,13 @@ namespace PokerClient.UI.Scenes
             
             // Update slider - minimum must be at least the minimum valid raise/bet
             // For betting (no current bet): minimum is minBet (big blind)
-            // For raising: minimum is minRaise from server (typically current bet + big blind)
-            int minRaise = state.minRaise > 0 ? state.minRaise : (currentBet + _minBet);
-            int sliderMin = hasBet ? minRaise : _minBet;
+            // For raising: minimum is currentBet + minRaise (total amount needed, not just the raise portion)
+            int toCall = Math.Max(0, currentBet - myCurrentBet);
+            int minRaiseAmount = state.minRaise > 0 ? state.minRaise : _minBet;
+            int sliderMin = hasBet ? (toCall + minRaiseAmount) : _minBet; // For raise, need toCall + minRaise
             betSlider.minValue = sliderMin;
             betSlider.maxValue = myChips;
-            betSlider.value = sliderMin; // Start at minimum valid amount
+            betSlider.value = sliderMin; // Start at minimum valid amount (toCall + minRaise for raises)
             OnBetSliderChanged(sliderMin);
             
             // All-in always available

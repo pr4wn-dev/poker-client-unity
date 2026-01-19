@@ -1,12 +1,12 @@
 # ninja log v5
-117	873	7904182202398445	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	d11f5a05678d7ac7
-875	1388	7904182207198667	C:/Projects/poker-client-unity/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/35695w1n/obj/arm64-v8a/libswappywrapper.so	99e4f793d625f857
-37	2358	7904182217197340	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	9ac0688858a622b0
-51	2371	7904182217197340	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	180e3e42bd889485
-1	2398	7904182217613584	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	c8761d499823af22
-63	2446	7904182218155495	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	a5a13b1b422b9265
-17	2496	7904182218637106	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	1c1311aad5835b78
-82	2712	7904182220847366	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	b6bba7d486ddfc28
-27	2739	7904182221096876	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	f8edc7bc408f35c2
-9	2882	7904182222552605	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	3ac12db38eb3b72a
-2882	2978	7904182223548447	C:/Projects/poker-client-unity/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/35695w1n/obj/arm64-v8a/libgame.so	ea2d286753257e09
+59	182	7905628940425157	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	d4c311f0deb75a24
+184	301	7905628941517458	C:/Projects/poker-client-unity/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/35695w1n/obj/arm64-v8a/libswappywrapper.so	3cb9f99bd3dcce1a
+21	894	7905628947515159	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	cebe7dbe50223f68
+50	901	7905628947570231	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	ce8c5a3b9a620a14
+34	918	7905628947750739	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	6b61f7ab814276ef
+8	927	7905628947836100	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	d756594fbb3633d8
+15	975	7905628948318493	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	7b5d3fd087308320
+42	1032	7905628948865057	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	5d9fa31ddc48b354
+27	1153	7905628950084312	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	41ab8b0854bf0423
+1	1257	7905628951087570	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	aa96a8b6a1d0177f
+1257	1354	7905628952110583	C:/Projects/poker-client-unity/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/35695w1n/obj/arm64-v8a/libgame.so	8b93c82980b3e465
