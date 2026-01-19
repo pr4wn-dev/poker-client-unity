@@ -17,7 +17,7 @@ namespace PokerClient.UI.Scenes
     {
         [Header("Server Configuration")]
         // Use network IP for phone testing, localhost for Unity Editor only
-        [SerializeField] private string serverUrl = "http://192.168.1.23:3000";
+        [SerializeField] private string serverUrl = "http://localhost:3000";
         
         // Known servers are loaded from Resources/known_servers.json
         // This file is automatically updated when you discover new servers in the Unity Editor
