@@ -828,7 +828,7 @@ namespace PokerClient.UI.Scenes
                 _gameService.OnTableJoined -= OnTableJoinedForCreate;
                 _gameService.OnTableJoined += OnTableJoinedForCreate;
                 
-                _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, buyIn, isPrivate, password, practiceMode, turnTimeLimit, (success, result) =>
+                _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, buyIn, isPrivate, password, practiceMode, turnTimeLimit, 0, (success, result) =>
                 {
                     if (!success)
                     {
