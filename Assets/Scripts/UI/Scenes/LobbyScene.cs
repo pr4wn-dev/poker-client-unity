@@ -553,12 +553,12 @@ namespace PokerClient.UI.Scenes
                         tableNameInput.text = simNames[UnityEngine.Random.Range(0, simNames.Length)];
                     }
                     
-                    // Randomize all settings
-                    if (maxPlayersSlider != null) maxPlayersSlider.value = UnityEngine.Random.Range(3, 10);
-                    if (smallBlindSlider != null) smallBlindSlider.value = UnityEngine.Random.Range(0, 8);
-                    if (buyInSlider != null) buyInSlider.value = UnityEngine.Random.Range(0, 6);
-                    if (turnTimeSlider != null) turnTimeSlider.value = UnityEngine.Random.Range(5, 31);
-                    if (roundTimerSlider != null) roundTimerSlider.value = UnityEngine.Random.value > 0.5f ? UnityEngine.Random.Range(5, 21) : 0;
+                    // Randomize all settings within their valid slider ranges
+                    if (maxPlayersSlider != null) maxPlayersSlider.value = UnityEngine.Random.Range(3, 10); // 3-9 players
+                    if (smallBlindSlider != null) smallBlindSlider.value = UnityEngine.Random.Range(1, 7);  // Blinds levels 1-6
+                    if (buyInSlider != null) buyInSlider.value = UnityEngine.Random.Range(1, 9);            // BuyIn levels 1-8 (1M-100M)
+                    if (turnTimeSlider != null) turnTimeSlider.value = UnityEngine.Random.Range(5, 31);     // 5-30 seconds
+                    if (roundTimerSlider != null) roundTimerSlider.value = UnityEngine.Random.value > 0.5f ? UnityEngine.Random.Range(5, 21) : 0; // 50% chance OFF
                     
                     // Force practice mode ON
                     practiceModeToggle.isOn = true;
@@ -871,6 +871,11 @@ namespace PokerClient.UI.Scenes
             
             if (isSimulation)
             {
+                // Log the EXACT values being sent to server
+                Debug.Log($"[LobbyScene] SIMULATION REQUEST: name={name}, maxPlayers={maxPlayers}, " +
+                    $"blinds={blinds.small}/{blinds.big}, buyIn={buyIn}, turnTime={turnTimeLimit}ms, " +
+                    $"blindIncrease={blindIncreaseInterval}ms, socketBotRatio={socketBotRatio}");
+                
                 // Start simulation mode - will spectate automatically
                 _gameService.StartSimulation(name, maxPlayers, blinds.small, blinds.big, buyIn, 
                     turnTimeLimit, blindIncreaseInterval, socketBotRatio, (success, result) =>
@@ -1098,6 +1103,7 @@ namespace PokerClient.UI.Scenes
         
         private int GetBuyInFromSlider(int level)
         {
+            // Slider range is 1-8 for normal play (millions)
             return level switch
             {
                 1 => 1000000,      // 1M
