@@ -1124,11 +1124,10 @@ namespace PokerClient.UI.Scenes
             // Show START GAME button for creator during waiting phase (NOT in simulation - auto-starts)
             bool showStartButton = state.phase == "waiting" && isCreator && state.totalPlayerCount >= 2 && !state.isSimulation;
             
-            // Log state changes for debugging
-            bool wasShowing = _startGameButton?.activeSelf ?? false;
-            if (showStartButton != wasShowing)
+            // ALWAYS log in waiting phase to debug simulation issue
+            if (state.phase == "waiting")
             {
-                Debug.Log($"[TableScene] START BUTTON STATE CHANGE | show={showStartButton}, phase={state.phase}, isCreator={isCreator}, players={state.totalPlayerCount}, isSimulation={state.isSimulation}");
+                Debug.Log($"[TableScene] WAITING PHASE | showStartButton={showStartButton}, isCreator={isCreator}, players={state.totalPlayerCount}, isSimulation={state.isSimulation}");
             }
             
             _startGameButton?.SetActive(showStartButton);
