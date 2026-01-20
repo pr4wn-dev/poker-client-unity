@@ -6227,7 +6227,7 @@ struct BindingsMarshaller_t8D83720077EE41189871B0A4B4E11CF3732746F9  : public Ru
 struct U3CU3Ec_t9807D522801ED3C705D96B2771AA46078FC42653  : public RuntimeObject
 {
 };
-struct U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9  : public RuntimeObject
+struct U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F  : public RuntimeObject
 {
 	int32_t ___U3CU3E1__state;
 	RuntimeObject* ___U3CU3E2__current;
@@ -6237,7 +6237,7 @@ struct U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9  : pu
 	float ___U3CstartVolumeU3E5__3;
 	float ___U3CtU3E5__4;
 };
-struct U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B  : public RuntimeObject
+struct U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5  : public RuntimeObject
 {
 	int32_t ___U3CU3E1__state;
 	RuntimeObject* ___U3CU3E2__current;
@@ -48669,6 +48669,8 @@ struct AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3  : public MonoBeha
 	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___raise;
 	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___turnTimer;
 	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___turnTimerWarning;
+	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___countdownBeep;
+	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___readyToRumble;
 	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___buttonClick;
 	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___buttonHover;
 	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___notification;
@@ -64421,9 +64423,9 @@ const Il2CppTypeDefinitionSizes g_typeDefinitionSize9614 = { sizeof(PlayerSeatUI
 IL2CPP_EXTERN_C_CONST Il2CppTypeDefinitionSizes g_typeDefinitionSize9615;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize9615 = { sizeof(CardUI_tFD82FCE324EE1FCB14B304C07BFB24F237DC65E9), -1, 0, 0 };
 IL2CPP_EXTERN_C_CONST Il2CppTypeDefinitionSizes g_typeDefinitionSize9616;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize9616 = { sizeof(U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize9616 = { sizeof(U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F), -1, 0, 0 };
 IL2CPP_EXTERN_C_CONST Il2CppTypeDefinitionSizes g_typeDefinitionSize9617;
-const Il2CppTypeDefinitionSizes g_typeDefinitionSize9617 = { sizeof(U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B), -1, 0, 0 };
+const Il2CppTypeDefinitionSizes g_typeDefinitionSize9617 = { sizeof(U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5), -1, 0, 0 };
 IL2CPP_EXTERN_C_CONST Il2CppTypeDefinitionSizes g_typeDefinitionSize9618;
 const Il2CppTypeDefinitionSizes g_typeDefinitionSize9618 = { sizeof(AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3), -1, sizeof(AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3_StaticFields), 0 };
 IL2CPP_EXTERN_C_CONST Il2CppTypeDefinitionSizes g_typeDefinitionSize9619;

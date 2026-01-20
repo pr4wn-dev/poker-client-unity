@@ -381,8 +381,8 @@ struct WorldMapState_t2EE4174ED600379BF60D0D7F45C1585AACB346B0;
 struct U3CU3Ec__DisplayClass18_0_t8A90706A5C771050F8630EA9995296DEB48A515D;
 struct PCMReaderCallback_t3396D9613664F0AFF65FB91018FD0F901CC16F1E;
 struct PCMSetPositionCallback_t8D7135A2FB40647CAEC93F5254AD59E18DEB6072;
-struct U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9;
-struct U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B;
+struct U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F;
+struct U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5;
 struct ButtonClickedEvent_t8EA72E90B3BD1392FB3B3EF167D5121C23569E4C;
 struct WillRenderCanvases_tA4A6E66DBA797DCB45B995DBA449A9D1D80D0FBC;
 struct CullStateChangedEvent_t6073CD0D951EC1256BF74B8F9107D68FC89B99B8;
@@ -501,9 +501,9 @@ IL2CPP_EXTERN_C RuntimeClass* TaskCompletionSource_1_t96082413A7240EA31426E63BAC
 IL2CPP_EXTERN_C RuntimeClass* TaskCompletionSource_1_tC432BE10B44C1360DE171C265E12B7B08D84EC10_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Theme_tC667ADC8CEE698B3D9752138BB87A66495FE886A_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1_il2cpp_TypeInfo_var;
-IL2CPP_EXTERN_C RuntimeClass* U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* U3CFadeInU3Ed__16_t292A517A1966458804FB7B25A3E34B30729ADD24_il2cpp_TypeInfo_var;
-IL2CPP_EXTERN_C RuntimeClass* U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B_il2cpp_TypeInfo_var;
+IL2CPP_EXTERN_C RuntimeClass* U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* U3CFadeOutU3Ed__15_t997B0877FB02145DF1A2485EB3A13E77FB673C45_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* U3CFlashCoroutineU3Ed__18_t8CF9E57B67551A8240B8FD97B6A866E53344E1C6_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* U3CTransitionCoroutineU3Ed__14_t76D9AD8C339AE9D8D513BD1C6DEFF49D9595DD81_il2cpp_TypeInfo_var;
@@ -641,6 +641,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral92CBA0852AB5D8C4C3A3D4BF4DE076060EC05312
 IL2CPP_EXTERN_C String_t* _stringLiteral9353229FEAE90F69FD00B32309FF7495D98F2ACE;
 IL2CPP_EXTERN_C String_t* _stringLiteral96A89E8DCEBD9FCF1709E310382C7057AEE77051;
 IL2CPP_EXTERN_C String_t* _stringLiteral9863300709F0E56E38C84E3A7520F97EFB061718;
+IL2CPP_EXTERN_C String_t* _stringLiteral9B9B0AD307946A6BFCBAE2C01D80CBCBC3644F6E;
 IL2CPP_EXTERN_C String_t* _stringLiteral9BB64A3B2FFD9E25DC2F01978C1AA178CCB625D6;
 IL2CPP_EXTERN_C String_t* _stringLiteral9C651E8EE914F08B63849BFA48A96528666D91B5;
 IL2CPP_EXTERN_C String_t* _stringLiteral9EB7B76AAF5FB9BEDCAB36D7E3B0E64F4E976D39;
@@ -675,6 +676,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteralC0C071CFCC788F498F56509B83BA3248F01642F9
 IL2CPP_EXTERN_C String_t* _stringLiteralC27ECEE2FBA5DCD887377C5EF2EA6013B81E8C57;
 IL2CPP_EXTERN_C String_t* _stringLiteralC2A4385F0F7155486AF8CAD46D87E6AD20E58775;
 IL2CPP_EXTERN_C String_t* _stringLiteralC6184FF27B476487F8178A23A9EDB08327F1EFE3;
+IL2CPP_EXTERN_C String_t* _stringLiteralC660C0831920EE3D85ACBED72B7C680A33AA8CE1;
 IL2CPP_EXTERN_C String_t* _stringLiteralC75B1C2EAF1674EA4428E35A7CAF68FD9C3AF2A4;
 IL2CPP_EXTERN_C String_t* _stringLiteralC76B943283510144B6722D7FFA379A9C07B9E670;
 IL2CPP_EXTERN_C String_t* _stringLiteralC9B237CE4087387ADD757CD401579C173A2050BF;
@@ -867,9 +869,9 @@ IL2CPP_EXTERN_C const RuntimeMethod* TaskCompletionSource_1_get_Task_m6C37D0FEB3
 IL2CPP_EXTERN_C const RuntimeMethod* TaskCompletionSource_1_get_Task_m8C2327F7947F17CCE011B0961C01361FCBE1B054_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* TaskCompletionSource_1_get_Task_mA4C387F22A83AC37A6C98FE8912B16A654AA92EC_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* Task_1_GetAwaiter_m00AA4CB76B8BC1796E1F1DB8063BC375E1C3B23A_RuntimeMethod_var;
-IL2CPP_EXTERN_C const RuntimeMethod* U3CCrossfadeMusicU3Ed__66_System_Collections_IEnumerator_Reset_m5B4390D065A79CBE2F3EABBDBAB83EDD9A9935ED_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* U3CCrossfadeMusicU3Ed__68_System_Collections_IEnumerator_Reset_mD17D3B7E54D12A4E9FB0BAAD5EC056A090A279CC_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* U3CFadeInU3Ed__16_System_Collections_IEnumerator_Reset_mE94D7D8F00FC43647FD9CE50CB09A2BF083E9889_RuntimeMethod_var;
-IL2CPP_EXTERN_C const RuntimeMethod* U3CFadeOutMusicU3Ed__68_System_Collections_IEnumerator_Reset_m5D7FF7E82186D1FC09D279141D650DA7EE0ADE2C_RuntimeMethod_var;
+IL2CPP_EXTERN_C const RuntimeMethod* U3CFadeOutMusicU3Ed__70_System_Collections_IEnumerator_Reset_m5FEA3247D45124193D56C816768B4D827764C598_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* U3CFadeOutU3Ed__15_System_Collections_IEnumerator_Reset_m2660658EE33DB13BF5B5494931630E40DC727CC3_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* U3CFlashCoroutineU3Ed__18_System_Collections_IEnumerator_Reset_m6A04C3FCF0ED18405CD9A4E9F4154B1C5E93295B_RuntimeMethod_var;
 IL2CPP_EXTERN_C const RuntimeMethod* U3CTransitionCoroutineU3Ed__14_System_Collections_IEnumerator_Reset_mDD15E2FE4B0F5407CC7C6E7732CD679D1B1F8E83_RuntimeMethod_var;
@@ -1773,7 +1775,7 @@ struct U3CU3Ec__DisplayClass18_0_t8A90706A5C771050F8630EA9995296DEB48A515D  : pu
 	LevelInfo_t71724BB53B755133FDA410A4AEFAD2915FD412C5* ___level;
 	AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* ___U3CU3E4__this;
 };
-struct U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9  : public RuntimeObject
+struct U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F  : public RuntimeObject
 {
 	int32_t ___U3CU3E1__state;
 	RuntimeObject* ___U3CU3E2__current;
@@ -1783,7 +1785,7 @@ struct U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9  : pu
 	float ___U3CstartVolumeU3E5__3;
 	float ___U3CtU3E5__4;
 };
-struct U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B  : public RuntimeObject
+struct U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5  : public RuntimeObject
 {
 	int32_t ___U3CU3E1__state;
 	RuntimeObject* ___U3CU3E2__current;
@@ -3550,6 +3552,8 @@ struct AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3  : public MonoBeha
 	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___raise;
 	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___turnTimer;
 	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___turnTimerWarning;
+	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___countdownBeep;
+	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___readyToRumble;
 	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___buttonClick;
 	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___buttonHover;
 	AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___notification;
@@ -5209,10 +5213,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* AudioManager_CrossfadeMusic_mB
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B* MonoBehaviour_StartCoroutine_m4CAFF732AA28CD3BDC5363B44A863575530EC812 (MonoBehaviour_t532A11E69716D348D8AA7F854AFCBFCB8AD17F71* __this, RuntimeObject* ___0_routine, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioSource_set_clip_mFF441895E274286C88D9C75ED5CA1B1B39528D70 (AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* __this, AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___0_value, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioSource_Play_m95DF07111C61D0E0F00257A00384D31531D590C3 (AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* __this, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCrossfadeMusicU3Ed__66__ctor_m976E943C5D1D5342A3768FE3B21E3F8ADEA712BB (U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCrossfadeMusicU3Ed__68__ctor_mBE95431051F8BEC2C4AF688A7F2667B792205508 (U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* AudioManager_FadeOutMusic_mCB3769A08D52B3A483E583EC43209B194ED72014 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioSource_Stop_m318F17F17A147C77FF6E0A5A7A6BE057DB90F537 (AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* __this, const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutMusicU3Ed__68__ctor_m39583F81FA9C18D346EA1018822ED4EB3F103352 (U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutMusicU3Ed__70__ctor_mA6E39973EB5C69161A3E2E82645609021BAE4A49 (U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___0_clip, float ___1_volumeScale, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayUI_mD905B2D5503FEA3FA5281DB843F82DB3B9CEA48C (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___0_clip, float ___1_volumeScale, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayMusic_m49942EBD8C2185E337230F29859629A188A4F7AF (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* ___0_clip, bool ___1_fadeIn, const RuntimeMethod* method) ;
@@ -19424,7 +19428,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_Awake_mA79FD3D51A9F69F3D613
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:105>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:109>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_0 = ((AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3_StaticFields*)il2cpp_codegen_static_fields_for(AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3_il2cpp_TypeInfo_var))->____instance;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -19445,32 +19449,32 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_Awake_mA79FD3D51A9F69F3D613
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:107>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:111>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_4;
 		L_4 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(__this, NULL);
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		Object_Destroy_mE97D0A766419A81296E8D4E5C23D01D3FE91ACBB(L_4, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:108>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:112>
 		return;
 	}
 
 IL_0026:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:110>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:114>
 		((AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3_StaticFields*)il2cpp_codegen_static_fields_for(AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3_il2cpp_TypeInfo_var))->____instance = __this;
 		Il2CppCodeGenWriteBarrier((void**)(&((AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3_StaticFields*)il2cpp_codegen_static_fields_for(AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3_il2cpp_TypeInfo_var))->____instance), (void*)__this);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:111>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:115>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_5;
 		L_5 = Component_get_gameObject_m57AEFBB14DB39EC476F740BA000E170355DE691B(__this, NULL);
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		Object_DontDestroyOnLoad_m4B70C3AEF886C176543D1295507B6455C9DCAEA7(L_5, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:113>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:117>
 		AudioManager_SetupAudioSources_mCF7CCC9E8B1952AD497C599DCFBBFCFD5CA3CDEE(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:114>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:118>
 		AudioManager_LoadVolumeSettings_m1696065B18E561B7B08E8EF7D994BA6130050744(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:115>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:119>
 		AudioManager_LoadAudioFromResources_m809035BE319195C2999947350FC7B8C5CAF74DE5(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:116>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:120>
 		return;
 	}
 }
@@ -19501,12 +19505,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_LoadAudioFromResources_m809
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral7D24A649343A6DE0389205FFD7912307A437A20B);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral8B9D3697FACA41A8285D639EB588CF4AAABEC294);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral92CBA0852AB5D8C4C3A3D4BF4DE076060EC05312);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral9B9B0AD307946A6BFCBAE2C01D80CBCBC3644F6E);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral9EB7B76AAF5FB9BEDCAB36D7E3B0E64F4E976D39);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralA04AEFD19349367B0B1B151F6C9580A036904E61);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralA3F3769A92BE8B5B0DD7C96FCC6BB00EF171A4BB);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralAE59489F23C980B7BF497FF689E3A90352FA1EEB);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralB571534616FAB01BB0483D393E048B7992C5C2A9);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralBAE2B07996843CB57FEB198A588C04E31C0F38D2);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralC660C0831920EE3D85ACBED72B7C680A33AA8CE1);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralC76B943283510144B6722D7FFA379A9C07B9E670);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralCC9D2FB2841E4502310C4193548EA00201513515);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralCD3B6C7FFBC0EA2873A3612884CAAC8985A8E9E0);
@@ -19517,7 +19523,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_LoadAudioFromResources_m809
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:124>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:128>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___cardDeal;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -19528,7 +19534,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_LoadAudioFromResources_m809
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:124>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:128>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_2;
 		L_2 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralCC9D2FB2841E4502310C4193548EA00201513515, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
 		__this->___cardDeal = L_2;
@@ -19537,7 +19543,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_LoadAudioFromResources_m809
 
 IL_001e:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:125>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:129>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_3 = __this->___cardFlip;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_4;
@@ -19548,7 +19554,7 @@ IL_001e:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:125>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:129>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_5;
 		L_5 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralE95F79D84EB23D9908FBA994BB8FBAEA5B347CC9, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
 		__this->___cardFlip = L_5;
@@ -19557,7 +19563,7 @@ IL_001e:
 
 IL_003c:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:126>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:130>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_6 = __this->___cardShuffle;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_7;
@@ -19568,7 +19574,7 @@ IL_003c:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:126>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:130>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_8;
 		L_8 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral027BF113B75218931073A34058252BF4B43181C8, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
 		__this->___cardShuffle = L_8;
@@ -19577,7 +19583,7 @@ IL_003c:
 
 IL_005a:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:129>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:133>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_9 = __this->___chipBet;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_10;
@@ -19588,7 +19594,7 @@ IL_005a:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:129>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:133>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_11;
 		L_11 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral9EB7B76AAF5FB9BEDCAB36D7E3B0E64F4E976D39, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
 		__this->___chipBet = L_11;
@@ -19597,7 +19603,7 @@ IL_005a:
 
 IL_0078:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:130>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:134>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_12 = __this->___chipWin;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_13;
@@ -19608,7 +19614,7 @@ IL_0078:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:130>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:134>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_14;
 		L_14 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral553533DF030FF0B95FD4648F15814092437C0699, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
 		__this->___chipWin = L_14;
@@ -19617,7 +19623,7 @@ IL_0078:
 
 IL_0096:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:131>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:135>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_15 = __this->___chipStack;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_16;
@@ -19628,7 +19634,7 @@ IL_0096:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:131>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:135>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_17;
 		L_17 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralB571534616FAB01BB0483D393E048B7992C5C2A9, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
 		__this->___chipStack = L_17;
@@ -19637,7 +19643,7 @@ IL_0096:
 
 IL_00b4:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:132>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:136>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_18 = __this->___allIn;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_19;
@@ -19648,7 +19654,7 @@ IL_00b4:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:132>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:136>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_20;
 		L_20 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralA04AEFD19349367B0B1B151F6C9580A036904E61, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
 		__this->___allIn = L_20;
@@ -19657,7 +19663,7 @@ IL_00b4:
 
 IL_00d2:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:135>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:139>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_21 = __this->___fold;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_22;
@@ -19668,7 +19674,7 @@ IL_00d2:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:135>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:139>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_23;
 		L_23 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral70E7DD017AD52139B48EC0AD21AD363E3B47D457, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
 		__this->___fold = L_23;
@@ -19677,7 +19683,7 @@ IL_00d2:
 
 IL_00f0:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:136>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:140>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_24 = __this->___check;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_25;
@@ -19688,7 +19694,7 @@ IL_00f0:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:136>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:140>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_26;
 		L_26 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralC76B943283510144B6722D7FFA379A9C07B9E670, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
 		__this->___check = L_26;
@@ -19697,7 +19703,7 @@ IL_00f0:
 
 IL_010e:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:137>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:141>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_27 = __this->___call;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_28;
@@ -19708,7 +19714,7 @@ IL_010e:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:137>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:141>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_29;
 		L_29 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral27A81110EBCEB367804B68AD84CA3E5952509EE2, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
 		__this->___call = L_29;
@@ -19717,7 +19723,7 @@ IL_010e:
 
 IL_012c:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:138>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:142>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_30 = __this->___raise;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_31;
@@ -19728,7 +19734,7 @@ IL_012c:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:138>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:142>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_32;
 		L_32 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral43D41BA77F5987CC7B7EAE03BFBE55D55ECCE97C, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
 		__this->___raise = L_32;
@@ -19737,7 +19743,7 @@ IL_012c:
 
 IL_014a:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:139>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:143>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_33 = __this->___turnTimer;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_34;
@@ -19748,7 +19754,7 @@ IL_014a:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:139>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:143>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_35;
 		L_35 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral635950C7652E34469FE0BB36C745259D23A9A520, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
 		__this->___turnTimer = L_35;
@@ -19757,7 +19763,7 @@ IL_014a:
 
 IL_0168:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:140>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:144>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_36 = __this->___turnTimerWarning;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_37;
@@ -19768,7 +19774,7 @@ IL_0168:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:140>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:144>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_38;
 		L_38 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral8B9D3697FACA41A8285D639EB588CF4AAABEC294, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
 		__this->___turnTimerWarning = L_38;
@@ -19777,8 +19783,8 @@ IL_0168:
 
 IL_0186:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:143>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_39 = __this->___buttonClick;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:147>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_39 = __this->___countdownBeep;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_40;
 		L_40 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_39, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -19788,17 +19794,17 @@ IL_0186:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:143>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:147>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_41;
-		L_41 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral107412C0D14BD32E7B0C0A764CE223F15FE400F3, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___buttonClick = L_41;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___buttonClick), (void*)L_41);
+		L_41 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralC660C0831920EE3D85ACBED72B7C680A33AA8CE1, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___countdownBeep = L_41;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___countdownBeep), (void*)L_41);
 	}
 
 IL_01a4:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:144>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_42 = __this->___buttonHover;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:148>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_42 = __this->___readyToRumble;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_43;
 		L_43 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_42, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -19808,17 +19814,17 @@ IL_01a4:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:144>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:148>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_44;
-		L_44 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralCD3B6C7FFBC0EA2873A3612884CAAC8985A8E9E0, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___buttonHover = L_44;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___buttonHover), (void*)L_44);
+		L_44 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral9B9B0AD307946A6BFCBAE2C01D80CBCBC3644F6E, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___readyToRumble = L_44;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___readyToRumble), (void*)L_44);
 	}
 
 IL_01c2:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:145>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_45 = __this->___notification;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:151>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_45 = __this->___buttonClick;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_46;
 		L_46 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_45, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -19828,17 +19834,17 @@ IL_01c2:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:145>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:151>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_47;
-		L_47 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral72DB022F0711D5217C645AFA3AA84A5B8A95A10E, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___notification = L_47;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___notification), (void*)L_47);
+		L_47 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral107412C0D14BD32E7B0C0A764CE223F15FE400F3, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___buttonClick = L_47;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___buttonClick), (void*)L_47);
 	}
 
 IL_01e0:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:146>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_48 = __this->___error;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:152>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_48 = __this->___buttonHover;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_49;
 		L_49 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_48, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -19848,17 +19854,17 @@ IL_01e0:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:146>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:152>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_50;
-		L_50 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral6F9390EB9D86939B6062BBB711456D84E9A563C4, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___error = L_50;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___error), (void*)L_50);
+		L_50 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralCD3B6C7FFBC0EA2873A3612884CAAC8985A8E9E0, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___buttonHover = L_50;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___buttonHover), (void*)L_50);
 	}
 
 IL_01fe:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:147>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_51 = __this->___success;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:153>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_51 = __this->___notification;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_52;
 		L_52 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_51, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -19868,17 +19874,17 @@ IL_01fe:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:147>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:153>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_53;
-		L_53 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral11122A599D105BA91441E263B7BBBFD4979F8370, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___success = L_53;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___success), (void*)L_53);
+		L_53 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral72DB022F0711D5217C645AFA3AA84A5B8A95A10E, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___notification = L_53;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___notification), (void*)L_53);
 	}
 
 IL_021c:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:150>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_54 = __this->___gameStart;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:154>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_54 = __this->___error;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_55;
 		L_55 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_54, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -19888,17 +19894,17 @@ IL_021c:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:150>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:154>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_56;
-		L_56 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral4D955F623F1357C43EAC857C16DACC40641EF834, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___gameStart = L_56;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___gameStart), (void*)L_56);
+		L_56 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral6F9390EB9D86939B6062BBB711456D84E9A563C4, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___error = L_56;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___error), (void*)L_56);
 	}
 
 IL_023a:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:151>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_57 = __this->___handWin;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:155>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_57 = __this->___success;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_58;
 		L_58 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_57, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -19908,17 +19914,17 @@ IL_023a:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:151>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:155>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_59;
-		L_59 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralDBF40124C35F59045B37EFEB854A9D97AAEF0A83, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___handWin = L_59;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___handWin), (void*)L_59);
+		L_59 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral11122A599D105BA91441E263B7BBBFD4979F8370, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___success = L_59;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___success), (void*)L_59);
 	}
 
 IL_0258:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:152>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_60 = __this->___handLose;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:158>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_60 = __this->___gameStart;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_61;
 		L_61 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_60, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -19928,17 +19934,17 @@ IL_0258:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:152>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:158>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_62;
-		L_62 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralFFAC8A8E59DD49DC0854951EED513C34B7158352, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___handLose = L_62;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___handLose), (void*)L_62);
+		L_62 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral4D955F623F1357C43EAC857C16DACC40641EF834, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___gameStart = L_62;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___gameStart), (void*)L_62);
 	}
 
 IL_0276:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:153>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_63 = __this->___royalFlush;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:159>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_63 = __this->___handWin;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_64;
 		L_64 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_63, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -19948,17 +19954,17 @@ IL_0276:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:153>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:159>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_65;
-		L_65 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral5F75D5A8215F90C699E6B7F55B5729DFFB7D8C45, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___royalFlush = L_65;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___royalFlush), (void*)L_65);
+		L_65 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralDBF40124C35F59045B37EFEB854A9D97AAEF0A83, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___handWin = L_65;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___handWin), (void*)L_65);
 	}
 
 IL_0294:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:154>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_66 = __this->___playerJoin;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:160>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_66 = __this->___handLose;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_67;
 		L_67 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_66, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -19968,17 +19974,17 @@ IL_0294:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:154>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:160>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_68;
-		L_68 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral74095EFDC226C4A59EF5C0BEB0DD1AE3CF0AB063, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___playerJoin = L_68;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___playerJoin), (void*)L_68);
+		L_68 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralFFAC8A8E59DD49DC0854951EED513C34B7158352, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___handLose = L_68;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___handLose), (void*)L_68);
 	}
 
 IL_02b2:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:155>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_69 = __this->___playerLeave;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:161>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_69 = __this->___royalFlush;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_70;
 		L_70 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_69, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -19988,17 +19994,17 @@ IL_02b2:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:155>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:161>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_71;
-		L_71 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral12D4E31E7C4B92ACE902D221563F16E19E2349A3, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___playerLeave = L_71;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___playerLeave), (void*)L_71);
+		L_71 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral5F75D5A8215F90C699E6B7F55B5729DFFB7D8C45, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___royalFlush = L_71;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___royalFlush), (void*)L_71);
 	}
 
 IL_02d0:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:158>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_72 = __this->___levelUp;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:162>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_72 = __this->___playerJoin;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_73;
 		L_73 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_72, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -20008,17 +20014,17 @@ IL_02d0:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:158>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:162>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_74;
-		L_74 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralA3F3769A92BE8B5B0DD7C96FCC6BB00EF171A4BB, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___levelUp = L_74;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___levelUp), (void*)L_74);
+		L_74 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral74095EFDC226C4A59EF5C0BEB0DD1AE3CF0AB063, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___playerJoin = L_74;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___playerJoin), (void*)L_74);
 	}
 
 IL_02ee:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:159>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_75 = __this->___itemDrop;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:163>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_75 = __this->___playerLeave;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_76;
 		L_76 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_75, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -20028,17 +20034,17 @@ IL_02ee:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:159>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:163>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_77;
-		L_77 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral7A99E2B7333A430EB13B8DDEE3923F0132F2A702, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___itemDrop = L_77;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___itemDrop), (void*)L_77);
+		L_77 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral12D4E31E7C4B92ACE902D221563F16E19E2349A3, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___playerLeave = L_77;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___playerLeave), (void*)L_77);
 	}
 
 IL_030c:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:162>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_78 = __this->___menuMusic;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:166>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_78 = __this->___levelUp;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_79;
 		L_79 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_78, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -20048,17 +20054,17 @@ IL_030c:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:162>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:166>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_80;
-		L_80 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralAE59489F23C980B7BF497FF689E3A90352FA1EEB, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___menuMusic = L_80;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___menuMusic), (void*)L_80);
+		L_80 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralA3F3769A92BE8B5B0DD7C96FCC6BB00EF171A4BB, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___levelUp = L_80;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___levelUp), (void*)L_80);
 	}
 
 IL_032a:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:163>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_81 = __this->___lobbyMusic;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:167>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_81 = __this->___itemDrop;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_82;
 		L_82 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_81, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -20068,17 +20074,17 @@ IL_032a:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:163>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:167>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_83;
-		L_83 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral29AB5900954774F7B8D04226AFE056D65B216C92, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___lobbyMusic = L_83;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___lobbyMusic), (void*)L_83);
+		L_83 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral7A99E2B7333A430EB13B8DDEE3923F0132F2A702, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___itemDrop = L_83;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___itemDrop), (void*)L_83);
 	}
 
 IL_0348:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:164>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_84 = __this->___tableMusic;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:170>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_84 = __this->___menuMusic;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_85;
 		L_85 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_84, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -20088,17 +20094,17 @@ IL_0348:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:164>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:170>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_86;
-		L_86 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral92CBA0852AB5D8C4C3A3D4BF4DE076060EC05312, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___tableMusic = L_86;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___tableMusic), (void*)L_86);
+		L_86 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralAE59489F23C980B7BF497FF689E3A90352FA1EEB, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___menuMusic = L_86;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___menuMusic), (void*)L_86);
 	}
 
 IL_0366:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:165>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_87 = __this->___adventureMusic;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:171>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_87 = __this->___lobbyMusic;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_88;
 		L_88 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_87, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -20108,17 +20114,17 @@ IL_0366:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:165>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:171>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_89;
-		L_89 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralBAE2B07996843CB57FEB198A588C04E31C0F38D2, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___adventureMusic = L_89;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___adventureMusic), (void*)L_89);
+		L_89 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral29AB5900954774F7B8D04226AFE056D65B216C92, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___lobbyMusic = L_89;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___lobbyMusic), (void*)L_89);
 	}
 
 IL_0384:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:166>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_90 = __this->___bossMusic;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:172>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_90 = __this->___tableMusic;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_91;
 		L_91 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_90, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -20128,17 +20134,17 @@ IL_0384:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:166>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:172>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_92;
-		L_92 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralF28C71737C6A28D6E22DA28B9CC4885533C47A92, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___bossMusic = L_92;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___bossMusic), (void*)L_92);
+		L_92 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral92CBA0852AB5D8C4C3A3D4BF4DE076060EC05312, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___tableMusic = L_92;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___tableMusic), (void*)L_92);
 	}
 
 IL_03a2:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:167>
-		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_93 = __this->___victoryMusic;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:173>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_93 = __this->___adventureMusic;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_94;
 		L_94 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_93, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
@@ -20148,16 +20154,56 @@ IL_03a2:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:167>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:173>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_95;
-		L_95 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral7D24A649343A6DE0389205FFD7912307A437A20B, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
-		__this->___victoryMusic = L_95;
-		Il2CppCodeGenWriteBarrier((void**)(&__this->___victoryMusic), (void*)L_95);
+		L_95 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralBAE2B07996843CB57FEB198A588C04E31C0F38D2, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___adventureMusic = L_95;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___adventureMusic), (void*)L_95);
 	}
 
 IL_03c0:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:168>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:174>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_96 = __this->___bossMusic;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_97;
+		L_97 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_96, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_97)
+		{
+			goto IL_03de;
+		}
+	}
+	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:174>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_98;
+		L_98 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteralF28C71737C6A28D6E22DA28B9CC4885533C47A92, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___bossMusic = L_98;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___bossMusic), (void*)L_98);
+	}
+
+IL_03de:
+	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:175>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_99 = __this->___victoryMusic;
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_100;
+		L_100 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_99, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_100)
+		{
+			goto IL_03fc;
+		}
+	}
+	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:175>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_101;
+		L_101 = Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78(_stringLiteral7D24A649343A6DE0389205FFD7912307A437A20B, Resources_Load_TisAudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20_m8D55846FD24C1D133D4EA744BE1E73E054B93A78_RuntimeMethod_var);
+		__this->___victoryMusic = L_101;
+		Il2CppCodeGenWriteBarrier((void**)(&__this->___victoryMusic), (void*)L_101);
+	}
+
+IL_03fc:
+	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:176>
 		return;
 	}
 }
@@ -20179,7 +20225,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_SetupAudioSources_mCF7CCC9E
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* V_1 = NULL;
 	GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* V_2 = NULL;
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:172>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:180>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_0 = __this->___sfxSource;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20190,11 +20236,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_SetupAudioSources_mCF7CCC9E
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:174>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:182>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_2 = (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*)il2cpp_codegen_object_new(GameObject_t76FEDD663AB33C991A9C9A23129337651094216F_il2cpp_TypeInfo_var);
 		GameObject__ctor_m37D512B05D292F954792225E6C6EEE95293A9B88(L_2, _stringLiteral8DFECD24B1E69800AFD84B5525F3DF903CFDE997, NULL);
 		V_0 = L_2;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:175>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:183>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_3 = V_0;
 		NullCheck(L_3);
 		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_4;
@@ -20203,14 +20249,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_SetupAudioSources_mCF7CCC9E
 		L_5 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
 		NullCheck(L_4);
 		Transform_SetParent_m6677538B60246D958DD91F931C50F969CCBB5250(L_4, L_5, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:176>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:184>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_6 = V_0;
 		NullCheck(L_6);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_7;
 		L_7 = GameObject_AddComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m0E8EFDB9B3D8DF1ADE10C56D3168A9C1BA19BF14(L_6, GameObject_AddComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m0E8EFDB9B3D8DF1ADE10C56D3168A9C1BA19BF14_RuntimeMethod_var);
 		__this->___sfxSource = L_7;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___sfxSource), (void*)L_7);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:177>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:185>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_8 = __this->___sfxSource;
 		NullCheck(L_8);
 		AudioSource_set_playOnAwake_m7EACC6ECEF12D7BA86A4E5A53603F1C8F9E11949(L_8, (bool)0, NULL);
@@ -20218,7 +20264,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_SetupAudioSources_mCF7CCC9E
 
 IL_0042:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:180>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:188>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_9 = __this->___musicSource;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_10;
@@ -20229,11 +20275,11 @@ IL_0042:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:182>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:190>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_11 = (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*)il2cpp_codegen_object_new(GameObject_t76FEDD663AB33C991A9C9A23129337651094216F_il2cpp_TypeInfo_var);
 		GameObject__ctor_m37D512B05D292F954792225E6C6EEE95293A9B88(L_11, _stringLiteralFC2CCC2FF5A9904F55215F7F24FAB03F355AF058, NULL);
 		V_1 = L_11;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:183>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:191>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_12 = V_1;
 		NullCheck(L_12);
 		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_13;
@@ -20242,18 +20288,18 @@ IL_0042:
 		L_14 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
 		NullCheck(L_13);
 		Transform_SetParent_m6677538B60246D958DD91F931C50F969CCBB5250(L_13, L_14, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:184>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:192>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_15 = V_1;
 		NullCheck(L_15);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_16;
 		L_16 = GameObject_AddComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m0E8EFDB9B3D8DF1ADE10C56D3168A9C1BA19BF14(L_15, GameObject_AddComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m0E8EFDB9B3D8DF1ADE10C56D3168A9C1BA19BF14_RuntimeMethod_var);
 		__this->___musicSource = L_16;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___musicSource), (void*)L_16);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:185>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:193>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_17 = __this->___musicSource;
 		NullCheck(L_17);
 		AudioSource_set_playOnAwake_m7EACC6ECEF12D7BA86A4E5A53603F1C8F9E11949(L_17, (bool)0, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:186>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:194>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_18 = __this->___musicSource;
 		NullCheck(L_18);
 		AudioSource_set_loop_m834A590939D8456008C0F897FD80B0ECFFB7FE56(L_18, (bool)1, NULL);
@@ -20261,7 +20307,7 @@ IL_0042:
 
 IL_0090:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:189>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:197>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_19 = __this->___uiSource;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_20;
@@ -20272,11 +20318,11 @@ IL_0090:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:191>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:199>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_21 = (GameObject_t76FEDD663AB33C991A9C9A23129337651094216F*)il2cpp_codegen_object_new(GameObject_t76FEDD663AB33C991A9C9A23129337651094216F_il2cpp_TypeInfo_var);
 		GameObject__ctor_m37D512B05D292F954792225E6C6EEE95293A9B88(L_21, _stringLiteral8A93D819AB7E3565798EE304B8491664733F3189, NULL);
 		V_2 = L_21;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:192>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:200>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_22 = V_2;
 		NullCheck(L_22);
 		Transform_tB27202C6F4E36D225EE28A13E4D662BF99785DB1* L_23;
@@ -20285,14 +20331,14 @@ IL_0090:
 		L_24 = Component_get_transform_m2919A1D81931E6932C7F06D4C2F0AB8DDA9A5371(__this, NULL);
 		NullCheck(L_23);
 		Transform_SetParent_m6677538B60246D958DD91F931C50F969CCBB5250(L_23, L_24, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:193>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:201>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_25 = V_2;
 		NullCheck(L_25);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_26;
 		L_26 = GameObject_AddComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m0E8EFDB9B3D8DF1ADE10C56D3168A9C1BA19BF14(L_25, GameObject_AddComponent_TisAudioSource_t871AC2272F896738252F04EE949AEF5B241D3299_m0E8EFDB9B3D8DF1ADE10C56D3168A9C1BA19BF14_RuntimeMethod_var);
 		__this->___uiSource = L_26;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___uiSource), (void*)L_26);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:194>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:202>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_27 = __this->___uiSource;
 		NullCheck(L_27);
 		AudioSource_set_playOnAwake_m7EACC6ECEF12D7BA86A4E5A53603F1C8F9E11949(L_27, (bool)0, NULL);
@@ -20300,7 +20346,7 @@ IL_0090:
 
 IL_00d2:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:196>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:204>
 		return;
 	}
 }
@@ -20317,25 +20363,25 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_LoadVolumeSettings_m1696065
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:200>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:208>
 		float L_0;
 		L_0 = PlayerPrefs_GetFloat_m4A9B511E92C8BDEBB64D9B2557126FB030895A4D(_stringLiteralD4D4783238146D4E30CEBBE7B458914C05581AA4, (1.0f), NULL);
 		__this->___masterVolume = L_0;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:201>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:209>
 		float L_1;
 		L_1 = PlayerPrefs_GetFloat_m4A9B511E92C8BDEBB64D9B2557126FB030895A4D(_stringLiteralBDA2978FE3CDFC674497B842FC8904281A1F7871, (1.0f), NULL);
 		__this->___sfxVolume = L_1;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:202>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:210>
 		float L_2;
 		L_2 = PlayerPrefs_GetFloat_m4A9B511E92C8BDEBB64D9B2557126FB030895A4D(_stringLiteralD2E58F4E8345F62F1516F3986DD7B5B787C40958, (0.0f), NULL);
 		__this->___musicVolume = L_2;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:203>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:211>
 		float L_3;
 		L_3 = PlayerPrefs_GetFloat_m4A9B511E92C8BDEBB64D9B2557126FB030895A4D(_stringLiteralC0C071CFCC788F498F56509B83BA3248F01642F9, (1.0f), NULL);
 		__this->___uiVolume = L_3;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:205>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:213>
 		AudioManager_UpdateAllVolumes_m486E10BDFF34A5F687C4683051DF3408CFF704C4(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:206>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:214>
 		return;
 	}
 }
@@ -20352,21 +20398,21 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_SaveVolumeSettings_m0974956
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:210>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:218>
 		float L_0 = __this->___masterVolume;
 		PlayerPrefs_SetFloat_m1E8EA662BB9D8CF339D7DA2C452FCDFED88C5285(_stringLiteralD4D4783238146D4E30CEBBE7B458914C05581AA4, L_0, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:211>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:219>
 		float L_1 = __this->___sfxVolume;
 		PlayerPrefs_SetFloat_m1E8EA662BB9D8CF339D7DA2C452FCDFED88C5285(_stringLiteralBDA2978FE3CDFC674497B842FC8904281A1F7871, L_1, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:212>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:220>
 		float L_2 = __this->___musicVolume;
 		PlayerPrefs_SetFloat_m1E8EA662BB9D8CF339D7DA2C452FCDFED88C5285(_stringLiteralD2E58F4E8345F62F1516F3986DD7B5B787C40958, L_2, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:213>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:221>
 		float L_3 = __this->___uiVolume;
 		PlayerPrefs_SetFloat_m1E8EA662BB9D8CF339D7DA2C452FCDFED88C5285(_stringLiteralC0C071CFCC788F498F56509B83BA3248F01642F9, L_3, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:214>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:222>
 		PlayerPrefs_Save_m82567E045D69C838112EA204B60C144D4C1EA3AE(NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:215>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:223>
 		return;
 	}
 }
@@ -20374,16 +20420,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_SaveVolumeSettings_m0974956
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_SetMasterVolume_m7F558992BA4B7B725847140AE4EDD120BD36CE70 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, float ___0_volume, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:219>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:227>
 		float L_0 = ___0_volume;
 		float L_1;
 		L_1 = Mathf_Clamp01_mA7E048DBDA832D399A581BE4D6DED9FA44CE0F14_inline(L_0, NULL);
 		__this->___masterVolume = L_1;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:220>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:228>
 		AudioManager_UpdateAllVolumes_m486E10BDFF34A5F687C4683051DF3408CFF704C4(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:221>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:229>
 		AudioManager_SaveVolumeSettings_m0974956D348E056B72123BF66143B96A146D09AA(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:222>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:230>
 		return;
 	}
 }
@@ -20391,16 +20437,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_SetMasterVolume_m7F558992BA
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_SetSFXVolume_m4FD8D92EDA27D8C783E82477CA483EDA2F3F7789 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, float ___0_volume, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:226>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:234>
 		float L_0 = ___0_volume;
 		float L_1;
 		L_1 = Mathf_Clamp01_mA7E048DBDA832D399A581BE4D6DED9FA44CE0F14_inline(L_0, NULL);
 		__this->___sfxVolume = L_1;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:227>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:235>
 		AudioManager_UpdateAllVolumes_m486E10BDFF34A5F687C4683051DF3408CFF704C4(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:228>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:236>
 		AudioManager_SaveVolumeSettings_m0974956D348E056B72123BF66143B96A146D09AA(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:229>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:237>
 		return;
 	}
 }
@@ -20408,16 +20454,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_SetSFXVolume_m4FD8D92EDA27D
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_SetMusicVolume_mF4BFCB289FFD874673AFBCC6AD3F7D2EFE40CC1B (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, float ___0_volume, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:233>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:241>
 		float L_0 = ___0_volume;
 		float L_1;
 		L_1 = Mathf_Clamp01_mA7E048DBDA832D399A581BE4D6DED9FA44CE0F14_inline(L_0, NULL);
 		__this->___musicVolume = L_1;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:234>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:242>
 		AudioManager_UpdateAllVolumes_m486E10BDFF34A5F687C4683051DF3408CFF704C4(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:235>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:243>
 		AudioManager_SaveVolumeSettings_m0974956D348E056B72123BF66143B96A146D09AA(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:236>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:244>
 		return;
 	}
 }
@@ -20425,16 +20471,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_SetMusicVolume_mF4BFCB289FF
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_SetUIVolume_m1FFA7B3351E01D733EC6CACE3AE7AD4AD9A17E98 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, float ___0_volume, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:240>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:248>
 		float L_0 = ___0_volume;
 		float L_1;
 		L_1 = Mathf_Clamp01_mA7E048DBDA832D399A581BE4D6DED9FA44CE0F14_inline(L_0, NULL);
 		__this->___uiVolume = L_1;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:241>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:249>
 		AudioManager_UpdateAllVolumes_m486E10BDFF34A5F687C4683051DF3408CFF704C4(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:242>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:250>
 		AudioManager_SaveVolumeSettings_m0974956D348E056B72123BF66143B96A146D09AA(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:243>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:251>
 		return;
 	}
 }
@@ -20448,7 +20494,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_UpdateAllVolumes_m486E10BDF
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:247>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:255>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_0 = __this->___sfxSource;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20459,7 +20505,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_UpdateAllVolumes_m486E10BDF
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:247>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:255>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_2 = __this->___sfxSource;
 		float L_3 = __this->___masterVolume;
 		float L_4 = __this->___sfxVolume;
@@ -20469,7 +20515,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_UpdateAllVolumes_m486E10BDF
 
 IL_0025:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:248>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:256>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_5 = __this->___musicSource;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_6;
@@ -20480,7 +20526,7 @@ IL_0025:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:248>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:256>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_7 = __this->___musicSource;
 		float L_8 = __this->___masterVolume;
 		float L_9 = __this->___musicVolume;
@@ -20490,7 +20536,7 @@ IL_0025:
 
 IL_004a:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:249>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:257>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_10 = __this->___uiSource;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_11;
@@ -20501,7 +20547,7 @@ IL_004a:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:249>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:257>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_12 = __this->___uiSource;
 		float L_13 = __this->___masterVolume;
 		float L_14 = __this->___uiVolume;
@@ -20511,7 +20557,7 @@ IL_004a:
 
 IL_006f:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:250>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:258>
 		return;
 	}
 }
@@ -20525,7 +20571,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlaySFX_m5114E470A377648C45
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:259>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:267>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = ___0_clip;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20548,19 +20594,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlaySFX_m5114E470A377648C45
 
 IL_0017:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:259>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:267>
 		return;
 	}
 
 IL_0018:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:260>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:268>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_4 = __this->___sfxSource;
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_5 = ___0_clip;
 		float L_6 = ___1_volumeScale;
 		NullCheck(L_4);
 		AudioSource_PlayOneShot_mF6FE95C58996B38EF6E7F7482F95F5E15E0AB30B(L_4, L_5, L_6, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:261>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:269>
 		return;
 	}
 }
@@ -20574,7 +20620,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayUI_mD905B2D5503FEA3FA52
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:268>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:276>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = ___0_clip;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20597,19 +20643,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayUI_mD905B2D5503FEA3FA52
 
 IL_0017:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:268>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:276>
 		return;
 	}
 
 IL_0018:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:269>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:277>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_4 = __this->___uiSource;
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_5 = ___0_clip;
 		float L_6 = ___1_volumeScale;
 		NullCheck(L_4);
 		AudioSource_PlayOneShot_mF6FE95C58996B38EF6E7F7482F95F5E15E0AB30B(L_4, L_5, L_6, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:270>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:278>
 		return;
 	}
 }
@@ -20623,7 +20669,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayMusic_m49942EBD8C2185E3
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:277>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:285>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = ___0_clip;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20647,17 +20693,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayMusic_m49942EBD8C2185E3
 
 IL_0017:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:277>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:285>
 		return;
 	}
 
 IL_0018:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:279>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:287>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_5 = ___0_clip;
 		__this->____currentMusic = L_5;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->____currentMusic), (void*)L_5);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:281>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:289>
 		bool L_6 = ___1_fadeIn;
 		if (!L_6)
 		{
@@ -20675,7 +20721,7 @@ IL_0018:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:283>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:291>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_9 = ___0_clip;
 		RuntimeObject* L_10;
 		L_10 = AudioManager_CrossfadeMusic_mB0CD6121D7A85F1856744ED3603AB2FFE15C2F2F(__this, L_9, NULL);
@@ -20686,16 +20732,16 @@ IL_0018:
 
 IL_003e:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:287>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:295>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_12 = __this->___musicSource;
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_13 = ___0_clip;
 		NullCheck(L_12);
 		AudioSource_set_clip_mFF441895E274286C88D9C75ED5CA1B1B39528D70(L_12, L_13, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:288>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:296>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_14 = __this->___musicSource;
 		NullCheck(L_14);
 		AudioSource_Play_m95DF07111C61D0E0F00257A00384D31531D590C3(L_14, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:290>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:298>
 		return;
 	}
 }
@@ -20705,17 +20751,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* AudioManager_CrossfadeMusic_mB
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F_il2cpp_TypeInfo_var);
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9* L_0 = (U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9*)il2cpp_codegen_object_new(U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9_il2cpp_TypeInfo_var);
-		U3CCrossfadeMusicU3Ed__66__ctor_m976E943C5D1D5342A3768FE3B21E3F8ADEA712BB(L_0, 0, NULL);
-		U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9* L_1 = L_0;
+		U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F* L_0 = (U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F*)il2cpp_codegen_object_new(U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F_il2cpp_TypeInfo_var);
+		U3CCrossfadeMusicU3Ed__68__ctor_mBE95431051F8BEC2C4AF688A7F2667B792205508(L_0, 0, NULL);
+		U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F* L_1 = L_0;
 		NullCheck(L_1);
 		L_1->___U3CU3E4__this = __this;
 		Il2CppCodeGenWriteBarrier((void**)(&L_1->___U3CU3E4__this), (void*)__this);
-		U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9* L_2 = L_1;
+		U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F* L_2 = L_1;
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_3 = ___0_newClip;
 		NullCheck(L_2);
 		L_2->___newClip = L_3;
@@ -20727,7 +20773,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* AudioManager_CrossfadeMusic_mB
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_StopMusic_m29A0C6D0591EAE9C96B6BE0BF4C454FB8A1D2789 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, bool ___0_fadeOut, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:319>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:327>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_0 = __this->___musicSource;
 		NullCheck(L_0);
 		bool L_1;
@@ -20738,13 +20784,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_StopMusic_m29A0C6D0591EAE9C
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:319>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:327>
 		return;
 	}
 
 IL_000e:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:321>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:329>
 		bool L_2 = ___0_fadeOut;
 		if (!L_2)
 		{
@@ -20752,7 +20798,7 @@ IL_000e:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:323>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:331>
 		RuntimeObject* L_3;
 		L_3 = AudioManager_FadeOutMusic_mCB3769A08D52B3A483E583EC43209B194ED72014(__this, NULL);
 		Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B* L_4;
@@ -20762,7 +20808,7 @@ IL_000e:
 
 IL_0020:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:327>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:335>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_5 = __this->___musicSource;
 		NullCheck(L_5);
 		AudioSource_Stop_m318F17F17A147C77FF6E0A5A7A6BE057DB90F537(L_5, NULL);
@@ -20770,10 +20816,10 @@ IL_0020:
 
 IL_002b:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:329>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:337>
 		__this->____currentMusic = (AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20*)NULL;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->____currentMusic), (void*)(AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20*)NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:330>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:338>
 		return;
 	}
 }
@@ -20783,13 +20829,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* AudioManager_FadeOutMusic_mCB3
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5_il2cpp_TypeInfo_var);
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B* L_0 = (U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B*)il2cpp_codegen_object_new(U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B_il2cpp_TypeInfo_var);
-		U3CFadeOutMusicU3Ed__68__ctor_m39583F81FA9C18D346EA1018822ED4EB3F103352(L_0, 0, NULL);
-		U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B* L_1 = L_0;
+		U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5* L_0 = (U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5*)il2cpp_codegen_object_new(U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5_il2cpp_TypeInfo_var);
+		U3CFadeOutMusicU3Ed__70__ctor_mA6E39973EB5C69161A3E2E82645609021BAE4A49(L_0, 0, NULL);
+		U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5* L_1 = L_0;
 		NullCheck(L_1);
 		L_1->___U3CU3E4__this = __this;
 		Il2CppCodeGenWriteBarrier((void**)(&L_1->___U3CU3E4__this), (void*)__this);
@@ -20800,7 +20846,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* AudioManager_FadeOutMusic_mCB3
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCardDeal_m3AAF202AA6DF0FF65E3AC6CFFCD3FB035659005F (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:352>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:360>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___cardDeal;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20810,7 +20856,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCardDeal_m3AAF202AA6DF0
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCardFlip_m298528AD1FF01747DB4D4BBB490C05F2CCD45994 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:353>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:361>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___cardFlip;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20820,7 +20866,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCardFlip_m298528AD1FF01
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCardShuffle_m715CEF35DA601D9CAFCA2B04E616A59299F7C16C (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:354>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:362>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___cardShuffle;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20830,7 +20876,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCardShuffle_m715CEF35DA
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayChipBet_m7B8A32A775D1C0FABAF0C9D8973D23E98DE6FD03 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:357>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:365>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___chipBet;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20840,7 +20886,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayChipBet_m7B8A32A775D1C0
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayChipWin_m77F730AFB065F97D0D3AD45A420C1EBEE3B47B7A (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:358>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:366>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___chipWin;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20850,7 +20896,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayChipWin_m77F730AFB065F9
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayAllIn_mA6E30C39BDB62816821EB0E23562B31DEA567D99 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:359>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:367>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___allIn;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20860,7 +20906,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayAllIn_mA6E30C39BDB62816
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayFold_m3758C24835F644E9090C186251199B3D955DC831 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:362>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:370>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___fold;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20870,7 +20916,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayFold_m3758C24835F644E90
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCheck_m32D967C77EE52B06D8F3C00E5CD547D7246DA5C6 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:363>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:371>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___check;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20880,7 +20926,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCheck_m32D967C77EE52B06
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCall_m18733EA310418421247A316296FD320651478615 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:364>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:372>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___call;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20890,7 +20936,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCall_m18733EA3104184212
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayRaise_mEEF919FAE140E64CE6E8CFEA3A8E4CEF888728F1 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:365>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:373>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___raise;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20900,7 +20946,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayRaise_mEEF919FAE140E64C
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayButtonClick_m25A68675CC5AE1DC4620C2091B70FC867AD7B7B4 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:368>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:376>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___buttonClick;
 		AudioManager_PlayUI_mD905B2D5503FEA3FA5281DB843F82DB3B9CEA48C(__this, L_0, (1.0f), NULL);
 		return;
@@ -20910,7 +20956,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayButtonClick_m25A68675CC
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayButtonHover_m03D3DC024B92F27049801A07E076F000C630C73B (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:369>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:377>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___buttonHover;
 		AudioManager_PlayUI_mD905B2D5503FEA3FA5281DB843F82DB3B9CEA48C(__this, L_0, (1.0f), NULL);
 		return;
@@ -20920,7 +20966,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayButtonHover_m03D3DC024B
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayNotification_m9B45CB4EC6D75552A1C0BBDD88C54001B151911E (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:370>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:378>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___notification;
 		AudioManager_PlayUI_mD905B2D5503FEA3FA5281DB843F82DB3B9CEA48C(__this, L_0, (1.0f), NULL);
 		return;
@@ -20930,7 +20976,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayNotification_m9B45CB4EC
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayError_m0734C8F2ADD521BE99ADFF23D72073E2AB6D3B58 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:371>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:379>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___error;
 		AudioManager_PlayUI_mD905B2D5503FEA3FA5281DB843F82DB3B9CEA48C(__this, L_0, (1.0f), NULL);
 		return;
@@ -20940,7 +20986,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayError_m0734C8F2ADD521BE
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlaySuccess_m183C8AF19445A708D265A7EDD785BAA380ABC673 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:372>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:380>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___success;
 		AudioManager_PlayUI_mD905B2D5503FEA3FA5281DB843F82DB3B9CEA48C(__this, L_0, (1.0f), NULL);
 		return;
@@ -20950,7 +20996,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlaySuccess_m183C8AF19445A7
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayHandWin_m581F61524BAC857E78D9C478AE8E0D6068C26CB8 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:375>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:383>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___handWin;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20960,7 +21006,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayHandWin_m581F61524BAC85
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayHandLose_m1F806E43DE610897FEAE2222413527C7DDECCE4E (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:376>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:384>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___handLose;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20970,7 +21016,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayHandLose_m1F806E43DE610
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayRoyalFlush_mDF0B10844024EAEAB300E40B73B4376EF2306EB6 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:377>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:385>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___royalFlush;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.20000005f), NULL);
 		return;
@@ -20980,7 +21026,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayRoyalFlush_mDF0B1084402
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayBossAppear_mA06DE53210A4A5B370DD5A3886F4008CD28C627B (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:380>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:388>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___bossAppear;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20990,7 +21036,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayBossAppear_mA06DE53210A
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayBossDefeat_m65C645AD1CB7560391E08E3DE5BD52552E46B74E (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:381>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:389>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___bossDefeat;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -21000,7 +21046,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayBossDefeat_m65C645AD1CB
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayLevelUp_m2D7DC0A9354768BC4C493971C17B78A8028E3F94 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:382>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:390>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___levelUp;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -21010,7 +21056,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayLevelUp_m2D7DC0A9354768
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayItemDrop_m521D156C88772BAC82853D1F08799DF586A9100F (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:383>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:391>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___itemDrop;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -21020,73 +21066,93 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayItemDrop_m521D156C88772
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayRareItemDrop_mE7A8B1A020D9F5BFCAAB42388437AFD86E672656 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:384>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:392>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___rareItemDrop;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.20000005f), NULL);
 		return;
 	}
 }
 // Method Definition Index: 80339
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCountdownBeep_m508FA6D364F7D4960F245AB49AA933B34BEC66B0 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
+{
+	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:395>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___countdownBeep;
+		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
+		return;
+	}
+}
+// Method Definition Index: 80340
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayReadyToRumble_mB1E9BBAE64EDF6CEFE3F56BC3AAE66E604CAD07C (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
+{
+	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:396>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___readyToRumble;
+		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
+		return;
+	}
+}
+// Method Definition Index: 80341
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayMenuMusic_mBF18749214DC3B78464FD82D51827AE6F96A6C38 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:387>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:399>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___menuMusic;
 		AudioManager_PlayMusic_m49942EBD8C2185E337230F29859629A188A4F7AF(__this, L_0, (bool)1, NULL);
 		return;
 	}
 }
-// Method Definition Index: 80340
+// Method Definition Index: 80342
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayLobbyMusic_m5E87A6EE8B31D50839C8F2E07A9C4A54FF76DA42 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:388>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:400>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___lobbyMusic;
 		AudioManager_PlayMusic_m49942EBD8C2185E337230F29859629A188A4F7AF(__this, L_0, (bool)1, NULL);
 		return;
 	}
 }
-// Method Definition Index: 80341
+// Method Definition Index: 80343
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayTableMusic_m45313D235DEDB53143E6331765222DCA243EACA9 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:389>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:401>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___tableMusic;
 		AudioManager_PlayMusic_m49942EBD8C2185E337230F29859629A188A4F7AF(__this, L_0, (bool)1, NULL);
 		return;
 	}
 }
-// Method Definition Index: 80342
+// Method Definition Index: 80344
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayAdventureMusic_m5F819DDE85E544802E652C0E3535D5655BE1A3E3 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:390>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:402>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___adventureMusic;
 		AudioManager_PlayMusic_m49942EBD8C2185E337230F29859629A188A4F7AF(__this, L_0, (bool)1, NULL);
 		return;
 	}
 }
-// Method Definition Index: 80343
+// Method Definition Index: 80345
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayBossMusic_m6666F6575B863E1DA97665C801C9E544EF87A533 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:391>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:403>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___bossMusic;
 		AudioManager_PlayMusic_m49942EBD8C2185E337230F29859629A188A4F7AF(__this, L_0, (bool)1, NULL);
 		return;
 	}
 }
-// Method Definition Index: 80344
+// Method Definition Index: 80346
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayVictoryMusic_m82A77A2D3B7EADE72FD5FC781332C96B60EEA7AC (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:392>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:404>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___victoryMusic;
 		AudioManager_PlayMusic_m49942EBD8C2185E337230F29859629A188A4F7AF(__this, L_0, (bool)1, NULL);
 		return;
 	}
 }
-// Method Definition Index: 80345
+// Method Definition Index: 80347
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayPokerAction_mE0D2110DB27E230E931DC0A19B43956ACAEB0C04 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, String_t* ___0_action, Nullable_1_tCF32C56A2641879C053C86F273C0C6EC1B40BC28 ___1_amount, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -21105,7 +21171,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayPokerAction_mE0D2110DB2
 	uint32_t V_1 = 0;
 	String_t* G_B3_0 = NULL;
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:403>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:415>
 		String_t* L_0 = ___0_action;
 		if (L_0)
 		{
@@ -21309,49 +21375,49 @@ IL_00b3:
 
 IL_00c1:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:406>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:418>
 		AudioManager_PlayFold_m3758C24835F644E9090C186251199B3D955DC831(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:407>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:419>
 		return;
 	}
 
 IL_00c8:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:409>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:421>
 		AudioManager_PlayCheck_m32D967C77EE52B06D8F3C00E5CD547D7246DA5C6(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:410>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:422>
 		return;
 	}
 
 IL_00cf:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:412>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:424>
 		AudioManager_PlayCall_m18733EA310418421247A316296FD320651478615(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:413>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:425>
 		AudioManager_PlayChipBet_m7B8A32A775D1C0FABAF0C9D8973D23E98DE6FD03(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:414>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:426>
 		return;
 	}
 
 IL_00dc:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:417>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:429>
 		AudioManager_PlayRaise_mEEF919FAE140E64CE6E8CFEA3A8E4CEF888728F1(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:418>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:430>
 		AudioManager_PlayChipBet_m7B8A32A775D1C0FABAF0C9D8973D23E98DE6FD03(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:419>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:431>
 		return;
 	}
 
 IL_00e9:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:422>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:434>
 		AudioManager_PlayAllIn_mA6E30C39BDB62816821EB0E23562B31DEA567D99(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:425>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:437>
 		return;
 	}
 }
-// Method Definition Index: 80346
+// Method Definition Index: 80348
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager__ctor_mDB7DA6264E350C5B89E646C7948853A9A4E926B6 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
@@ -21373,8 +21439,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager__ctor_mDB7DA6264E350C5B89E6
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80347
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCrossfadeMusicU3Ed__66__ctor_m976E943C5D1D5342A3768FE3B21E3F8ADEA712BB (U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) 
+// Method Definition Index: 80349
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCrossfadeMusicU3Ed__68__ctor_mBE95431051F8BEC2C4AF688A7F2667B792205508 (U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) 
 {
 	{
 		Object__ctor_mE837C6B9FA8C6D5D109F4B2EC885D79919AC0EA2(__this, NULL);
@@ -21383,15 +21449,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCrossfadeMusicU3Ed__66__ctor_m976E943
 		return;
 	}
 }
-// Method Definition Index: 80348
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCrossfadeMusicU3Ed__66_System_IDisposable_Dispose_mCEF8ECF74D14EDC77DDE68CD6B87DA29C4813852 (U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9* __this, const RuntimeMethod* method) 
+// Method Definition Index: 80350
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCrossfadeMusicU3Ed__68_System_IDisposable_Dispose_m597F90DC5C2077DA88E1C40473D21C928BC954DB (U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F* __this, const RuntimeMethod* method) 
 {
 	{
 		return;
 	}
 }
-// Method Definition Index: 80349
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CCrossfadeMusicU3Ed__66_MoveNext_m389BE69FECB4828AE77F888089431D6BB8812882 (U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9* __this, const RuntimeMethod* method) 
+// Method Definition Index: 80351
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CCrossfadeMusicU3Ed__68_MoveNext_m778E203B5CB0399F2E96910646751EC01645ECBA (U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
 	AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* V_1 = NULL;
@@ -21424,9 +21490,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CCrossfadeMusicU3Ed__66_MoveNext_m389B
 IL_0022:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:294>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:302>
 		__this->___U3CfadeTimeU3E5__2 = (1.0f);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:295>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:303>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_3 = V_1;
 		NullCheck(L_3);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_4 = L_3->___musicSource;
@@ -21434,14 +21500,14 @@ IL_0022:
 		float L_5;
 		L_5 = AudioSource_get_volume_m9CCF33BC636562EA282FDE07463B547D70134EE3(L_4, NULL);
 		__this->___U3CstartVolumeU3E5__3 = L_5;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:298>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:306>
 		__this->___U3CtU3E5__4 = (0.0f);
 		goto IL_00a3;
 	}
 
 IL_0052:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:300>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:308>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_6 = V_1;
 		NullCheck(L_6);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_7 = L_6->___musicSource;
@@ -21452,7 +21518,7 @@ IL_0052:
 		L_11 = Mathf_Lerp_m47EF2FFB7647BD0A1FDC26DC03E28B19812139B5_inline(L_8, (0.0f), ((float)(L_9/L_10)), NULL);
 		NullCheck(L_7);
 		AudioSource_set_volume_mD902BBDBBDE0E3C148609BF3C05096148E90F2C0(L_7, L_11, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:301>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:309>
 		__this->___U3CU3E2__current = NULL;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CU3E2__current), (void*)NULL);
 		__this->___U3CU3E1__state = 1;
@@ -21462,7 +21528,7 @@ IL_0052:
 IL_008a:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:298>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:306>
 		float L_12 = __this->___U3CtU3E5__4;
 		float L_13;
 		L_13 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
@@ -21471,7 +21537,7 @@ IL_008a:
 
 IL_00a3:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:298>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:306>
 		float L_14 = __this->___U3CtU3E5__4;
 		float L_15 = __this->___U3CfadeTimeU3E5__2;
 		if ((((float)L_14) < ((float)L_15)))
@@ -21480,27 +21546,27 @@ IL_00a3:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:305>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:313>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_16 = V_1;
 		NullCheck(L_16);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_17 = L_16->___musicSource;
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_18 = __this->___newClip;
 		NullCheck(L_17);
 		AudioSource_set_clip_mFF441895E274286C88D9C75ED5CA1B1B39528D70(L_17, L_18, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:306>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:314>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_19 = V_1;
 		NullCheck(L_19);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_20 = L_19->___musicSource;
 		NullCheck(L_20);
 		AudioSource_Play_m95DF07111C61D0E0F00257A00384D31531D590C3(L_20, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:308>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:316>
 		__this->___U3CtU3E5__4 = (0.0f);
 		goto IL_0132;
 	}
 
 IL_00da:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:310>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:318>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_21 = V_1;
 		NullCheck(L_21);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_22 = L_21->___musicSource;
@@ -21516,7 +21582,7 @@ IL_00da:
 		L_29 = Mathf_Lerp_m47EF2FFB7647BD0A1FDC26DC03E28B19812139B5_inline((0.0f), ((float)il2cpp_codegen_multiply(L_24, L_26)), ((float)(L_27/L_28)), NULL);
 		NullCheck(L_22);
 		AudioSource_set_volume_mD902BBDBBDE0E3C148609BF3C05096148E90F2C0(L_22, L_29, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:311>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:319>
 		__this->___U3CU3E2__current = NULL;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CU3E2__current), (void*)NULL);
 		__this->___U3CU3E1__state = 2;
@@ -21526,7 +21592,7 @@ IL_00da:
 IL_0119:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:308>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:316>
 		float L_30 = __this->___U3CtU3E5__4;
 		float L_31;
 		L_31 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
@@ -21535,7 +21601,7 @@ IL_0119:
 
 IL_0132:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:308>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:316>
 		float L_32 = __this->___U3CtU3E5__4;
 		float L_33 = __this->___U3CfadeTimeU3E5__2;
 		if ((((float)L_32) < ((float)L_33)))
@@ -21544,7 +21610,7 @@ IL_0132:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:314>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:322>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_34 = V_1;
 		NullCheck(L_34);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_35 = L_34->___musicSource;
@@ -21556,29 +21622,29 @@ IL_0132:
 		float L_39 = L_38->___musicVolume;
 		NullCheck(L_35);
 		AudioSource_set_volume_mD902BBDBBDE0E3C148609BF3C05096148E90F2C0(L_35, ((float)il2cpp_codegen_multiply(L_37, L_39)), NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:315>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:323>
 		return (bool)0;
 	}
 }
-// Method Definition Index: 80350
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CCrossfadeMusicU3Ed__66_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m6708DBD2E1BCBAEA24E25B936EE9493AB1C03492 (U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9* __this, const RuntimeMethod* method) 
+// Method Definition Index: 80352
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CCrossfadeMusicU3Ed__68_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mD525648B2FAF52B7E87D7D1E1899C3E9EFBF668E (U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F* __this, const RuntimeMethod* method) 
 {
 	{
 		RuntimeObject* L_0 = __this->___U3CU3E2__current;
 		return L_0;
 	}
 }
-// Method Definition Index: 80351
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCrossfadeMusicU3Ed__66_System_Collections_IEnumerator_Reset_m5B4390D065A79CBE2F3EABBDBAB83EDD9A9935ED (U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9* __this, const RuntimeMethod* method) 
+// Method Definition Index: 80353
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CCrossfadeMusicU3Ed__68_System_Collections_IEnumerator_Reset_mD17D3B7E54D12A4E9FB0BAAD5EC056A090A279CC (U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F* __this, const RuntimeMethod* method) 
 {
 	{
 		NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A* L_0 = (NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A_il2cpp_TypeInfo_var)));
 		NotSupportedException__ctor_m1398D0CDE19B36AA3DE9392879738C1EA2439CDF(L_0, NULL);
-		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&U3CCrossfadeMusicU3Ed__66_System_Collections_IEnumerator_Reset_m5B4390D065A79CBE2F3EABBDBAB83EDD9A9935ED_RuntimeMethod_var)));
+		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&U3CCrossfadeMusicU3Ed__68_System_Collections_IEnumerator_Reset_mD17D3B7E54D12A4E9FB0BAAD5EC056A090A279CC_RuntimeMethod_var)));
 	}
 }
-// Method Definition Index: 80352
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CCrossfadeMusicU3Ed__66_System_Collections_IEnumerator_get_Current_m1A81980A860C441494F56F8CBC9CC48949D14554 (U3CCrossfadeMusicU3Ed__66_t14F1ED43A0B5B025E374E47CE2E72B15603E67C9* __this, const RuntimeMethod* method) 
+// Method Definition Index: 80354
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CCrossfadeMusicU3Ed__68_System_Collections_IEnumerator_get_Current_m7C27B0CAA9E8932F0B3F33D2FC9292A6DE7F48B4 (U3CCrossfadeMusicU3Ed__68_t325AD236D30961BDC46DFA5D7C19E1A6DB50D95F* __this, const RuntimeMethod* method) 
 {
 	{
 		RuntimeObject* L_0 = __this->___U3CU3E2__current;
@@ -21593,8 +21659,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CCrossfadeMusicU3Ed__66_Syst
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80353
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutMusicU3Ed__68__ctor_m39583F81FA9C18D346EA1018822ED4EB3F103352 (U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) 
+// Method Definition Index: 80355
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutMusicU3Ed__70__ctor_mA6E39973EB5C69161A3E2E82645609021BAE4A49 (U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) 
 {
 	{
 		Object__ctor_mE837C6B9FA8C6D5D109F4B2EC885D79919AC0EA2(__this, NULL);
@@ -21603,15 +21669,15 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutMusicU3Ed__68__ctor_m39583F81F
 		return;
 	}
 }
-// Method Definition Index: 80354
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutMusicU3Ed__68_System_IDisposable_Dispose_m0FC73DC5E98925593A8449467B9C91EB9DB47534 (U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B* __this, const RuntimeMethod* method) 
+// Method Definition Index: 80356
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutMusicU3Ed__70_System_IDisposable_Dispose_m74352EE727610B12B5BFF4BF1E50A17A6D534DCD (U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5* __this, const RuntimeMethod* method) 
 {
 	{
 		return;
 	}
 }
-// Method Definition Index: 80355
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CFadeOutMusicU3Ed__68_MoveNext_m801D2B7657BD5E42E3E254E8935D5E0823E69174 (U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B* __this, const RuntimeMethod* method) 
+// Method Definition Index: 80357
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CFadeOutMusicU3Ed__70_MoveNext_mAC1CC628EBAA95414854846D3FC837D08D31A429 (U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
 	AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* V_1 = NULL;
@@ -21640,9 +21706,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CFadeOutMusicU3Ed__68_MoveNext_m801D2B
 IL_0017:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:334>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:342>
 		__this->___U3CfadeTimeU3E5__2 = (1.0f);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:335>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:343>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_4 = V_1;
 		NullCheck(L_4);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_5 = L_4->___musicSource;
@@ -21650,14 +21716,14 @@ IL_0017:
 		float L_6;
 		L_6 = AudioSource_get_volume_m9CCF33BC636562EA282FDE07463B547D70134EE3(L_5, NULL);
 		__this->___U3CstartVolumeU3E5__3 = L_6;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:337>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:345>
 		__this->___U3CtU3E5__4 = (0.0f);
 		goto IL_0098;
 	}
 
 IL_0047:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:339>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:347>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_7 = V_1;
 		NullCheck(L_7);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_8 = L_7->___musicSource;
@@ -21668,7 +21734,7 @@ IL_0047:
 		L_12 = Mathf_Lerp_m47EF2FFB7647BD0A1FDC26DC03E28B19812139B5_inline(L_9, (0.0f), ((float)(L_10/L_11)), NULL);
 		NullCheck(L_8);
 		AudioSource_set_volume_mD902BBDBBDE0E3C148609BF3C05096148E90F2C0(L_8, L_12, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:340>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:348>
 		__this->___U3CU3E2__current = NULL;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CU3E2__current), (void*)NULL);
 		__this->___U3CU3E1__state = 1;
@@ -21678,7 +21744,7 @@ IL_0047:
 IL_007f:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:337>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:345>
 		float L_13 = __this->___U3CtU3E5__4;
 		float L_14;
 		L_14 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
@@ -21687,7 +21753,7 @@ IL_007f:
 
 IL_0098:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:337>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:345>
 		float L_15 = __this->___U3CtU3E5__4;
 		float L_16 = __this->___U3CfadeTimeU3E5__2;
 		if ((((float)L_15) < ((float)L_16)))
@@ -21696,13 +21762,13 @@ IL_0098:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:343>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:351>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_17 = V_1;
 		NullCheck(L_17);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_18 = L_17->___musicSource;
 		NullCheck(L_18);
 		AudioSource_Stop_m318F17F17A147C77FF6E0A5A7A6BE057DB90F537(L_18, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:344>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:352>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_19 = V_1;
 		NullCheck(L_19);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_20 = L_19->___musicSource;
@@ -21714,29 +21780,29 @@ IL_0098:
 		float L_24 = L_23->___musicVolume;
 		NullCheck(L_20);
 		AudioSource_set_volume_mD902BBDBBDE0E3C148609BF3C05096148E90F2C0(L_20, ((float)il2cpp_codegen_multiply(L_22, L_24)), NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:345>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:353>
 		return (bool)0;
 	}
 }
-// Method Definition Index: 80356
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFadeOutMusicU3Ed__68_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mBE2651F10A110922B9519C549C96F01E49055B06 (U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B* __this, const RuntimeMethod* method) 
+// Method Definition Index: 80358
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFadeOutMusicU3Ed__70_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m6AB724AC2853367CBFA0E10B34C405CAF4926CC1 (U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5* __this, const RuntimeMethod* method) 
 {
 	{
 		RuntimeObject* L_0 = __this->___U3CU3E2__current;
 		return L_0;
 	}
 }
-// Method Definition Index: 80357
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutMusicU3Ed__68_System_Collections_IEnumerator_Reset_m5D7FF7E82186D1FC09D279141D650DA7EE0ADE2C (U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B* __this, const RuntimeMethod* method) 
+// Method Definition Index: 80359
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutMusicU3Ed__70_System_Collections_IEnumerator_Reset_m5FEA3247D45124193D56C816768B4D827764C598 (U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5* __this, const RuntimeMethod* method) 
 {
 	{
 		NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A* L_0 = (NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A*)il2cpp_codegen_object_new(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&NotSupportedException_t1429765983D409BD2986508963C98D214E4EBF4A_il2cpp_TypeInfo_var)));
 		NotSupportedException__ctor_m1398D0CDE19B36AA3DE9392879738C1EA2439CDF(L_0, NULL);
-		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&U3CFadeOutMusicU3Ed__68_System_Collections_IEnumerator_Reset_m5D7FF7E82186D1FC09D279141D650DA7EE0ADE2C_RuntimeMethod_var)));
+		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&U3CFadeOutMusicU3Ed__70_System_Collections_IEnumerator_Reset_m5FEA3247D45124193D56C816768B4D827764C598_RuntimeMethod_var)));
 	}
 }
-// Method Definition Index: 80358
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFadeOutMusicU3Ed__68_System_Collections_IEnumerator_get_Current_mA72AEEB352CBCBE1ED00ED1D6BCCC238F0FA2B56 (U3CFadeOutMusicU3Ed__68_tE7F97662BCC5217BEF825881F19123A64159995B* __this, const RuntimeMethod* method) 
+// Method Definition Index: 80360
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFadeOutMusicU3Ed__70_System_Collections_IEnumerator_get_Current_m87D093C0BA42EFAD81C4B861D78F9BA4F57EBD6C (U3CFadeOutMusicU3Ed__70_tA8BC5F714D706C16BB1C11E1472ABE00CF73CEE5* __this, const RuntimeMethod* method) 
 {
 	{
 		RuntimeObject* L_0 = __this->___U3CU3E2__current;
@@ -21751,7 +21817,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFadeOutMusicU3Ed__68_System
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80359
+// Method Definition Index: 80361
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* GameManager_get_Instance_m76C3AA0AE679D0E10695D19667277537225E0DB8 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -21766,7 +21832,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR GameManager_t3B26C4355D96447AF53B18CA9CBC7513
 		return L_0;
 	}
 }
-// Method Definition Index: 80360
+// Method Definition Index: 80362
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_set_Instance_mF064CA86FEF49A95B4AAFCCBFD90B9A1D1975AED (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -21783,7 +21849,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_set_Instance_mF064CA86FEF49A
 		return;
 	}
 }
-// Method Definition Index: 80361
+// Method Definition Index: 80363
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR UserProfile_t9464B990D880CF603577DF3623F9F67864C1853D* GameManager_get_CurrentUser_mA3CEE0F881CEA52572F87CA3C6E2EEA8FAF4F275 (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	{
@@ -21792,7 +21858,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR UserProfile_t9464B990D880CF603577DF3623F9F678
 		return L_0;
 	}
 }
-// Method Definition Index: 80362
+// Method Definition Index: 80364
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_set_CurrentUser_mD7710A01057FBDC6A89DF98775DE787F71A9A887 (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, UserProfile_t9464B990D880CF603577DF3623F9F67864C1853D* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -21803,7 +21869,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_set_CurrentUser_mD7710A01057
 		return;
 	}
 }
-// Method Definition Index: 80363
+// Method Definition Index: 80365
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_get_Chips_m37F8F8BC49E0D92714A94460C55DD8DBC08CC6C8 (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	UserProfile_t9464B990D880CF603577DF3623F9F67864C1853D* G_B2_0 = NULL;
@@ -21831,7 +21897,7 @@ IL_000c:
 		return L_2;
 	}
 }
-// Method Definition Index: 80364
+// Method Definition Index: 80366
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_get_Level_m7AFC38978FC58814D241E4459734AD26AA0D2AEA (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	{
@@ -21839,7 +21905,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_get_Level_m7AFC38978FC588
 		return 1;
 	}
 }
-// Method Definition Index: 80365
+// Method Definition Index: 80367
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_get_XP_m22B0EB1F433926570C9AACD59398184D347FA0DF (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	{
@@ -21847,7 +21913,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t GameManager_get_XP_m22B0EB1F433926570
 		return 0;
 	}
 }
-// Method Definition Index: 80366
+// Method Definition Index: 80368
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Awake_m321C88A72E76BB4722FBB67ACB61525B80B50EAC (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -21921,7 +21987,7 @@ IL_0050:
 		return;
 	}
 }
-// Method Definition Index: 80367
+// Method Definition Index: 80369
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Initialize_mCEDE616A8942F15ED21010EA3C2B9E758196F7C5 (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -21939,7 +22005,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Initialize_mCEDE616A8942F15E
 		return;
 	}
 }
-// Method Definition Index: 80368
+// Method Definition Index: 80370
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Login_m5813D2F3DA8AD4FC726AE60D7FA559C064CBA444 (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, String_t* ___0_username, String_t* ___1_password, Action_2_t8EADE87044ADE97906736D729EA2E3EF97F34F3D* ___2_callback, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22005,7 +22071,7 @@ IL_0056:
 		return;
 	}
 }
-// Method Definition Index: 80369
+// Method Definition Index: 80371
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Register_m931CB9AF162BDD59B51BBF4189D3DCD2C2D0FCEE (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, String_t* ___0_username, String_t* ___1_password, String_t* ___2_email, Action_2_t8EADE87044ADE97906736D729EA2E3EF97F34F3D* ___3_callback, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22042,7 +22108,7 @@ IL_0022:
 		return;
 	}
 }
-// Method Definition Index: 80370
+// Method Definition Index: 80372
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Logout_m41867FEEAAD935DDCF068DC5418F7C40BBA77EAA (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22073,7 +22139,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_Logout_m41867FEEAAD935DDCF06
 		return;
 	}
 }
-// Method Definition Index: 80371
+// Method Definition Index: 80373
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_get_IsLoggedIn_m7EF373C7A7B130D6C07F3C41405DA17ED263F789 (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	{
@@ -22082,7 +22148,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool GameManager_get_IsLoggedIn_m7EF373C7A7B1
 		return L_0;
 	}
 }
-// Method Definition Index: 80372
+// Method Definition Index: 80374
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadScene_m3F44C92FE52504296908737A685A58F299778974 (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, String_t* ___0_sceneName, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22108,7 +22174,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadScene_m3F44C92FE52504296
 		return;
 	}
 }
-// Method Definition Index: 80373
+// Method Definition Index: 80375
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AsyncOperation_tD2789250E4B098DEDA92B366A577E500A92D2D3C* GameManager_LoadSceneAsync_mA5B9FB33F4D96CA4CB72BCF867A9DCD14C2C2E9D (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, String_t* ___0_sceneName, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22134,7 +22200,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AsyncOperation_tD2789250E4B098DEDA92B366A577E
 		return L_3;
 	}
 }
-// Method Definition Index: 80374
+// Method Definition Index: 80376
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_GoToMainMenu_m81ADC094E35F43F1695B512D8B214747021D4ADF (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22149,7 +22215,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_GoToMainMenu_m81ADC094E35F43
 		return;
 	}
 }
-// Method Definition Index: 80375
+// Method Definition Index: 80377
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_GoToLobby_m0BD0DA15189FB0209014333C01FF3A49BABA3E1E (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22164,7 +22230,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_GoToLobby_m0BD0DA15189FB0209
 		return;
 	}
 }
-// Method Definition Index: 80376
+// Method Definition Index: 80378
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_GoToAdventureMap_m6AED93ACFA6B56D4D5438EB3F48D64546FC4C702 (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22179,7 +22245,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_GoToAdventureMap_m6AED93ACFA
 		return;
 	}
 }
-// Method Definition Index: 80377
+// Method Definition Index: 80379
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_JoinTable_mBF630356972F57A2EFFAFE15443EBDC0225413CE (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, String_t* ___0_tableId, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22203,7 +22269,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_JoinTable_mBF630356972F57A2E
 		return;
 	}
 }
-// Method Definition Index: 80378
+// Method Definition Index: 80380
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_StartBossBattle_m90B31C5E1F886ED1EFFFC046A651B9D711A31883 (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, String_t* ___0_bossId, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22227,7 +22293,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_StartBossBattle_m90B31C5E1F8
 		return;
 	}
 }
-// Method Definition Index: 80379
+// Method Definition Index: 80381
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_UpdateChips_m11C5803745EF6CFB2604779FEA372C415BA139CA (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, int32_t ___0_newChips, const RuntimeMethod* method) 
 {
 	{
@@ -22254,7 +22320,7 @@ IL_0014:
 		return;
 	}
 }
-// Method Definition Index: 80380
+// Method Definition Index: 80382
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_RefreshPlayerData_m3B7E15EF9DF275C22EB01313F11505C167DC8A98 (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* ___0_callback, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22287,7 +22353,7 @@ IL_0013:
 		return;
 	}
 }
-// Method Definition Index: 80381
+// Method Definition Index: 80383
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SaveSettings_m2688DB6ACD433D63414DB16572CAE83207218612 (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	{
@@ -22295,7 +22361,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_SaveSettings_m2688DB6ACD433D
 		return;
 	}
 }
-// Method Definition Index: 80382
+// Method Definition Index: 80384
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadSettings_mA1A8AB8DACB2A18D957E21C4E18F8C022D5DC430 (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	{
@@ -22303,7 +22369,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager_LoadSettings_mA1A8AB8DACB2A1
 		return;
 	}
 }
-// Method Definition Index: 80383
+// Method Definition Index: 80385
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager__ctor_mC32987DA5375FB61CEA44F5E62A0A0F157ACD180 (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22330,7 +22396,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameManager__ctor_mC32987DA5375FB61CEA44
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80384
+// Method Definition Index: 80386
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ProjectSetup_ValidateSetup_mA321A68158B35B8881EE561F80A5E74AAF8DE0F6 (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22393,7 +22459,7 @@ IL_0031:
 		return L_3;
 	}
 }
-// Method Definition Index: 80385
+// Method Definition Index: 80387
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ProjectSetup_TMProCheck_mA488C0B42DB783238FC7FF53195B0F78BD0928C7 (const RuntimeMethod* method) 
 {
 	{
@@ -22401,7 +22467,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool ProjectSetup_TMProCheck_mA488C0B42DB7832
 		return (bool)1;
 	}
 }
-// Method Definition Index: 80386
+// Method Definition Index: 80388
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ProjectSetup__cctor_m8ED14C2F76E6BF44B35B8DF7782441C66DBFF3AA (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22427,7 +22493,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ProjectSetup__cctor_m8ED14C2F76E6BF44B35
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80387
+// Method Definition Index: 80389
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap_Start_m357902FD10B9041A7D0365A2EA371BC4A79BD477 (SceneBootstrap_t8C0ACB1047A49666AE36AA86AD28AE9E3A8C4C9D* __this, const RuntimeMethod* method) 
 {
 	{
@@ -22449,7 +22515,7 @@ IL_000e:
 		return;
 	}
 }
-// Method Definition Index: 80388
+// Method Definition Index: 80390
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap_InitializeScene_mD8BBB127385415D39BFE5B6D366ED8C8FF3C6C66 (SceneBootstrap_t8C0ACB1047A49666AE36AA86AD28AE9E3A8C4C9D* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22558,7 +22624,7 @@ IL_005b:
 		return;
 	}
 }
-// Method Definition Index: 80389
+// Method Definition Index: 80391
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap_CreateMainMenuScene_m16BCB5C33B618FE3CC55DD6709BFEADE7483D8DB (SceneBootstrap_t8C0ACB1047A49666AE36AA86AD28AE9E3A8C4C9D* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22581,7 +22647,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap_CreateMainMenuScene_m16BC
 		return;
 	}
 }
-// Method Definition Index: 80390
+// Method Definition Index: 80392
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap_CreateLobbyScene_mED090799977E4BAA29630DC6AFA98172B84DE83E (SceneBootstrap_t8C0ACB1047A49666AE36AA86AD28AE9E3A8C4C9D* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22599,7 +22665,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap_CreateLobbyScene_mED09079
 		return;
 	}
 }
-// Method Definition Index: 80391
+// Method Definition Index: 80393
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap_CreatePokerTableScene_m06521052F8C9337828039022FEC9A42592846D32 (SceneBootstrap_t8C0ACB1047A49666AE36AA86AD28AE9E3A8C4C9D* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22622,7 +22688,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap_CreatePokerTableScene_m06
 		return;
 	}
 }
-// Method Definition Index: 80392
+// Method Definition Index: 80394
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap_CreateAdventureMapScene_m950308473C58221D6679298B6097183903C3DAA5 (SceneBootstrap_t8C0ACB1047A49666AE36AA86AD28AE9E3A8C4C9D* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22645,7 +22711,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap_CreateAdventureMapScene_m
 		return;
 	}
 }
-// Method Definition Index: 80393
+// Method Definition Index: 80395
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap_CreateBossBattleScene_mFCF6989FA011BE81C596E0A61B7F4663AF3224D1 (SceneBootstrap_t8C0ACB1047A49666AE36AA86AD28AE9E3A8C4C9D* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22673,7 +22739,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap_CreateBossBattleScene_mFC
 		return;
 	}
 }
-// Method Definition Index: 80394
+// Method Definition Index: 80396
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap__ctor_m404DCA43100B05A4F5F3E4370055A690E5E23E88 (SceneBootstrap_t8C0ACB1047A49666AE36AA86AD28AE9E3A8C4C9D* __this, const RuntimeMethod* method) 
 {
 	{
@@ -22699,7 +22765,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneBootstrap__ctor_m404DCA43100B05A4F5
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80395
+// Method Definition Index: 80397
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR SceneTransition_t08BC81238DC61B8969D31C9DEA2D9039DE63A66B* SceneTransition_get_Instance_mAA82183AEF5A0E9B286BF5F1C53AC172F97079BF (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22714,7 +22780,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR SceneTransition_t08BC81238DC61B8969D31C9DEA2D
 		return L_0;
 	}
 }
-// Method Definition Index: 80396
+// Method Definition Index: 80398
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneTransition_set_Instance_m79CA7F8B4819B3FD90CBB5F5C2D2051DD2E92239 (SceneTransition_t08BC81238DC61B8969D31C9DEA2D9039DE63A66B* ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22731,7 +22797,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneTransition_set_Instance_m79CA7F8B48
 		return;
 	}
 }
-// Method Definition Index: 80397
+// Method Definition Index: 80399
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneTransition_Awake_m61720D4B7587C280663105429BAA7C81A9639473 (SceneTransition_t08BC81238DC61B8969D31C9DEA2D9039DE63A66B* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22788,7 +22854,7 @@ IL_0026:
 		return;
 	}
 }
-// Method Definition Index: 80398
+// Method Definition Index: 80400
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneTransition_Initialize_mFD5ED4182D69F6BF4E27107AA3965256AEFFA782 (SceneTransition_t08BC81238DC61B8969D31C9DEA2D9039DE63A66B* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22913,7 +22979,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneTransition_Initialize_mFD5ED4182D69
 		return;
 	}
 }
-// Method Definition Index: 80399
+// Method Definition Index: 80401
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneTransition_LoadScene_m93C9030BA08D150D1ADCF3775D490522CB0F1CD6 (String_t* ___0_sceneName, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -22955,7 +23021,7 @@ IL_0019:
 		return;
 	}
 }
-// Method Definition Index: 80400
+// Method Definition Index: 80402
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneTransition_LoadScene_mA25D9CF0153D43FE713D3F8404C81527BCD9F174 (String_t* ___0_sceneName, float ___1_duration, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23003,7 +23069,7 @@ IL_0024:
 		return;
 	}
 }
-// Method Definition Index: 80401
+// Method Definition Index: 80403
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneTransition_StartTransition_m5BF25D7496CB762829B91792BFD4F241B8561014 (SceneTransition_t08BC81238DC61B8969D31C9DEA2D9039DE63A66B* __this, String_t* ___0_sceneName, const RuntimeMethod* method) 
 {
 	{
@@ -23031,7 +23097,7 @@ IL_0009:
 		return;
 	}
 }
-// Method Definition Index: 80402
+// Method Definition Index: 80404
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SceneTransition_TransitionCoroutine_m010B5F32C3530A78C50C8DD7CC91AFD7794B5F69 (SceneTransition_t08BC81238DC61B8969D31C9DEA2D9039DE63A66B* __this, String_t* ___0_sceneName, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23055,7 +23121,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SceneTransition_TransitionCoro
 		return L_2;
 	}
 }
-// Method Definition Index: 80403
+// Method Definition Index: 80405
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SceneTransition_FadeOut_m9A77A400352EABFAF0CA73BC095F4E1041D3FA89 (SceneTransition_t08BC81238DC61B8969D31C9DEA2D9039DE63A66B* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23074,7 +23140,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SceneTransition_FadeOut_m9A77A
 		return L_1;
 	}
 }
-// Method Definition Index: 80404
+// Method Definition Index: 80406
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SceneTransition_FadeIn_m32B5C6A5CC437065266FA86D4B55331E9E2AA2D2 (SceneTransition_t08BC81238DC61B8969D31C9DEA2D9039DE63A66B* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23093,7 +23159,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SceneTransition_FadeIn_m32B5C6
 		return L_1;
 	}
 }
-// Method Definition Index: 80405
+// Method Definition Index: 80407
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneTransition_Flash_m15ECCFE534860165BE25EDCD77E7619D56708E01 (Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___0_color, float ___1_duration, const RuntimeMethod* method) 
 {
 	SceneTransition_t08BC81238DC61B8969D31C9DEA2D9039DE63A66B* G_B2_0 = NULL;
@@ -23130,7 +23196,7 @@ IL_000a:
 		return;
 	}
 }
-// Method Definition Index: 80406
+// Method Definition Index: 80408
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SceneTransition_FlashCoroutine_m8E89B1E7FAF53678C958D43B8D51E74157702DE6 (SceneTransition_t08BC81238DC61B8969D31C9DEA2D9039DE63A66B* __this, Color_tD001788D726C3A7F1379BEED0260B9591F440C1F ___0_color, float ___1_duration, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23157,7 +23223,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SceneTransition_FlashCoroutine
 		return L_4;
 	}
 }
-// Method Definition Index: 80407
+// Method Definition Index: 80409
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneTransition__ctor_m2774ED1F70CDC8A3CDEC964D05F3BCD0B996BF29 (SceneTransition_t08BC81238DC61B8969D31C9DEA2D9039DE63A66B* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23179,7 +23245,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SceneTransition__ctor_m2774ED1F70CDC8A3C
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80408
+// Method Definition Index: 80410
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeInU3Ed__16__ctor_mE09BCDF6A930F022F35D7688D3DE183F4683A845 (U3CFadeInU3Ed__16_t292A517A1966458804FB7B25A3E34B30729ADD24* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) 
 {
 	{
@@ -23189,14 +23255,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeInU3Ed__16__ctor_mE09BCDF6A930F02
 		return;
 	}
 }
-// Method Definition Index: 80409
+// Method Definition Index: 80411
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeInU3Ed__16_System_IDisposable_Dispose_mEEE4A168FB85650109244E1B2A7A47379075BF3A (U3CFadeInU3Ed__16_t292A517A1966458804FB7B25A3E34B30729ADD24* __this, const RuntimeMethod* method) 
 {
 	{
 		return;
 	}
 }
-// Method Definition Index: 80410
+// Method Definition Index: 80412
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CFadeInU3Ed__16_MoveNext_m5C73DA4CF2C3734F7813EA87DD835C968C4CC0D7 (U3CFadeInU3Ed__16_t292A517A1966458804FB7B25A3E34B30729ADD24* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -23283,7 +23349,7 @@ IL_0072:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 80411
+// Method Definition Index: 80413
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFadeInU3Ed__16_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mB2E5DEDC649BB4047E880E21D208861BFA286C90 (U3CFadeInU3Ed__16_t292A517A1966458804FB7B25A3E34B30729ADD24* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23291,7 +23357,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFadeInU3Ed__16_System_Colle
 		return L_0;
 	}
 }
-// Method Definition Index: 80412
+// Method Definition Index: 80414
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeInU3Ed__16_System_Collections_IEnumerator_Reset_mE94D7D8F00FC43647FD9CE50CB09A2BF083E9889 (U3CFadeInU3Ed__16_t292A517A1966458804FB7B25A3E34B30729ADD24* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23300,7 +23366,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeInU3Ed__16_System_Collections_IEn
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&U3CFadeInU3Ed__16_System_Collections_IEnumerator_Reset_mE94D7D8F00FC43647FD9CE50CB09A2BF083E9889_RuntimeMethod_var)));
 	}
 }
-// Method Definition Index: 80413
+// Method Definition Index: 80415
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFadeInU3Ed__16_System_Collections_IEnumerator_get_Current_mAD1E7A12B92F1E755B09DD9CEF575770CE2DAE0B (U3CFadeInU3Ed__16_t292A517A1966458804FB7B25A3E34B30729ADD24* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23316,7 +23382,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFadeInU3Ed__16_System_Colle
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80414
+// Method Definition Index: 80416
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutU3Ed__15__ctor_m0BB8B10CC14F4854F64E910A902951ED4A1DC301 (U3CFadeOutU3Ed__15_t997B0877FB02145DF1A2485EB3A13E77FB673C45* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) 
 {
 	{
@@ -23326,14 +23392,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutU3Ed__15__ctor_m0BB8B10CC14F48
 		return;
 	}
 }
-// Method Definition Index: 80415
+// Method Definition Index: 80417
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutU3Ed__15_System_IDisposable_Dispose_mFDEFF96CBCCEF24CCF461761ECABF33A70D936E7 (U3CFadeOutU3Ed__15_t997B0877FB02145DF1A2485EB3A13E77FB673C45* __this, const RuntimeMethod* method) 
 {
 	{
 		return;
 	}
 }
-// Method Definition Index: 80416
+// Method Definition Index: 80418
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CFadeOutU3Ed__15_MoveNext_mFF248D60E12898383B9F6DD050FE90EADE2458F3 (U3CFadeOutU3Ed__15_t997B0877FB02145DF1A2485EB3A13E77FB673C45* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -23420,7 +23486,7 @@ IL_006c:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 80417
+// Method Definition Index: 80419
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFadeOutU3Ed__15_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mAA673370D5543E3DF4961C30064EBBC8C58392C6 (U3CFadeOutU3Ed__15_t997B0877FB02145DF1A2485EB3A13E77FB673C45* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23428,7 +23494,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFadeOutU3Ed__15_System_Coll
 		return L_0;
 	}
 }
-// Method Definition Index: 80418
+// Method Definition Index: 80420
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutU3Ed__15_System_Collections_IEnumerator_Reset_m2660658EE33DB13BF5B5494931630E40DC727CC3 (U3CFadeOutU3Ed__15_t997B0877FB02145DF1A2485EB3A13E77FB673C45* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23437,7 +23503,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFadeOutU3Ed__15_System_Collections_IE
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&U3CFadeOutU3Ed__15_System_Collections_IEnumerator_Reset_m2660658EE33DB13BF5B5494931630E40DC727CC3_RuntimeMethod_var)));
 	}
 }
-// Method Definition Index: 80419
+// Method Definition Index: 80421
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFadeOutU3Ed__15_System_Collections_IEnumerator_get_Current_m393ED8F57674532048E411FC0A8F055B7C361158 (U3CFadeOutU3Ed__15_t997B0877FB02145DF1A2485EB3A13E77FB673C45* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23453,7 +23519,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFadeOutU3Ed__15_System_Coll
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80420
+// Method Definition Index: 80422
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFlashCoroutineU3Ed__18__ctor_mE927F692F7B297A2D26CE65ACF2BD6559B5170FC (U3CFlashCoroutineU3Ed__18_t8CF9E57B67551A8240B8FD97B6A866E53344E1C6* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) 
 {
 	{
@@ -23463,14 +23529,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFlashCoroutineU3Ed__18__ctor_mE927F69
 		return;
 	}
 }
-// Method Definition Index: 80421
+// Method Definition Index: 80423
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFlashCoroutineU3Ed__18_System_IDisposable_Dispose_m46AE41934DC1B2A8833B27DBC50159A46BC7AF01 (U3CFlashCoroutineU3Ed__18_t8CF9E57B67551A8240B8FD97B6A866E53344E1C6* __this, const RuntimeMethod* method) 
 {
 	{
 		return;
 	}
 }
-// Method Definition Index: 80422
+// Method Definition Index: 80424
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CFlashCoroutineU3Ed__18_MoveNext_m6C339443DF0A704E5D3BB58276DA269BD7E74CAD (U3CFlashCoroutineU3Ed__18_t8CF9E57B67551A8240B8FD97B6A866E53344E1C6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23590,7 +23656,7 @@ IL_00be:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 80423
+// Method Definition Index: 80425
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFlashCoroutineU3Ed__18_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_m544707618BAA9B4E4EC2366463D88CF18DFEBCAF (U3CFlashCoroutineU3Ed__18_t8CF9E57B67551A8240B8FD97B6A866E53344E1C6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23598,7 +23664,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFlashCoroutineU3Ed__18_Syst
 		return L_0;
 	}
 }
-// Method Definition Index: 80424
+// Method Definition Index: 80426
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFlashCoroutineU3Ed__18_System_Collections_IEnumerator_Reset_m6A04C3FCF0ED18405CD9A4E9F4154B1C5E93295B (U3CFlashCoroutineU3Ed__18_t8CF9E57B67551A8240B8FD97B6A866E53344E1C6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23607,7 +23673,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CFlashCoroutineU3Ed__18_System_Collect
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&U3CFlashCoroutineU3Ed__18_System_Collections_IEnumerator_Reset_m6A04C3FCF0ED18405CD9A4E9F4154B1C5E93295B_RuntimeMethod_var)));
 	}
 }
-// Method Definition Index: 80425
+// Method Definition Index: 80427
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFlashCoroutineU3Ed__18_System_Collections_IEnumerator_get_Current_mE97CD90871322708C4136E52693D6FEB1CCE29F9 (U3CFlashCoroutineU3Ed__18_t8CF9E57B67551A8240B8FD97B6A866E53344E1C6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23623,7 +23689,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CFlashCoroutineU3Ed__18_Syst
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80426
+// Method Definition Index: 80428
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CTransitionCoroutineU3Ed__14__ctor_mE963E0F8C632571AF8033728E41E237719359E8C (U3CTransitionCoroutineU3Ed__14_t76D9AD8C339AE9D8D513BD1C6DEFF49D9595DD81* __this, int32_t ___0_U3CU3E1__state, const RuntimeMethod* method) 
 {
 	{
@@ -23633,14 +23699,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CTransitionCoroutineU3Ed__14__ctor_mE9
 		return;
 	}
 }
-// Method Definition Index: 80427
+// Method Definition Index: 80429
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CTransitionCoroutineU3Ed__14_System_IDisposable_Dispose_mBFA73F859ECCAE825AAEDEE69ACB97C6396BD0EE (U3CTransitionCoroutineU3Ed__14_t76D9AD8C339AE9D8D513BD1C6DEFF49D9595DD81* __this, const RuntimeMethod* method) 
 {
 	{
 		return;
 	}
 }
-// Method Definition Index: 80428
+// Method Definition Index: 80430
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CTransitionCoroutineU3Ed__14_MoveNext_m1ABC7687032C6A349B7B75698FC63B7A5C74B73E (U3CTransitionCoroutineU3Ed__14_t76D9AD8C339AE9D8D513BD1C6DEFF49D9595DD81* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23787,7 +23853,7 @@ IL_00c3:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 80429
+// Method Definition Index: 80431
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CTransitionCoroutineU3Ed__14_System_Collections_Generic_IEnumeratorU3CSystem_ObjectU3E_get_Current_mEAA6ED55F5F6DE0C5C919327E8818A1BD27A74A3 (U3CTransitionCoroutineU3Ed__14_t76D9AD8C339AE9D8D513BD1C6DEFF49D9595DD81* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23795,7 +23861,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CTransitionCoroutineU3Ed__14
 		return L_0;
 	}
 }
-// Method Definition Index: 80430
+// Method Definition Index: 80432
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CTransitionCoroutineU3Ed__14_System_Collections_IEnumerator_Reset_mDD15E2FE4B0F5407CC7C6E7732CD679D1B1F8E83 (U3CTransitionCoroutineU3Ed__14_t76D9AD8C339AE9D8D513BD1C6DEFF49D9595DD81* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23804,7 +23870,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CTransitionCoroutineU3Ed__14_System_Co
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, ((RuntimeMethod*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&U3CTransitionCoroutineU3Ed__14_System_Collections_IEnumerator_Reset_mDD15E2FE4B0F5407CC7C6E7732CD679D1B1F8E83_RuntimeMethod_var)));
 	}
 }
-// Method Definition Index: 80431
+// Method Definition Index: 80433
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CTransitionCoroutineU3Ed__14_System_Collections_IEnumerator_get_Current_m716FF687B55CE8E50475245EAF053A5E5552AFC8 (U3CTransitionCoroutineU3Ed__14_t76D9AD8C339AE9D8D513BD1C6DEFF49D9595DD81* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23820,7 +23886,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* U3CTransitionCoroutineU3Ed__14
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80432
+// Method Definition Index: 80434
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool AdventureController_get_IsInBattle_mA03B9CCB22506EC74BC3DCC830ED4CC38040E635 (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23829,7 +23895,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool AdventureController_get_IsInBattle_mA03B
 		return (bool)((!(((RuntimeObject*)(AdventureSession_t9FBCA0028B42FECF5EEFFDD669E930D18D5288D0*)L_0) <= ((RuntimeObject*)(RuntimeObject*)NULL)))? 1 : 0);
 	}
 }
-// Method Definition Index: 80433
+// Method Definition Index: 80435
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AdventureSession_t9FBCA0028B42FECF5EEFFDD669E930D18D5288D0* AdventureController_get_CurrentSession_m99968B8E9F130744EB6439EFD0D50F5ED3AD6160 (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23838,7 +23904,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR AdventureSession_t9FBCA0028B42FECF5EEFFDD669E
 		return L_0;
 	}
 }
-// Method Definition Index: 80434
+// Method Definition Index: 80436
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureController_Start_m82B5FFE6F21E8BFD064C3885256E584022F2BF38 (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23851,7 +23917,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureController_Start_m82B5FFE6F21E8
 		return;
 	}
 }
-// Method Definition Index: 80435
+// Method Definition Index: 80437
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Task_t751C4CC3ECD055BABA8A0B6A5DFBB4283DCA8572* AdventureController_LoadLevelSelectAsync_mF39C295504E1E7F5FF25F3A39BD8D5D55D860A3C (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23884,7 +23950,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Task_t751C4CC3ECD055BABA8A0B6A5DFBB4283DCA857
 		return L_3;
 	}
 }
-// Method Definition Index: 80436
+// Method Definition Index: 80438
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Task_t751C4CC3ECD055BABA8A0B6A5DFBB4283DCA8572* AdventureController_StartBattleAsync_m696A28F5F444574C33A501AD08450F7B8138C5A3 (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, int32_t ___0_level, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23919,7 +23985,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Task_t751C4CC3ECD055BABA8A0B6A5DFBB4283DCA857
 		return L_4;
 	}
 }
-// Method Definition Index: 80437
+// Method Definition Index: 80439
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Task_t751C4CC3ECD055BABA8A0B6A5DFBB4283DCA8572* AdventureController_PerformActionAsync_mCB5CFF3ABCAFF98E3B0B1969AA4E147500FD1ED8 (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, int32_t ___0_action, int32_t ___1_amount, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23954,7 +24020,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Task_t751C4CC3ECD055BABA8A0B6A5DFBB4283DCA857
 		return L_3;
 	}
 }
-// Method Definition Index: 80438
+// Method Definition Index: 80440
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Task_t751C4CC3ECD055BABA8A0B6A5DFBB4283DCA8572* AdventureController_ForfeitBattleAsync_m8322A49AFB17D54F78AA4A10EC7C3BBC59868145 (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -23989,7 +24055,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Task_t751C4CC3ECD055BABA8A0B6A5DFBB4283DCA857
 		return L_3;
 	}
 }
-// Method Definition Index: 80439
+// Method Definition Index: 80441
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureController_HandleAdventureState_m2B27E0D8CB49ED6F5FD4BD4C620049D2697A26EB (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, AdventureSession_t9FBCA0028B42FECF5EEFFDD669E930D18D5288D0* ___0_session, const RuntimeMethod* method) 
 {
 	AdventureBattleUI_t97F30ACA507717BDCA321AAC0A6DFAF4431C3265* G_B2_0 = NULL;
@@ -24022,7 +24088,7 @@ IL_0012:
 		return;
 	}
 }
-// Method Definition Index: 80440
+// Method Definition Index: 80442
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureController_HandleAdventureResult_m22F1AB6CC7A25D7F82EA9ABABA14C2EB93A5583A (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, AdventureResult_tF355E1D13BB077F37CD4FD95295B37F498287CC7* ___0_result, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24102,7 +24168,7 @@ IL_006e:
 		return;
 	}
 }
-// Method Definition Index: 80441
+// Method Definition Index: 80443
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureController_HandleBossTaunt_m39EC6270EB3B274BFAC588FD19060D139F3C1A1B (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, String_t* ___0_taunt, const RuntimeMethod* method) 
 {
 	AdventureBattleUI_t97F30ACA507717BDCA321AAC0A6DFAF4431C3265* G_B2_0 = NULL;
@@ -24131,7 +24197,7 @@ IL_000b:
 		return;
 	}
 }
-// Method Definition Index: 80442
+// Method Definition Index: 80444
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureController_PopulateLevelButtons_m060334E29C3F3D925EDCB224FDEEE2389D315614 (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24339,7 +24405,7 @@ IL_00b2:
 		return;
 	}
 }
-// Method Definition Index: 80443
+// Method Definition Index: 80445
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureController_ShowVictoryScreen_m10A400BD1D0996D2CD0B5D838F87906291E24B1F (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, AdventureResult_tF355E1D13BB077F37CD4FD95295B37F498287CC7* ___0_result, const RuntimeMethod* method) 
 {
 	{
@@ -24347,7 +24413,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureController_ShowVictoryScreen_m1
 		return;
 	}
 }
-// Method Definition Index: 80444
+// Method Definition Index: 80446
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureController_ShowDefeatScreen_m2671788286456DB7AA6F7384F4EB06EB903D0AA7 (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, AdventureResult_tF355E1D13BB077F37CD4FD95295B37F498287CC7* ___0_result, const RuntimeMethod* method) 
 {
 	{
@@ -24355,7 +24421,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureController_ShowDefeatScreen_m26
 		return;
 	}
 }
-// Method Definition Index: 80445
+// Method Definition Index: 80447
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureController__ctor_m5F7B897818C30A98AD358C26A8AB3F7AA969F443 (AdventureController_tEF06C8EA15C95C46B2F8C39A4EEB4DA9E8E2AB44* __this, const RuntimeMethod* method) 
 {
 	{
@@ -24371,7 +24437,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureController__ctor_m5F7B897818C30
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80446
+// Method Definition Index: 80448
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass18_0__ctor_mD428B246AE5FF196DFEDEF6EDE659E1DE4BC1393 (U3CU3Ec__DisplayClass18_0_t8A90706A5C771050F8630EA9995296DEB48A515D* __this, const RuntimeMethod* method) 
 {
 	{
@@ -24379,7 +24445,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass18_0__ctor_mD428B24
 		return;
 	}
 }
-// Method Definition Index: 80447
+// Method Definition Index: 80449
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass18_0_U3CPopulateLevelButtonsU3Eb__0_m82F941DA56C8B402357243AF69BE0BE282B3C0BA (U3CU3Ec__DisplayClass18_0_t8A90706A5C771050F8630EA9995296DEB48A515D* __this, const RuntimeMethod* method) 
 {
 	{
@@ -24402,7 +24468,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass18_0_U3CPopulateLev
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80448
+// Method Definition Index: 80450
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CForfeitBattleAsyncU3Ed__14_MoveNext_mEAFC9C1CD932C0FDF84466F2ACF5D7F3ED2E4F28 (U3CForfeitBattleAsyncU3Ed__14_tF0913229A16B2A780F5B60C9F06C434221C7AE4E* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24495,7 +24561,7 @@ IL2CPP_EXTERN_C  void U3CForfeitBattleAsyncU3Ed__14_MoveNext_mEAFC9C1CD932C0FDF8
 	_thisAdjusted = reinterpret_cast<U3CForfeitBattleAsyncU3Ed__14_tF0913229A16B2A780F5B60C9F06C434221C7AE4E*>(__this + _offset);
 	U3CForfeitBattleAsyncU3Ed__14_MoveNext_mEAFC9C1CD932C0FDF84466F2ACF5D7F3ED2E4F28(_thisAdjusted, method);
 }
-// Method Definition Index: 80449
+// Method Definition Index: 80451
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CForfeitBattleAsyncU3Ed__14_SetStateMachine_m65F2B3477E86B1A92C21DC0CE88AD24038742619 (U3CForfeitBattleAsyncU3Ed__14_tF0913229A16B2A780F5B60C9F06C434221C7AE4E* __this, RuntimeObject* ___0_stateMachine, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24527,7 +24593,7 @@ IL2CPP_EXTERN_C  void U3CForfeitBattleAsyncU3Ed__14_SetStateMachine_m65F2B3477E8
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80450
+// Method Definition Index: 80452
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CLoadLevelSelectAsyncU3Ed__11_MoveNext_mB776628450BB4686CC72660FC5F0FA5D4B8B4DA5 (U3CLoadLevelSelectAsyncU3Ed__11_tF0367017857A4B04975CAB5870291527BAA02755* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24591,7 +24657,7 @@ IL2CPP_EXTERN_C  void U3CLoadLevelSelectAsyncU3Ed__11_MoveNext_mB776628450BB4686
 	_thisAdjusted = reinterpret_cast<U3CLoadLevelSelectAsyncU3Ed__11_tF0367017857A4B04975CAB5870291527BAA02755*>(__this + _offset);
 	U3CLoadLevelSelectAsyncU3Ed__11_MoveNext_mB776628450BB4686CC72660FC5F0FA5D4B8B4DA5(_thisAdjusted, method);
 }
-// Method Definition Index: 80451
+// Method Definition Index: 80453
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CLoadLevelSelectAsyncU3Ed__11_SetStateMachine_m0A082706BF782BDC67F76B8DC94F8E4C15D3BFB3 (U3CLoadLevelSelectAsyncU3Ed__11_tF0367017857A4B04975CAB5870291527BAA02755* __this, RuntimeObject* ___0_stateMachine, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24623,7 +24689,7 @@ IL2CPP_EXTERN_C  void U3CLoadLevelSelectAsyncU3Ed__11_SetStateMachine_m0A082706B
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80452
+// Method Definition Index: 80454
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CPerformActionAsyncU3Ed__13_MoveNext_mB899F8D262DAF12772558C1AA500C59634894034 (U3CPerformActionAsyncU3Ed__13_t767E20B700DF1819E9D782D9C55AF9884D367DF2* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24709,7 +24775,7 @@ IL2CPP_EXTERN_C  void U3CPerformActionAsyncU3Ed__13_MoveNext_mB899F8D262DAF12772
 	_thisAdjusted = reinterpret_cast<U3CPerformActionAsyncU3Ed__13_t767E20B700DF1819E9D782D9C55AF9884D367DF2*>(__this + _offset);
 	U3CPerformActionAsyncU3Ed__13_MoveNext_mB899F8D262DAF12772558C1AA500C59634894034(_thisAdjusted, method);
 }
-// Method Definition Index: 80453
+// Method Definition Index: 80455
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CPerformActionAsyncU3Ed__13_SetStateMachine_m9493723F930130CD556D2A28BCCDCEE270A9FCE9 (U3CPerformActionAsyncU3Ed__13_t767E20B700DF1819E9D782D9C55AF9884D367DF2* __this, RuntimeObject* ___0_stateMachine, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24741,7 +24807,7 @@ IL2CPP_EXTERN_C  void U3CPerformActionAsyncU3Ed__13_SetStateMachine_m9493723F930
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80454
+// Method Definition Index: 80456
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CStartBattleAsyncU3Ed__12_MoveNext_m58B8909BEFEE91653B6D718A8D4BF4BD66FF0386 (U3CStartBattleAsyncU3Ed__12_t2E117D48241E5652076E6F5D65E2D474F0ECD712* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24810,7 +24876,7 @@ IL2CPP_EXTERN_C  void U3CStartBattleAsyncU3Ed__12_MoveNext_m58B8909BEFEE91653B6D
 	_thisAdjusted = reinterpret_cast<U3CStartBattleAsyncU3Ed__12_t2E117D48241E5652076E6F5D65E2D474F0ECD712*>(__this + _offset);
 	U3CStartBattleAsyncU3Ed__12_MoveNext_m58B8909BEFEE91653B6D718A8D4BF4BD66FF0386(_thisAdjusted, method);
 }
-// Method Definition Index: 80455
+// Method Definition Index: 80457
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CStartBattleAsyncU3Ed__12_SetStateMachine_m37A7823DC841421D8A465B3E1C8C99089980DA5E (U3CStartBattleAsyncU3Ed__12_t2E117D48241E5652076E6F5D65E2D474F0ECD712* __this, RuntimeObject* ___0_stateMachine, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -24842,7 +24908,7 @@ IL2CPP_EXTERN_C  void U3CStartBattleAsyncU3Ed__12_SetStateMachine_m37A7823DC8414
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80456
+// Method Definition Index: 80458
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureBattleUI_ShowBattle_m0F98F55A59DFF88DF26FE228892E001ACD8408CE (AdventureBattleUI_t97F30ACA507717BDCA321AAC0A6DFAF4431C3265* __this, AdventureSession_t9FBCA0028B42FECF5EEFFDD669E930D18D5288D0* ___0_session, const RuntimeMethod* method) 
 {
 	{
@@ -24858,7 +24924,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureBattleUI_ShowBattle_m0F98F55A59
 		return;
 	}
 }
-// Method Definition Index: 80457
+// Method Definition Index: 80459
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureBattleUI_UpdateState_mFD8C181C7275A8A9C3DB2C1B824471A5E42BB140 (AdventureBattleUI_t97F30ACA507717BDCA321AAC0A6DFAF4431C3265* __this, AdventureSession_t9FBCA0028B42FECF5EEFFDD669E930D18D5288D0* ___0_session, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -25015,7 +25081,7 @@ IL_00e4:
 		return;
 	}
 }
-// Method Definition Index: 80458
+// Method Definition Index: 80460
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureBattleUI_ShowBossTaunt_m0467032B33E45156129EF60F87F9202D9CA0DFE7 (AdventureBattleUI_t97F30ACA507717BDCA321AAC0A6DFAF4431C3265* __this, String_t* ___0_taunt, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -25049,7 +25115,7 @@ IL_0019:
 		return;
 	}
 }
-// Method Definition Index: 80459
+// Method Definition Index: 80461
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureBattleUI_Hide_mE07D29B2BB53CAFB87EA81DB1F6DF130C3A3DB60 (AdventureBattleUI_t97F30ACA507717BDCA321AAC0A6DFAF4431C3265* __this, const RuntimeMethod* method) 
 {
 	{
@@ -25062,7 +25128,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureBattleUI_Hide_mE07D29B2BB53CAFB
 		return;
 	}
 }
-// Method Definition Index: 80460
+// Method Definition Index: 80462
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureBattleUI__ctor_m143387FD6E081A5573308F091C7A7DCFF6E3FF10 (AdventureBattleUI_t97F30ACA507717BDCA321AAC0A6DFAF4431C3265* __this, const RuntimeMethod* method) 
 {
 	{
@@ -25078,7 +25144,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AdventureBattleUI__ctor_m143387FD6E081A5
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80461
+// Method Definition Index: 80463
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LevelButtonUI_Setup_m09E0464B4550BF1D3CEFDD2A02775CA7153F1E41 (LevelButtonUI_tB73D9571EFEABB14B51A331A6BABD71246F5E2D0* __this, LevelInfo_t71724BB53B755133FDA410A4AEFAD2915FD412C5* ___0_level, Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* ___1_onClick, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -25244,7 +25310,7 @@ IL_00e9:
 		return;
 	}
 }
-// Method Definition Index: 80462
+// Method Definition Index: 80464
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LevelButtonUI__ctor_m7BF3494AE0211779AC231B2FB98CA0A1B189704A (LevelButtonUI_tB73D9571EFEABB14B51A331A6BABD71246F5E2D0* __this, const RuntimeMethod* method) 
 {
 	{
@@ -25252,7 +25318,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LevelButtonUI__ctor_m7BF3494AE0211779AC2
 		return;
 	}
 }
-// Method Definition Index: 80463
+// Method Definition Index: 80465
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void LevelButtonUI_U3CSetupU3Eb__7_0_mF3133AA426E45C37941C5A1F764B25B79C9CB560 (LevelButtonUI_tB73D9571EFEABB14B51A331A6BABD71246F5E2D0* __this, const RuntimeMethod* method) 
 {
 	Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* G_B2_0 = NULL;
@@ -25287,7 +25353,7 @@ IL_000b:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 80464
+// Method Definition Index: 80466
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint32_t U3CPrivateImplementationDetailsU3E_ComputeStringHash_m6EA1F233618497AEFF8902A5EDFA24C74E2F2876 (String_t* ___0_s, const RuntimeMethod* method) 
 {
 	uint32_t V_0 = 0;
@@ -25403,7 +25469,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void PokerNetworkManager_set_Curr
 		return;
 	}
 }
-// Method Definition Index: 96682
+// Method Definition Index: 96684
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool SocketIO_get_Connected_m857CDB1F03CC47A90F976B20F9A8075CA84729DE_inline (SocketIO_t200C44D27E2B933DEA8E187609255B96BA8FB86D* __this, const RuntimeMethod* method) 
 {
 	{
@@ -25412,7 +25478,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool SocketIO_get_Connected_m857C
 		return L_0;
 	}
 }
-// Method Definition Index: 96798
+// Method Definition Index: 96800
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void SocketIOOptions_set_Transport_m520036F97C7797F0F01ADB81FECAAADD6C90F56C_inline (SocketIOOptions_t82FFF45728FD73A1C3BB4EA483A822D23F16FB1F* __this, int32_t ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -25511,7 +25577,7 @@ IL_0010:
 		return L_5;
 	}
 }
-// Method Definition Index: 80361
+// Method Definition Index: 80363
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR UserProfile_t9464B990D880CF603577DF3623F9F67864C1853D* GameManager_get_CurrentUser_mA3CEE0F881CEA52572F87CA3C6E2EEA8FAF4F275_inline (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, const RuntimeMethod* method) 
 {
 	{
@@ -25520,7 +25586,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR UserProfile_t9464B990D880CF603577
 		return L_0;
 	}
 }
-// Method Definition Index: 80359
+// Method Definition Index: 80361
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* GameManager_get_Instance_m76C3AA0AE679D0E10695D19667277537225E0DB8_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -25535,7 +25601,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR GameManager_t3B26C4355D96447AF53B
 		return L_0;
 	}
 }
-// Method Definition Index: 80360
+// Method Definition Index: 80362
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void GameManager_set_Instance_mF064CA86FEF49A95B4AAFCCBFD90B9A1D1975AED_inline (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -25569,7 +25635,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Theme_set_Current_m6B5D179F7
 		return;
 	}
 }
-// Method Definition Index: 80362
+// Method Definition Index: 80364
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void GameManager_set_CurrentUser_mD7710A01057FBDC6A89DF98775DE787F71A9A887_inline (GameManager_t3B26C4355D96447AF53B18CA9CBC75138909BA86* __this, UserProfile_t9464B990D880CF603577DF3623F9F67864C1853D* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -25591,7 +25657,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void Vector2__ctor_m9525B79969AFF
 		return;
 	}
 }
-// Method Definition Index: 80395
+// Method Definition Index: 80397
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR SceneTransition_t08BC81238DC61B8969D31C9DEA2D9039DE63A66B* SceneTransition_get_Instance_mAA82183AEF5A0E9B286BF5F1C53AC172F97079BF_inline (const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -25606,7 +25672,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR SceneTransition_t08BC81238DC61B89
 		return L_0;
 	}
 }
-// Method Definition Index: 80396
+// Method Definition Index: 80398
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void SceneTransition_set_Instance_m79CA7F8B4819B3FD90CBB5F5C2D2051DD2E92239_inline (SceneTransition_t08BC81238DC61B8969D31C9DEA2D9039DE63A66B* ___0_value, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -25651,7 +25717,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Vector2_t1FD6F485C871E832B347AB2D
 		return L_0;
 	}
 }
-// Method Definition Index: 90782
+// Method Definition Index: 90784
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR ButtonClickedEvent_t8EA72E90B3BD1392FB3B3EF167D5121C23569E4C* Button_get_onClick_m701712A7F7F000CC80D517C4510697E15722C35C_inline (Button_t6786514A57F7AFDEE5431112FEA0CAB24F5AE098* __this, const RuntimeMethod* method) 
 {
 	{

@@ -264,7 +264,16 @@ namespace PokerClient.Core
         /// </summary>
         public void PlaySFX(AudioClip clip, float volumeScale = 1f)
         {
-            if (clip == null || sfxSource == null) return;
+            if (clip == null)
+            {
+                Debug.LogWarning($"[AudioManager] PlaySFX called with null clip - sound will not play");
+                return;
+            }
+            if (sfxSource == null)
+            {
+                Debug.LogWarning("[AudioManager] PlaySFX called but sfxSource is null");
+                return;
+            }
             sfxSource.PlayOneShot(clip, volumeScale);
         }
         
@@ -392,8 +401,25 @@ namespace PokerClient.Core
         public void PlayRareItemDrop() => PlaySFX(rareItemDrop, 1.2f);
         
         // Countdown sounds
-        public void PlayCountdownBeep() => PlaySFX(countdownBeep);
-        public void PlayReadyToRumble() => PlaySFX(readyToRumble, 1.0f);
+        public void PlayCountdownBeep()
+        {
+            if (countdownBeep == null)
+            {
+                Debug.LogWarning("[AudioManager] countdownBeep is null - cannot play sound. Add Audio/SFX/countdown_beep to Resources folder.");
+                return;
+            }
+            PlaySFX(countdownBeep);
+        }
+        
+        public void PlayReadyToRumble()
+        {
+            if (readyToRumble == null)
+            {
+                Debug.LogWarning("[AudioManager] readyToRumble is null - cannot play sound. Add Audio/SFX/ready_to_rumble to Resources folder.");
+                return;
+            }
+            PlaySFX(readyToRumble, 1.0f);
+        }
         
         // Scene music
         public void PlayMenuMusic() => PlayMusic(menuMusic);

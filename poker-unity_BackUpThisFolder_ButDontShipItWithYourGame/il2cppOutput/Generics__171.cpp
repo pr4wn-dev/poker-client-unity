@@ -29611,7 +29611,7 @@ IL2CPP_EXTERN_C  void UnsafeRingQueue_1_Dequeue_mB5B072B903532212BFE326A7F38E755
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 86132
+// Method Definition Index: 86134
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnsupportedTypeConverter_1_Read_m162C567F983E2305B0FC339ED58AB944C13A9897_gshared (UnsupportedTypeConverter_1_tDBEF2F1FE94296429B4B974B5C68097CF9CB12F7* __this, Utf8JsonReader_t50B1BC01A960970568250B04FB9236B63B0996E8* ___0_reader, Type_t* ___1_typeToConvert, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___2_options, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_T_tBF5C271DE910642AE33A2AD16E438DBC8E746B2E = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(method->klass->rgctx_data, 1));
@@ -29635,7 +29635,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnsupportedTypeConverter_1_Read_m162C567
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_5, method);
 	}
 }
-// Method Definition Index: 86133
+// Method Definition Index: 86135
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnsupportedTypeConverter_1_Write_m9BA3857EF56E96C2D3B74E8B1B9FD65DED86E1B3_gshared (UnsupportedTypeConverter_1_tDBEF2F1FE94296429B4B974B5C68097CF9CB12F7* __this, Utf8JsonWriter_tA826CDE54648E07350A13B36AFCA74528B41EFA0* ___0_writer, Il2CppFullySharedGenericAny ___1_value, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___2_options, const RuntimeMethod* method) 
 {
 	{
@@ -29656,7 +29656,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnsupportedTypeConverter_1_Write_m9BA385
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_5, method);
 	}
 }
-// Method Definition Index: 86134
+// Method Definition Index: 86136
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UnsupportedTypeConverter_1__ctor_m2CD1F150BDEBB90387394DF66ED43BF23583F62A_gshared (UnsupportedTypeConverter_1_tDBEF2F1FE94296429B4B974B5C68097CF9CB12F7* __this, const RuntimeMethod* method) 
 {
 	{

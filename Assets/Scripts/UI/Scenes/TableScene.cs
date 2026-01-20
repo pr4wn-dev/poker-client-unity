@@ -929,9 +929,14 @@ namespace PokerClient.UI.Scenes
                     _lastCountdownValue = countdownValue;
                     
                     // Play countdown beep sound for each second
+                    Debug.Log($"[TableScene] Playing countdown beep for {countdownValue}");
                     if (Core.AudioManager.Instance != null)
                     {
                         Core.AudioManager.Instance.PlayCountdownBeep();
+                    }
+                    else
+                    {
+                        Debug.LogWarning("[TableScene] AudioManager.Instance is null - cannot play countdown beep");
                     }
                     
                     // Pulse animation effect - scale up then back
@@ -1154,6 +1159,9 @@ namespace PokerClient.UI.Scenes
                     phaseText.text = GetPhaseDisplayName(state.phase);
             
             // Detect phase change and show phase announcement
+            // CRITICAL: Check for countdown START before updating _previousPhase
+            bool justStartedCountdown = (state.phase == "countdown" && _previousPhase != "countdown" && state.startCountdownRemaining == 10);
+            
             if (!string.IsNullOrEmpty(state.phase) && state.phase != _previousPhase)
             {
                 // Show phase announcement for game phases (flop, turn, river)
@@ -1177,12 +1185,18 @@ namespace PokerClient.UI.Scenes
             }
             
             // Play "Let's get ready to rumble!" when countdown first starts
-            if (state.phase == "countdown" && state.startCountdownRemaining == 10 && _previousPhase != "countdown")
+            // CRITICAL: Check this BEFORE _previousPhase is updated above
+            if (justStartedCountdown)
             {
                 // Countdown just started - play the announcement
+                Debug.Log("[TableScene] Playing 'Ready to Rumble' sound");
                 if (Core.AudioManager.Instance != null)
                 {
                     Core.AudioManager.Instance.PlayReadyToRumble();
+                }
+                else
+                {
+                    Debug.LogWarning("[TableScene] AudioManager.Instance is null - cannot play Ready to Rumble sound");
                 }
             }
             
