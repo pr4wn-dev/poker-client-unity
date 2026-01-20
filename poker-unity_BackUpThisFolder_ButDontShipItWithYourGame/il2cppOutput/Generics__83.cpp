@@ -7166,7 +7166,7 @@ inline void KeyCollection_CopyTo_m253CCECCC30FEE8345B93BC0FC0AD1109CB7A0F5 (KeyC
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 85544
+// Method Definition Index: 85541
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t042D1DBFAF6211CC2A043EBE30CD2A056235DD95* JsonTypeInfo_1_get_EffectiveConverter_m0CB25BADBF55A5AFE186AFFBC8F8E01C8A3B966A_gshared (JsonTypeInfo_1_tBA949DCA3B88B469C91ED0A527595743A08FB83F* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7174,7 +7174,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t042D1DBFAF6211CC2A043EBE30CD
 		return L_0;
 	}
 }
-// Method Definition Index: 85545
+// Method Definition Index: 85542
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObject_m86AA36B6A8717893FD13A219B4D409C70A496C2B_gshared (JsonTypeInfo_1_tBA949DCA3B88B469C91ED0A527595743A08FB83F* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7333,7 +7333,7 @@ IL_00a0:
 		return;
 	}
 }
-// Method Definition Index: 85546
+// Method Definition Index: 85543
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObjectIfCompatible_mA124E5C7E1010D00F188317316488177281C7557_gshared (JsonTypeInfo_1_tBA949DCA3B88B469C91ED0A527595743A08FB83F* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	{
@@ -7371,7 +7371,7 @@ IL_0021:
 		return;
 	}
 }
-// Method Definition Index: 85547
+// Method Definition Index: 85544
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mA2D5FE00EC32D861D57CD37C4C734EFBD572946A_gshared (JsonTypeInfo_1_tBA949DCA3B88B469C91ED0A527595743A08FB83F* __this, JsonConverter_tF959B6D2A456224E540D105EF06DF3821371E8F8* ___0_converter, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7398,7 +7398,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mA2D5FE00EC32D861D5
 		return;
 	}
 }
-// Method Definition Index: 85548
+// Method Definition Index: 85545
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t0C74515F2D9920E96113A463633B1B2D4782199F* JsonTypeInfo_1_get_SerializeHandler_m2D7AE128046F2E892A95876E9424D45F3C59F555_gshared (JsonTypeInfo_1_tBA949DCA3B88B469C91ED0A527595743A08FB83F* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7406,7 +7406,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t0C74515F2D9920E96113A463633B1B2D478
 		return L_0;
 	}
 }
-// Method Definition Index: 85549
+// Method Definition Index: 85546
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreatePropertyInfoForTypeInfo_mFD69DEC53106C18BDF3A13323A091191D7C49FF9_gshared (JsonTypeInfo_1_tBA949DCA3B88B469C91ED0A527595743A08FB83F* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7428,7 +7428,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85550
+// Method Definition Index: 85547
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreateJsonPropertyInfo_m7BF2B331F18A043FAE7083D5C0B8FB222B5F3FA4_gshared (JsonTypeInfo_1_tBA949DCA3B88B469C91ED0A527595743A08FB83F* __this, JsonTypeInfo_tA6F51E32955C59782B075F76F6918E5B97598C36* ___0_declaringTypeInfo, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	{
@@ -7446,7 +7446,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85551
+// Method Definition Index: 85548
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_PopulatePolymorphismMetadata_m6DF2EB42BC966142E895C41ADBBDA8661B429D7F_gshared (JsonTypeInfo_1_tBA949DCA3B88B469C91ED0A527595743A08FB83F* __this, const RuntimeMethod* method) 
 {
 	JsonPolymorphismOptions_tF55EC24F1E058D2AA0FC4FE4366AA3CF483642FA* V_0 = NULL;
@@ -7477,7 +7477,7 @@ IL_001d:
 		return;
 	}
 }
-// Method Definition Index: 85552
+// Method Definition Index: 85549
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_MapInterfaceTypesToCallbacks_m6BB13A12A1D8F0C795461ADBB45E5972125AFC9B_gshared (JsonTypeInfo_1_tBA949DCA3B88B469C91ED0A527595743A08FB83F* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7719,7 +7719,7 @@ IL_010c:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 85544
+// Method Definition Index: 85541
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t39B2A4440F8852A2559F44EDD27EE49146C1CA17* JsonTypeInfo_1_get_EffectiveConverter_m6627B3917F33D5904117DE4ADF66B1CCD3F4AC14_gshared (JsonTypeInfo_1_t7CBD81C5FD9F2716AF4DFD7975AEC19EA6839077* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7727,7 +7727,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t39B2A4440F8852A2559F44EDD27E
 		return L_0;
 	}
 }
-// Method Definition Index: 85545
+// Method Definition Index: 85542
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObject_m47306FA1A2CA4F52011E29A17B1B5CB001148885_gshared (JsonTypeInfo_1_t7CBD81C5FD9F2716AF4DFD7975AEC19EA6839077* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7886,7 +7886,7 @@ IL_00a0:
 		return;
 	}
 }
-// Method Definition Index: 85546
+// Method Definition Index: 85543
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObjectIfCompatible_m720A0F8149E71B55C7245DE14A1EB884F2D35A1D_gshared (JsonTypeInfo_1_t7CBD81C5FD9F2716AF4DFD7975AEC19EA6839077* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	{
@@ -7924,7 +7924,7 @@ IL_0021:
 		return;
 	}
 }
-// Method Definition Index: 85547
+// Method Definition Index: 85544
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mB12287838A9ED98BE490F47BBB81B103535AC763_gshared (JsonTypeInfo_1_t7CBD81C5FD9F2716AF4DFD7975AEC19EA6839077* __this, JsonConverter_tF959B6D2A456224E540D105EF06DF3821371E8F8* ___0_converter, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -7951,7 +7951,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mB12287838A9ED98BE4
 		return;
 	}
 }
-// Method Definition Index: 85548
+// Method Definition Index: 85545
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t57DBD893B846EA2F2A523FB6140F4C78F6771AB7* JsonTypeInfo_1_get_SerializeHandler_m4D5B16B965338403BC447702FA8A00417F9B9314_gshared (JsonTypeInfo_1_t7CBD81C5FD9F2716AF4DFD7975AEC19EA6839077* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7959,7 +7959,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t57DBD893B846EA2F2A523FB6140F4C78F67
 		return L_0;
 	}
 }
-// Method Definition Index: 85549
+// Method Definition Index: 85546
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreatePropertyInfoForTypeInfo_mE02430D107A8E5BFC17F79E4DAB49095055EA2B5_gshared (JsonTypeInfo_1_t7CBD81C5FD9F2716AF4DFD7975AEC19EA6839077* __this, const RuntimeMethod* method) 
 {
 	{
@@ -7981,7 +7981,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85550
+// Method Definition Index: 85547
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreateJsonPropertyInfo_mFDBB4F5744E99C235630BB9FF9258F851AAE695D_gshared (JsonTypeInfo_1_t7CBD81C5FD9F2716AF4DFD7975AEC19EA6839077* __this, JsonTypeInfo_tA6F51E32955C59782B075F76F6918E5B97598C36* ___0_declaringTypeInfo, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	{
@@ -7999,7 +7999,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85551
+// Method Definition Index: 85548
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_PopulatePolymorphismMetadata_mD50B9070B914DCE5BE05803D7F875D67C70B857D_gshared (JsonTypeInfo_1_t7CBD81C5FD9F2716AF4DFD7975AEC19EA6839077* __this, const RuntimeMethod* method) 
 {
 	JsonPolymorphismOptions_tF55EC24F1E058D2AA0FC4FE4366AA3CF483642FA* V_0 = NULL;
@@ -8030,7 +8030,7 @@ IL_001d:
 		return;
 	}
 }
-// Method Definition Index: 85552
+// Method Definition Index: 85549
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_MapInterfaceTypesToCallbacks_m3EE22742336E5DFF89F368DAE91834528A3A5E4D_gshared (JsonTypeInfo_1_t7CBD81C5FD9F2716AF4DFD7975AEC19EA6839077* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -8272,7 +8272,7 @@ IL_010c:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 85544
+// Method Definition Index: 85541
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t7529683EFEC0818DFDB1C760CCBC34D7267DBBB4* JsonTypeInfo_1_get_EffectiveConverter_m40B54177C0131D9C3629F5330DB681E01DDEFA02_gshared (JsonTypeInfo_1_t703E07CC0875DE00EA722A50EF601A3742BE05E5* __this, const RuntimeMethod* method) 
 {
 	{
@@ -8280,7 +8280,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t7529683EFEC0818DFDB1C760CCBC
 		return L_0;
 	}
 }
-// Method Definition Index: 85545
+// Method Definition Index: 85542
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObject_m5F1CFF3DB1C29AE153CDC4E9808800AEBB87111A_gshared (JsonTypeInfo_1_t703E07CC0875DE00EA722A50EF601A3742BE05E5* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -8439,7 +8439,7 @@ IL_00a0:
 		return;
 	}
 }
-// Method Definition Index: 85546
+// Method Definition Index: 85543
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObjectIfCompatible_m7A1C61154694FAE48726D561F5D28F304B1130F5_gshared (JsonTypeInfo_1_t703E07CC0875DE00EA722A50EF601A3742BE05E5* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	{
@@ -8477,7 +8477,7 @@ IL_0021:
 		return;
 	}
 }
-// Method Definition Index: 85547
+// Method Definition Index: 85544
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_m122495D83F584981C159EA98E65766171EEC675C_gshared (JsonTypeInfo_1_t703E07CC0875DE00EA722A50EF601A3742BE05E5* __this, JsonConverter_tF959B6D2A456224E540D105EF06DF3821371E8F8* ___0_converter, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -8504,7 +8504,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_m122495D83F584981C1
 		return;
 	}
 }
-// Method Definition Index: 85548
+// Method Definition Index: 85545
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t942397D5634D1D7E2675B1D441203043B1342EEE* JsonTypeInfo_1_get_SerializeHandler_m8957C4BF666857000A988438551428B34E7F06EB_gshared (JsonTypeInfo_1_t703E07CC0875DE00EA722A50EF601A3742BE05E5* __this, const RuntimeMethod* method) 
 {
 	{
@@ -8512,7 +8512,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t942397D5634D1D7E2675B1D441203043B13
 		return L_0;
 	}
 }
-// Method Definition Index: 85549
+// Method Definition Index: 85546
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreatePropertyInfoForTypeInfo_m26516B9690937D20F2A62A46A102E9EF5D8D26B0_gshared (JsonTypeInfo_1_t703E07CC0875DE00EA722A50EF601A3742BE05E5* __this, const RuntimeMethod* method) 
 {
 	{
@@ -8534,7 +8534,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85550
+// Method Definition Index: 85547
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreateJsonPropertyInfo_mA7C2C2D2A5FCDB81F802D2626ACB46A8EE766055_gshared (JsonTypeInfo_1_t703E07CC0875DE00EA722A50EF601A3742BE05E5* __this, JsonTypeInfo_tA6F51E32955C59782B075F76F6918E5B97598C36* ___0_declaringTypeInfo, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	{
@@ -8552,7 +8552,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85551
+// Method Definition Index: 85548
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_PopulatePolymorphismMetadata_mC566D17320500263FBC65AA4A1E107DEDEA606CC_gshared (JsonTypeInfo_1_t703E07CC0875DE00EA722A50EF601A3742BE05E5* __this, const RuntimeMethod* method) 
 {
 	JsonPolymorphismOptions_tF55EC24F1E058D2AA0FC4FE4366AA3CF483642FA* V_0 = NULL;
@@ -8583,7 +8583,7 @@ IL_001d:
 		return;
 	}
 }
-// Method Definition Index: 85552
+// Method Definition Index: 85549
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_MapInterfaceTypesToCallbacks_mE0CE5545398406767181EC871E36D1D1FFD5F4C2_gshared (JsonTypeInfo_1_t703E07CC0875DE00EA722A50EF601A3742BE05E5* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -8825,7 +8825,7 @@ IL_010c:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 85544
+// Method Definition Index: 85541
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t796081E0655D888D1AE0BCA0CD5781B16BDB1318* JsonTypeInfo_1_get_EffectiveConverter_mCFB9C62C94E3BE8BE19FA53A36ECBC76E489B3ED_gshared (JsonTypeInfo_1_t3B3E08DD4988F32944403DB2954DA9315909E39F* __this, const RuntimeMethod* method) 
 {
 	{
@@ -8833,7 +8833,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t796081E0655D888D1AE0BCA0CD57
 		return L_0;
 	}
 }
-// Method Definition Index: 85545
+// Method Definition Index: 85542
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObject_m2A42F8B3890CD37F32679C2C28661741AC0F5038_gshared (JsonTypeInfo_1_t3B3E08DD4988F32944403DB2954DA9315909E39F* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -8992,7 +8992,7 @@ IL_00a0:
 		return;
 	}
 }
-// Method Definition Index: 85546
+// Method Definition Index: 85543
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObjectIfCompatible_mD2C5E309097598C34846742B124A3A003DC489D2_gshared (JsonTypeInfo_1_t3B3E08DD4988F32944403DB2954DA9315909E39F* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	{
@@ -9030,7 +9030,7 @@ IL_0021:
 		return;
 	}
 }
-// Method Definition Index: 85547
+// Method Definition Index: 85544
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mB6518C686DAC30613F2474EEAB5C3B1288A9AFA0_gshared (JsonTypeInfo_1_t3B3E08DD4988F32944403DB2954DA9315909E39F* __this, JsonConverter_tF959B6D2A456224E540D105EF06DF3821371E8F8* ___0_converter, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9057,7 +9057,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mB6518C686DAC30613F
 		return;
 	}
 }
-// Method Definition Index: 85548
+// Method Definition Index: 85545
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t35BB2235961759318A8FC75E7EC13F232BC36FF5* JsonTypeInfo_1_get_SerializeHandler_m20FFBA0C4A12B4355885B35C42AE6D4358172030_gshared (JsonTypeInfo_1_t3B3E08DD4988F32944403DB2954DA9315909E39F* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9065,7 +9065,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t35BB2235961759318A8FC75E7EC13F232BC
 		return L_0;
 	}
 }
-// Method Definition Index: 85549
+// Method Definition Index: 85546
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreatePropertyInfoForTypeInfo_m41AAD53DACA3C9E09AEDDF1480EA856CF0369C50_gshared (JsonTypeInfo_1_t3B3E08DD4988F32944403DB2954DA9315909E39F* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9087,7 +9087,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85550
+// Method Definition Index: 85547
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreateJsonPropertyInfo_mB249BEB2149D10C4EF738EC57E2A9C48080463D8_gshared (JsonTypeInfo_1_t3B3E08DD4988F32944403DB2954DA9315909E39F* __this, JsonTypeInfo_tA6F51E32955C59782B075F76F6918E5B97598C36* ___0_declaringTypeInfo, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	{
@@ -9105,7 +9105,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85551
+// Method Definition Index: 85548
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_PopulatePolymorphismMetadata_m5E76339AFCF78095B118FE4117091DBA9FADBCC4_gshared (JsonTypeInfo_1_t3B3E08DD4988F32944403DB2954DA9315909E39F* __this, const RuntimeMethod* method) 
 {
 	JsonPolymorphismOptions_tF55EC24F1E058D2AA0FC4FE4366AA3CF483642FA* V_0 = NULL;
@@ -9136,7 +9136,7 @@ IL_001d:
 		return;
 	}
 }
-// Method Definition Index: 85552
+// Method Definition Index: 85549
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_MapInterfaceTypesToCallbacks_m4523A6C108A808908690AF32B20629FFA3865050_gshared (JsonTypeInfo_1_t3B3E08DD4988F32944403DB2954DA9315909E39F* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9378,7 +9378,7 @@ IL_010c:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 85544
+// Method Definition Index: 85541
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_tEBD65F09D329DB7A1B96E74D8FA3FB1868ED0B6D* JsonTypeInfo_1_get_EffectiveConverter_m25A3874155FE71719F3E10DC21BBA14ED0A4F2D1_gshared (JsonTypeInfo_1_t5FE00E64DEBB82551D875612E9CDDF1C3C7DD1A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9386,7 +9386,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_tEBD65F09D329DB7A1B96E74D8FA3
 		return L_0;
 	}
 }
-// Method Definition Index: 85545
+// Method Definition Index: 85542
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObject_mBBA7F1737C9251D1C4504700C8DCCD13D644FAEA_gshared (JsonTypeInfo_1_t5FE00E64DEBB82551D875612E9CDDF1C3C7DD1A6* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9545,7 +9545,7 @@ IL_00a0:
 		return;
 	}
 }
-// Method Definition Index: 85546
+// Method Definition Index: 85543
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObjectIfCompatible_m6D89F1AEFF45C7FB12F833DD5047CF30EB34635F_gshared (JsonTypeInfo_1_t5FE00E64DEBB82551D875612E9CDDF1C3C7DD1A6* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	{
@@ -9583,7 +9583,7 @@ IL_0021:
 		return;
 	}
 }
-// Method Definition Index: 85547
+// Method Definition Index: 85544
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mD3A7E483582B900A1C4ADFE2A7C2EEFE3B2D65A1_gshared (JsonTypeInfo_1_t5FE00E64DEBB82551D875612E9CDDF1C3C7DD1A6* __this, JsonConverter_tF959B6D2A456224E540D105EF06DF3821371E8F8* ___0_converter, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9610,7 +9610,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mD3A7E483582B900A1C
 		return;
 	}
 }
-// Method Definition Index: 85548
+// Method Definition Index: 85545
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t52B4DE1B561E70082BDA93B8F84FA524B4585066* JsonTypeInfo_1_get_SerializeHandler_mA4B624F4F29AA4B1E4D7F03E097BF1CBC234DD6F_gshared (JsonTypeInfo_1_t5FE00E64DEBB82551D875612E9CDDF1C3C7DD1A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9618,7 +9618,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t52B4DE1B561E70082BDA93B8F84FA524B45
 		return L_0;
 	}
 }
-// Method Definition Index: 85549
+// Method Definition Index: 85546
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreatePropertyInfoForTypeInfo_m1194ACBD7CE30442428BEE410B577284394F7B93_gshared (JsonTypeInfo_1_t5FE00E64DEBB82551D875612E9CDDF1C3C7DD1A6* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9640,7 +9640,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85550
+// Method Definition Index: 85547
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreateJsonPropertyInfo_mF9A021BD67228B2685D1A863BBA229679C20AD32_gshared (JsonTypeInfo_1_t5FE00E64DEBB82551D875612E9CDDF1C3C7DD1A6* __this, JsonTypeInfo_tA6F51E32955C59782B075F76F6918E5B97598C36* ___0_declaringTypeInfo, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	{
@@ -9658,7 +9658,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85551
+// Method Definition Index: 85548
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_PopulatePolymorphismMetadata_m4CF48E97FA52C63C6212467096BD59E2E05418BC_gshared (JsonTypeInfo_1_t5FE00E64DEBB82551D875612E9CDDF1C3C7DD1A6* __this, const RuntimeMethod* method) 
 {
 	JsonPolymorphismOptions_tF55EC24F1E058D2AA0FC4FE4366AA3CF483642FA* V_0 = NULL;
@@ -9689,7 +9689,7 @@ IL_001d:
 		return;
 	}
 }
-// Method Definition Index: 85552
+// Method Definition Index: 85549
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_MapInterfaceTypesToCallbacks_m0E59B98C1A6996DDE2AF0245DB8CD925BE62ADCA_gshared (JsonTypeInfo_1_t5FE00E64DEBB82551D875612E9CDDF1C3C7DD1A6* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -9931,7 +9931,7 @@ IL_010c:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 85544
+// Method Definition Index: 85541
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t61CAAA9901DE16ED07B5D1EEA6658344603B8840* JsonTypeInfo_1_get_EffectiveConverter_mAF9E3D9812C18F96CB44F792FBFE0B8B1591D938_gshared (JsonTypeInfo_1_t2B3C40C5F2C735D84A2F6CD4F58A1EA336495B02* __this, const RuntimeMethod* method) 
 {
 	{
@@ -9939,7 +9939,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t61CAAA9901DE16ED07B5D1EEA665
 		return L_0;
 	}
 }
-// Method Definition Index: 85545
+// Method Definition Index: 85542
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObject_mB1FC8DA95930EBB9FAD2E7DDA63D55653430D53D_gshared (JsonTypeInfo_1_t2B3C40C5F2C735D84A2F6CD4F58A1EA336495B02* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -10098,7 +10098,7 @@ IL_00a0:
 		return;
 	}
 }
-// Method Definition Index: 85546
+// Method Definition Index: 85543
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObjectIfCompatible_mCB20904A9929604B2FA48F00078775C1B302EE88_gshared (JsonTypeInfo_1_t2B3C40C5F2C735D84A2F6CD4F58A1EA336495B02* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	{
@@ -10136,7 +10136,7 @@ IL_0021:
 		return;
 	}
 }
-// Method Definition Index: 85547
+// Method Definition Index: 85544
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mADC54FE98A4F4AF5BB0344684FCB3360D096D76F_gshared (JsonTypeInfo_1_t2B3C40C5F2C735D84A2F6CD4F58A1EA336495B02* __this, JsonConverter_tF959B6D2A456224E540D105EF06DF3821371E8F8* ___0_converter, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -10163,7 +10163,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mADC54FE98A4F4AF5BB
 		return;
 	}
 }
-// Method Definition Index: 85548
+// Method Definition Index: 85545
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t09871C5ED36928F9A9818D31E3815A2298C7C99F* JsonTypeInfo_1_get_SerializeHandler_m89D980082B722D75A04EB51347F88E7E33AA2FCA_gshared (JsonTypeInfo_1_t2B3C40C5F2C735D84A2F6CD4F58A1EA336495B02* __this, const RuntimeMethod* method) 
 {
 	{
@@ -10171,7 +10171,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t09871C5ED36928F9A9818D31E3815A2298C
 		return L_0;
 	}
 }
-// Method Definition Index: 85549
+// Method Definition Index: 85546
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreatePropertyInfoForTypeInfo_m72F1BF3AD2340E3E7AAB20167470CA0D6244F86D_gshared (JsonTypeInfo_1_t2B3C40C5F2C735D84A2F6CD4F58A1EA336495B02* __this, const RuntimeMethod* method) 
 {
 	{
@@ -10193,7 +10193,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85550
+// Method Definition Index: 85547
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreateJsonPropertyInfo_m3F94BCE1B654095262324178D869A2CB83854A5F_gshared (JsonTypeInfo_1_t2B3C40C5F2C735D84A2F6CD4F58A1EA336495B02* __this, JsonTypeInfo_tA6F51E32955C59782B075F76F6918E5B97598C36* ___0_declaringTypeInfo, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	{
@@ -10211,7 +10211,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85551
+// Method Definition Index: 85548
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_PopulatePolymorphismMetadata_mB0BBA392EE51B2A607B2A325155651D7065343E2_gshared (JsonTypeInfo_1_t2B3C40C5F2C735D84A2F6CD4F58A1EA336495B02* __this, const RuntimeMethod* method) 
 {
 	JsonPolymorphismOptions_tF55EC24F1E058D2AA0FC4FE4366AA3CF483642FA* V_0 = NULL;
@@ -10242,7 +10242,7 @@ IL_001d:
 		return;
 	}
 }
-// Method Definition Index: 85552
+// Method Definition Index: 85549
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_MapInterfaceTypesToCallbacks_m6F8B059964B4E824C6CFC691A3FC349BFB621653_gshared (JsonTypeInfo_1_t2B3C40C5F2C735D84A2F6CD4F58A1EA336495B02* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -10484,7 +10484,7 @@ IL_010c:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 85544
+// Method Definition Index: 85541
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t90E6A8B266D3FD96A6257E6C3E842E77D4C7D346* JsonTypeInfo_1_get_EffectiveConverter_mF603A8DE39DD73FFB1BCAF7D23A625C01DF42CF1_gshared (JsonTypeInfo_1_tB451DE35C003B3F993B10D136AC1699820518ED0* __this, const RuntimeMethod* method) 
 {
 	{
@@ -10492,7 +10492,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t90E6A8B266D3FD96A6257E6C3E84
 		return L_0;
 	}
 }
-// Method Definition Index: 85545
+// Method Definition Index: 85542
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObject_mD29E5E0A65ADB136973FCAE79ED7FF61F3D0B28E_gshared (JsonTypeInfo_1_tB451DE35C003B3F993B10D136AC1699820518ED0* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -10651,7 +10651,7 @@ IL_00a0:
 		return;
 	}
 }
-// Method Definition Index: 85546
+// Method Definition Index: 85543
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObjectIfCompatible_m0DC9751934732759BA4ED8020A34F62A7073E63F_gshared (JsonTypeInfo_1_tB451DE35C003B3F993B10D136AC1699820518ED0* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	{
@@ -10689,7 +10689,7 @@ IL_0021:
 		return;
 	}
 }
-// Method Definition Index: 85547
+// Method Definition Index: 85544
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mB6185718776F603A303CBCAE05DF2C7F3CD62F78_gshared (JsonTypeInfo_1_tB451DE35C003B3F993B10D136AC1699820518ED0* __this, JsonConverter_tF959B6D2A456224E540D105EF06DF3821371E8F8* ___0_converter, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -10716,7 +10716,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mB6185718776F603A30
 		return;
 	}
 }
-// Method Definition Index: 85548
+// Method Definition Index: 85545
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t3019D47E536EF93ECA1BAD09810762980BA5981F* JsonTypeInfo_1_get_SerializeHandler_m20D5B74F5BA6DFB2232D761E275D31E99DAF2E7E_gshared (JsonTypeInfo_1_tB451DE35C003B3F993B10D136AC1699820518ED0* __this, const RuntimeMethod* method) 
 {
 	{
@@ -10724,7 +10724,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t3019D47E536EF93ECA1BAD09810762980BA
 		return L_0;
 	}
 }
-// Method Definition Index: 85549
+// Method Definition Index: 85546
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreatePropertyInfoForTypeInfo_mF7DF723A038768DEC2CBEEA3865BBAD69462DA4C_gshared (JsonTypeInfo_1_tB451DE35C003B3F993B10D136AC1699820518ED0* __this, const RuntimeMethod* method) 
 {
 	{
@@ -10746,7 +10746,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85550
+// Method Definition Index: 85547
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreateJsonPropertyInfo_m6AD493DD449A309D8D87DB38B0757EC72E554ED6_gshared (JsonTypeInfo_1_tB451DE35C003B3F993B10D136AC1699820518ED0* __this, JsonTypeInfo_tA6F51E32955C59782B075F76F6918E5B97598C36* ___0_declaringTypeInfo, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	{
@@ -10764,7 +10764,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85551
+// Method Definition Index: 85548
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_PopulatePolymorphismMetadata_m0B5F759103C6C26F0288CD881A0B47E5E080256B_gshared (JsonTypeInfo_1_tB451DE35C003B3F993B10D136AC1699820518ED0* __this, const RuntimeMethod* method) 
 {
 	JsonPolymorphismOptions_tF55EC24F1E058D2AA0FC4FE4366AA3CF483642FA* V_0 = NULL;
@@ -10795,7 +10795,7 @@ IL_001d:
 		return;
 	}
 }
-// Method Definition Index: 85552
+// Method Definition Index: 85549
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_MapInterfaceTypesToCallbacks_m59B77148D2A6B99250A96B07E46B1FB1E6D65EFE_gshared (JsonTypeInfo_1_tB451DE35C003B3F993B10D136AC1699820518ED0* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11037,7 +11037,7 @@ IL_010c:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 85544
+// Method Definition Index: 85541
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t17672FA4B9EBBCD14EC3097715207B9266E386E8* JsonTypeInfo_1_get_EffectiveConverter_m0E84979E7C1A5AF5062633E7ACAF2444FCAF124E_gshared (JsonTypeInfo_1_t7978E3D21863E37D60AC48906697CB4F00476EB7* __this, const RuntimeMethod* method) 
 {
 	{
@@ -11045,7 +11045,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonConverter_1_t17672FA4B9EBBCD14EC309771520
 		return L_0;
 	}
 }
-// Method Definition Index: 85545
+// Method Definition Index: 85542
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObject_m822D9F9B41339B9BF784BFF8D997A4E71CF57B64_gshared (JsonTypeInfo_1_t7978E3D21863E37D60AC48906697CB4F00476EB7* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11204,7 +11204,7 @@ IL_00a0:
 		return;
 	}
 }
-// Method Definition Index: 85546
+// Method Definition Index: 85543
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_SetCreateObjectIfCompatible_mBB9667DE8A282BE66B383E42F4BA4D2198B6844C_gshared (JsonTypeInfo_1_t7978E3D21863E37D60AC48906697CB4F00476EB7* __this, Delegate_t* ___0_createObject, const RuntimeMethod* method) 
 {
 	{
@@ -11242,7 +11242,7 @@ IL_0021:
 		return;
 	}
 }
-// Method Definition Index: 85547
+// Method Definition Index: 85544
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mC6E59D79F1DFF597B00CD38095BBC97D68770C13_gshared (JsonTypeInfo_1_t7978E3D21863E37D60AC48906697CB4F00476EB7* __this, JsonConverter_tF959B6D2A456224E540D105EF06DF3821371E8F8* ___0_converter, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11269,7 +11269,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1__ctor_mC6E59D79F1DFF597B0
 		return;
 	}
 }
-// Method Definition Index: 85548
+// Method Definition Index: 85545
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t89AAF62C57C1CFE636B6D48CCB59941AE961F148* JsonTypeInfo_1_get_SerializeHandler_m707E8D03814A8CB370A7DE956C5BABF4A2C31DE1_gshared (JsonTypeInfo_1_t7978E3D21863E37D60AC48906697CB4F00476EB7* __this, const RuntimeMethod* method) 
 {
 	{
@@ -11277,7 +11277,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Action_2_t89AAF62C57C1CFE636B6D48CCB59941AE96
 		return L_0;
 	}
 }
-// Method Definition Index: 85549
+// Method Definition Index: 85546
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreatePropertyInfoForTypeInfo_m59318B4D080B35888DC3B18A32C319D0356E338A_gshared (JsonTypeInfo_1_t7978E3D21863E37D60AC48906697CB4F00476EB7* __this, const RuntimeMethod* method) 
 {
 	{
@@ -11299,7 +11299,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85550
+// Method Definition Index: 85547
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* JsonTypeInfo_1_CreateJsonPropertyInfo_m2EDFA3C7A658A4FF9E981123D53668DCA12282A8_gshared (JsonTypeInfo_1_t7978E3D21863E37D60AC48906697CB4F00476EB7* __this, JsonTypeInfo_tA6F51E32955C59782B075F76F6918E5B97598C36* ___0_declaringTypeInfo, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	{
@@ -11317,7 +11317,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonPropertyInfo_t8870BF608DD0641AC29D55C6747
 		return (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E*)L_5;
 	}
 }
-// Method Definition Index: 85551
+// Method Definition Index: 85548
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_PopulatePolymorphismMetadata_mB6789B9D07245F9D4F0391785668CCF9F7A0A134_gshared (JsonTypeInfo_1_t7978E3D21863E37D60AC48906697CB4F00476EB7* __this, const RuntimeMethod* method) 
 {
 	JsonPolymorphismOptions_tF55EC24F1E058D2AA0FC4FE4366AA3CF483642FA* V_0 = NULL;
@@ -11348,7 +11348,7 @@ IL_001d:
 		return;
 	}
 }
-// Method Definition Index: 85552
+// Method Definition Index: 85549
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonTypeInfo_1_MapInterfaceTypesToCallbacks_m6A2D73B8C0FEA5247F18F7FDECC7A239C7F8BB78_gshared (JsonTypeInfo_1_t7978E3D21863E37D60AC48906697CB4F00476EB7* __this, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11590,7 +11590,7 @@ IL_010c:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 85048
+// Method Definition Index: 85045
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonValueTrimmable_1__ctor_mA2F4A69E0C5FDFA88AF3F17F18408A321063A517_gshared (JsonValueTrimmable_1_tB8A988F6664C90B4C94EEF6F2688633F2AC2910F* __this, JsonElement_t22F19A752BE0B1FB551D861A7ADFC7DD754BD4B1 ___0_value, JsonConverter_1_t58D99574AE08F5DBC4E2CED4151E00B446E0C1AC* ___1_converter, Nullable_1_t1696B80995FF4783E07B559D9579C101320681FC ___2_options, const RuntimeMethod* method) 
 {
 	{
@@ -11603,7 +11603,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonValueTrimmable_1__ctor_mA2F4A69E0C5F
 		return;
 	}
 }
-// Method Definition Index: 85049
+// Method Definition Index: 85046
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonValueTrimmable_1_WriteTo_m8FAD020903234615BE1CB0B3F42F9AC4BC0692D8_gshared (JsonValueTrimmable_1_tB8A988F6664C90B4C94EEF6F2688633F2AC2910F* __this, Utf8JsonWriter_tA826CDE54648E07350A13B36AFCA74528B41EFA0* ___0_writer, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11698,7 +11698,7 @@ IL_0059:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 85048
+// Method Definition Index: 85045
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonValueTrimmable_1__ctor_m2CC18F04E6C0B754B3B56803653038A1B174C7FE_gshared (JsonValueTrimmable_1_t3703FF08A52774136400EB88DF617E2399F3422A* __this, Il2CppFullySharedGenericAny ___0_value, JsonConverter_1_t17672FA4B9EBBCD14EC3097715207B9266E386E8* ___1_converter, Nullable_1_t1696B80995FF4783E07B559D9579C101320681FC ___2_options, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_TValue_tB1837B1CDCA619739AD2D6164EE446BB26203DBD = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(method->klass->rgctx_data, 0));
@@ -11712,7 +11712,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonValueTrimmable_1__ctor_m2CC18F04E6C0
 		return;
 	}
 }
-// Method Definition Index: 85049
+// Method Definition Index: 85046
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonValueTrimmable_1_WriteTo_m871A211083EA7CDAF85DCC24EEAF70620F51F11B_gshared (JsonValueTrimmable_1_t3703FF08A52774136400EB88DF617E2399F3422A* __this, Utf8JsonWriter_tA826CDE54648E07350A13B36AFCA74528B41EFA0* ___0_writer, JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* ___1_options, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11811,7 +11811,7 @@ IL_0059:
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 85044
+// Method Definition Index: 85041
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonValue_1__ctor_m47F41775B52147E1B36F3E0FE6009A1570874815_gshared (JsonValue_1_tD719FDCBC7EE4B4D5DABC047A917CF42DEFB404D* __this, JsonElement_t22F19A752BE0B1FB551D861A7ADFC7DD754BD4B1 ___0_value, Nullable_1_t1696B80995FF4783E07B559D9579C101320681FC ___1_options, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11844,7 +11844,7 @@ IL_001e:
 		return;
 	}
 }
-// Method Definition Index: 85045
+// Method Definition Index: 85042
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonElement_t22F19A752BE0B1FB551D861A7ADFC7DD754BD4B1 JsonValue_1_get_Value_mF84443CCF06111289600A4FFB0892FB0EFF7ADAF_gshared (JsonValue_1_tD719FDCBC7EE4B4D5DABC047A917CF42DEFB404D* __this, const RuntimeMethod* method) 
 {
 	{
@@ -11860,7 +11860,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR JsonElement_t22F19A752BE0B1FB551D861A7ADFC7DD
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 85044
+// Method Definition Index: 85041
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonValue_1__ctor_m454E0977CEBD977CBC57E44D1D3CD87DEF1FC250_gshared (JsonValue_1_tEE1BD3E0A1B843B900DFFFCB1FD480D0BBF82C9C* __this, RuntimeObject* ___0_value, Nullable_1_t1696B80995FF4783E07B559D9579C101320681FC ___1_options, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11891,7 +11891,7 @@ IL_001e:
 		return;
 	}
 }
-// Method Definition Index: 85045
+// Method Definition Index: 85042
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* JsonValue_1_get_Value_m607CD02B75DE60AE81EA9D7D1AB2842D9D7EC90D_gshared (JsonValue_1_tEE1BD3E0A1B843B900DFFFCB1FD480D0BBF82C9C* __this, const RuntimeMethod* method) 
 {
 	{
@@ -11907,7 +11907,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* JsonValue_1_get_Value_m607CD02
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 85044
+// Method Definition Index: 85041
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonValue_1__ctor_m5FE887A346C969F4086BC594199E793850CADCBD_gshared (JsonValue_1_t6B98FC1A6235A1104D2749C376B91CB2DE3DCB5F* __this, Il2CppFullySharedGenericAny ___0_value, Nullable_1_t1696B80995FF4783E07B559D9579C101320681FC ___1_options, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -11941,7 +11941,7 @@ IL_001e:
 		return;
 	}
 }
-// Method Definition Index: 85045
+// Method Definition Index: 85042
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonValue_1_get_Value_m38EDA0610BC9C282D55B44D1B218D1BD0AE314B8_gshared (JsonValue_1_t6B98FC1A6235A1104D2749C376B91CB2DE3DCB5F* __this, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_TValue_tC22912C4D953D572943EA43B7A79C3A912B0784D = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(method->klass->rgctx_data, 0));
@@ -11960,7 +11960,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void JsonValue_1_get_Value_m38EDA0610BC9C282D
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 74882
+// Method Definition Index: 74879
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR KVPair_2_t289A62AF6AB4F1FD80F1977C4D6C802052A8BADC KVPair_2_get_Null_m8DBECDEC86B8C7E8013F037D79E92BBA9B806535_gshared (const RuntimeMethod* method) 
 {
 	KVPair_2_t289A62AF6AB4F1FD80F1977C4D6C802052A8BADC V_0;
@@ -11973,7 +11973,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR KVPair_2_t289A62AF6AB4F1FD80F1977C4D6C802052A
 		return L_0;
 	}
 }
-// Method Definition Index: 74883
+// Method Definition Index: 74880
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t KVPair_2_get_Key_m164ABF64B3546739DCAAC8739B80C54CCCF282D8_gshared (KVPair_2_t289A62AF6AB4F1FD80F1977C4D6C802052A8BADC* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -12013,7 +12013,7 @@ IL2CPP_EXTERN_C  int32_t KVPair_2_get_Key_m164ABF64B3546739DCAAC8739B80C54CCCF28
 	_returnValue = KVPair_2_get_Key_m164ABF64B3546739DCAAC8739B80C54CCCF282D8(_thisAdjusted, method);
 	return _returnValue;
 }
-// Method Definition Index: 74884
+// Method Definition Index: 74881
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t* KVPair_2_get_Value_m0B1B55DB40AF78F68D4802958B1625CFED722B34_gshared (KVPair_2_t289A62AF6AB4F1FD80F1977C4D6C802052A8BADC* __this, const RuntimeMethod* method) 
 {
 	{
@@ -12037,7 +12037,7 @@ IL2CPP_EXTERN_C  int32_t* KVPair_2_get_Value_m0B1B55DB40AF78F68D4802958B1625CFED
 	_returnValue = KVPair_2_get_Value_m0B1B55DB40AF78F68D4802958B1625CFED722B34(_thisAdjusted, method);
 	return _returnValue;
 }
-// Method Definition Index: 74885
+// Method Definition Index: 74882
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool KVPair_2_GetKeyValue_mD94A90FC6A43D3F6497625B4E72D98397F836B3D_gshared (KVPair_2_t289A62AF6AB4F1FD80F1977C4D6C802052A8BADC* __this, int32_t* ___0_key, int32_t* ___1_value, const RuntimeMethod* method) 
 {
 	{
@@ -12100,7 +12100,7 @@ IL2CPP_EXTERN_C  bool KVPair_2_GetKeyValue_mD94A90FC6A43D3F6497625B4E72D98397F83
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 74882
+// Method Definition Index: 74879
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR KVPair_2_t62988F9AFAE0A4A21E10EAD1C7F5704B010341A2 KVPair_2_get_Null_m3EB4D75E0D79F7E4B5CEAED77FEC45B1CA6C72F4_gshared (const RuntimeMethod* method) 
 {
 	KVPair_2_t62988F9AFAE0A4A21E10EAD1C7F5704B010341A2 V_0;
@@ -12113,7 +12113,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR KVPair_2_t62988F9AFAE0A4A21E10EAD1C7F5704B010
 		return L_0;
 	}
 }
-// Method Definition Index: 74883
+// Method Definition Index: 74880
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t KVPair_2_get_Key_m1F8DFA6AA45B177F1F34AD3B72C9277F90DF9A53_gshared (KVPair_2_t62988F9AFAE0A4A21E10EAD1C7F5704B010341A2* __this, const RuntimeMethod* method) 
 {
 	int32_t V_0 = 0;
@@ -12153,7 +12153,7 @@ IL2CPP_EXTERN_C  int32_t KVPair_2_get_Key_m1F8DFA6AA45B177F1F34AD3B72C9277F90DF9
 	_returnValue = KVPair_2_get_Key_m1F8DFA6AA45B177F1F34AD3B72C9277F90DF9A53(_thisAdjusted, method);
 	return _returnValue;
 }
-// Method Definition Index: 74884
+// Method Definition Index: 74881
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR TransformData_tEC27E9D73132522EA47BF569B8FE23C627A5FC20* KVPair_2_get_Value_mFFB8409BE791DC78C2562E4A55E00D2153FFDE13_gshared (KVPair_2_t62988F9AFAE0A4A21E10EAD1C7F5704B010341A2* __this, const RuntimeMethod* method) 
 {
 	{
@@ -12177,7 +12177,7 @@ IL2CPP_EXTERN_C  TransformData_tEC27E9D73132522EA47BF569B8FE23C627A5FC20* KVPair
 	_returnValue = KVPair_2_get_Value_mFFB8409BE791DC78C2562E4A55E00D2153FFDE13(_thisAdjusted, method);
 	return _returnValue;
 }
-// Method Definition Index: 74885
+// Method Definition Index: 74882
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool KVPair_2_GetKeyValue_mB31CDCCAEEAAFB590B55983A989B3F089A3B301D_gshared (KVPair_2_t62988F9AFAE0A4A21E10EAD1C7F5704B010341A2* __this, int32_t* ___0_key, TransformData_tEC27E9D73132522EA47BF569B8FE23C627A5FC20* ___1_value, const RuntimeMethod* method) 
 {
 	{
@@ -12240,7 +12240,7 @@ IL2CPP_EXTERN_C  bool KVPair_2_GetKeyValue_mB31CDCCAEEAAFB590B55983A989B3F089A3B
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 74882
+// Method Definition Index: 74879
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR KVPair_2_t5E2D5842C70EA373DB8DF6B7F984F96B70B27742 KVPair_2_get_Null_m40335D1ADDAE28C05925C0916AD59FC0522FEA87_gshared (const RuntimeMethod* method) 
 {
 	KVPair_2_t5E2D5842C70EA373DB8DF6B7F984F96B70B27742 V_0;
@@ -12253,7 +12253,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR KVPair_2_t5E2D5842C70EA373DB8DF6B7F984F96B70B
 		return L_0;
 	}
 }
-// Method Definition Index: 74883
+// Method Definition Index: 74880
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR uint64_t KVPair_2_get_Key_mF0490CE0A7A983CE6024EAC4F3B4D5629AF03C73_gshared (KVPair_2_t5E2D5842C70EA373DB8DF6B7F984F96B70B27742* __this, const RuntimeMethod* method) 
 {
 	uint64_t V_0 = 0;
@@ -12293,7 +12293,7 @@ IL2CPP_EXTERN_C  uint64_t KVPair_2_get_Key_mF0490CE0A7A983CE6024EAC4F3B4D5629AF0
 	_returnValue = KVPair_2_get_Key_mF0490CE0A7A983CE6024EAC4F3B4D5629AF03C73(_thisAdjusted, method);
 	return _returnValue;
 }
-// Method Definition Index: 74884
+// Method Definition Index: 74881
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int2_tF4AC25F87943DC0B2BB3456B0B919B3B42A9432A* KVPair_2_get_Value_m71B912C20D8145F027CD19EC432FFF4C9FFEC45F_gshared (KVPair_2_t5E2D5842C70EA373DB8DF6B7F984F96B70B27742* __this, const RuntimeMethod* method) 
 {
 	{
@@ -12317,7 +12317,7 @@ IL2CPP_EXTERN_C  int2_tF4AC25F87943DC0B2BB3456B0B919B3B42A9432A* KVPair_2_get_Va
 	_returnValue = KVPair_2_get_Value_m71B912C20D8145F027CD19EC432FFF4C9FFEC45F(_thisAdjusted, method);
 	return _returnValue;
 }
-// Method Definition Index: 74885
+// Method Definition Index: 74882
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool KVPair_2_GetKeyValue_m0499D8CB1D6F3C21AEBF2E892FAAF12D2F1E9D99_gshared (KVPair_2_t5E2D5842C70EA373DB8DF6B7F984F96B70B27742* __this, uint64_t* ___0_key, int2_tF4AC25F87943DC0B2BB3456B0B919B3B42A9432A* ___1_value, const RuntimeMethod* method) 
 {
 	{
@@ -12380,7 +12380,7 @@ IL2CPP_EXTERN_C  bool KVPair_2_GetKeyValue_m0499D8CB1D6F3C21AEBF2E892FAAF12D2F1E
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 74882
+// Method Definition Index: 74879
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR KVPair_2_t0AEDA423F28A99925D673F30335AEAC3C9A482DA KVPair_2_get_Null_m95F67B3B164BEA5086D3EA24F6A309DCEC2FD3E0_gshared (const RuntimeMethod* method) 
 {
 	KVPair_2_t0AEDA423F28A99925D673F30335AEAC3C9A482DA V_0;
@@ -12393,7 +12393,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR KVPair_2_t0AEDA423F28A99925D673F30335AEAC3C9A
 		return L_0;
 	}
 }
-// Method Definition Index: 74883
+// Method Definition Index: 74880
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void KVPair_2_get_Key_mED89D3602B012281C2C837349C34191B0875115C_gshared (KVPair_2_t0AEDA423F28A99925D673F30335AEAC3C9A482DA* __this, Il2CppFullySharedGenericStruct* il2cppRetVal, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_TKey_t1C23B5C5206ECE6876F6A933C5393052C3A6D7CF = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(InitializedTypeInfo(method->klass)->rgctx_data, 4));
@@ -12438,7 +12438,7 @@ IL2CPP_EXTERN_C  void KVPair_2_get_Key_mED89D3602B012281C2C837349C34191B0875115C
 	KVPair_2_get_Key_mED89D3602B012281C2C837349C34191B0875115C(_thisAdjusted, il2cppRetVal, method);
 	return;
 }
-// Method Definition Index: 74884
+// Method Definition Index: 74881
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Il2CppFullySharedGenericStruct* KVPair_2_get_Value_mC94F9A68A6FADF40DC6A14F23C4FF284241A6D88_gshared (KVPair_2_t0AEDA423F28A99925D673F30335AEAC3C9A482DA* __this, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_TValue_t07BAD9681A6887A56CE27B7BA46659F1E8B4AA45 = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(InitializedTypeInfo(method->klass)->rgctx_data, 5));
@@ -12463,7 +12463,7 @@ IL2CPP_EXTERN_C  Il2CppFullySharedGenericStruct* KVPair_2_get_Value_mC94F9A68A6F
 	_returnValue = KVPair_2_get_Value_mC94F9A68A6FADF40DC6A14F23C4FF284241A6D88(_thisAdjusted, method);
 	return _returnValue;
 }
-// Method Definition Index: 74885
+// Method Definition Index: 74882
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool KVPair_2_GetKeyValue_m43218BA6923AF63C42703F1422152DA798742288_gshared (KVPair_2_t0AEDA423F28A99925D673F30335AEAC3C9A482DA* __this, Il2CppFullySharedGenericStruct* ___0_key, Il2CppFullySharedGenericStruct* ___1_value, const RuntimeMethod* method) 
 {
 	const uint32_t SizeOf_TKey_t1C23B5C5206ECE6876F6A933C5393052C3A6D7CF = il2cpp_codegen_sizeof(il2cpp_rgctx_data_no_init(InitializedTypeInfo(method->klass)->rgctx_data, 4));
@@ -12531,7 +12531,7 @@ IL2CPP_EXTERN_C  bool KVPair_2_GetKeyValue_m43218BA6923AF63C42703F1422152DA79874
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-// Method Definition Index: 84371
+// Method Definition Index: 84368
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void KeyCollection__ctor_m6BB7610CF97781DFD321562744CDC043272BE7CA_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, JsonPropertyDictionary_1_t0A096422CEA9F852671FF72DF77173AEB6F300A2* ___0_jsonObject, const RuntimeMethod* method) 
 {
 	{
@@ -12542,7 +12542,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void KeyCollection__ctor_m6BB7610CF97781DFD32
 		return;
 	}
 }
-// Method Definition Index: 84372
+// Method Definition Index: 84369
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t KeyCollection_get_Count_m6E633BDC8A82EB1D99ED3CDBA426B8C0DB37B7D3_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, const RuntimeMethod* method) 
 {
 	{
@@ -12553,14 +12553,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t KeyCollection_get_Count_m6E633BDC8A82
 		return L_1;
 	}
 }
-// Method Definition Index: 84373
+// Method Definition Index: 84370
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool KeyCollection_get_IsReadOnly_m81352AFFF8FCAA69856EE0CC42B2861B713405C0_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, const RuntimeMethod* method) 
 {
 	{
 		return (bool)1;
 	}
 }
-// Method Definition Index: 84374
+// Method Definition Index: 84371
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* KeyCollection_get_Item_m364715C36AB60B5DC2A6737BCA6838FD02A0A3D9_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, int32_t ___0_index, const RuntimeMethod* method) 
 {
 	KeyValuePair_2_tBEE55F2A4574C64393155C322376FD98C7BFC7B9 V_0;
@@ -12580,7 +12580,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* KeyCollection_get_Item_m364715C36AB
 		return L_4;
 	}
 }
-// Method Definition Index: 84375
+// Method Definition Index: 84372
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void KeyCollection_set_Item_m90A4D9DBC352E063F60F458F0238111859A49409_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, int32_t ___0_index, String_t* ___1_value, const RuntimeMethod* method) 
 {
 	{
@@ -12589,7 +12589,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void KeyCollection_set_Item_m90A4D9DBC352E063
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, method);
 	}
 }
-// Method Definition Index: 84376
+// Method Definition Index: 84373
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* KeyCollection_System_Collections_IEnumerable_GetEnumerator_m6F7D20B65B6EF42856E11CC00F3C136201B689E5_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, const RuntimeMethod* method) 
 {
 	{
@@ -12602,7 +12602,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* KeyCollection_System_Collectio
 		return (RuntimeObject*)L_1;
 	}
 }
-// Method Definition Index: 84377
+// Method Definition Index: 84374
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void KeyCollection_Add_m5B933019D98E4BAC4B0C538E9C86529AAB331E15_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, String_t* ___0_propertyName, const RuntimeMethod* method) 
 {
 	{
@@ -12610,7 +12610,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void KeyCollection_Add_m5B933019D98E4BAC4B0C5
 		return;
 	}
 }
-// Method Definition Index: 84378
+// Method Definition Index: 84375
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void KeyCollection_Clear_mB6013386E029E96EE1304063B63526AF8E639F1D_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, const RuntimeMethod* method) 
 {
 	{
@@ -12618,7 +12618,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void KeyCollection_Clear_mB6013386E029E96EE13
 		return;
 	}
 }
-// Method Definition Index: 84379
+// Method Definition Index: 84376
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool KeyCollection_Contains_mFC93A5B7D5C18004A572E446B28AF6CC76C54AF1_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, String_t* ___0_propertyName, const RuntimeMethod* method) 
 {
 	{
@@ -12630,7 +12630,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool KeyCollection_Contains_mFC93A5B7D5C18004
 		return L_2;
 	}
 }
-// Method Definition Index: 84380
+// Method Definition Index: 84377
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void KeyCollection_CopyTo_m56E7E211020F4294F3422A3376F7FC005A50418F_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, StringU5BU5D_t7674CD946EC0CE7B3AE0BE70E6EE85F2ECD9F248* ___0_propertyNameArray, int32_t ___1_index, const RuntimeMethod* method) 
 {
 	static bool s_Il2CppMethodInitialized;
@@ -12752,7 +12752,7 @@ IL_0056:
 		return;
 	}
 }
-// Method Definition Index: 84381
+// Method Definition Index: 84378
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* KeyCollection_GetEnumerator_m79B6374FE1D5846E1A60BF3DFE91993F6B5869D1_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, const RuntimeMethod* method) 
 {
 	{
@@ -12765,7 +12765,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* KeyCollection_GetEnumerator_m7
 		return (RuntimeObject*)L_1;
 	}
 }
-// Method Definition Index: 84382
+// Method Definition Index: 84379
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool KeyCollection_System_Collections_Generic_ICollectionU3CSystem_StringU3E_Remove_m90E68D0E65DDA8844DC5670D6ABD82085E448FC8_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, String_t* ___0_propertyName, const RuntimeMethod* method) 
 {
 	{
@@ -12774,7 +12774,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool KeyCollection_System_Collections_Generic
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, method);
 	}
 }
-// Method Definition Index: 84383
+// Method Definition Index: 84380
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t KeyCollection_IndexOf_m724E389CDF26AB0E3CA7F31583EAAB962A42011D_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, String_t* ___0_item, const RuntimeMethod* method) 
 {
 	{
@@ -12783,7 +12783,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t KeyCollection_IndexOf_m724E389CDF26AB
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, method);
 	}
 }
-// Method Definition Index: 84384
+// Method Definition Index: 84381
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void KeyCollection_Insert_mC8527DAE847FF3BEA4CA03933F378E46AF7886A7_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, int32_t ___0_index, String_t* ___1_item, const RuntimeMethod* method) 
 {
 	{
@@ -12792,7 +12792,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void KeyCollection_Insert_mC8527DAE847FF3BEA4
 		IL2CPP_RAISE_MANAGED_EXCEPTION(L_0, method);
 	}
 }
-// Method Definition Index: 84385
+// Method Definition Index: 84382
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void KeyCollection_RemoveAt_mBDF499DA4E4FCD99F9F70F5839BDC2406FF485E2_gshared (KeyCollection_t053F4BE8BB4CE1926F635DA2E0CBA303A9F9956C* __this, int32_t ___0_index, const RuntimeMethod* method) 
 {
 	{
@@ -33055,7 +33055,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* KeyCollection_System_Collectio
 #ifdef __clang__
 #pragma clang diagnostic pop
 #endif
-// Method Definition Index: 85615
+// Method Definition Index: 85612
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t JsonTypeInfo_get_Kind_mCBFA289896A6969844A87FA13016E5DE3A144284_inline (JsonTypeInfo_tA6F51E32955C59782B075F76F6918E5B97598C36* __this, const RuntimeMethod* method) 
 {
 	{
@@ -33063,7 +33063,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t JsonTypeInfo_get_Kind_mCB
 		return L_0;
 	}
 }
-// Method Definition Index: 85614
+// Method Definition Index: 85611
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR JsonConverter_tF959B6D2A456224E540D105EF06DF3821371E8F8* JsonTypeInfo_get_Converter_m3F9379B0713394DFAB874A5A9E5A086515E700E0_inline (JsonTypeInfo_tA6F51E32955C59782B075F76F6918E5B97598C36* __this, const RuntimeMethod* method) 
 {
 	{
@@ -33071,7 +33071,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR JsonConverter_tF959B6D2A456224E54
 		return L_0;
 	}
 }
-// Method Definition Index: 85613
+// Method Definition Index: 85610
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Type_t* JsonTypeInfo_get_Type_mE4CBCF65141027814D4E373EC4C5CD80F347E6D1_inline (JsonTypeInfo_tA6F51E32955C59782B075F76F6918E5B97598C36* __this, const RuntimeMethod* method) 
 {
 	{
@@ -33079,7 +33079,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR Type_t* JsonTypeInfo_get_Type_mE4
 		return L_0;
 	}
 }
-// Method Definition Index: 85612
+// Method Definition Index: 85609
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* JsonTypeInfo_get_Options_m3AC4EF7C178D5FDAAE3CA0835F33D2A84D236C6C_inline (JsonTypeInfo_tA6F51E32955C59782B075F76F6918E5B97598C36* __this, const RuntimeMethod* method) 
 {
 	{
@@ -33087,7 +33087,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR JsonSerializerOptions_t1BC3604A5B
 		return L_0;
 	}
 }
-// Method Definition Index: 85456
+// Method Definition Index: 85453
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void JsonPropertyInfo_set_IsForTypeInfo_m54675346527B8B913FDF6CDD87EDBBE8D2949558_inline (JsonPropertyInfo_t8870BF608DD0641AC29D55C6747C5C5C7340876E* __this, bool ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -33096,7 +33096,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void JsonPropertyInfo_set_IsForTy
 		return;
 	}
 }
-// Method Definition Index: 85308
+// Method Definition Index: 85305
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void JsonPolymorphismOptions_set_DeclaringTypeInfo_m7554C739D4759F77B9DE854FB4FCA3E5D198788D_inline (JsonPolymorphismOptions_tF55EC24F1E058D2AA0FC4FE4366AA3CF483642FA* __this, JsonTypeInfo_tA6F51E32955C59782B075F76F6918E5B97598C36* ___0_value, const RuntimeMethod* method) 
 {
 	{
@@ -33106,7 +33106,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR void JsonPolymorphismOptions_set_
 		return;
 	}
 }
-// Method Definition Index: 84700
+// Method Definition Index: 84697
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int32_t JsonSerializerOptions_get_NumberHandling_mDF95C8EE4D68BE61C604B68AB1F744960426C3BE_inline (JsonSerializerOptions_t1BC3604A5B3A44F4A929837EF2DD3B9441AC05BD* __this, const RuntimeMethod* method) 
 {
 	{
@@ -33171,7 +33171,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR int2_tF4AC25F87943DC0B2BB3456B0B9
 		return L_3;
 	}
 }
-// Method Definition Index: 84344
+// Method Definition Index: 84341
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR List_1_t2BD6A6F913D3CEE5204E69370458EB5A9D706114* JsonPropertyDictionary_1_get_List_m20536ADB98B2BE4C48734BAA16CE862AC12B479D_gshared_inline (JsonPropertyDictionary_1_t0A096422CEA9F852671FF72DF77173AEB6F300A2* __this, const RuntimeMethod* method) 
 {
 	{

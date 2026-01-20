@@ -608,10 +608,16 @@ namespace PokerClient.UI.Components
                 StopCoroutine(_animationCoroutine);
                 _animationCoroutine = null;
                 // Reset to final position if animation was interrupted
+                // CRITICAL: Restore to normal scale (1,1,1) and position to prevent cards from staying small/offset
                 if (_rect != null)
                 {
+                    // Get the final target scale (should be 1,1,1 normally, but preserve actual scale)
+                    Vector3 finalScale = Vector3.one; // Cards should be normal size
                     // Restore to normal position/scale/rotation
+                    _rect.localScale = finalScale;
                     _rect.localRotation = Quaternion.identity;
+                    // Position should already be correct, but ensure it's set
+                    // Don't reset position here - it should already be at target position
                 }
             }
             
@@ -690,10 +696,10 @@ namespace PokerClient.UI.Components
         
         private System.Collections.IEnumerator AnimateCardReveal()
         {
-            // Store target position - CRITICAL: Get current position as target
-            // This ensures if SetCard is called during animation, we use the correct target
+            // Store target position and scale - CRITICAL: Get current position as target
+            // Cards should animate to their normal size (1,1,1) and current position
             Vector3 targetPosition = _rect.anchoredPosition;
-            Vector3 targetScale = _rect.localScale;
+            Vector3 targetScale = Vector3.one; // Always animate to normal size (1,1,1), not current scale
             
             // Start animation: card slides down from above, flips, and scales up
             float duration = 0.4f;
