@@ -33,6 +33,7 @@ namespace PokerClient.UI.Scenes
         private Slider smallBlindSlider;
         private Slider buyInSlider;
         private Slider turnTimeSlider;
+        private Slider roundTimerSlider;
         private Slider socketBotRatioSlider;
         private Toggle privateToggle;
         private Toggle practiceModeToggle;
@@ -41,6 +42,7 @@ namespace PokerClient.UI.Scenes
         private TextMeshProUGUI blindsValue;
         private TextMeshProUGUI buyInValue;
         private TextMeshProUGUI turnTimeValue;
+        private TextMeshProUGUI roundTimerValue;
         private TextMeshProUGUI socketBotRatioValue;
         
         [Header("Invite Form")]
@@ -396,6 +398,37 @@ namespace PokerClient.UI.Scenes
             ttVRect.anchoredPosition = new Vector2(leftPad + 200, y - 12);
             ttVRect.sizeDelta = new Vector2(60, 24);
             turnTimeSlider.onValueChanged.AddListener(v => turnTimeValue.text = $"{(int)v}s");
+            y -= 32;
+            
+            // Round Timer Row (blind increase interval)
+            var rtLabel = UIFactory.CreateText(createTablePanel.transform, "RoundTimerLabel", "Round:", 12f, theme.textSecondary);
+            var rtLRect = rtLabel.GetComponent<RectTransform>();
+            rtLRect.anchorMin = new Vector2(0, 1);
+            rtLRect.anchorMax = new Vector2(0, 1);
+            rtLRect.pivot = new Vector2(0, 0.5f);
+            rtLRect.anchoredPosition = new Vector2(leftPad, y - 12);
+            rtLRect.sizeDelta = new Vector2(60, 24);
+            
+            roundTimerSlider = CreateSlider(createTablePanel.transform, 0, 60, 0); // 0=OFF, 5-60 minutes
+            var rtSRect = roundTimerSlider.GetComponent<RectTransform>();
+            rtSRect.anchorMin = new Vector2(0, 1);
+            rtSRect.anchorMax = new Vector2(0, 1);
+            rtSRect.pivot = new Vector2(0, 0.5f);
+            rtSRect.anchoredPosition = new Vector2(leftPad + 65, y - 12);
+            rtSRect.sizeDelta = new Vector2(130, 20);
+            
+            roundTimerValue = UIFactory.CreateText(createTablePanel.transform, "RoundTimerValue", "OFF", 14f, theme.primaryColor);
+            roundTimerValue.fontStyle = FontStyles.Bold;
+            var rtVRect = roundTimerValue.GetComponent<RectTransform>();
+            rtVRect.anchorMin = new Vector2(0, 1);
+            rtVRect.anchorMax = new Vector2(0, 1);
+            rtVRect.pivot = new Vector2(0, 0.5f);
+            rtVRect.anchoredPosition = new Vector2(leftPad + 200, y - 12);
+            rtVRect.sizeDelta = new Vector2(60, 24);
+            roundTimerSlider.onValueChanged.AddListener(v => {
+                int val = (int)v;
+                roundTimerValue.text = val < 5 ? "OFF" : $"{val}m";
+            });
             y -= 32;
             
             // Private Row
@@ -799,6 +832,8 @@ namespace PokerClient.UI.Scenes
             bool practiceMode = practiceModeToggle != null && practiceModeToggle.isOn;
             int turnTimeSeconds = turnTimeSlider != null ? (int)turnTimeSlider.value : 20;
             int turnTimeLimit = turnTimeSeconds * 1000; // Convert seconds to milliseconds
+            int roundTimerMinutes = roundTimerSlider != null ? (int)roundTimerSlider.value : 0;
+            int blindIncreaseInterval = roundTimerMinutes >= 5 ? roundTimerMinutes * 60 * 1000 : 0; // Convert minutes to ms, 0=OFF
             bool isSimulation = simulationToggle != null && simulationToggle.isOn;
             float socketBotRatio = socketBotRatioSlider != null ? socketBotRatioSlider.value / 100f : 0.5f;
             
@@ -808,7 +843,7 @@ namespace PokerClient.UI.Scenes
             {
                 // Start simulation mode - will spectate automatically
                 _gameService.StartSimulation(name, maxPlayers, blinds.small, blinds.big, buyIn, 
-                    turnTimeLimit, socketBotRatio, (success, result) =>
+                    turnTimeLimit, blindIncreaseInterval, socketBotRatio, (success, result) =>
                 {
                     loadingPanel.SetActive(false);
                     if (success)
@@ -828,7 +863,7 @@ namespace PokerClient.UI.Scenes
                 _gameService.OnTableJoined -= OnTableJoinedForCreate;
                 _gameService.OnTableJoined += OnTableJoinedForCreate;
                 
-                _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, buyIn, isPrivate, password, practiceMode, turnTimeLimit, 0, (success, result) =>
+                _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, buyIn, isPrivate, password, practiceMode, turnTimeLimit, blindIncreaseInterval, (success, result) =>
                 {
                     if (!success)
                     {

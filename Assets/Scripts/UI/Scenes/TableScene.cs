@@ -104,6 +104,8 @@ namespace PokerClient.UI.Scenes
         // Track phase changes to show phase announcements
         private string _previousPhase = "";
         private bool _playedReadyToRumble = false; // Track if we've played the ready to rumble sound
+        private float _rumbleStartTime = 0f; // When rumble started playing
+        private const float RUMBLE_DURATION = 7f; // Ready to Rumble audio is 7 seconds
         
         private void Start()
         {
@@ -469,7 +471,7 @@ namespace PokerClient.UI.Scenes
             topRect.anchoredPosition = Vector2.zero;
             
             // Menu button (left)
-            var menuBtn = UIFactory.CreateButton(topBar.transform, "MenuBtn", "☰", () => menuPanel.SetActive(!menuPanel.activeSelf));
+            var menuBtn = UIFactory.CreateButton(topBar.transform, "MenuBtn", "G��", () => menuPanel.SetActive(!menuPanel.activeSelf));
             var menuRect = menuBtn.GetComponent<RectTransform>();
             menuRect.anchorMin = new Vector2(0, 0.5f);
             menuRect.anchorMax = new Vector2(0, 0.5f);
@@ -849,7 +851,7 @@ namespace PokerClient.UI.Scenes
             approveBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 45);
             approveBtn.GetComponent<Image>().color = theme.successColor;
             
-            var rejectBtn = UIFactory.CreateButton(buttonRow.transform, "RejectBtn", "✗ REJECT", OnRejectBot);
+            var rejectBtn = UIFactory.CreateButton(buttonRow.transform, "RejectBtn", "G�� REJECT", OnRejectBot);
             rejectBtn.GetComponent<RectTransform>().sizeDelta = new Vector2(120, 45);
             rejectBtn.GetComponent<Image>().color = theme.dangerColor;
             
@@ -929,9 +931,10 @@ namespace PokerClient.UI.Scenes
                 {
                     _lastCountdownValue = countdownValue;
                     
-                    // Play countdown beep sound for each second (10, 9, 8, 7, etc.)
-                    // "Ready to Rumble" already played when countdown phase started
-                    if (countdownValue > 0)
+                    // Play countdown beep sound - but only AFTER Ready to Rumble finishes (7 seconds)
+                    float timeSinceRumble = Time.time - _rumbleStartTime;
+                    bool rumbleFinished = _playedReadyToRumble && timeSinceRumble >= RUMBLE_DURATION;
+                    if (countdownValue > 0 && rumbleFinished)
                     {
                         Debug.Log($"[TableScene] Playing countdown beep for {countdownValue}");
                         if (Core.AudioManager.Instance != null)
@@ -1103,15 +1106,16 @@ namespace PokerClient.UI.Scenes
             bool showStartButton = state.phase == "waiting" && isCreator && state.totalPlayerCount >= 2;
             _startGameButton?.SetActive(showStartButton);
             
-            // Show READY overlay during ready_up phase (not for bots, and only if not already ready)
+            // Show READY overlay during ready_up phase (not for bots, spectators, or if already ready)
             if (state.phase == "ready_up" || state.phase == "countdown")
             {
                 var mySeat = state.seats?.Find(s => s?.playerId == myId);
+                bool amISeated = mySeat != null && _mySeatIndex >= 0; // Spectators have no seat
                 bool amIReady = mySeat?.isReady ?? false;
                 bool amIBot = mySeat?.isBot ?? false;
                 
-                // Show overlay if I'm not ready and I'm not a bot
-                bool showReadyOverlay = !amIReady && !amIBot && !_hasClickedReady;
+                // Show overlay if I'm seated, not ready, not a bot, and haven't clicked ready
+                bool showReadyOverlay = amISeated && !amIReady && !amIBot && !_hasClickedReady;
                 _readyOverlay?.SetActive(showReadyOverlay);
                 
                 if (_readyTimerText != null && _readyCountText != null)
@@ -1176,7 +1180,8 @@ namespace PokerClient.UI.Scenes
                 if (Core.AudioManager.Instance != null)
                 {
                     Core.AudioManager.Instance.PlayReadyToRumble();
-                    _playedReadyToRumble = true; // Mark as played so we don't play it again
+                    _playedReadyToRumble = true;
+                    _rumbleStartTime = Time.time; // Mark as played so we don't play it again
                 }
                 else
                 {

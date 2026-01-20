@@ -399,7 +399,7 @@ namespace PokerClient.Networking
         /// Creates a table, spawns bots (mix of regular and socket bots), and joins as spectator
         /// </summary>
         public void StartSimulation(string name, int maxPlayers, int smallBlind, int bigBlind,
-            int buyIn, int turnTimeLimit, float socketBotRatio, Action<bool, string> callback = null)
+            int buyIn, int turnTimeLimit, int blindIncreaseInterval, float socketBotRatio, Action<bool, string> callback = null)
         {
             var data = new
             {
@@ -409,6 +409,7 @@ namespace PokerClient.Networking
                 bigBlind,
                 buyIn,
                 turnTimeLimit,
+                blindIncreaseInterval,
                 socketBotRatio
             };
             
