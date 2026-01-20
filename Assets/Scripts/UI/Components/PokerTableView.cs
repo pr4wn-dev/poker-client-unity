@@ -545,6 +545,7 @@ namespace PokerClient.UI.Components
         private RectTransform _rect;
         private bool _wasEmpty = true;
         private bool _wasHidden = false;
+        private Coroutine _animationCoroutine = null; // Track running animation
         
         public static CardView Create(Transform parent, string name, Vector2? size = null)
         {
@@ -598,6 +599,20 @@ namespace PokerClient.UI.Components
             {
                 SetHidden();
                 return;
+            }
+            
+            // CRITICAL: Stop any running animation before updating the card
+            // This prevents cards from getting stuck mid-animation
+            if (_animationCoroutine != null)
+            {
+                StopCoroutine(_animationCoroutine);
+                _animationCoroutine = null;
+                // Reset to final position if animation was interrupted
+                if (_rect != null)
+                {
+                    // Restore to normal position/scale/rotation
+                    _rect.localRotation = Quaternion.identity;
+                }
             }
             
             bool wasEmpty = _wasEmpty;
@@ -664,26 +679,33 @@ namespace PokerClient.UI.Components
             // Animate card appearance - slide in from top, flip, and scale up
             if (_rect != null)
             {
-                StartCoroutine(AnimateCardReveal());
+                // Stop any existing animation first
+                if (_animationCoroutine != null)
+                {
+                    StopCoroutine(_animationCoroutine);
+                }
+                _animationCoroutine = StartCoroutine(AnimateCardReveal());
             }
         }
         
         private System.Collections.IEnumerator AnimateCardReveal()
         {
-            // Store original position
-            Vector3 originalPosition = _rect.anchoredPosition;
-            Vector3 originalScale = _rect.localScale;
+            // Store target position - CRITICAL: Get current position as target
+            // This ensures if SetCard is called during animation, we use the correct target
+            Vector3 targetPosition = _rect.anchoredPosition;
+            Vector3 targetScale = _rect.localScale;
             
             // Start animation: card slides down from above, flips, and scales up
             float duration = 0.4f;
             float elapsed = 0f;
             
             // Start position: slightly above and rotated
-            Vector3 startPos = originalPosition + new Vector3(0, 100f, 0);
+            Vector3 startPos = targetPosition + new Vector3(0, 100f, 0);
             Vector3 startScale = new Vector3(0.3f, 0.3f, 1f);
             Quaternion startRotation = Quaternion.Euler(0, 90f, 0); // Flipped 90 degrees
             Quaternion endRotation = Quaternion.identity;
             
+            // Set initial animation state
             _rect.anchoredPosition = startPos;
             _rect.localScale = startScale;
             _rect.localRotation = startRotation;
@@ -696,22 +718,25 @@ namespace PokerClient.UI.Components
                 // Ease out cubic for smooth animation
                 float easedT = 1f - Mathf.Pow(1f - t, 3f);
                 
-                // Interpolate position (slide down)
-                _rect.anchoredPosition = Vector3.Lerp(startPos, originalPosition, easedT);
+                // Interpolate position (slide down) - use targetPosition
+                _rect.anchoredPosition = Vector3.Lerp(startPos, targetPosition, easedT);
                 
                 // Interpolate scale (grow from small)
-                _rect.localScale = Vector3.Lerp(startScale, originalScale, easedT);
+                _rect.localScale = Vector3.Lerp(startScale, targetScale, easedT);
                 
                 // Interpolate rotation (flip)
-                _rect.localRotation = Quaternion.Lerp(startRotation, endRotation, easedT);
+                _rect.localRotation = Quaternion.Slerp(startRotation, endRotation, easedT);
                 
                 yield return null;
             }
             
-            // Ensure final state
-            _rect.anchoredPosition = originalPosition;
-            _rect.localScale = originalScale;
+            // Ensure final state is exact (no floating point errors)
+            _rect.anchoredPosition = targetPosition;
+            _rect.localScale = targetScale;
             _rect.localRotation = endRotation;
+            
+            // Clear the animation coroutine reference
+            _animationCoroutine = null;
         }
         
         public void SetHidden()
