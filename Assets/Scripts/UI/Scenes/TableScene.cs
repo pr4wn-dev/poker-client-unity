@@ -1121,8 +1121,8 @@ namespace PokerClient.UI.Scenes
             var myId = _gameService.CurrentUser?.id;
             bool isCreator = myId != null && state.creatorId == myId;
             
-            // Show START GAME button for creator during waiting phase
-            bool showStartButton = state.phase == "waiting" && isCreator && state.totalPlayerCount >= 2;
+            // Show START GAME button for creator during waiting phase (NOT in simulation - auto-starts)
+            bool showStartButton = state.phase == "waiting" && isCreator && state.totalPlayerCount >= 2 && !state.isSimulation;
             
             // Log state changes for debugging
             bool wasShowing = _startGameButton?.activeSelf ?? false;
