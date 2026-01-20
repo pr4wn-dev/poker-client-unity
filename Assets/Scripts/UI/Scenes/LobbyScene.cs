@@ -33,14 +33,15 @@ namespace PokerClient.UI.Scenes
         private Slider smallBlindSlider;
         private Slider buyInSlider;
         private Slider turnTimeSlider;
-        private Slider roundTimerSlider;
+        private Slider socketBotRatioSlider;
         private Toggle privateToggle;
         private Toggle practiceModeToggle;
+        private Toggle simulationToggle;
         private TextMeshProUGUI maxPlayersValue;
         private TextMeshProUGUI blindsValue;
         private TextMeshProUGUI buyInValue;
         private TextMeshProUGUI turnTimeValue;
-        private TextMeshProUGUI roundTimerValue;
+        private TextMeshProUGUI socketBotRatioValue;
         
         [Header("Invite Form")]
         private TMP_InputField inviteSearchInput;
@@ -250,7 +251,7 @@ namespace PokerClient.UI.Scenes
             panelRect.anchorMin = new Vector2(0.5f, 0.5f);
             panelRect.anchorMax = new Vector2(0.5f, 0.5f);
             panelRect.pivot = new Vector2(0.5f, 0.5f);
-            panelRect.sizeDelta = new Vector2(320, 435); // Taller for turn time + round timer sliders
+            panelRect.sizeDelta = new Vector2(340, 480); // Taller for turn time + practice + simulation rows
             panelRect.anchoredPosition = Vector2.zero;
             
             // Ensure this panel renders on top of header
@@ -369,6 +370,34 @@ namespace PokerClient.UI.Scenes
             buyInSlider.onValueChanged.AddListener(UpdateBuyInDisplay);
             y -= 32;
             
+            // Turn Time Row (seconds per turn: 5-60, default 20)
+            var turnTimeLabel = UIFactory.CreateText(createTablePanel.transform, "TurnTimeLabel", "Turn Time:", 12f, theme.textSecondary);
+            var ttLRect = turnTimeLabel.GetComponent<RectTransform>();
+            ttLRect.anchorMin = new Vector2(0, 1);
+            ttLRect.anchorMax = new Vector2(0, 1);
+            ttLRect.pivot = new Vector2(0, 0.5f);
+            ttLRect.anchoredPosition = new Vector2(leftPad, y - 12);
+            ttLRect.sizeDelta = new Vector2(60, 24);
+            
+            turnTimeSlider = CreateSlider(createTablePanel.transform, 5, 60, 20); // 5s to 60s, default 20s
+            var ttSRect = turnTimeSlider.GetComponent<RectTransform>();
+            ttSRect.anchorMin = new Vector2(0, 1);
+            ttSRect.anchorMax = new Vector2(0, 1);
+            ttSRect.pivot = new Vector2(0, 0.5f);
+            ttSRect.anchoredPosition = new Vector2(leftPad + 65, y - 12);
+            ttSRect.sizeDelta = new Vector2(130, 20);
+            
+            turnTimeValue = UIFactory.CreateText(createTablePanel.transform, "TurnTimeValue", "20s", 14f, theme.primaryColor);
+            turnTimeValue.fontStyle = FontStyles.Bold;
+            var ttVRect = turnTimeValue.GetComponent<RectTransform>();
+            ttVRect.anchorMin = new Vector2(0, 1);
+            ttVRect.anchorMax = new Vector2(0, 1);
+            ttVRect.pivot = new Vector2(0, 0.5f);
+            ttVRect.anchoredPosition = new Vector2(leftPad + 200, y - 12);
+            ttVRect.sizeDelta = new Vector2(60, 24);
+            turnTimeSlider.onValueChanged.AddListener(v => turnTimeValue.text = $"{(int)v}s");
+            y -= 32;
+            
             // Private Row
             var privateLabel = UIFactory.CreateText(createTablePanel.transform, "PrivateLabel", "Private:", 12f, theme.textSecondary);
             var prRect = privateLabel.GetComponent<RectTransform>();
@@ -415,60 +444,80 @@ namespace PokerClient.UI.Scenes
             phRect.sizeDelta = new Vector2(100, 24);
             y -= 32;
             
-            // Turn Time Row
-            var turnTimeLabel = UIFactory.CreateText(createTablePanel.transform, "TurnTimeLabel", "Turn Time:", 12f, theme.textSecondary);
-            var ttlRect = turnTimeLabel.GetComponent<RectTransform>();
-            ttlRect.anchorMin = new Vector2(0, 1);
-            ttlRect.anchorMax = new Vector2(0, 1);
-            ttlRect.pivot = new Vector2(0, 0.5f);
-            ttlRect.anchoredPosition = new Vector2(leftPad, y - 12);
-            ttlRect.sizeDelta = new Vector2(60, 24);
+            // Simulation Mode Row (run automated games with socket bots for testing)
+            var simLabel = UIFactory.CreateText(createTablePanel.transform, "SimLabel", "Simulation:", 12f, theme.textSecondary);
+            var simRect = simLabel.GetComponent<RectTransform>();
+            simRect.anchorMin = new Vector2(0, 1);
+            simRect.anchorMax = new Vector2(0, 1);
+            simRect.pivot = new Vector2(0, 0.5f);
+            simRect.anchoredPosition = new Vector2(leftPad, y - 12);
+            simRect.sizeDelta = new Vector2(60, 24);
             
-            turnTimeSlider = CreateSlider(createTablePanel.transform, 1, 6, 4); // 1=5s, 2=10s, 3=15s, 4=20s (default), 5=30s, 6=60s
-            var ttsRect = turnTimeSlider.GetComponent<RectTransform>();
-            ttsRect.anchorMin = new Vector2(0, 1);
-            ttsRect.anchorMax = new Vector2(0, 1);
-            ttsRect.pivot = new Vector2(0, 0.5f);
-            ttsRect.anchoredPosition = new Vector2(leftPad + 70, y - 12);
-            ttsRect.sizeDelta = new Vector2(125, 20);
+            simulationToggle = CreateToggle(createTablePanel.transform);
+            var simToggleRect = simulationToggle.GetComponent<RectTransform>();
+            simToggleRect.anchorMin = new Vector2(0, 1);
+            simToggleRect.anchorMax = new Vector2(0, 1);
+            simToggleRect.pivot = new Vector2(0, 0.5f);
+            simToggleRect.anchoredPosition = new Vector2(leftPad + 65, y - 12);
+            simToggleRect.sizeDelta = new Vector2(20, 20);
             
-            turnTimeValue = UIFactory.CreateText(createTablePanel.transform, "TurnTimeValue", "20s", 14f, theme.primaryColor);
-            turnTimeValue.fontStyle = FontStyles.Bold;
-            var ttvRect = turnTimeValue.GetComponent<RectTransform>();
-            ttvRect.anchorMin = new Vector2(0, 1);
-            ttvRect.anchorMax = new Vector2(0, 1);
-            ttvRect.pivot = new Vector2(0, 0.5f);
-            ttvRect.anchoredPosition = new Vector2(leftPad + 200, y - 12);
-            ttvRect.sizeDelta = new Vector2(60, 24);
-            turnTimeSlider.onValueChanged.AddListener(UpdateTurnTimeDisplay);
+            // Help text for simulation
+            var simHelp = UIFactory.CreateText(createTablePanel.transform, "SimHelp", "(watch bots play)", 10f, theme.textSecondary);
+            var shRect = simHelp.GetComponent<RectTransform>();
+            shRect.anchorMin = new Vector2(0, 1);
+            shRect.anchorMax = new Vector2(0, 1);
+            shRect.pivot = new Vector2(0, 0.5f);
+            shRect.anchoredPosition = new Vector2(leftPad + 90, y - 12);
+            shRect.sizeDelta = new Vector2(120, 24);
+            
             y -= 32;
             
-            // Round Timer Row (blind increase interval)
-            var roundTimerLabel = UIFactory.CreateText(createTablePanel.transform, "RoundTimerLabel", "Round Timer:", 12f, theme.textSecondary);
-            var rtlRect = roundTimerLabel.GetComponent<RectTransform>();
-            rtlRect.anchorMin = new Vector2(0, 1);
-            rtlRect.anchorMax = new Vector2(0, 1);
-            rtlRect.pivot = new Vector2(0, 0.5f);
-            rtlRect.anchoredPosition = new Vector2(leftPad, y - 12);
-            rtlRect.sizeDelta = new Vector2(75, 24);
+            // Socket Bot Ratio Row (hidden by default, shown when simulation is on)
+            var ratioLabelGo = UIFactory.CreateText(createTablePanel.transform, "RatioLabel", "Socket Bots:", 12f, theme.textSecondary);
+            var ratioLRect = ratioLabelGo.GetComponent<RectTransform>();
+            ratioLRect.anchorMin = new Vector2(0, 1);
+            ratioLRect.anchorMax = new Vector2(0, 1);
+            ratioLRect.pivot = new Vector2(0, 0.5f);
+            ratioLRect.anchoredPosition = new Vector2(leftPad, y - 12);
+            ratioLRect.sizeDelta = new Vector2(70, 24);
             
-            roundTimerSlider = CreateSlider(createTablePanel.transform, 0, 6, 0); // 0=OFF, 1=5min, 2=10min, 3=15min, 4=20min (default), 5=30min, 6=60min
-            var rtsRect = roundTimerSlider.GetComponent<RectTransform>();
-            rtsRect.anchorMin = new Vector2(0, 1);
-            rtsRect.anchorMax = new Vector2(0, 1);
-            rtsRect.pivot = new Vector2(0, 0.5f);
-            rtsRect.anchoredPosition = new Vector2(leftPad + 85, y - 12);
-            rtsRect.sizeDelta = new Vector2(110, 20);
+            socketBotRatioSlider = CreateSlider(createTablePanel.transform, 0, 100, 50); // 0-100% socket bots
+            var ratioSRect = socketBotRatioSlider.GetComponent<RectTransform>();
+            ratioSRect.anchorMin = new Vector2(0, 1);
+            ratioSRect.anchorMax = new Vector2(0, 1);
+            ratioSRect.pivot = new Vector2(0, 0.5f);
+            ratioSRect.anchoredPosition = new Vector2(leftPad + 75, y - 12);
+            ratioSRect.sizeDelta = new Vector2(120, 20);
             
-            roundTimerValue = UIFactory.CreateText(createTablePanel.transform, "RoundTimerValue", "OFF", 14f, theme.primaryColor);
-            roundTimerValue.fontStyle = FontStyles.Bold;
-            var rtvRect = roundTimerValue.GetComponent<RectTransform>();
-            rtvRect.anchorMin = new Vector2(0, 1);
-            rtvRect.anchorMax = new Vector2(0, 1);
-            rtvRect.pivot = new Vector2(0, 0.5f);
-            rtvRect.anchoredPosition = new Vector2(leftPad + 200, y - 12);
-            rtvRect.sizeDelta = new Vector2(60, 24);
-            roundTimerSlider.onValueChanged.AddListener(UpdateRoundTimerDisplay);
+            socketBotRatioValue = UIFactory.CreateText(createTablePanel.transform, "RatioValue", "50%", 14f, theme.primaryColor);
+            socketBotRatioValue.fontStyle = FontStyles.Bold;
+            var ratioVRect = socketBotRatioValue.GetComponent<RectTransform>();
+            ratioVRect.anchorMin = new Vector2(0, 1);
+            ratioVRect.anchorMax = new Vector2(0, 1);
+            ratioVRect.pivot = new Vector2(0, 0.5f);
+            ratioVRect.anchoredPosition = new Vector2(leftPad + 200, y - 12);
+            ratioVRect.sizeDelta = new Vector2(60, 24);
+            socketBotRatioSlider.onValueChanged.AddListener(v => socketBotRatioValue.text = $"{(int)v}%");
+            
+            // Store reference for toggling (label is a TextMeshProUGUI, need to get its parent)
+            var ratioLabelObj = ratioLabelGo.transform.parent?.gameObject ?? ratioLabelGo.gameObject;
+            
+            // Hide ratio row by default
+            ratioLabelGo.gameObject.SetActive(false);
+            socketBotRatioSlider.gameObject.SetActive(false);
+            socketBotRatioValue.gameObject.SetActive(false);
+            
+            // Update simulation toggle to also toggle ratio label
+            simulationToggle.onValueChanged.RemoveAllListeners();
+            simulationToggle.onValueChanged.AddListener(v => {
+                if (v)
+                {
+                    practiceModeToggle.isOn = true; // Simulations always practice mode
+                }
+                ratioLabelGo.gameObject.SetActive(v);
+                socketBotRatioSlider.gameObject.SetActive(v);
+                socketBotRatioValue.gameObject.SetActive(v);
+            });
             y -= 32;
             
             // Password (hidden by default)
@@ -736,18 +785,10 @@ namespace PokerClient.UI.Scenes
         
         private void OnCreateTableClick()
         {
-            string name = tableNameInput?.text?.Trim();
+            string name = tableNameInput?.text;
             if (string.IsNullOrEmpty(name))
             {
-                // Require a table name
-                Debug.LogWarning("Table name is required!");
-                // Flash the input field or show error
-                if (tableNameInput != null)
-                {
-                    tableNameInput.placeholder.GetComponent<TextMeshProUGUI>().text = "TABLE NAME REQUIRED!";
-                    tableNameInput.placeholder.GetComponent<TextMeshProUGUI>().color = Theme.Current.dangerColor;
-                }
-                return;
+                name = $"{_gameService.CurrentUser?.username}'s Table";
             }
             
             int maxPlayers = maxPlayersSlider != null ? (int)maxPlayersSlider.value : 6;
@@ -756,25 +797,48 @@ namespace PokerClient.UI.Scenes
             bool isPrivate = privateToggle != null && privateToggle.isOn;
             string password = isPrivate ? passwordInput?.text : null;
             bool practiceMode = practiceModeToggle != null && practiceModeToggle.isOn;
-            int turnTimeLimit = turnTimeSlider != null ? GetTurnTimeFromSlider((int)turnTimeSlider.value) : 20000;
-            int blindIncreaseInterval = roundTimerSlider != null ? GetRoundTimerFromSlider((int)roundTimerSlider.value) : 0;
+            int turnTimeSeconds = turnTimeSlider != null ? (int)turnTimeSlider.value : 20;
+            int turnTimeLimit = turnTimeSeconds * 1000; // Convert seconds to milliseconds
+            bool isSimulation = simulationToggle != null && simulationToggle.isOn;
+            float socketBotRatio = socketBotRatioSlider != null ? socketBotRatioSlider.value / 100f : 0.5f;
             
             loadingPanel.SetActive(true);
             
-            // Subscribe to OnTableJoined to load scene AFTER CurrentTableId is set
-            _gameService.OnTableJoined -= OnTableJoinedForCreate;
-            _gameService.OnTableJoined += OnTableJoinedForCreate;
-            
-            _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, buyIn, isPrivate, password, practiceMode, turnTimeLimit, blindIncreaseInterval, (success, result) =>
+            if (isSimulation)
             {
-                if (!success)
+                // Start simulation mode - will spectate automatically
+                _gameService.StartSimulation(name, maxPlayers, blinds.small, blinds.big, buyIn, 
+                    turnTimeLimit, socketBotRatio, (success, result) =>
                 {
                     loadingPanel.SetActive(false);
-                    _gameService.OnTableJoined -= OnTableJoinedForCreate;
-                    Debug.LogError($"[LobbyScene] Failed to create/join table: {result}");
-                }
-                // If success, OnTableJoined event will fire and load the scene
-            });
+                    if (success)
+                    {
+                        Debug.Log($"[LobbyScene] Simulation started, joining as spectator");
+                        SceneManager.LoadScene("TableScene");
+                    }
+                    else
+                    {
+                        Debug.LogError($"[LobbyScene] Failed to start simulation: {result}");
+                    }
+                });
+            }
+            else
+            {
+                // Normal table creation
+                _gameService.OnTableJoined -= OnTableJoinedForCreate;
+                _gameService.OnTableJoined += OnTableJoinedForCreate;
+                
+                _gameService.CreateTable(name, maxPlayers, blinds.small, blinds.big, buyIn, isPrivate, password, practiceMode, turnTimeLimit, (success, result) =>
+                {
+                    if (!success)
+                    {
+                        loadingPanel.SetActive(false);
+                        _gameService.OnTableJoined -= OnTableJoinedForCreate;
+                        Debug.LogError($"[LobbyScene] Failed to create/join table: {result}");
+                    }
+                    // If success, OnTableJoined event will fire and load the scene
+                });
+            }
         }
         
         private void OnTableJoinedForCreate(TableState state)
@@ -990,55 +1054,6 @@ namespace PokerClient.UI.Scenes
             if (amount >= 1000)
                 return $"{amount / 1000}K";
             return amount.ToString();
-        }
-        
-        private void UpdateTurnTimeDisplay(float value)
-        {
-            var turnTime = GetTurnTimeFromSlider((int)value);
-            turnTimeValue.text = $"{turnTime / 1000}s";
-        }
-        
-        private int GetTurnTimeFromSlider(int level)
-        {
-            return level switch
-            {
-                1 => 5000,      // 5 seconds
-                2 => 10000,     // 10 seconds
-                3 => 15000,     // 15 seconds
-                4 => 20000,     // 20 seconds (default)
-                5 => 30000,     // 30 seconds
-                6 => 60000,     // 60 seconds
-                _ => 20000      // Default 20 seconds
-            };
-        }
-        
-        private void UpdateRoundTimerDisplay(float value)
-        {
-            var roundTime = GetRoundTimerFromSlider((int)value);
-            if (roundTime == 0)
-            {
-                roundTimerValue.text = "OFF";
-            }
-            else
-            {
-                roundTimerValue.text = $"{roundTime / 60000}m";
-            }
-        }
-        
-        private int GetRoundTimerFromSlider(int level)
-        {
-            // Returns milliseconds - 0 means disabled
-            return level switch
-            {
-                0 => 0,             // OFF (blinds never increase)
-                1 => 5 * 60000,     // 5 minutes
-                2 => 10 * 60000,    // 10 minutes
-                3 => 15 * 60000,    // 15 minutes
-                4 => 20 * 60000,    // 20 minutes
-                5 => 30 * 60000,    // 30 minutes
-                6 => 60 * 60000,    // 60 minutes
-                _ => 0              // Default OFF
-            };
         }
         
         #endregion

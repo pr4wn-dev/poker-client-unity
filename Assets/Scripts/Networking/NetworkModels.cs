@@ -822,7 +822,7 @@ namespace PokerClient.Networking
         public string GetDisplayName()
         {
             string displayName = !string.IsNullOrEmpty(playerName) ? playerName : name ?? "Player";
-            return isBot ? $"[BOT] {displayName}" : displayName;
+            return isBot ? $"🤖 {displayName}" : displayName;
         }
     }
     
@@ -843,9 +843,6 @@ namespace PokerClient.Networking
         public int currentPlayerIndex;
         public string currentPlayerId;  // ID of player whose turn it is
         public float turnTimeRemaining; // Seconds left in turn (-1 if not active)
-        public int blindTimeRemaining; // Seconds until blinds increase (-1 if disabled)
-        public int blindLevel; // Current blind level (1 = starting blinds)
-        public bool blindIncreaseEnabled; // Whether blind increases are enabled
         public int startCountdownRemaining; // Seconds until game starts (0 or -1 if not counting)
         public int readyUpTimeRemaining; // Seconds left in ready-up phase (0 if not active)
         public int readyPlayerCount; // Number of players who have clicked Ready
@@ -855,6 +852,9 @@ namespace PokerClient.Networking
         public bool isSpectating;
         public string creatorId;
         public bool practiceMode;
+        public bool blindIncreaseEnabled;
+        public int blindLevel;
+        public float blindTimeRemaining;
         public HouseRules houseRules;
         public SidePotState sidePot;  // Item side pot state
         public List<SeatInfo> seats;
@@ -953,7 +953,6 @@ namespace PokerClient.Networking
         public string password;
         public string houseRulesPreset;
         public HouseRules customRules;
-        public int turnTimeLimit; // Turn time in milliseconds
     }
     
     [Serializable]
@@ -968,6 +967,18 @@ namespace PokerClient.Networking
         
         // Just check seatIndex - if server set it to 0+, we're seated
         public bool IsAutoSeated => seatIndex >= 0;
+    }
+    
+    [Serializable]
+    public class SimulationResponse
+    {
+        public bool success;
+        public string error;
+        public string tableId;
+        public string tableName;
+        public int regularBots;
+        public int socketBots;
+        public string status;
     }
     
     [Serializable]
@@ -1283,15 +1294,13 @@ namespace PokerClient.Networking
     [Serializable]
     public class HandResultData
     {
-        public string oderId;       // Legacy field name
-        public string winnerId;     // Winner's player ID
+        public string winnerId;
         public string winnerName;
         public string handName;
         public int potAmount;
         public List<Card> winningCards;
         
-        // Helper to get winner ID regardless of which field server sends
-        public string GetWinnerId() => !string.IsNullOrEmpty(winnerId) ? winnerId : oderId;
+        public string GetWinnerId() => winnerId;
     }
     
     [Serializable]

@@ -74,13 +74,13 @@ namespace PokerClient.Networking
         public event Action<string, string, int?> OnPlayerActionReceived; // playerId, action, amount
         public event Action<string, string, int> OnPlayerJoinedTable; // playerId, name, seat
         public event Action<string> OnPlayerLeftTable; // playerId
-        public event Action<string, string> OnSpectatorJoined; // userId, name
-        public event Action<string> OnSpectatorLeft; // userId
         public event Action<HandResultData> OnHandComplete;
         public event Action<GameOverData> OnGameOver;
         public event Action<PlayerEliminatedData> OnPlayerEliminated;
         public event Action<TableInviteData> OnInviteReceived;
         public event Action<string, string, string> OnChatMessageReceived; // playerId, username, message
+        public event Action<string, string> OnSpectatorJoined; // odplayerId, username
+        public event Action<string> OnSpectatorLeft; // playerId
         
         public event Action<WorldMapState> OnWorldMapReceived;
         public event Action<List<BossListItem>> OnBossesReceived;
@@ -391,6 +391,60 @@ namespace PokerClient.Networking
                     Debug.LogError($"[GameService] CreateTable failed: {response?.error}");
                     callback?.Invoke(false, response?.error ?? "Create table failed");
                 }
+            });
+        }
+        
+        /// <summary>
+        /// Start a simulation game with socket bots
+        /// Creates a table, spawns bots (mix of regular and socket bots), and joins as spectator
+        /// </summary>
+        public void StartSimulation(string name, int maxPlayers, int smallBlind, int bigBlind,
+            int buyIn, int turnTimeLimit, float socketBotRatio, Action<bool, string> callback = null)
+        {
+            var data = new
+            {
+                tableName = name,
+                maxPlayers,
+                smallBlind,
+                bigBlind,
+                buyIn,
+                turnTimeLimit,
+                socketBotRatio
+            };
+            
+            Debug.Log($"[GameService] Starting simulation: {name}, {maxPlayers} players, {socketBotRatio * 100}% socket bots");
+            
+            _socket.Emit<SimulationResponse>("start_simulation", data, response =>
+            {
+                if (response != null && response.success)
+                {
+                    Debug.Log($"[GameService] Simulation started: {response.tableId}, " +
+                        $"{response.regularBots} regular bots, {response.socketBots} socket bots");
+                    
+                    CurrentTableId = response.tableId;
+                    // We're spectating, not seated
+                    MySeatIndex = -1;
+                    
+                    callback?.Invoke(true, response.tableId);
+                }
+                else
+                {
+                    Debug.LogError($"[GameService] StartSimulation failed: {response?.error}");
+                    callback?.Invoke(false, response?.error ?? "Failed to start simulation");
+                }
+            });
+        }
+        
+        /// <summary>
+        /// Stop a running simulation
+        /// </summary>
+        public void StopSimulation(string tableId = null, Action<bool> callback = null)
+        {
+            var data = new { tableId = tableId ?? CurrentTableId };
+            
+            _socket.Emit<SimulationResponse>("stop_simulation", data, response =>
+            {
+                callback?.Invoke(response?.success ?? false);
             });
         }
         
