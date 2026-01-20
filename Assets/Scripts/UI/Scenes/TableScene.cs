@@ -929,15 +929,33 @@ namespace PokerClient.UI.Scenes
                 {
                     _lastCountdownValue = countdownValue;
                     
-                    // Play countdown beep sound for each second
-                    Debug.Log($"[TableScene] Playing countdown beep for {countdownValue}");
-                    if (Core.AudioManager.Instance != null)
+                    // Play "Ready to Rumble!" sound at 10 seconds
+                    if (countdownValue == 10 && !_playedReadyToRumble)
                     {
-                        Core.AudioManager.Instance.PlayCountdownBeep();
+                        Debug.Log($"[TableScene] Playing 'Ready to Rumble' sound at countdown 10");
+                        if (Core.AudioManager.Instance != null)
+                        {
+                            Core.AudioManager.Instance.PlayReadyToRumble();
+                            _playedReadyToRumble = true; // Mark as played
+                        }
+                        else
+                        {
+                            Debug.LogWarning("[TableScene] AudioManager.Instance is null - cannot play Ready to Rumble sound");
+                        }
                     }
-                    else
+                    
+                    // Play countdown beep sound for each second (9 and below)
+                    if (countdownValue > 0 && countdownValue < 10)
                     {
-                        Debug.LogWarning("[TableScene] AudioManager.Instance is null - cannot play countdown beep");
+                        Debug.Log($"[TableScene] Playing countdown beep for {countdownValue}");
+                        if (Core.AudioManager.Instance != null)
+                        {
+                            Core.AudioManager.Instance.PlayCountdownBeep();
+                        }
+                        else
+                        {
+                            Debug.LogWarning("[TableScene] AudioManager.Instance is null - cannot play countdown beep");
+                        }
                     }
                     
                     // Pulse animation effect - scale up then back
