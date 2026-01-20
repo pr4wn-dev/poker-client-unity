@@ -851,6 +851,7 @@ namespace PokerClient.Networking
         public int spectatorCount;
         public bool isSpectating;
         public string creatorId;
+        public bool isSimulation;
         public bool practiceMode;
         public bool blindIncreaseEnabled;
         public int blindLevel;

@@ -65,6 +65,7 @@ namespace PokerClient.UI.Scenes
         // Bot UI
         private bool _isTableCreator = false;
         private bool _isPracticeMode = false;
+        private bool _isSimulation = false;
         private Button _addBotsButton;
         private GameObject _botPanel;
         private GameObject _botApprovalPopup;
@@ -1152,11 +1153,12 @@ namespace PokerClient.UI.Scenes
                 var myId = _gameService.CurrentUser?.id;
                 _isTableCreator = myId != null && state.creatorId == myId;
                 _isPracticeMode = state.practiceMode;
-                
-                // Show Add Bots button only for table creator in practice mode
+                _isSimulation = state.isSimulation;
+
+                // Show Add Bots button only for table creator in practice mode (NOT in simulation - bots are auto-managed)
                 if (_addBotsButton != null)
                 {
-                    _addBotsButton.gameObject.SetActive(_isTableCreator && _isPracticeMode);
+                    _addBotsButton.gameObject.SetActive(_isTableCreator && _isPracticeMode && !_isSimulation);
                 }
                 
                 // Update pot
