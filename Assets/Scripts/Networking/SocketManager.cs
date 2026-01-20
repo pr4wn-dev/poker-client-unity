@@ -70,6 +70,19 @@ namespace PokerClient.Networking
         public bool IsConnected => isConnected;
         public string ConnectionStatus => connectionStatus;
         
+        /// <summary>
+        /// Check if socket is fully ready (both flag and actual connection)
+        /// </summary>
+        public bool IsSocketReady
+        {
+            get
+            {
+                bool flagReady = isConnected;
+                bool socketReady = _socket?.Connected ?? false;
+                return flagReady && socketReady;
+            }
+        }
+        
         // Events
         public event Action OnConnected;
         public event Action OnDisconnected;
@@ -85,6 +98,7 @@ namespace PokerClient.Networking
         public event Action<ChatMessageData> OnChatMessage;
         public event Action<HandResultData> OnHandResult;
         public event Action<GameOverData> OnGameOver;
+        public event Action<PlayerEliminatedData> OnPlayerEliminated;
         public event Action<TableInviteData> OnTableInvite;
         
         // Bot events
@@ -283,6 +297,12 @@ namespace PokerClient.Networking
                 if (data != null) UnityMainThread.Execute(() => OnGameOver?.Invoke(data));
             });
             
+            _socket.On("player_eliminated", response =>
+            {
+                var data = ParseResponse<PlayerEliminatedData>(response);
+                if (data != null) UnityMainThread.Execute(() => OnPlayerEliminated?.Invoke(data));
+            });
+            
             _socket.On("table_invite_received", response =>
             {
                 var data = ParseResponse<TableInviteData>(response);
@@ -344,6 +364,13 @@ namespace PokerClient.Networking
         public void Emit<T>(string eventName, object data, Action<T> callback) where T : class
         {
             #if SOCKET_IO_AVAILABLE
+            if (_socket == null)
+            {
+                Debug.LogError($"[SocketManager] Cannot emit {eventName}: Socket not initialized");
+                UnityMainThread.Execute(() => callback?.Invoke(null));
+                return;
+            }
+            
             // Listen for the response event
             string responseEvent = eventName + "_response";
             
@@ -354,21 +381,59 @@ namespace PokerClient.Networking
                 
                 try
                 {
+                    Debug.Log($"[SocketManager] Received {responseEvent}");
                     // Get JSON and parse with Unity's JsonUtility
                     var obj = response.GetValue<object>();
                     string jsonStr = obj?.ToString() ?? "{}";
+                    Debug.Log($"[SocketManager] Raw response JSON: {jsonStr}");
+                    
+                    if (string.IsNullOrEmpty(jsonStr) || jsonStr == "{}")
+                    {
+                        Debug.LogError($"[SocketManager] Empty or invalid JSON response for {responseEvent}");
+                        UnityMainThread.Execute(() => callback?.Invoke(null));
+                        return;
+                    }
+                    
                     var result = JsonUtility.FromJson<T>(jsonStr);
+                    if (result == null)
+                    {
+                        Debug.LogError($"[SocketManager] JsonUtility.FromJson returned null for {responseEvent}. JSON was: {jsonStr}");
+                        UnityMainThread.Execute(() => callback?.Invoke(null));
+                        return;
+                    }
+                    
+                    Debug.Log($"[SocketManager] Successfully parsed {responseEvent}");
                     UnityMainThread.Execute(() => callback?.Invoke(result));
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError($"[SocketManager] Failed to parse {responseEvent}: {e.Message}\n{e.StackTrace}");
+                    Debug.LogError($"[SocketManager] Failed to parse {responseEvent}: {e.Message}");
+                    Debug.LogError($"[SocketManager] Stack trace: {e.StackTrace}");
+                    var obj = response.GetValue<object>();
+                    string jsonStr = obj?.ToString() ?? "{}";
+                    Debug.LogError($"[SocketManager] Failed JSON was: {jsonStr}");
                     UnityMainThread.Execute(() => callback?.Invoke(null));
                 }
             }
             
+            // Check if socket is connected before emitting
+            // Note: SocketIOUnity uses _socket.Connected property
+            // But we also need to check our isConnected flag to ensure initialization is complete
+            bool socketConnected = _socket?.Connected ?? false;
+            bool flagConnected = isConnected;
+            
+            // Both must be true for us to emit
+            if (_socket == null || !socketConnected || !flagConnected)
+            {
+                Debug.LogWarning($"[SocketManager] Cannot emit {eventName}: Socket not ready. isConnected={flagConnected}, socket.Connected={socketConnected}, _socket={_socket != null}");
+                UnityMainThread.Execute(() => callback?.Invoke(null));
+                return;
+            }
+            
+            Debug.Log($"[SocketManager] Listening for {responseEvent} and emitting {eventName}");
             _socket.On(responseEvent, OnResponse);
             _socket?.EmitAsync(eventName, data);
+            Debug.Log($"[SocketManager] Emitted {eventName}");
             #endif
         }
         

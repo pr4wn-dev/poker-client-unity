@@ -7,6 +7,7 @@ using PokerClient.UI;
 using PokerClient.UI.Components;
 using PokerClient.Networking;
 using System.Collections.Generic;
+using System;
 
 namespace PokerClient.UI.Scenes
 {
@@ -121,6 +122,7 @@ namespace PokerClient.UI.Scenes
             _gameService.OnSpectatorJoined += OnSpectatorJoined;
             _gameService.OnSpectatorLeft += OnSpectatorLeft;
             _gameService.OnHandComplete += OnHandComplete;
+            _gameService.OnPlayerEliminated += OnPlayerEliminated;
             _gameService.OnGameOver += OnGameOver;
             _gameService.OnTableLeft += OnTableLeft;
             
@@ -221,6 +223,7 @@ namespace PokerClient.UI.Scenes
                 _gameService.OnSpectatorJoined -= OnSpectatorJoined;
                 _gameService.OnSpectatorLeft -= OnSpectatorLeft;
                 _gameService.OnHandComplete -= OnHandComplete;
+                _gameService.OnPlayerEliminated -= OnPlayerEliminated;
                 _gameService.OnGameOver -= OnGameOver;
                 _gameService.OnTableLeft -= OnTableLeft;
             }
@@ -1187,13 +1190,16 @@ namespace PokerClient.UI.Scenes
             // Update table view with seat rotation
             _tableView?.UpdateFromState(state, _mySeatIndex);
             
-            // Update My Chips display
+            // Update My Chips display and check if I'm eliminated
+            bool isEliminated = false;
             if (_mySeatIndex >= 0 && state.seats != null && _mySeatIndex < state.seats.Count)
             {
                 var mySeat = state.seats[_mySeatIndex];
                 if (mySeat != null)
                 {
                     UpdateMyChipsDisplay((int)mySeat.chips);
+                    // Check if I'm eliminated (out of chips)
+                    isEliminated = mySeat.chips <= 0;
                 }
             }
             
@@ -1204,14 +1210,28 @@ namespace PokerClient.UI.Scenes
             bool isGamePhase = state.phase == "preflop" || state.phase == "flop" || 
                                state.phase == "turn" || state.phase == "river";
             
-            if (_isMyTurn && isGamePhase)
+            // CRITICAL FIX: Only show/hide action panel based on turn status
+            // Don't hide it if it's still the player's turn - this prevents the panel
+            // from disappearing while the player is adjusting the bet slider
+            // Eliminated players can't bet, so always hide action panel for them
+            if (_isMyTurn && isGamePhase && !isEliminated)
             {
+                // It's my turn - show/update action buttons
                 ShowActionButtons(state);
             }
-            else if (actionPanel != null)
+            else if (actionPanel != null && (!_isMyTurn || isEliminated))
             {
-                actionPanel.SetActive(false);
+                // Hide if it's NOT my turn OR if I'm eliminated
+                // Don't hide if panel is already hidden (avoid unnecessary operations)
+                if (actionPanel.activeSelf)
+                {
+                    actionPanel.SetActive(false);
+                }
             }
+            
+            // CRITICAL: Ensure menu button is always accessible for eliminated players
+            // Eliminated players should be able to leave table but can also spectate
+            // Menu button should always be visible (it's part of top bar)
             
             // Sync local turn timer from server (for smooth countdown between updates)
             _isGamePhaseActive = isGamePhase && state.turnTimeRemaining > 0;
@@ -1265,7 +1285,12 @@ namespace PokerClient.UI.Scenes
         
         private void ShowActionButtons(TableState state)
         {
-            actionPanel.SetActive(true);
+            // CRITICAL: Always show panel if it's the player's turn
+            // Don't hide it if it's already visible (prevents flickering/disappearing)
+            if (!actionPanel.activeSelf)
+            {
+                actionPanel.SetActive(true);
+            }
             
             // Find my seat
             SeatInfo mySeat = null;
@@ -1308,10 +1333,31 @@ namespace PokerClient.UI.Scenes
             int toCall = Math.Max(0, currentBet - myCurrentBet);
             int minRaiseAmount = state.minRaise > 0 ? state.minRaise : _minBet;
             int sliderMin = hasBet ? (toCall + minRaiseAmount) : _minBet; // For raise, need toCall + minRaise
-            betSlider.minValue = sliderMin;
-            betSlider.maxValue = myChips;
-            betSlider.value = sliderMin; // Start at minimum valid amount (toCall + minRaise for raises)
-            OnBetSliderChanged(sliderMin);
+            
+            // CRITICAL FIX: Only update slider values if they've actually changed
+            // This prevents the slider from resetting while the player is adjusting it
+            if (betSlider.minValue != sliderMin)
+            {
+                betSlider.minValue = sliderMin;
+            }
+            if (betSlider.maxValue != myChips)
+            {
+                betSlider.maxValue = myChips;
+            }
+            
+            // Only reset slider value if it's invalid (below min or above max)
+            // Don't reset if player is actively adjusting it
+            float currentValue = betSlider.value;
+            if (currentValue < sliderMin || currentValue > myChips)
+            {
+                betSlider.value = sliderMin;
+                OnBetSliderChanged(sliderMin);
+            }
+            else
+            {
+                // Just update the display text without changing slider value
+                OnBetSliderChanged(currentValue);
+            }
             
             // All-in always available
             allInButton.gameObject.SetActive(true);
@@ -1446,6 +1492,38 @@ namespace PokerClient.UI.Scenes
             catch (System.Exception e)
             {
                 Debug.LogError($"Error in OnSpectatorLeft: {e.Message}");
+            }
+        }
+        
+        private void OnPlayerEliminated(PlayerEliminatedData data)
+        {
+            try
+            {
+                bool isMe = data.playerId == _gameService.CurrentUser?.id;
+                
+                if (isMe)
+                {
+                    // I'm eliminated - show notification and ensure menu is accessible
+                    ShowActionAnnouncement("YOU", "ELIMINATED", 0);
+                    AudioManager.Instance?.PlayHandLose();
+                    
+                    // Ensure menu button is always visible for eliminated players
+                    // Menu button should already be visible, but make sure it's accessible
+                    if (menuPanel != null && !menuPanel.activeSelf)
+                    {
+                        // Menu button will show menu when clicked
+                    }
+                }
+                else
+                {
+                    // Another player eliminated - show notification
+                    ShowActionAnnouncement(data.playerName ?? "Player", "ELIMINATED", 0);
+                    AudioManager.Instance?.PlayHandLose();
+                }
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"Error in OnPlayerEliminated: {e.Message}\n{e.StackTrace}");
             }
         }
         

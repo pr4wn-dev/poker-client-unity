@@ -78,6 +78,7 @@ namespace PokerClient.Networking
         public event Action<string> OnSpectatorLeft; // userId
         public event Action<HandResultData> OnHandComplete;
         public event Action<GameOverData> OnGameOver;
+        public event Action<PlayerEliminatedData> OnPlayerEliminated;
         public event Action<TableInviteData> OnInviteReceived;
         public event Action<string, string, string> OnChatMessageReceived; // playerId, username, message
         
@@ -120,6 +121,7 @@ namespace PokerClient.Networking
                 _socket.OnSpectatorLeft += HandleSpectatorLeft;
                 _socket.OnHandResult += HandleHandResult;
                 _socket.OnGameOver += HandleGameOver;
+                _socket.OnPlayerEliminated += HandlePlayerEliminated;
                 _socket.OnTableInvite += HandleTableInvite;
                 _socket.OnChatMessage += HandleChatMessage;
                 _socket.OnAdventureResult += HandleAdventureResult;
@@ -154,6 +156,7 @@ namespace PokerClient.Networking
                     _socket.OnSpectatorLeft -= HandleSpectatorLeft;
                     _socket.OnHandResult -= HandleHandResult;
                     _socket.OnGameOver -= HandleGameOver;
+                    _socket.OnPlayerEliminated -= HandlePlayerEliminated;
                     _socket.OnTableInvite -= HandleTableInvite;
                     _socket.OnChatMessage -= HandleChatMessage;
                     _socket.OnAdventureResult -= HandleAdventureResult;
@@ -192,8 +195,96 @@ namespace PokerClient.Networking
         
         public void Login(string username, string password, Action<bool, string> callback)
         {
+            // Make sure socket is initialized
+            if (_socket == null)
+            {
+                _socket = SocketManager.Instance;
+                if (_socket == null)
+                {
+                    Debug.LogError("[GameService] Cannot login: SocketManager not initialized");
+                    OnLoginFailed?.Invoke("Connection not available. Please restart the app.");
+                    callback?.Invoke(false, "Connection not available. Please restart the app.");
+                    return;
+                }
+            }
+            
+            // If not connected, connect first
+            if (!_socket.IsConnected)
+            {
+                Debug.Log("[GameService] Socket not connected, connecting now...");
+                _socket.Connect();
+                
+                // Wait for connection with timeout
+                StartCoroutine(WaitForConnectionAndLogin(username, password, callback));
+                return;
+            }
+            
+            // Socket is connected, proceed with login
+            PerformLogin(username, password, callback);
+        }
+        
+        private System.Collections.IEnumerator WaitForConnectionAndLogin(string username, string password, Action<bool, string> callback)
+        {
+            float timeout = 15f; // 15 second timeout (increased from 10)
+            float elapsed = 0f;
+            float checkInterval = 0.2f; // Check every 200ms
+            int readyCheckCount = 0; // How many times we've seen both flags as true
+            
+            // Wait for BOTH the flag AND the actual SocketIOUnity connection
+            // Socket must be ready for at least 2 consecutive checks (400ms) before we trust it
+            while (elapsed < timeout)
+            {
+                // Use the new IsSocketReady property that checks both flag and actual connection
+                bool socketReady = _socket?.IsSocketReady ?? false;
+                
+                if (socketReady)
+                {
+                    readyCheckCount++;
+                    Debug.Log($"[GameService] Socket ready check {readyCheckCount}/2: IsSocketReady={socketReady}");
+                    
+                    // Require 2 consecutive ready checks (400ms total) to ensure stability
+                    if (readyCheckCount >= 2)
+                    {
+                        Debug.Log("[GameService] Socket fully connected and stable! Proceeding with login...");
+                        // Small delay to ensure socket is completely ready
+                        yield return new WaitForSeconds(0.2f);
+                        PerformLogin(username, password, callback);
+                        yield break;
+                    }
+                }
+                else
+                {
+                    // Reset counter if not ready
+                    readyCheckCount = 0;
+                    if (_socket?.IsConnected ?? false)
+                    {
+                        Debug.Log($"[GameService] Flag connected but socket not fully ready yet. IsSocketReady={socketReady}");
+                    }
+                }
+                
+                yield return new WaitForSeconds(checkInterval);
+                elapsed += checkInterval;
+            }
+            
+            bool finalReady = _socket?.IsSocketReady ?? false;
+            Debug.LogError($"[GameService] Connection timeout after {timeout} seconds. IsSocketReady={finalReady}");
+            OnLoginFailed?.Invoke("Connection timeout. Check server address and try again.");
+            callback?.Invoke(false, "Connection timeout. Check server address and try again.");
+        }
+        
+        private void PerformLogin(string username, string password, Action<bool, string> callback)
+        {
             _socket.Emit<LoginResponse>("login", new { username, password }, response =>
             {
+                // Handle null response (connection timeout/failure)
+                if (response == null)
+                {
+                    Debug.LogError("[GameService] Login failed: No response from server");
+                    OnLoginFailed?.Invoke("Connection timeout. Server may be offline.");
+                    callback?.Invoke(false, "Connection timeout. Server may be offline.");
+                    return;
+                }
+                
                 if (response.success)
                 {
                     CurrentUser = response.profile;
@@ -990,6 +1081,11 @@ namespace PokerClient.Networking
         private void HandleGameOver(GameOverData data)
         {
             OnGameOver?.Invoke(data);
+        }
+        
+        private void HandlePlayerEliminated(PlayerEliminatedData data)
+        {
+            OnPlayerEliminated?.Invoke(data);
         }
         
         private void HandleTableInvite(TableInviteData data)
