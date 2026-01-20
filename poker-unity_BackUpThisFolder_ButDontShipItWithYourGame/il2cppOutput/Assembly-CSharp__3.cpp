@@ -4061,7 +4061,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3COnStartGameClickU3Eb__86_0_mF
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1065>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1070>
 		bool L_0 = ___0_success;
 		if (L_0)
 		{
@@ -4069,7 +4069,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3COnStartGameClickU3Eb__86_0_mF
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1067>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1072>
 		String_t* L_1 = ___1_error;
 		String_t* L_2;
 		L_2 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(_stringLiteralB0F44C3F1CF834A8AB79C7F7724825BB5EBAE12A, L_1, NULL);
@@ -4079,7 +4079,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3COnStartGameClickU3Eb__86_0_mF
 
 IL_0013:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1069>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1074>
 		return;
 	}
 }
@@ -4098,7 +4098,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3COnInviteBotU3Eb__116_0_m9C323
 	}
 	String_t* G_B4_0 = NULL;
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1758>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1772>
 		bool L_0 = ___0_success;
 		if (!L_0)
 		{
@@ -4106,7 +4106,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3COnInviteBotU3Eb__116_0_m9C323
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1760>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1774>
 		bool L_1 = ___3_pending;
 		if (L_1)
 		{
@@ -4138,13 +4138,13 @@ IL_0029:
 
 IL_002f:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1764>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1778>
 		String_t* L_6 = ___4_error;
 		String_t* L_7;
 		L_7 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(_stringLiteralBBFBD5787792C31BFAE3BD367EC07D60150F505F, L_6, NULL);
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_LogError_mB00B2B4468EF3CAF041B038D840820FB84C924B2(L_7, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1766>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1780>
 		return;
 	}
 }
@@ -4159,7 +4159,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3COnApproveBotU3Eb__117_0_m3F0F
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1778>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1792>
 		bool L_0 = ___0_success;
 		if (L_0)
 		{
@@ -4167,7 +4167,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3COnApproveBotU3Eb__117_0_m3F0F
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1778>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1792>
 		String_t* L_1 = ___1_error;
 		String_t* L_2;
 		L_2 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(_stringLiteral88DB292CBA6001C966A3BB006AD76CF5F7966FF1, L_1, NULL);
@@ -4177,7 +4177,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3COnApproveBotU3Eb__117_0_m3F0F
 
 IL_0013:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1779>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1793>
 		return;
 	}
 }
@@ -4192,7 +4192,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3COnRejectBotU3Eb__118_0_m71CFE
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1793>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1807>
 		bool L_0 = ___0_success;
 		if (L_0)
 		{
@@ -4200,7 +4200,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3COnRejectBotU3Eb__118_0_m71CFE
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1793>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1807>
 		String_t* L_1 = ___1_error;
 		String_t* L_2;
 		L_2 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(_stringLiteral269E91F029BBDF624F35B2D3037D2B119E12370F, L_1, NULL);
@@ -4210,7 +4210,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec_U3COnRejectBotU3Eb__118_0_m71CFE
 
 IL_0013:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1794>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1808>
 		return;
 	}
 }
@@ -4240,17 +4240,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass104_0_U3CShowGameOv
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1663>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1677>
 		GameObject_t76FEDD663AB33C991A9C9A23129337651094216F* L_0 = __this->___overlay;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		Object_Destroy_mE97D0A766419A81296E8D4E5C23D01D3FE91ACBB(L_0, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1664>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1678>
 		TableScene_tD205A93DF0ED2B709D5E596BB1261264F240AA97* L_1 = __this->___U3CU3E4__this;
 		NullCheck(L_1);
 		GameService_tAC046D1B5E8281D2649CF355C37441C64BB15234* L_2 = L_1->____gameService;
 		NullCheck(L_2);
 		GameService_LeaveTable_mCA500A361F8B04C02A15EB0E7DB9F250F85814B2(L_2, (Action_1_t10DCB0C07D0D3C565CEACADC80D1152B35A45F6C*)NULL, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1665>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1679>
 		return;
 	}
 }
@@ -4275,7 +4275,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CU3Ec__DisplayClass88_0_U3CUpdateReady
 {
 	String_t* G_B3_0 = NULL;
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1099>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:1104>
 		SeatInfo_t8258E097437DAB67723EAD2BBC61419E3ADDC00A* L_0 = ___0_s;
 		if (L_0)
 		{
@@ -4359,16 +4359,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CAnimateCountdownPulseU3Ed__83_MoveNex
 IL_001a:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:954>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:959>
 		__this->___U3CdurationU3E5__2 = (0.200000003f);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:955>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:960>
 		__this->___U3CelapsedU3E5__3 = (0.0f);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:956>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:961>
 		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_4;
 		memset((&L_4), 0, sizeof(L_4));
 		Vector3__ctor_m376936E6B999EF1ECBE57D990A386303E2283DE0_inline((&L_4), (1.20000005f), (1.20000005f), (1.0f), NULL);
 		__this->___U3CstartScaleU3E5__4 = L_4;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:957>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:962>
 		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_5;
 		L_5 = Vector3_get_one_mC9B289F1E15C42C597180C9FE6FB492495B51D02_inline(NULL);
 		__this->___U3CendScaleU3E5__5 = L_5;
@@ -4377,16 +4377,16 @@ IL_001a:
 
 IL_005e:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:961>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:966>
 		float L_6 = __this->___U3CelapsedU3E5__3;
 		float L_7;
 		L_7 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
 		__this->___U3CelapsedU3E5__3 = ((float)il2cpp_codegen_add(L_6, L_7));
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:962>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:967>
 		float L_8 = __this->___U3CelapsedU3E5__3;
 		float L_9 = __this->___U3CdurationU3E5__2;
 		V_2 = ((float)(L_8/L_9));
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:963>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:968>
 		TableScene_tD205A93DF0ED2B709D5E596BB1261264F240AA97* L_10 = V_1;
 		NullCheck(L_10);
 		TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* L_11 = L_10->____countdownNumber;
@@ -4400,7 +4400,7 @@ IL_005e:
 		L_16 = Vector3_Lerp_m3A906D0530A94FAABB94F0F905E84D99BE85C3F8_inline(L_13, L_14, L_15, NULL);
 		NullCheck(L_12);
 		Transform_set_localScale_mBA79E811BAF6C47B80FF76414C12B47B3CD03633(L_12, L_16, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:964>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:969>
 		__this->___U3CU3E2__current = NULL;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CU3E2__current), (void*)NULL);
 		__this->___U3CU3E1__state = 1;
@@ -4414,7 +4414,7 @@ IL_00b0:
 
 IL_00b7:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:959>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:964>
 		float L_17 = __this->___U3CelapsedU3E5__3;
 		float L_18 = __this->___U3CdurationU3E5__2;
 		if ((((float)L_17) < ((float)L_18)))
@@ -4423,7 +4423,7 @@ IL_00b7:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:967>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:972>
 		TableScene_tD205A93DF0ED2B709D5E596BB1261264F240AA97* L_19 = V_1;
 		NullCheck(L_19);
 		TextMeshProUGUI_t101091AF4B578BB534C92E9D1EEAF0611636D957* L_20 = L_19->____countdownNumber;
@@ -4433,7 +4433,7 @@ IL_00b7:
 		Vector3_t24C512C7B96BBABAD472002D0BA2BDA40A5A80B2 L_22 = __this->___U3CendScaleU3E5__5;
 		NullCheck(L_21);
 		Transform_set_localScale_mBA79E811BAF6C47B80FF76414C12B47B3CD03633(L_21, L_22, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:968>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/UI/Scenes/TableScene.cs:973>
 		return (bool)0;
 	}
 }

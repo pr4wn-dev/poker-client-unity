@@ -639,6 +639,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral8DFECD24B1E69800AFD84B5525F3DF903CFDE997
 IL2CPP_EXTERN_C String_t* _stringLiteral921E89896A83EEAD71759D0E569160913410C0AC;
 IL2CPP_EXTERN_C String_t* _stringLiteral92CBA0852AB5D8C4C3A3D4BF4DE076060EC05312;
 IL2CPP_EXTERN_C String_t* _stringLiteral9353229FEAE90F69FD00B32309FF7495D98F2ACE;
+IL2CPP_EXTERN_C String_t* _stringLiteral9465042507B03BE76D6FA1F33E2B3FF5DEA4AA26;
 IL2CPP_EXTERN_C String_t* _stringLiteral96A89E8DCEBD9FCF1709E310382C7057AEE77051;
 IL2CPP_EXTERN_C String_t* _stringLiteral9863300709F0E56E38C84E3A7520F97EFB061718;
 IL2CPP_EXTERN_C String_t* _stringLiteral9B9B0AD307946A6BFCBAE2C01D80CBCBC3644F6E;
@@ -655,9 +656,12 @@ IL2CPP_EXTERN_C String_t* _stringLiteralA7D96926D7DF115BF7368F1FB441342A9A708305
 IL2CPP_EXTERN_C String_t* _stringLiteralAAD3360E8943EAE322B5F5C9688EB3D9EA941041;
 IL2CPP_EXTERN_C String_t* _stringLiteralAB2DB8EBAF653BD360811662F1877E594D11311B;
 IL2CPP_EXTERN_C String_t* _stringLiteralAB2DCC3593CCEB58CA32060CD89A596D12D0ECCC;
+IL2CPP_EXTERN_C String_t* _stringLiteralAB928FC32CE7B5B015BE07A2E419934041DBBD29;
 IL2CPP_EXTERN_C String_t* _stringLiteralABB61789FCEFD368D9307E196D7D2CD2B786A2ED;
+IL2CPP_EXTERN_C String_t* _stringLiteralACEFAF1E0A97B3E0BDA4E764C7733A12FBEDC44F;
 IL2CPP_EXTERN_C String_t* _stringLiteralAE3B2E240FDBA2A135365CCC8BF59ED9625CF14B;
 IL2CPP_EXTERN_C String_t* _stringLiteralAE59489F23C980B7BF497FF689E3A90352FA1EEB;
+IL2CPP_EXTERN_C String_t* _stringLiteralAEBEF0025CDA27948AAAD04D63BC9535528F1C0B;
 IL2CPP_EXTERN_C String_t* _stringLiteralB04B0C35D5B0109862372813BF1E5590F90C53C2;
 IL2CPP_EXTERN_C String_t* _stringLiteralB0CF802F4F3780EBE0E8A53144E1DFA1214471BB;
 IL2CPP_EXTERN_C String_t* _stringLiteralB29532D279802A4B944B3223540E613EE4FBBBE6;
@@ -20567,7 +20571,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlaySFX_m5114E470A377648C45
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralACEFAF1E0A97B3E0BDA4E764C7733A12FBEDC44F);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralAEBEF0025CDA27948AAAD04D63BC9535528F1C0B);
 		s_Il2CppMethodInitialized = true;
 	}
 	{
@@ -20576,37 +20583,48 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlaySFX_m5114E470A377648C45
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
 		L_1 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_0, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
-		if (L_1)
+		if (!L_1)
 		{
-			goto IL_0017;
+			goto IL_0014;
 		}
 	}
 	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:269>
+		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
+		Debug_LogWarning_m33EF1B897E0C7C6FF538989610BFAFFEF4628CA9(_stringLiteralACEFAF1E0A97B3E0BDA4E764C7733A12FBEDC44F, NULL);
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:270>
+		return;
+	}
+
+IL_0014:
+	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:272>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_2 = __this->___sfxSource;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_3;
 		L_3 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_2, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
 		if (!L_3)
 		{
-			goto IL_0018;
+			goto IL_002d;
 		}
 	}
-
-IL_0017:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:267>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:274>
+		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
+		Debug_LogWarning_m33EF1B897E0C7C6FF538989610BFAFFEF4628CA9(_stringLiteralAEBEF0025CDA27948AAAD04D63BC9535528F1C0B, NULL);
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:275>
 		return;
 	}
 
-IL_0018:
+IL_002d:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:268>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:277>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_4 = __this->___sfxSource;
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_5 = ___0_clip;
 		float L_6 = ___1_volumeScale;
 		NullCheck(L_4);
 		AudioSource_PlayOneShot_mF6FE95C58996B38EF6E7F7482F95F5E15E0AB30B(L_4, L_5, L_6, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:269>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:278>
 		return;
 	}
 }
@@ -20620,7 +20638,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayUI_mD905B2D5503FEA3FA52
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:276>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:285>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = ___0_clip;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20643,19 +20661,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayUI_mD905B2D5503FEA3FA52
 
 IL_0017:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:276>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:285>
 		return;
 	}
 
 IL_0018:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:277>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:286>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_4 = __this->___uiSource;
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_5 = ___0_clip;
 		float L_6 = ___1_volumeScale;
 		NullCheck(L_4);
 		AudioSource_PlayOneShot_mF6FE95C58996B38EF6E7F7482F95F5E15E0AB30B(L_4, L_5, L_6, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:278>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:287>
 		return;
 	}
 }
@@ -20669,7 +20687,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayMusic_m49942EBD8C2185E3
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:285>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:294>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = ___0_clip;
 		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
 		bool L_1;
@@ -20693,17 +20711,17 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayMusic_m49942EBD8C2185E3
 
 IL_0017:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:285>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:294>
 		return;
 	}
 
 IL_0018:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:287>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:296>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_5 = ___0_clip;
 		__this->____currentMusic = L_5;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->____currentMusic), (void*)L_5);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:289>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:298>
 		bool L_6 = ___1_fadeIn;
 		if (!L_6)
 		{
@@ -20721,7 +20739,7 @@ IL_0018:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:291>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:300>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_9 = ___0_clip;
 		RuntimeObject* L_10;
 		L_10 = AudioManager_CrossfadeMusic_mB0CD6121D7A85F1856744ED3603AB2FFE15C2F2F(__this, L_9, NULL);
@@ -20732,16 +20750,16 @@ IL_0018:
 
 IL_003e:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:295>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:304>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_12 = __this->___musicSource;
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_13 = ___0_clip;
 		NullCheck(L_12);
 		AudioSource_set_clip_mFF441895E274286C88D9C75ED5CA1B1B39528D70(L_12, L_13, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:296>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:305>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_14 = __this->___musicSource;
 		NullCheck(L_14);
 		AudioSource_Play_m95DF07111C61D0E0F00257A00384D31531D590C3(L_14, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:298>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:307>
 		return;
 	}
 }
@@ -20773,7 +20791,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* AudioManager_CrossfadeMusic_mB
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_StopMusic_m29A0C6D0591EAE9C96B6BE0BF4C454FB8A1D2789 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, bool ___0_fadeOut, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:327>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:336>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_0 = __this->___musicSource;
 		NullCheck(L_0);
 		bool L_1;
@@ -20784,13 +20802,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_StopMusic_m29A0C6D0591EAE9C
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:327>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:336>
 		return;
 	}
 
 IL_000e:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:329>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:338>
 		bool L_2 = ___0_fadeOut;
 		if (!L_2)
 		{
@@ -20798,7 +20816,7 @@ IL_000e:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:331>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:340>
 		RuntimeObject* L_3;
 		L_3 = AudioManager_FadeOutMusic_mCB3769A08D52B3A483E583EC43209B194ED72014(__this, NULL);
 		Coroutine_t85EA685566A254C23F3FD77AB5BDFFFF8799596B* L_4;
@@ -20808,7 +20826,7 @@ IL_000e:
 
 IL_0020:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:335>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:344>
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_5 = __this->___musicSource;
 		NullCheck(L_5);
 		AudioSource_Stop_m318F17F17A147C77FF6E0A5A7A6BE057DB90F537(L_5, NULL);
@@ -20816,10 +20834,10 @@ IL_0020:
 
 IL_002b:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:337>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:346>
 		__this->____currentMusic = (AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20*)NULL;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->____currentMusic), (void*)(AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20*)NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:338>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:347>
 		return;
 	}
 }
@@ -20846,7 +20864,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* AudioManager_FadeOutMusic_mCB3
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCardDeal_m3AAF202AA6DF0FF65E3AC6CFFCD3FB035659005F (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:360>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:369>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___cardDeal;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20856,7 +20874,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCardDeal_m3AAF202AA6DF0
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCardFlip_m298528AD1FF01747DB4D4BBB490C05F2CCD45994 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:361>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:370>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___cardFlip;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20866,7 +20884,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCardFlip_m298528AD1FF01
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCardShuffle_m715CEF35DA601D9CAFCA2B04E616A59299F7C16C (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:362>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:371>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___cardShuffle;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20876,7 +20894,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCardShuffle_m715CEF35DA
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayChipBet_m7B8A32A775D1C0FABAF0C9D8973D23E98DE6FD03 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:365>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:374>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___chipBet;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20886,7 +20904,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayChipBet_m7B8A32A775D1C0
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayChipWin_m77F730AFB065F97D0D3AD45A420C1EBEE3B47B7A (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:366>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:375>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___chipWin;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20896,7 +20914,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayChipWin_m77F730AFB065F9
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayAllIn_mA6E30C39BDB62816821EB0E23562B31DEA567D99 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:367>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:376>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___allIn;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20906,7 +20924,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayAllIn_mA6E30C39BDB62816
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayFold_m3758C24835F644E9090C186251199B3D955DC831 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:370>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:379>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___fold;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20916,7 +20934,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayFold_m3758C24835F644E90
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCheck_m32D967C77EE52B06D8F3C00E5CD547D7246DA5C6 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:371>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:380>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___check;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20926,7 +20944,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCheck_m32D967C77EE52B06
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCall_m18733EA310418421247A316296FD320651478615 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:372>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:381>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___call;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20936,7 +20954,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCall_m18733EA3104184212
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayRaise_mEEF919FAE140E64CE6E8CFEA3A8E4CEF888728F1 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:373>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:382>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___raise;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -20946,7 +20964,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayRaise_mEEF919FAE140E64C
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayButtonClick_m25A68675CC5AE1DC4620C2091B70FC867AD7B7B4 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:376>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:385>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___buttonClick;
 		AudioManager_PlayUI_mD905B2D5503FEA3FA5281DB843F82DB3B9CEA48C(__this, L_0, (1.0f), NULL);
 		return;
@@ -20956,7 +20974,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayButtonClick_m25A68675CC
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayButtonHover_m03D3DC024B92F27049801A07E076F000C630C73B (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:377>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:386>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___buttonHover;
 		AudioManager_PlayUI_mD905B2D5503FEA3FA5281DB843F82DB3B9CEA48C(__this, L_0, (1.0f), NULL);
 		return;
@@ -20966,7 +20984,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayButtonHover_m03D3DC024B
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayNotification_m9B45CB4EC6D75552A1C0BBDD88C54001B151911E (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:378>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:387>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___notification;
 		AudioManager_PlayUI_mD905B2D5503FEA3FA5281DB843F82DB3B9CEA48C(__this, L_0, (1.0f), NULL);
 		return;
@@ -20976,7 +20994,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayNotification_m9B45CB4EC
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayError_m0734C8F2ADD521BE99ADFF23D72073E2AB6D3B58 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:379>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:388>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___error;
 		AudioManager_PlayUI_mD905B2D5503FEA3FA5281DB843F82DB3B9CEA48C(__this, L_0, (1.0f), NULL);
 		return;
@@ -20986,7 +21004,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayError_m0734C8F2ADD521BE
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlaySuccess_m183C8AF19445A708D265A7EDD785BAA380ABC673 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:380>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:389>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___success;
 		AudioManager_PlayUI_mD905B2D5503FEA3FA5281DB843F82DB3B9CEA48C(__this, L_0, (1.0f), NULL);
 		return;
@@ -20996,7 +21014,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlaySuccess_m183C8AF19445A7
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayHandWin_m581F61524BAC857E78D9C478AE8E0D6068C26CB8 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:383>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:392>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___handWin;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -21006,7 +21024,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayHandWin_m581F61524BAC85
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayHandLose_m1F806E43DE610897FEAE2222413527C7DDECCE4E (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:384>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:393>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___handLose;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -21016,7 +21034,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayHandLose_m1F806E43DE610
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayRoyalFlush_mDF0B10844024EAEAB300E40B73B4376EF2306EB6 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:385>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:394>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___royalFlush;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.20000005f), NULL);
 		return;
@@ -21026,7 +21044,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayRoyalFlush_mDF0B1084402
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayBossAppear_mA06DE53210A4A5B370DD5A3886F4008CD28C627B (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:388>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:397>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___bossAppear;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -21036,7 +21054,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayBossAppear_mA06DE53210A
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayBossDefeat_m65C645AD1CB7560391E08E3DE5BD52552E46B74E (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:389>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:398>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___bossDefeat;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -21046,7 +21064,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayBossDefeat_m65C645AD1CB
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayLevelUp_m2D7DC0A9354768BC4C493971C17B78A8028E3F94 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:390>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:399>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___levelUp;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -21056,7 +21074,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayLevelUp_m2D7DC0A9354768
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayItemDrop_m521D156C88772BAC82853D1F08799DF586A9100F (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:391>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:400>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___itemDrop;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
 		return;
@@ -21066,7 +21084,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayItemDrop_m521D156C88772
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayRareItemDrop_mE7A8B1A020D9F5BFCAAB42388437AFD86E672656 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:392>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:401>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___rareItemDrop;
 		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.20000005f), NULL);
 		return;
@@ -21075,20 +21093,78 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayRareItemDrop_mE7A8B1A02
 // Method Definition Index: 80339
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayCountdownBeep_m508FA6D364F7D4960F245AB49AA933B34BEC66B0 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:395>
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral9465042507B03BE76D6FA1F33E2B3FF5DEA4AA26);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:406>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___countdownBeep;
-		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_1;
+		L_1 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_0, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_1)
+		{
+			goto IL_0019;
+		}
+	}
+	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:408>
+		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
+		Debug_LogWarning_m33EF1B897E0C7C6FF538989610BFAFFEF4628CA9(_stringLiteral9465042507B03BE76D6FA1F33E2B3FF5DEA4AA26, NULL);
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:409>
+		return;
+	}
+
+IL_0019:
+	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:411>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_2 = __this->___countdownBeep;
+		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_2, (1.0f), NULL);
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:412>
 		return;
 	}
 }
 // Method Definition Index: 80340
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayReadyToRumble_mB1E9BBAE64EDF6CEFE3F56BC3AAE66E604CAD07C (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:396>
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralAB928FC32CE7B5B015BE07A2E419934041DBBD29);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:416>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___readyToRumble;
-		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_0, (1.0f), NULL);
+		il2cpp_codegen_runtime_class_init_inline(Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C_il2cpp_TypeInfo_var);
+		bool L_1;
+		L_1 = Object_op_Equality_mB6120F782D83091EF56A198FCEBCF066DB4A9605(L_0, (Object_tC12DECB6760A7F2CBF65D9DCF18D044C2D97152C*)NULL, NULL);
+		if (!L_1)
+		{
+			goto IL_0019;
+		}
+	}
+	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:418>
+		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
+		Debug_LogWarning_m33EF1B897E0C7C6FF538989610BFAFFEF4628CA9(_stringLiteralAB928FC32CE7B5B015BE07A2E419934041DBBD29, NULL);
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:419>
+		return;
+	}
+
+IL_0019:
+	{
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:421>
+		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_2 = __this->___readyToRumble;
+		AudioManager_PlaySFX_m5114E470A377648C4578780ECDDE3AA5959D48EA(__this, L_2, (1.0f), NULL);
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:422>
 		return;
 	}
 }
@@ -21096,7 +21172,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayReadyToRumble_mB1E9BBAE
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayMenuMusic_mBF18749214DC3B78464FD82D51827AE6F96A6C38 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:399>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:425>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___menuMusic;
 		AudioManager_PlayMusic_m49942EBD8C2185E337230F29859629A188A4F7AF(__this, L_0, (bool)1, NULL);
 		return;
@@ -21106,7 +21182,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayMenuMusic_mBF18749214DC
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayLobbyMusic_m5E87A6EE8B31D50839C8F2E07A9C4A54FF76DA42 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:400>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:426>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___lobbyMusic;
 		AudioManager_PlayMusic_m49942EBD8C2185E337230F29859629A188A4F7AF(__this, L_0, (bool)1, NULL);
 		return;
@@ -21116,7 +21192,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayLobbyMusic_m5E87A6EE8B3
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayTableMusic_m45313D235DEDB53143E6331765222DCA243EACA9 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:401>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:427>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___tableMusic;
 		AudioManager_PlayMusic_m49942EBD8C2185E337230F29859629A188A4F7AF(__this, L_0, (bool)1, NULL);
 		return;
@@ -21126,7 +21202,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayTableMusic_m45313D235DE
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayAdventureMusic_m5F819DDE85E544802E652C0E3535D5655BE1A3E3 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:402>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:428>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___adventureMusic;
 		AudioManager_PlayMusic_m49942EBD8C2185E337230F29859629A188A4F7AF(__this, L_0, (bool)1, NULL);
 		return;
@@ -21136,7 +21212,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayAdventureMusic_m5F819DD
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayBossMusic_m6666F6575B863E1DA97665C801C9E544EF87A533 (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:403>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:429>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___bossMusic;
 		AudioManager_PlayMusic_m49942EBD8C2185E337230F29859629A188A4F7AF(__this, L_0, (bool)1, NULL);
 		return;
@@ -21146,7 +21222,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayBossMusic_m6666F6575B86
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayVictoryMusic_m82A77A2D3B7EADE72FD5FC781332C96B60EEA7AC (AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* __this, const RuntimeMethod* method) 
 {
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:404>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:430>
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_0 = __this->___victoryMusic;
 		AudioManager_PlayMusic_m49942EBD8C2185E337230F29859629A188A4F7AF(__this, L_0, (bool)1, NULL);
 		return;
@@ -21171,7 +21247,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void AudioManager_PlayPokerAction_mE0D2110DB2
 	uint32_t V_1 = 0;
 	String_t* G_B3_0 = NULL;
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:415>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:441>
 		String_t* L_0 = ___0_action;
 		if (L_0)
 		{
@@ -21375,45 +21451,45 @@ IL_00b3:
 
 IL_00c1:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:418>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:444>
 		AudioManager_PlayFold_m3758C24835F644E9090C186251199B3D955DC831(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:419>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:445>
 		return;
 	}
 
 IL_00c8:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:421>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:447>
 		AudioManager_PlayCheck_m32D967C77EE52B06D8F3C00E5CD547D7246DA5C6(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:422>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:448>
 		return;
 	}
 
 IL_00cf:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:424>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:450>
 		AudioManager_PlayCall_m18733EA310418421247A316296FD320651478615(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:425>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:451>
 		AudioManager_PlayChipBet_m7B8A32A775D1C0FABAF0C9D8973D23E98DE6FD03(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:426>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:452>
 		return;
 	}
 
 IL_00dc:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:429>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:455>
 		AudioManager_PlayRaise_mEEF919FAE140E64CE6E8CFEA3A8E4CEF888728F1(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:430>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:456>
 		AudioManager_PlayChipBet_m7B8A32A775D1C0FABAF0C9D8973D23E98DE6FD03(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:431>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:457>
 		return;
 	}
 
 IL_00e9:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:434>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:460>
 		AudioManager_PlayAllIn_mA6E30C39BDB62816821EB0E23562B31DEA567D99(__this, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:437>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:463>
 		return;
 	}
 }
@@ -21490,9 +21566,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CCrossfadeMusicU3Ed__68_MoveNext_m778E
 IL_0022:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:302>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:311>
 		__this->___U3CfadeTimeU3E5__2 = (1.0f);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:303>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:312>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_3 = V_1;
 		NullCheck(L_3);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_4 = L_3->___musicSource;
@@ -21500,14 +21576,14 @@ IL_0022:
 		float L_5;
 		L_5 = AudioSource_get_volume_m9CCF33BC636562EA282FDE07463B547D70134EE3(L_4, NULL);
 		__this->___U3CstartVolumeU3E5__3 = L_5;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:306>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:315>
 		__this->___U3CtU3E5__4 = (0.0f);
 		goto IL_00a3;
 	}
 
 IL_0052:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:308>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:317>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_6 = V_1;
 		NullCheck(L_6);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_7 = L_6->___musicSource;
@@ -21518,7 +21594,7 @@ IL_0052:
 		L_11 = Mathf_Lerp_m47EF2FFB7647BD0A1FDC26DC03E28B19812139B5_inline(L_8, (0.0f), ((float)(L_9/L_10)), NULL);
 		NullCheck(L_7);
 		AudioSource_set_volume_mD902BBDBBDE0E3C148609BF3C05096148E90F2C0(L_7, L_11, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:309>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:318>
 		__this->___U3CU3E2__current = NULL;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CU3E2__current), (void*)NULL);
 		__this->___U3CU3E1__state = 1;
@@ -21528,7 +21604,7 @@ IL_0052:
 IL_008a:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:306>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:315>
 		float L_12 = __this->___U3CtU3E5__4;
 		float L_13;
 		L_13 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
@@ -21537,7 +21613,7 @@ IL_008a:
 
 IL_00a3:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:306>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:315>
 		float L_14 = __this->___U3CtU3E5__4;
 		float L_15 = __this->___U3CfadeTimeU3E5__2;
 		if ((((float)L_14) < ((float)L_15)))
@@ -21546,27 +21622,27 @@ IL_00a3:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:313>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:322>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_16 = V_1;
 		NullCheck(L_16);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_17 = L_16->___musicSource;
 		AudioClip_t5D272C4EB4F2D3ED49F1C346DEA373CF6D585F20* L_18 = __this->___newClip;
 		NullCheck(L_17);
 		AudioSource_set_clip_mFF441895E274286C88D9C75ED5CA1B1B39528D70(L_17, L_18, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:314>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:323>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_19 = V_1;
 		NullCheck(L_19);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_20 = L_19->___musicSource;
 		NullCheck(L_20);
 		AudioSource_Play_m95DF07111C61D0E0F00257A00384D31531D590C3(L_20, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:316>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:325>
 		__this->___U3CtU3E5__4 = (0.0f);
 		goto IL_0132;
 	}
 
 IL_00da:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:318>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:327>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_21 = V_1;
 		NullCheck(L_21);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_22 = L_21->___musicSource;
@@ -21582,7 +21658,7 @@ IL_00da:
 		L_29 = Mathf_Lerp_m47EF2FFB7647BD0A1FDC26DC03E28B19812139B5_inline((0.0f), ((float)il2cpp_codegen_multiply(L_24, L_26)), ((float)(L_27/L_28)), NULL);
 		NullCheck(L_22);
 		AudioSource_set_volume_mD902BBDBBDE0E3C148609BF3C05096148E90F2C0(L_22, L_29, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:319>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:328>
 		__this->___U3CU3E2__current = NULL;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CU3E2__current), (void*)NULL);
 		__this->___U3CU3E1__state = 2;
@@ -21592,7 +21668,7 @@ IL_00da:
 IL_0119:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:316>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:325>
 		float L_30 = __this->___U3CtU3E5__4;
 		float L_31;
 		L_31 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
@@ -21601,7 +21677,7 @@ IL_0119:
 
 IL_0132:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:316>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:325>
 		float L_32 = __this->___U3CtU3E5__4;
 		float L_33 = __this->___U3CfadeTimeU3E5__2;
 		if ((((float)L_32) < ((float)L_33)))
@@ -21610,7 +21686,7 @@ IL_0132:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:322>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:331>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_34 = V_1;
 		NullCheck(L_34);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_35 = L_34->___musicSource;
@@ -21622,7 +21698,7 @@ IL_0132:
 		float L_39 = L_38->___musicVolume;
 		NullCheck(L_35);
 		AudioSource_set_volume_mD902BBDBBDE0E3C148609BF3C05096148E90F2C0(L_35, ((float)il2cpp_codegen_multiply(L_37, L_39)), NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:323>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:332>
 		return (bool)0;
 	}
 }
@@ -21706,9 +21782,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool U3CFadeOutMusicU3Ed__70_MoveNext_mAC1CC6
 IL_0017:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:342>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:351>
 		__this->___U3CfadeTimeU3E5__2 = (1.0f);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:343>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:352>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_4 = V_1;
 		NullCheck(L_4);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_5 = L_4->___musicSource;
@@ -21716,14 +21792,14 @@ IL_0017:
 		float L_6;
 		L_6 = AudioSource_get_volume_m9CCF33BC636562EA282FDE07463B547D70134EE3(L_5, NULL);
 		__this->___U3CstartVolumeU3E5__3 = L_6;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:345>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:354>
 		__this->___U3CtU3E5__4 = (0.0f);
 		goto IL_0098;
 	}
 
 IL_0047:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:347>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:356>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_7 = V_1;
 		NullCheck(L_7);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_8 = L_7->___musicSource;
@@ -21734,7 +21810,7 @@ IL_0047:
 		L_12 = Mathf_Lerp_m47EF2FFB7647BD0A1FDC26DC03E28B19812139B5_inline(L_9, (0.0f), ((float)(L_10/L_11)), NULL);
 		NullCheck(L_8);
 		AudioSource_set_volume_mD902BBDBBDE0E3C148609BF3C05096148E90F2C0(L_8, L_12, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:348>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:357>
 		__this->___U3CU3E2__current = NULL;
 		Il2CppCodeGenWriteBarrier((void**)(&__this->___U3CU3E2__current), (void*)NULL);
 		__this->___U3CU3E1__state = 1;
@@ -21744,7 +21820,7 @@ IL_0047:
 IL_007f:
 	{
 		__this->___U3CU3E1__state = (-1);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:345>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:354>
 		float L_13 = __this->___U3CtU3E5__4;
 		float L_14;
 		L_14 = Time_get_deltaTime_mC3195000401F0FD167DD2F948FD2BC58330D0865(NULL);
@@ -21753,7 +21829,7 @@ IL_007f:
 
 IL_0098:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:345>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:354>
 		float L_15 = __this->___U3CtU3E5__4;
 		float L_16 = __this->___U3CfadeTimeU3E5__2;
 		if ((((float)L_15) < ((float)L_16)))
@@ -21762,13 +21838,13 @@ IL_0098:
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:351>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:360>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_17 = V_1;
 		NullCheck(L_17);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_18 = L_17->___musicSource;
 		NullCheck(L_18);
 		AudioSource_Stop_m318F17F17A147C77FF6E0A5A7A6BE057DB90F537(L_18, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:352>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:361>
 		AudioManager_tC891D6FEAB8BB48073C23A99B9D51E4686F866C3* L_19 = V_1;
 		NullCheck(L_19);
 		AudioSource_t871AC2272F896738252F04EE949AEF5B241D3299* L_20 = L_19->___musicSource;
@@ -21780,7 +21856,7 @@ IL_0098:
 		float L_24 = L_23->___musicVolume;
 		NullCheck(L_20);
 		AudioSource_set_volume_mD902BBDBBDE0E3C148609BF3C05096148E90F2C0(L_20, ((float)il2cpp_codegen_multiply(L_22, L_24)), NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:353>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Core/AudioManager.cs:362>
 		return (bool)0;
 	}
 }
