@@ -224,10 +224,20 @@ namespace PokerClient.UI.Components
             // Update status
             UpdateStatus(seat.isFolded, seat.isAllIn, seat.isConnected);
             
-            // Update cards
-            if (seat.cards != null && seat.cards.Count > 0)
+            // Update cards - clear when folded or no cards
+            if (seat.isFolded)
+            {
+                // Folded players don't show cards
+                ClearCards();
+            }
+            else if (seat.cards != null && seat.cards.Count > 0)
             {
                 SetCards(seat.cards);
+            }
+            else
+            {
+                // No cards to show (waiting phase, etc.)
+                ClearCards();
             }
         }
         
