@@ -451,27 +451,52 @@ namespace PokerClient.UI.Components
             _nameText.color = info.isFolded ? Theme.Current.textSecondary : Theme.Current.textPrimary;
             _chipsText.text = ChipStack.FormatChipValueFull((int)info.chips);
             
-            // Hole cards - log each card position
-            Debug.Log($"[SEAT-VIEW] Updating cards | player={info.name} | cards={info.cards?.Count ?? 0}");
-            if (info.cards != null && info.cards.Count > 0)
+            // CRITICAL FIX: Check folded state FIRST before touching cards
+            // This prevents the animation race condition where SetCard starts animation
+            // and then SetEmpty tries to stop it but animation is already running
+            if (info.isFolded)
             {
-                for (int i = 0; i < _holeCards.Count && i < info.cards.Count; i++)
+                Debug.Log($"[SEAT-VIEW] Player FOLDED - clearing cards | player={info.name}");
+                _background.color = new Color(0.15f, 0.15f, 0.15f, 0.7f);
+                foreach (var card in _holeCards)
                 {
-                    if (info.cards[i] != null)
-                    {
-                        _holeCards[i].SetCard(info.cards[i]);
-                    }
-                    else
-                    {
-                        _holeCards[i].SetHidden();
-                    }
+                    card.SetEmpty();
                 }
             }
             else
             {
-                foreach (var card in _holeCards)
+                // Hole cards - only update if NOT folded
+                Debug.Log($"[SEAT-VIEW] Updating cards | player={info.name} | cards={info.cards?.Count ?? 0}");
+                if (info.cards != null && info.cards.Count > 0)
                 {
-                    card.SetHidden();
+                    for (int i = 0; i < _holeCards.Count && i < info.cards.Count; i++)
+                    {
+                        if (info.cards[i] != null)
+                        {
+                            _holeCards[i].SetCard(info.cards[i]);
+                        }
+                        else
+                        {
+                            _holeCards[i].SetHidden();
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (var card in _holeCards)
+                    {
+                        card.SetHidden();
+                    }
+                }
+                
+                // Background color for non-folded players
+                if (info.isAllIn)
+                {
+                    _background.color = new Color(0.5f, 0.2f, 0.2f, 0.8f);
+                }
+                else
+                {
+                    _background.color = Theme.Current.cardPanelColor;
                 }
             }
             
@@ -493,24 +518,6 @@ namespace PokerClient.UI.Components
             
             // Dealer button
             _dealerButton.SetActive(isDealer);
-            
-            // Folded state
-            if (info.isFolded)
-            {
-                _background.color = new Color(0.15f, 0.15f, 0.15f, 0.7f);
-                foreach (var card in _holeCards)
-                {
-                    card.SetEmpty();
-                }
-            }
-            else if (info.isAllIn)
-            {
-                _background.color = new Color(0.5f, 0.2f, 0.2f, 0.8f);
-            }
-            else
-            {
-                _background.color = Theme.Current.cardPanelColor;
-            }
         }
         
         public void ShowAction(string action, int? amount)
@@ -774,10 +781,33 @@ namespace PokerClient.UI.Components
         
         public void SetHidden()
         {
+            Debug.Log($"[CARD-VIEW] SetHidden called | wasHidden={_wasHidden} | " +
+                $"hasAnimation={_animationCoroutine != null} | pos={_rect?.anchoredPosition} | " +
+                $"parent={transform.parent?.name ?? "null"}");
+            
+            // CRITICAL: Stop any running animation FIRST
+            if (_animationCoroutine != null)
+            {
+                StopCoroutine(_animationCoroutine);
+                _animationCoroutine = null;
+                Debug.Log($"[CARD-VIEW] Stopped running animation on SetHidden");
+            }
+            
             _wasHidden = true;
             gameObject.SetActive(true);
             _rankText.gameObject.SetActive(false);
             _suitText.gameObject.SetActive(false);
+            
+            // Reset transform to prevent lingering animation state
+            if (_rect != null)
+            {
+                _rect.localScale = Vector3.one;
+                _rect.localRotation = Quaternion.identity;
+                if (_hasOriginalPosition)
+                {
+                    _rect.anchoredPosition = _originalPosition;
+                }
+            }
             
             // Try to use card back sprite
             if (SpriteManager.Instance != null)
@@ -798,6 +828,19 @@ namespace PokerClient.UI.Components
         
         public void SetEmpty()
         {
+            Debug.Log($"[CARD-VIEW] SetEmpty called | wasEmpty={_wasEmpty} | wasHidden={_wasHidden} | " +
+                $"hasAnimation={_animationCoroutine != null} | pos={_rect?.anchoredPosition} | " +
+                $"parent={transform.parent?.name ?? "null"}");
+            
+            // CRITICAL: Stop any running animation FIRST
+            // This prevents the "animating placeholder" bug for folded players
+            if (_animationCoroutine != null)
+            {
+                StopCoroutine(_animationCoroutine);
+                _animationCoroutine = null;
+                Debug.Log($"[CARD-VIEW] Stopped running animation on SetEmpty");
+            }
+            
             _wasEmpty = true;
             _wasHidden = false;
             gameObject.SetActive(true);
@@ -808,11 +851,17 @@ namespace PokerClient.UI.Components
             _suitText.gameObject.SetActive(false);
             // DO NOT reset sizeDelta here - let the caller control the size
             
-            // Reset transform for animation
+            // Reset transform for animation - CRITICAL: also reset position to prevent drift
             if (_rect != null)
             {
                 _rect.localScale = Vector3.one;
                 _rect.localRotation = Quaternion.identity;
+                // Reset to original position if we have it stored
+                if (_hasOriginalPosition)
+                {
+                    _rect.anchoredPosition = _originalPosition;
+                    Debug.Log($"[CARD-VIEW] Reset to original position: {_originalPosition}");
+                }
             }
         }
         
