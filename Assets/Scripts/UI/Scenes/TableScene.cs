@@ -1073,12 +1073,30 @@ namespace PokerClient.UI.Scenes
         
         private void OnStartGameClick()
         {
-            Debug.Log("[TableScene] Start Game clicked!");
+            Debug.Log($"[TableScene] START GAME CLICKED | isSimulation={_isSimulation}, isCreator={_isTableCreator}, mySeatIndex={_mySeatIndex}");
+            
+            // Disable button immediately to prevent double-clicks
+            if (_startGameButton != null)
+            {
+                var btn = _startGameButton.GetComponentInChildren<Button>();
+                if (btn != null) btn.interactable = false;
+            }
+            
             _gameService.StartGame((success, error) =>
             {
-                if (!success)
+                if (success)
                 {
-                    Debug.LogError($"Failed to start game: {error}");
+                    Debug.Log("[TableScene] START GAME SUCCESS - ready-up phase should begin");
+                }
+                else
+                {
+                    Debug.LogError($"[TableScene] START GAME FAILED | Error: {error}");
+                    // Re-enable button on failure
+                    if (_startGameButton != null)
+                    {
+                        var btn = _startGameButton.GetComponentInChildren<Button>();
+                        if (btn != null) btn.interactable = true;
+                    }
                 }
             });
         }
@@ -1105,6 +1123,14 @@ namespace PokerClient.UI.Scenes
             
             // Show START GAME button for creator during waiting phase
             bool showStartButton = state.phase == "waiting" && isCreator && state.totalPlayerCount >= 2;
+            
+            // Log state changes for debugging
+            bool wasShowing = _startGameButton?.activeSelf ?? false;
+            if (showStartButton != wasShowing)
+            {
+                Debug.Log($"[TableScene] START BUTTON STATE CHANGE | show={showStartButton}, phase={state.phase}, isCreator={isCreator}, players={state.totalPlayerCount}, isSimulation={state.isSimulation}");
+            }
+            
             _startGameButton?.SetActive(showStartButton);
             
             // Show READY overlay during ready_up phase (not for bots, spectators, or if already ready)
