@@ -103,6 +103,7 @@ namespace PokerClient.UI.Scenes
         
         // Track phase changes to show phase announcements
         private string _previousPhase = "";
+        private bool _playedReadyToRumble = false; // Track if we've played the ready to rumble sound
         
         private void Start()
         {
@@ -1160,7 +1161,9 @@ namespace PokerClient.UI.Scenes
             
             // Detect phase change and show phase announcement
             // CRITICAL: Check for countdown START before updating _previousPhase
-            bool justStartedCountdown = (state.phase == "countdown" && _previousPhase != "countdown" && state.startCountdownRemaining == 10);
+            // Check if countdown just started (phase changed to countdown AND countdown >= 10)
+            // Use >= instead of == because timing might cause it to be 9 or 10 on first update
+            bool justStartedCountdown = (state.phase == "countdown" && _previousPhase != "countdown" && state.startCountdownRemaining >= 10);
             
             if (!string.IsNullOrEmpty(state.phase) && state.phase != _previousPhase)
             {
@@ -1186,18 +1189,27 @@ namespace PokerClient.UI.Scenes
             
             // Play "Let's get ready to rumble!" when countdown first starts
             // CRITICAL: Check this BEFORE _previousPhase is updated above
-            if (justStartedCountdown)
+            // Also check if countdown is at 10 (even if we've seen countdown phase before)
+            // This handles cases where the first update arrives after phase change
+            if (justStartedCountdown || (state.phase == "countdown" && state.startCountdownRemaining == 10 && !_playedReadyToRumble))
             {
-                // Countdown just started - play the announcement
-                Debug.Log("[TableScene] Playing 'Ready to Rumble' sound");
+                // Countdown just started or reached 10 - play the announcement
+                Debug.Log($"[TableScene] Playing 'Ready to Rumble' sound - justStarted={justStartedCountdown}, countdown={state.startCountdownRemaining}, previousPhase={_previousPhase}");
                 if (Core.AudioManager.Instance != null)
                 {
                     Core.AudioManager.Instance.PlayReadyToRumble();
+                    _playedReadyToRumble = true; // Mark as played so we don't play it again
                 }
                 else
                 {
                     Debug.LogWarning("[TableScene] AudioManager.Instance is null - cannot play Ready to Rumble sound");
                 }
+            }
+            
+            // Reset the flag when countdown ends
+            if (state.phase != "countdown" && _playedReadyToRumble)
+            {
+                _playedReadyToRumble = false;
             }
             
             // Update ready-up UI (START GAME button, READY overlay)
