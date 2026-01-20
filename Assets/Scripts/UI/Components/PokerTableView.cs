@@ -558,6 +558,8 @@ namespace PokerClient.UI.Components
         private bool _wasEmpty = true;
         private bool _wasHidden = false;
         private Coroutine _animationCoroutine = null; // Track running animation
+        private Vector3 _originalPosition; // Store original position to prevent drift during animation
+        private bool _hasOriginalPosition = false;
         
         public static CardView Create(Transform parent, string name, Vector2? size = null)
         {
@@ -625,18 +627,25 @@ namespace PokerClient.UI.Components
             {
                 StopCoroutine(_animationCoroutine);
                 _animationCoroutine = null;
-                // Reset to final position if animation was interrupted
-                // CRITICAL: Restore to normal scale (1,1,1) and position to prevent cards from staying small/offset
+                // Reset to ORIGINAL position if animation was interrupted
+                // This prevents the position drift bug where mid-animation positions accumulate
                 if (_rect != null)
                 {
-                    // Get the final target scale (should be 1,1,1 normally, but preserve actual scale)
-                    Vector3 finalScale = Vector3.one; // Cards should be normal size
-                    // Restore to normal position/scale/rotation
-                    _rect.localScale = finalScale;
+                    _rect.localScale = Vector3.one;
                     _rect.localRotation = Quaternion.identity;
-                    // Position should already be correct, but ensure it's set
-                    // Don't reset position here - it should already be at target position
+                    // CRITICAL FIX: Reset to original position to prevent drift
+                    if (_hasOriginalPosition)
+                    {
+                        _rect.anchoredPosition = _originalPosition;
+                    }
                 }
+            }
+            
+            // Store original position if not already stored
+            if (!_hasOriginalPosition && _rect != null)
+            {
+                _originalPosition = _rect.anchoredPosition;
+                _hasOriginalPosition = true;
             }
             
             bool wasEmpty = _wasEmpty;
@@ -714,10 +723,10 @@ namespace PokerClient.UI.Components
         
         private System.Collections.IEnumerator AnimateCardReveal()
         {
-            // Store target position and scale - CRITICAL: Get current position as target
-            // Cards should animate to their normal size (1,1,1) and current position
-            Vector3 targetPosition = _rect.anchoredPosition;
-            Vector3 targetScale = Vector3.one; // Always animate to normal size (1,1,1), not current scale
+            // CRITICAL FIX: Use stored original position as target, NOT current position
+            // This prevents the drift bug where mid-animation positions would accumulate
+            Vector3 targetPosition = _hasOriginalPosition ? _originalPosition : _rect.anchoredPosition;
+            Vector3 targetScale = Vector3.one; // Always animate to normal size (1,1,1)
             
             // Start animation: card slides down from above, flips, and scales up
             float duration = 0.4f;
