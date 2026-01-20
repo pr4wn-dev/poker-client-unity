@@ -183,6 +183,14 @@ namespace PokerClient.UI.Components
         /// </summary>
         public void SetCard(Card card)
         {
+            var rect = GetComponent<RectTransform>();
+            var parentName = transform.parent?.name ?? "null";
+            
+            Debug.Log($"[CARD-VISUAL] SetCard(Card) | card={(card != null ? $"{card.rank}{card.suit}" : "null")} | " +
+                $"hidden={card?.IsHidden ?? true} | parent={parentName} | " +
+                $"pos={rect?.anchoredPosition} | size={rect?.sizeDelta} | " +
+                $"anchors=({rect?.anchorMin}, {rect?.anchorMax}) | pivot={rect?.pivot}");
+            
             if (card == null || card.IsHidden)
             {
                 SetFaceDown(true);
@@ -199,6 +207,11 @@ namespace PokerClient.UI.Components
         {
             _rank = rank;
             _suit = suit?.ToLower();
+            
+            var rect = GetComponent<RectTransform>();
+            Debug.Log($"[CARD-VISUAL] SetCard(string) | {rank}{suit} | " +
+                $"pos={rect?.anchoredPosition} | size={rect?.sizeDelta} | " +
+                $"localPos={transform.localPosition} | worldPos={transform.position}");
             
             // Try to get sprite from SpriteManager
             if (SpriteManager.Instance != null)
@@ -250,7 +263,12 @@ namespace PokerClient.UI.Components
         /// </summary>
         public void SetFaceDown(bool faceDown)
         {
+            var rect = GetComponent<RectTransform>();
+            var prevFaceDown = _isFaceDown;
             _isFaceDown = faceDown;
+            
+            Debug.Log($"[CARD-VISUAL] SetFaceDown | {prevFaceDown} -> {faceDown} | " +
+                $"card={_rank}{_suit} | pos={rect?.anchoredPosition} | size={rect?.sizeDelta}");
             
             // Show face content when face up
             if (faceContent != null)

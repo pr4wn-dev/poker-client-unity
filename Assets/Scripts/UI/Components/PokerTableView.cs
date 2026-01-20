@@ -169,6 +169,11 @@ namespace PokerClient.UI.Components
         {
             if (state == null) return;
             
+            // Log for comparing normal vs simulation
+            Debug.Log($"[TABLE-VIEW] UpdateFromState | phase={state.phase} | isSimulation={state.isSimulation} | " +
+                $"mySeatIndex={mySeatIndex} | seatCount={state.seats?.Count ?? 0} | " +
+                $"communityCards={state.communityCards?.Count ?? 0}");
+            
             // Update pot
             _potText.text = $"Pot: {ChipStack.FormatChipValue((int)state.pot)}";
             
@@ -429,6 +434,12 @@ namespace PokerClient.UI.Components
         
         public void UpdateFromState(SeatInfo info, bool isCurrentTurn, bool isDealer)
         {
+            // Log for comparing normal vs simulation card positions
+            Debug.Log($"[SEAT-VIEW] UpdateFromState | player={info?.name ?? "null"} | " +
+                $"cardCount={info?.cards?.Count ?? 0} | isFolded={info?.isFolded} | isAllIn={info?.isAllIn} | " +
+                $"seatPos={GetComponent<RectTransform>()?.anchoredPosition} | " +
+                $"seatSize={GetComponent<RectTransform>()?.sizeDelta}");
+            
             if (info == null)
             {
                 SetEmpty();
@@ -440,7 +451,8 @@ namespace PokerClient.UI.Components
             _nameText.color = info.isFolded ? Theme.Current.textSecondary : Theme.Current.textPrimary;
             _chipsText.text = ChipStack.FormatChipValueFull((int)info.chips);
             
-            // Hole cards
+            // Hole cards - log each card position
+            Debug.Log($"[SEAT-VIEW] Updating cards | player={info.name} | cards={info.cards?.Count ?? 0}");
             if (info.cards != null && info.cards.Count > 0)
             {
                 for (int i = 0; i < _holeCards.Count && i < info.cards.Count; i++)
@@ -595,6 +607,12 @@ namespace PokerClient.UI.Components
         
         public void SetCard(Card card)
         {
+            // Log card position for debugging normal vs simulation differences
+            Debug.Log($"[CARD-VIEW] SetCard | card={(card != null ? $"{card.rank}{card.suit}" : "null")} | " +
+                $"hidden={card?.IsHidden ?? true} | pos={_rect?.anchoredPosition} | size={_rect?.sizeDelta} | " +
+                $"scale={_rect?.localScale} | rotation={_rect?.localRotation.eulerAngles} | " +
+                $"parent={transform.parent?.name ?? "null"}");
+            
             if (card == null || card.IsHidden)
             {
                 SetHidden();

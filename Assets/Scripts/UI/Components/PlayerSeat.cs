@@ -173,6 +173,12 @@ namespace PokerClient.UI.Components
         /// </summary>
         public void SetPlayer(SeatInfo seat)
         {
+            var seatRect = GetComponent<RectTransform>();
+            Debug.Log($"[PLAYER-SEAT] SetPlayer | seatIndex={seat?.index ?? -1} | " +
+                $"player={seat?.name ?? "null"} | cardCount={seat?.cards?.Count ?? 0} | " +
+                $"isFolded={seat?.isFolded} | isAllIn={seat?.isAllIn} | " +
+                $"seatPos={seatRect?.anchoredPosition} | seatSize={seatRect?.sizeDelta}");
+            
             if (seat == null)
             {
                 SetEmpty();
@@ -311,15 +317,26 @@ namespace PokerClient.UI.Components
         /// </summary>
         public void SetCards(List<Card> cards)
         {
+            var containerRect = cardsContainer?.GetComponent<RectTransform>();
+            Debug.Log($"[PLAYER-SEAT] SetCards START | seat={_seatIndex} | player={nameText?.text} | " +
+                $"cardCount={cards?.Count ?? 0} | containerPos={containerRect?.anchoredPosition} | " +
+                $"containerSize={containerRect?.sizeDelta} | " +
+                $"containerAnchors=({containerRect?.anchorMin}, {containerRect?.anchorMax})");
+            
             ClearCards();
             
             if (cards == null) return;
             
+            int cardIndex = 0;
             foreach (var card in cards)
             {
                 var cardVisual = CardVisual.Create(cardsContainer.transform);
                 var cardRect = cardVisual.GetComponent<RectTransform>();
                 cardRect.sizeDelta = new Vector2(45, 65); // Smaller cards for seat
+                
+                Debug.Log($"[PLAYER-SEAT] Card created | seat={_seatIndex} | cardIndex={cardIndex} | " +
+                    $"card={(card != null && !card.IsHidden ? $"{card.rank}{card.suit}" : "HIDDEN")} | " +
+                    $"cardPos={cardRect.anchoredPosition} | cardSize={cardRect.sizeDelta}");
                 
                 if (card != null && !card.IsHidden)
                 {
@@ -331,7 +348,10 @@ namespace PokerClient.UI.Components
                 }
                 
                 _cards.Add(cardVisual);
+                cardIndex++;
             }
+            
+            Debug.Log($"[PLAYER-SEAT] SetCards END | seat={_seatIndex} | totalCards={_cards.Count}");
         }
         
         /// <summary>
