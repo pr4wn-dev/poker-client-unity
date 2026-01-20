@@ -58,6 +58,10 @@ namespace PokerClient.Core
         public AudioClip turnTimer;
         public AudioClip turnTimerWarning;
         
+        [Header("Countdown Sounds")]
+        public AudioClip countdownBeep;
+        public AudioClip readyToRumble; // "Let's get ready to rumble!" sound
+        
         [Header("UI Sounds")]
         public AudioClip buttonClick;
         public AudioClip buttonHover;
@@ -138,6 +142,10 @@ namespace PokerClient.Core
             if (raise == null) raise = Resources.Load<AudioClip>("Audio/SFX/raise");
             if (turnTimer == null) turnTimer = Resources.Load<AudioClip>("Audio/SFX/timer_tick");
             if (turnTimerWarning == null) turnTimerWarning = Resources.Load<AudioClip>("Audio/SFX/timer_warning");
+            
+            // SFX - Countdown sounds
+            if (countdownBeep == null) countdownBeep = Resources.Load<AudioClip>("Audio/SFX/countdown_beep");
+            if (readyToRumble == null) readyToRumble = Resources.Load<AudioClip>("Audio/SFX/ready_to_rumble");
             
             // SFX - UI sounds
             if (buttonClick == null) buttonClick = Resources.Load<AudioClip>("Audio/SFX/button_click");
@@ -382,6 +390,10 @@ namespace PokerClient.Core
         public void PlayLevelUp() => PlaySFX(levelUp);
         public void PlayItemDrop() => PlaySFX(itemDrop);
         public void PlayRareItemDrop() => PlaySFX(rareItemDrop, 1.2f);
+        
+        // Countdown sounds
+        public void PlayCountdownBeep() => PlaySFX(countdownBeep);
+        public void PlayReadyToRumble() => PlaySFX(readyToRumble, 1.0f);
         
         // Scene music
         public void PlayMenuMusic() => PlayMusic(menuMusic);

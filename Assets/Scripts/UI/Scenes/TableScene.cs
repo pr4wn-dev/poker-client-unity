@@ -923,11 +923,16 @@ namespace PokerClient.UI.Scenes
                 _countdownOverlay.SetActive(true);
                 _countdownNumber.text = countdownValue.ToString();
                 
-                // Play tick sound on each countdown change
+                // Play beep sound on each countdown change
                 if (countdownValue != _lastCountdownValue)
                 {
                     _lastCountdownValue = countdownValue;
-                    // Could add a tick sound here: AudioManager.Instance?.PlayCountdownTick();
+                    
+                    // Play countdown beep sound for each second
+                    if (Core.AudioManager.Instance != null)
+                    {
+                        Core.AudioManager.Instance.PlayCountdownBeep();
+                    }
                     
                     // Pulse animation effect - scale up then back
                     if (_countdownNumber != null)
@@ -1169,6 +1174,16 @@ namespace PokerClient.UI.Scenes
             else
             {
                 UpdateCountdownDisplay(0);
+            }
+            
+            // Play "Let's get ready to rumble!" when countdown first starts
+            if (state.phase == "countdown" && state.startCountdownRemaining == 10 && _previousPhase != "countdown")
+            {
+                // Countdown just started - play the announcement
+                if (Core.AudioManager.Instance != null)
+                {
+                    Core.AudioManager.Instance.PlayReadyToRumble();
+                }
             }
             
             // Update ready-up UI (START GAME button, READY overlay)
