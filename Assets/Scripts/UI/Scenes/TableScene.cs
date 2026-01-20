@@ -1172,6 +1172,13 @@ namespace PokerClient.UI.Scenes
             {
                 if (state == null) return;
                 
+                // COMPREHENSIVE STATE LOGGING - compare normal vs simulation
+                Debug.Log($"[FULL-STATE] OnTableStateUpdate | phase={state.phase} | isSimulation={state.isSimulation} | " +
+                    $"pot={state.pot} | turnTime={state.turnTimeRemaining} | blindTime={state.blindTimeRemaining} | " +
+                    $"blindEnabled={state.blindIncreaseEnabled} | blindLevel={state.blindLevel} | " +
+                    $"seatCount={state.seats?.Count ?? 0} | communityCards={state.communityCards?.Count ?? 0} | " +
+                    $"currentPlayerId={state.currentPlayerId} | isSpectating={state.isSpectating}");
+                
                 _currentState = state;
                 
                 // Check if current user is the table creator
@@ -1308,6 +1315,13 @@ namespace PokerClient.UI.Scenes
             
             // Sync local turn timer from server (for smooth countdown between updates)
             _isGamePhaseActive = isGamePhase && state.turnTimeRemaining > 0;
+            
+            // COMPREHENSIVE TIMER LOGGING - compare normal vs simulation
+            Debug.Log($"[TIMER-STATE] Turn timer | phase={state.phase} | isSimulation={state.isSimulation} | " +
+                $"isGamePhase={isGamePhase} | serverTurnTime={state.turnTimeRemaining} | " +
+                $"localTurnTime={_localTurnTimeRemaining} | isGamePhaseActive={_isGamePhaseActive} | " +
+                $"timerVisible={timerText?.gameObject.activeSelf}");
+            
             if (_isGamePhaseActive)
             {
                 // Sync from server - use server value as authoritative
@@ -1339,6 +1353,12 @@ namespace PokerClient.UI.Scenes
             _currentBlindLevel = state.blindLevel;
             _currentSmallBlind = state.smallBlind;
             _currentBigBlind = state.bigBlind;
+            
+            // COMPREHENSIVE BLIND TIMER LOGGING - compare normal vs simulation
+            Debug.Log($"[TIMER-STATE] Blind timer | phase={state.phase} | isSimulation={state.isSimulation} | " +
+                $"blindIncreaseEnabled={state.blindIncreaseEnabled} | serverBlindTime={state.blindTimeRemaining} | " +
+                $"localBlindTime={_localBlindTimeRemaining} | blindLevel={state.blindLevel} | " +
+                $"blinds={state.smallBlind}/{state.bigBlind} | blindTimerVisible={blindTimerText?.gameObject.activeSelf}");
             
             if (state.blindIncreaseEnabled && state.blindTimeRemaining > 0)
             {
