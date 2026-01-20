@@ -1179,6 +1179,13 @@ namespace PokerClient.UI.Scenes
                     $"seatCount={state.seats?.Count ?? 0} | communityCards={state.communityCards?.Count ?? 0} | " +
                     $"currentPlayerId={state.currentPlayerId} | isSpectating={state.isSpectating}");
                 
+                // Phase transition logging
+                if (_previousPhase != state.phase)
+                {
+                    Debug.Log($"[PHASE-CHANGE] {_previousPhase} → {state.phase} | " +
+                        $"time={Time.time:F3} | pot={state.pot} | blindLevel={state.blindLevel}");
+                }
+                
                 _currentState = state;
                 
                 // Check if current user is the table creator

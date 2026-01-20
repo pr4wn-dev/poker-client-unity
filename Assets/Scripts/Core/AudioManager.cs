@@ -274,6 +274,10 @@ namespace PokerClient.Core
                 Debug.LogWarning("[AudioManager] PlaySFX called but sfxSource is null");
                 return;
             }
+            
+            // Comprehensive audio logging for simulation debugging
+            Debug.Log($"[AUDIO] PlaySFX: clip={clip.name}, length={clip.length:F2}s, volume={volumeScale * sfxVolume * masterVolume:F2}, time={Time.time:F3}");
+            
             sfxSource.PlayOneShot(clip, volumeScale);
         }
         

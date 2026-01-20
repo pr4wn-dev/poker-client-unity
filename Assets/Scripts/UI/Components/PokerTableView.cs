@@ -730,10 +730,16 @@ namespace PokerClient.UI.Components
         
         private System.Collections.IEnumerator AnimateCardReveal()
         {
+            float animStartTime = Time.time;
+            
             // CRITICAL FIX: Use stored original position as target, NOT current position
             // This prevents the drift bug where mid-animation positions would accumulate
             Vector3 targetPosition = _hasOriginalPosition ? _originalPosition : _rect.anchoredPosition;
             Vector3 targetScale = Vector3.one; // Always animate to normal size (1,1,1)
+            
+            Debug.Log($"[ANIM] CardReveal START | name={gameObject.name} | " +
+                $"startTime={animStartTime:F3} | targetPos={targetPosition} | " +
+                $"hasOriginalPos={_hasOriginalPosition} | parent={transform.parent?.name}");
             
             // Start animation: card slides down from above, flips, and scales up
             float duration = 0.4f;
@@ -774,6 +780,10 @@ namespace PokerClient.UI.Components
             _rect.anchoredPosition = targetPosition;
             _rect.localScale = targetScale;
             _rect.localRotation = endRotation;
+            
+            float animEndTime = Time.time;
+            Debug.Log($"[ANIM] CardReveal END | name={gameObject.name} | " +
+                $"duration={animEndTime - animStartTime:F3}s | finalPos={targetPosition}");
             
             // Clear the animation coroutine reference
             _animationCoroutine = null;
