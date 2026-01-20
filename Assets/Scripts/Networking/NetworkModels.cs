@@ -971,6 +971,17 @@ namespace PokerClient.Networking
     }
     
     [Serializable]
+    public class SimulationSettings
+    {
+        public int maxPlayers;
+        public int smallBlind;
+        public int bigBlind;
+        public int buyIn;
+        public int turnTimeLimit;
+        public int blindIncreaseInterval;
+    }
+    
+    [Serializable]
     public class SimulationResponse
     {
         public bool success;
@@ -980,6 +991,7 @@ namespace PokerClient.Networking
         public int regularBots;
         public int socketBots;
         public string status;
+        public SimulationSettings settings; // Actual random settings used
     }
     
     [Serializable]

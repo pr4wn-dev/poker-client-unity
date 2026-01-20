@@ -419,6 +419,15 @@ namespace PokerClient.Networking
             {
                 if (response != null && response.success)
                 {
+                    // Log actual random settings so user knows what's being used
+                    var s = response.settings;
+                    if (s != null)
+                    {
+                        Debug.Log($"[GameService] Simulation ACTUAL settings: " +
+                            $"buyIn={s.buyIn}, blinds={s.smallBlind}/{s.bigBlind}, " +
+                            $"players={s.maxPlayers}, turnTime={s.turnTimeLimit}ms");
+                    }
+                    
                     Debug.Log($"[GameService] Simulation started: {response.tableId}, " +
                         $"{response.regularBots} regular bots, {response.socketBots} socket bots");
                     
