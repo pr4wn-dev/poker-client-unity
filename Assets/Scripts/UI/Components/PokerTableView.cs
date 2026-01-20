@@ -3,7 +3,9 @@ using UnityEngine.UI;
 using TMPro;
 using PokerClient.Networking;
 using PokerClient.UI;
+using PokerClient.Core;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace PokerClient.UI.Components
 {
@@ -541,6 +543,8 @@ namespace PokerClient.UI.Components
         private TextMeshProUGUI _rankText;
         private TextMeshProUGUI _suitText;
         private RectTransform _rect;
+        private bool _wasEmpty = true;
+        private bool _wasHidden = false;
         
         public static CardView Create(Transform parent, string name, Vector2? size = null)
         {
@@ -596,6 +600,8 @@ namespace PokerClient.UI.Components
                 return;
             }
             
+            bool wasEmpty = _wasEmpty;
+            bool wasHidden = _wasHidden;
             gameObject.SetActive(true);
             
             // Try to use sprite from SpriteManager
@@ -608,6 +614,15 @@ namespace PokerClient.UI.Components
                     _background.color = Color.white;
                     _rankText.gameObject.SetActive(false);
                     _suitText.gameObject.SetActive(false);
+                    
+                    // Play sound and animate if card is being revealed
+                    if (wasEmpty || wasHidden)
+                    {
+                        PlayCardRevealSoundAndAnimation();
+                    }
+                    
+                    _wasEmpty = false;
+                    _wasHidden = false;
                     return;
                 }
             }
@@ -627,10 +642,81 @@ namespace PokerClient.UI.Components
             _suitText.text = suit;
             _suitText.color = suitColor;
             _suitText.gameObject.SetActive(true);
+            
+            // Play sound and animate if card is being revealed
+            if (wasEmpty || wasHidden)
+            {
+                PlayCardRevealSoundAndAnimation();
+            }
+            
+            _wasEmpty = false;
+            _wasHidden = false;
+        }
+        
+        private void PlayCardRevealSoundAndAnimation()
+        {
+            // Play card flip/deal sound
+            if (Core.AudioManager.Instance != null)
+            {
+                Core.AudioManager.Instance.PlayCardFlip();
+            }
+            
+            // Animate card appearance - slide in from top, flip, and scale up
+            if (_rect != null)
+            {
+                StartCoroutine(AnimateCardReveal());
+            }
+        }
+        
+        private System.Collections.IEnumerator AnimateCardReveal()
+        {
+            // Store original position
+            Vector3 originalPosition = _rect.anchoredPosition;
+            Vector3 originalScale = _rect.localScale;
+            
+            // Start animation: card slides down from above, flips, and scales up
+            float duration = 0.4f;
+            float elapsed = 0f;
+            
+            // Start position: slightly above and rotated
+            Vector3 startPos = originalPosition + new Vector3(0, 100f, 0);
+            Vector3 startScale = new Vector3(0.3f, 0.3f, 1f);
+            Quaternion startRotation = Quaternion.Euler(0, 90f, 0); // Flipped 90 degrees
+            Quaternion endRotation = Quaternion.identity;
+            
+            _rect.anchoredPosition = startPos;
+            _rect.localScale = startScale;
+            _rect.localRotation = startRotation;
+            
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / duration;
+                
+                // Ease out cubic for smooth animation
+                float easedT = 1f - Mathf.Pow(1f - t, 3f);
+                
+                // Interpolate position (slide down)
+                _rect.anchoredPosition = Vector3.Lerp(startPos, originalPosition, easedT);
+                
+                // Interpolate scale (grow from small)
+                _rect.localScale = Vector3.Lerp(startScale, originalScale, easedT);
+                
+                // Interpolate rotation (flip)
+                _rect.localRotation = Quaternion.Lerp(startRotation, endRotation, easedT);
+                
+                yield return null;
+            }
+            
+            // Ensure final state
+            _rect.anchoredPosition = originalPosition;
+            _rect.localScale = originalScale;
+            _rect.localRotation = endRotation;
         }
         
         public void SetHidden()
         {
+            _wasHidden = true;
             gameObject.SetActive(true);
             _rankText.gameObject.SetActive(false);
             _suitText.gameObject.SetActive(false);
@@ -654,6 +740,8 @@ namespace PokerClient.UI.Components
         
         public void SetEmpty()
         {
+            _wasEmpty = true;
+            _wasHidden = false;
             gameObject.SetActive(true);
             _background.sprite = null;
             _background.color = new Color(0.3f, 0.3f, 0.3f, 0.3f);
@@ -661,6 +749,13 @@ namespace PokerClient.UI.Components
             _rankText.gameObject.SetActive(false);
             _suitText.gameObject.SetActive(false);
             // DO NOT reset sizeDelta here - let the caller control the size
+            
+            // Reset transform for animation
+            if (_rect != null)
+            {
+                _rect.localScale = Vector3.one;
+                _rect.localRotation = Quaternion.identity;
+            }
         }
         
         private string GetSuitSymbol(string suit)

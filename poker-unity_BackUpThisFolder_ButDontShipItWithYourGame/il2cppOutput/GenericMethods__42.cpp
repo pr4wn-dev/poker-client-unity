@@ -158,7 +158,7 @@ struct ConstrainedFuncInvoker1<R, T1*>
 	}
 };
 
-struct U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13;
+struct U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F;
 struct Action_1_tF1639F231052E16AF211B4EEBFCF7AE965002B93;
 struct Action_1_t861D023BA49D3E9E1669C44E4A6BC7FEC49E0068;
 struct Action_1_tABFB5B2399090DF9E47EE3F401E4732B77134E81;
@@ -329,7 +329,7 @@ IL2CPP_EXTERN_C_END
 #pragma clang diagnostic ignored "-Winvalid-offsetof"
 #pragma clang diagnostic ignored "-Wunused-variable"
 #endif
-struct U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13  : public RuntimeObject
+struct U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F  : public RuntimeObject
 {
 	Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87* ___callback;
 	SocketManager_tE408E1553AF0165227BE6EF963146ABF11B979EE* ___U3CU3E4__this;
@@ -1590,7 +1590,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Marshal_SizeOf_TisInt32_t680FF22E76F6
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Marshal_SizeOf_TisMatrix4x4_tDB70CF134A14BA38190C59AA700BCE10E2AED3E6_m29C11BF8C434B5768FA2FA60E3E4A9C7FE498762_gshared (const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Marshal_SizeOf_TisVector4_t58B63D32F48C0DBF50DE2C60794C4676C80EDBE3_m3E3735567A9066EF764FA6AB2E80EA66A074B30E_gshared (const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t Marshal_SizeOf_TisLightData_tAC4023737E9903DE3F96B993AA323E062ABCB9ED_m57103F03EBD40F07DF6E2875A446620B8C1FEB75_gshared (const RuntimeMethod* method) ;
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass84_0_1__ctor_m34B4CD2FADA60BD52DE77CDDFB9173E306067F64_gshared (U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13* __this, const RuntimeMethod* method) ;
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void U3CU3Ec__DisplayClass86_0_1__ctor_m4E3A02D127C5D59630A9956D6F73E24143024334_gshared (U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F* __this, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_1__ctor_m2E1DFA67718FC1A0B6E5DFEB78831FFE9C059EB4_gshared (Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87* __this, RuntimeObject* ___0_object, intptr_t ___1_method, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SocketIOResponse_GetValue_TisRuntimeObject_mCEEE39EB086E65FA8E854561D61F27190AD41A0A_gshared (SocketIOResponse_t44BB4FB9D88ECA2294013562D05C8B8B87384E8C* __this, int32_t ___0_index, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* JsonUtility_FromJson_TisRuntimeObject_m0CCF0FE109BF4C85AECC9C5D0DBB43422A24FB40_gshared (String_t* ___0_json, const RuntimeMethod* method) ;
@@ -1725,9 +1725,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* JsonElement_GetRawText_m054A9C6C86F
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR SocketIO_t200C44D27E2B933DEA8E187609255B96BA8FB86D* SocketIOResponse_get_SocketIO_m2B54B75C51E8A05F7303A3B48F331120CCDB9A8D_inline (SocketIOResponse_t44BB4FB9D88ECA2294013562D05C8B8B87384E8C* __this, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* SocketIO_get_JsonSerializer_m2C9C39293CF7EDC925D5916680A688B57A26ADDE_inline (SocketIO_t200C44D27E2B933DEA8E187609255B96BA8FB86D* __this, const RuntimeMethod* method) ;
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR List_1_tBFF9DD9FFA06F20E74F9D7AD36610BD754D353A4* SocketIOResponse_get_InComingBytes_m2D3426A8B348B545297DEA505C06EA3723415C11_inline (SocketIOResponse_t44BB4FB9D88ECA2294013562D05C8B8B87384E8C* __this, const RuntimeMethod* method) ;
-inline void U3CU3Ec__DisplayClass84_0_1__ctor_m34B4CD2FADA60BD52DE77CDDFB9173E306067F64 (U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13* __this, const RuntimeMethod* method)
+inline void U3CU3Ec__DisplayClass86_0_1__ctor_m4E3A02D127C5D59630A9956D6F73E24143024334 (U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F* __this, const RuntimeMethod* method)
 {
-	((  void (*) (U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13*, const RuntimeMethod*))U3CU3Ec__DisplayClass84_0_1__ctor_m34B4CD2FADA60BD52DE77CDDFB9173E306067F64_gshared)(__this, method);
+	((  void (*) (U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F*, const RuntimeMethod*))U3CU3Ec__DisplayClass86_0_1__ctor_m4E3A02D127C5D59630A9956D6F73E24143024334_gshared)(__this, method);
 }
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* String_Concat_m8855A6DE10F84DA7F4EC113CADDB59873A25573B (String_t* ___0_str0, String_t* ___1_str1, String_t* ___2_str2, const RuntimeMethod* method) ;
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Debug_LogError_mB00B2B4468EF3CAF041B038D840820FB84C924B2 (RuntimeObject* ___0_message, const RuntimeMethod* method) ;
@@ -14325,7 +14325,7 @@ IL_0016:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91886
+// Method Definition Index: 91887
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SetPropertyUtility_SetClass_TisRuntimeObject_m0AB9B5D3D06FCB75E487FA73ADF780D2A90F22DC_gshared (RuntimeObject** ___0_currentValue, RuntimeObject* ___1_newValue, const RuntimeMethod* method) 
 {
 	{
@@ -14383,7 +14383,7 @@ IL_0038:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91885
+// Method Definition Index: 91886
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SetPropertyUtility_SetStruct_TisBoolean_t09A6377A54BE2F9E6985A8149F19234FD7DDFE22_m8D96C8077BB7384F3CE2D22D7F7432CD43DDDC77_gshared (bool* ___0_currentValue, bool ___1_newValue, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -14417,7 +14417,7 @@ IL_0015:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91885
+// Method Definition Index: 91886
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SetPropertyUtility_SetStruct_TisChar_t521A6F19B456D956AF452D926C32709DC03D6B17_m18A822ED66C0EDFFF967DD2EE9848945B34E87B5_gshared (Il2CppChar* ___0_currentValue, Il2CppChar ___1_newValue, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -14451,7 +14451,7 @@ IL_0015:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91885
+// Method Definition Index: 91886
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SetPropertyUtility_SetStruct_TisColorBlock_tDD7C62E7AFE442652FC98F8D058CE8AE6BFD7C11_m9C058D0B8344122080B4EA792AD0A489EB927099_gshared (ColorBlock_tDD7C62E7AFE442652FC98F8D058CE8AE6BFD7C11* ___0_currentValue, ColorBlock_tDD7C62E7AFE442652FC98F8D058CE8AE6BFD7C11 ___1_newValue, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -14485,7 +14485,7 @@ IL_0015:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91885
+// Method Definition Index: 91886
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SetPropertyUtility_SetStruct_TisInt32_t680FF22E76F6EFAD4375103CBBFFA0421349384C_m2ED6D8023FCEE74764642E262219A183C576362A_gshared (int32_t* ___0_currentValue, int32_t ___1_newValue, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -14519,7 +14519,7 @@ IL_0015:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91885
+// Method Definition Index: 91886
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SetPropertyUtility_SetStruct_TisInt32Enum_tCBAC8BA2BFF3A845FA599F303093BBBA374B6F0C_m25D8BCECB38D1D07CD8BCEDE0739A0F7EF955150_gshared (int32_t* ___0_currentValue, int32_t ___1_newValue, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -14553,7 +14553,7 @@ IL_0015:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91885
+// Method Definition Index: 91886
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SetPropertyUtility_SetStruct_TisNavigation_t4D2E201D65749CF4E104E8AC1232CF1D6F14795C_m3647C557CFFC5721FAAC342AC4C9613B69F15F6B_gshared (Navigation_t4D2E201D65749CF4E104E8AC1232CF1D6F14795C* ___0_currentValue, Navigation_t4D2E201D65749CF4E104E8AC1232CF1D6F14795C ___1_newValue, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -14597,7 +14597,7 @@ IL_0015:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91885
+// Method Definition Index: 91886
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SetPropertyUtility_SetStruct_TisSingle_t4530F2FF86FCB0DC29F35385CA1BD21BE294761C_mEF97FFCC58933AFC108E72BFF17641AA1305A628_gshared (float* ___0_currentValue, float ___1_newValue, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -14631,7 +14631,7 @@ IL_0015:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91885
+// Method Definition Index: 91886
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SetPropertyUtility_SetStruct_TisSpriteState_tC8199570BE6337FB5C49347C97892B4222E5AACD_mE16632C284B9E24D8747A1D0A25CE4C3D5B102EC_gshared (SpriteState_tC8199570BE6337FB5C49347C97892B4222E5AACD* ___0_currentValue, SpriteState_tC8199570BE6337FB5C49347C97892B4222E5AACD ___1_newValue, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -14675,7 +14675,7 @@ IL_0015:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 91885
+// Method Definition Index: 91886
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SetPropertyUtility_SetStruct_TisIl2CppFullySharedGenericStruct_m53D5867BC66A8AE3BF6ED2A7515C83C8EA8DB375_gshared (Il2CppFullySharedGenericStruct* ___0_currentValue, Il2CppFullySharedGenericStruct ___1_newValue, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -15074,7 +15074,7 @@ IL_0031:
 		return L_17;
 	}
 }
-// Method Definition Index: 96800
+// Method Definition Index: 96801
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SocketIOResponse_GetValue_TisRuntimeObject_mCEEE39EB086E65FA8E854561D61F27190AD41A0A_gshared (SocketIOResponse_t44BB4FB9D88ECA2294013562D05C8B8B87384E8C* __this, int32_t ___0_index, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -15106,7 +15106,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SocketIOResponse_GetValue_TisR
 		return L_7;
 	}
 }
-// Method Definition Index: 96800
+// Method Definition Index: 96801
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SocketIOResponse_GetValue_TisIl2CppFullySharedGenericAny_m8ED7AEF4F21551E5BA377ACD4F4D2A23529B9192_gshared (SocketIOResponse_t44BB4FB9D88ECA2294013562D05C8B8B87384E8C* __this, int32_t ___0_index, Il2CppFullySharedGenericAny* il2cppRetVal, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -15140,7 +15140,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SocketIOResponse_GetValue_TisIl2CppFully
 		return;
 	}
 }
-// Method Definition Index: 80172
+// Method Definition Index: 80173
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SocketManager_Emit_TisRuntimeObject_mEE93FAE0FE8BDA7EDE4132B029AB40A301623A69_gshared (SocketManager_tE408E1553AF0165227BE6EF963146ABF11B979EE* __this, String_t* ___0_eventName, RuntimeObject* ___1_data, Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87* ___2_callback, const RuntimeMethod* method) 
 {
 	if (!il2cpp_rgctx_is_initialized(method))
@@ -15159,7 +15159,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SocketManager_Emit_TisRuntimeObject_mEE9
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralF1A8C9F06866A3AF91EE80B8713255430BC5F44E);
 		il2cpp_rgctx_method_init(method);
 	}
-	U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13* V_0 = NULL;
+	U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F* V_0 = NULL;
 	bool V_1 = false;
 	bool V_2 = false;
 	SocketIOUnity_tCE62BC4F1ED021E910C3E60D028DADD52AD12B01* G_B4_0 = NULL;
@@ -15168,19 +15168,19 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SocketManager_Emit_TisRuntimeObject_mEE9
 	SocketIOUnity_tCE62BC4F1ED021E910C3E60D028DADD52AD12B01* G_B11_0 = NULL;
 	SocketIOUnity_tCE62BC4F1ED021E910C3E60D028DADD52AD12B01* G_B10_0 = NULL;
 	{
-		U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13* L_0 = (U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13*)il2cpp_codegen_object_new(il2cpp_rgctx_data(method->rgctx_data, 0));
-		U3CU3Ec__DisplayClass84_0_1__ctor_m34B4CD2FADA60BD52DE77CDDFB9173E306067F64(L_0, il2cpp_rgctx_method(method->rgctx_data, 1));
+		U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F* L_0 = (U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F*)il2cpp_codegen_object_new(il2cpp_rgctx_data(method->rgctx_data, 0));
+		U3CU3Ec__DisplayClass86_0_1__ctor_m4E3A02D127C5D59630A9956D6F73E24143024334(L_0, il2cpp_rgctx_method(method->rgctx_data, 1));
 		V_0 = L_0;
-		U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13* L_1 = V_0;
+		U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F* L_1 = V_0;
 		Action_1_t6F9EB113EB3F16226AEF811A2744F4111C116C87* L_2 = ___2_callback;
 		NullCheck(L_1);
 		L_1->___callback = L_2;
 		Il2CppCodeGenWriteBarrier((void**)(&L_1->___callback), (void*)L_2);
-		U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13* L_3 = V_0;
+		U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F* L_3 = V_0;
 		NullCheck(L_3);
 		L_3->___U3CU3E4__this = __this;
 		Il2CppCodeGenWriteBarrier((void**)(&L_3->___U3CU3E4__this), (void*)__this);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:354>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:367>
 		SocketIOUnity_tCE62BC4F1ED021E910C3E60D028DADD52AD12B01* L_4 = __this->____socket;
 		if (L_4)
 		{
@@ -15188,33 +15188,33 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void SocketManager_Emit_TisRuntimeObject_mEE9
 		}
 	}
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:356>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:369>
 		String_t* L_5 = ___0_eventName;
 		String_t* L_6;
 		L_6 = String_Concat_m8855A6DE10F84DA7F4EC113CADDB59873A25573B(_stringLiteralF1A8C9F06866A3AF91EE80B8713255430BC5F44E, L_5, _stringLiteral07A08AD656AB99ECF8EE8AB6D580E95562A15DA7, NULL);
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_LogError_mB00B2B4468EF3CAF041B038D840820FB84C924B2((RuntimeObject*)L_6, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:357>
-		U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13* L_7 = V_0;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:370>
+		U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F* L_7 = V_0;
 		Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* L_8 = (Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07*)il2cpp_codegen_object_new(Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07_il2cpp_TypeInfo_var);
 		Action__ctor_mBDC7B0B4A3F583B64C2896F01BDED360772F67DC(L_8, (RuntimeObject*)L_7, (intptr_t)((void*)il2cpp_rgctx_method(method->rgctx_data, 3)), NULL);
 		il2cpp_codegen_runtime_class_init_inline(UnityMainThread_tFB0EB6F116152FA9E8B0545EF8B8E17A6B26A109_il2cpp_TypeInfo_var);
 		UnityMainThread_Execute_m4532A816448AB8AA8D77C7BA8289CA573309B711(L_8, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:358>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:371>
 		return;
 	}
 
 IL_0043:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:362>
-		U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13* L_9 = V_0;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:375>
+		U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F* L_9 = V_0;
 		String_t* L_10 = ___0_eventName;
 		String_t* L_11;
 		L_11 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(L_10, _stringLiteral365D4DA18FE5029B3C9967A79B7B302AF18BCBDD, NULL);
 		NullCheck(L_9);
 		L_9->___responseEvent = L_11;
 		Il2CppCodeGenWriteBarrier((void**)(&L_9->___responseEvent), (void*)L_11);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:409>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:422>
 		SocketIOUnity_tCE62BC4F1ED021E910C3E60D028DADD52AD12B01* L_12 = __this->____socket;
 		SocketIOUnity_tCE62BC4F1ED021E910C3E60D028DADD52AD12B01* L_13 = L_12;
 		if (L_13)
@@ -15240,10 +15240,10 @@ IL_0061:
 IL_0066:
 	{
 		V_1 = (bool)G_B5_0;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:410>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:423>
 		bool L_15 = __this->___isConnected;
 		V_2 = L_15;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:413>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:426>
 		SocketIOUnity_tCE62BC4F1ED021E910C3E60D028DADD52AD12B01* L_16 = __this->____socket;
 		if (!L_16)
 		{
@@ -15267,7 +15267,7 @@ IL_0066:
 
 IL_007c:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:415>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:428>
 		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_19 = (ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)(ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918*)SZArrayNew(ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918_il2cpp_TypeInfo_var, (uint32_t)4);
 		ObjectU5BU5D_t8061030B0A12A55D5AD8652A20C922FE99450918* L_20 = L_19;
 		String_t* L_21 = ___0_eventName;
@@ -15299,20 +15299,20 @@ IL_007c:
 		L_34 = String_Format_m918500C1EFB475181349A79989BB79BB36102894(_stringLiteralE92FA11C8ABE20AB25317AB88F2ED7F45AD6CA64, L_30, NULL);
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_LogWarning_m33EF1B897E0C7C6FF538989610BFAFFEF4628CA9((RuntimeObject*)L_34, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:416>
-		U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13* L_35 = V_0;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:429>
+		U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F* L_35 = V_0;
 		Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07* L_36 = (Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07*)il2cpp_codegen_object_new(Action_tD00B0A84D7945E50C2DFFC28EFEE6ED44ED2AD07_il2cpp_TypeInfo_var);
 		Action__ctor_mBDC7B0B4A3F583B64C2896F01BDED360772F67DC(L_36, (RuntimeObject*)L_35, (intptr_t)((void*)il2cpp_rgctx_method(method->rgctx_data, 4)), NULL);
 		il2cpp_codegen_runtime_class_init_inline(UnityMainThread_tFB0EB6F116152FA9E8B0545EF8B8E17A6B26A109_il2cpp_TypeInfo_var);
 		UnityMainThread_Execute_m4532A816448AB8AA8D77C7BA8289CA573309B711(L_36, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:417>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:430>
 		return;
 	}
 
 IL_00ca:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:420>
-		U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13* L_37 = V_0;
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:433>
+		U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F* L_37 = V_0;
 		NullCheck(L_37);
 		String_t* L_38 = L_37->___responseEvent;
 		String_t* L_39 = ___0_eventName;
@@ -15320,17 +15320,17 @@ IL_00ca:
 		L_40 = String_Concat_m093934F71A9B351911EE46311674ED463B180006(_stringLiteralE746143A8F74EC734C3DFF21A21CC7DC7E11EA89, L_38, _stringLiteral4569428E80BDCF42E5FA4EFB4544A50FEA5AF7BA, L_39, NULL);
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB((RuntimeObject*)L_40, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:421>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:434>
 		SocketIOUnity_tCE62BC4F1ED021E910C3E60D028DADD52AD12B01* L_41 = __this->____socket;
-		U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13* L_42 = V_0;
+		U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F* L_42 = V_0;
 		NullCheck(L_42);
 		String_t* L_43 = L_42->___responseEvent;
-		U3CU3Ec__DisplayClass84_0_1_tBE4EB1D5EAE39C7F4388D92B89989939D6583B13* L_44 = V_0;
+		U3CU3Ec__DisplayClass86_0_1_tF662FA07056AE80E0E6A04A95BECC89400385D6F* L_44 = V_0;
 		Action_1_t8D86BFE8DCD09C47D1BA30C40AA59B5D04D53FCA* L_45 = (Action_1_t8D86BFE8DCD09C47D1BA30C40AA59B5D04D53FCA*)il2cpp_codegen_object_new(Action_1_t8D86BFE8DCD09C47D1BA30C40AA59B5D04D53FCA_il2cpp_TypeInfo_var);
 		Action_1__ctor_m11818DD22816ADD7E1E038B71AC9A12E33D085C6(L_45, (RuntimeObject*)L_44, (intptr_t)((void*)il2cpp_rgctx_method(method->rgctx_data, 5)), NULL);
 		NullCheck((SocketIO_t200C44D27E2B933DEA8E187609255B96BA8FB86D*)L_41);
 		SocketIO_On_mA68913FBCC416430F3AD04C6A713F3E867301ADB((SocketIO_t200C44D27E2B933DEA8E187609255B96BA8FB86D*)L_41, L_43, L_45, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:422>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:435>
 		SocketIOUnity_tCE62BC4F1ED021E910C3E60D028DADD52AD12B01* L_46 = __this->____socket;
 		SocketIOUnity_tCE62BC4F1ED021E910C3E60D028DADD52AD12B01* L_47 = L_46;
 		if (L_47)
@@ -15360,17 +15360,17 @@ IL_010e:
 
 IL_011f:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:423>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:436>
 		String_t* L_53 = ___0_eventName;
 		String_t* L_54;
 		L_54 = String_Concat_m9E3155FB84015C823606188F53B47CB44C444991(_stringLiteral5A289696A42B73BD4050DCF4AC6D3A11984E12E2, L_53, NULL);
 		il2cpp_codegen_runtime_class_init_inline(Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var);
 		Debug_Log_m87A9A3C761FF5C43ED8A53B16190A53D08F818BB((RuntimeObject*)L_54, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:425>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:438>
 		return;
 	}
 }
-// Method Definition Index: 80169
+// Method Definition Index: 80170
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SocketManager_ParseResponse_TisRuntimeObject_mE9861594CED7A77D3331DBFD6818DC307FE07B9C_gshared (SocketManager_tE408E1553AF0165227BE6EF963146ABF11B979EE* __this, SocketIOResponse_t44BB4FB9D88ECA2294013562D05C8B8B87384E8C* ___0_response, const RuntimeMethod* method) 
 {
 	if (!il2cpp_rgctx_is_initialized(method))
@@ -15389,7 +15389,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* SocketManager_ParseResponse_Ti
 	try
 	{
 		{
-			//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:218>
+			//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:231>
 			SocketIOResponse_t44BB4FB9D88ECA2294013562D05C8B8B87384E8C* L_0 = ___0_response;
 			NullCheck(L_0);
 			RuntimeObject* L_1;
@@ -15418,7 +15418,7 @@ IL_000e_1:
 IL_0013_1:
 		{
 			V_0 = G_B3_0;
-			//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:219>
+			//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:232>
 			String_t* L_4 = V_0;
 			bool L_5;
 			L_5 = String_IsNullOrEmpty_mEA9E3FB005AC28FE02E69FCF95A7B8456192B478(L_4, NULL);
@@ -15428,7 +15428,7 @@ IL_0013_1:
 			}
 		}
 		{
-			//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:219>
+			//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:232>
 			il2cpp_codegen_initobj((&V_1), sizeof(RuntimeObject*));
 			RuntimeObject* L_6 = V_1;
 			V_1 = L_6;
@@ -15437,7 +15437,7 @@ IL_0013_1:
 
 IL_0028_1:
 		{
-			//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:220>
+			//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:233>
 			String_t* L_7 = V_0;
 			RuntimeObject* L_8;
 			L_8 = JsonUtility_FromJson_TisRuntimeObject_m0CCF0FE109BF4C85AECC9C5D0DBB43422A24FB40(L_7, il2cpp_rgctx_method(method->rgctx_data, 1));
@@ -15458,9 +15458,9 @@ IL_0028_1:
 CATCH_0031:
 	{
 		Exception_t* L_9 = ((Exception_t*)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t*));;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:222>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:235>
 		V_2 = L_9;
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:224>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:237>
 		RuntimeTypeHandle_t332A452B8B6179E4469B69525D0FE82A88030F7B L_10 = { reinterpret_cast<intptr_t> (il2cpp_rgctx_type(method->rgctx_data, 2)) };
 		il2cpp_codegen_runtime_class_init_inline(il2cpp_defaults.systemtype_class);
 		Type_t* L_11;
@@ -15476,7 +15476,7 @@ CATCH_0031:
 		L_15 = String_Concat_m093934F71A9B351911EE46311674ED463B180006(((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral819EC0535018D794C586B5F61BD16E8D0A490398)), L_12, ((String_t*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&_stringLiteral1168E92C164109D6220480DEDA987085B2A21155)), L_14, NULL);
 		il2cpp_codegen_runtime_class_init_inline(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Debug_t8394C7EEAECA3689C2C9B9DE9C7166D73596276F_il2cpp_TypeInfo_var)));
 		Debug_LogError_mB00B2B4468EF3CAF041B038D840820FB84C924B2((RuntimeObject*)L_15, NULL);
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:225>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:238>
 		il2cpp_codegen_initobj((&V_3), sizeof(RuntimeObject*));
 		RuntimeObject* L_16 = V_3;
 		V_1 = L_16;
@@ -15486,7 +15486,7 @@ CATCH_0031:
 
 IL_0067:
 	{
-		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:227>
+		//<source_info:C:/Projects/poker-client-unity/Assets/Scripts/Networking/SocketManager.cs:240>
 		RuntimeObject* L_17 = V_1;
 		return L_17;
 	}
@@ -21994,7 +21994,7 @@ IL_028b:
 		return (bool)0;
 	}
 }
-// Method Definition Index: 101591
+// Method Definition Index: 101592
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SpanUtility_IsValidIndex_TisByte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_m816920804DCC482BD492BBEAAE3DDA79E586C431_gshared (ReadOnlySpan_1_tA850A6C0E88ABBA37646A078ACBC24D6D5FD9B4D ___0_span, int32_t ___1_index, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -22016,7 +22016,7 @@ IL_000c:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 101592
+// Method Definition Index: 101593
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SpanUtility_IsValidIndex_TisByte_t94D9231AC217BE4D2E004C4CD32DF6D099EA41A3_mD4A5F40C9F67F6747AD34013E89D148727DE6826_gshared (Span_1_tDADAC65069DFE6B57C458109115ECD795ED39305 ___0_span, int32_t ___1_index, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -22038,7 +22038,7 @@ IL_000c:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 101591
+// Method Definition Index: 101592
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SpanUtility_IsValidIndex_TisChar_t521A6F19B456D956AF452D926C32709DC03D6B17_m5A8FE18532332A4719413C001353E1EF3721037C_gshared (ReadOnlySpan_1_t59614EA6E51A945A32B02AB17FBCBDF9A5C419C1 ___0_span, int32_t ___1_index, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -22060,7 +22060,7 @@ IL_000c:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 101592
+// Method Definition Index: 101593
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SpanUtility_IsValidIndex_TisChar_t521A6F19B456D956AF452D926C32709DC03D6B17_m74F946F63AE198CE9DE6862EC7CECF5505EF82BC_gshared (Span_1_tEDDF15FCF9EC6DEBA0F696BAACDDBAB9D92C252D ___0_span, int32_t ___1_index, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -22082,7 +22082,7 @@ IL_000c:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 101591
+// Method Definition Index: 101592
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SpanUtility_IsValidIndex_TisIl2CppFullySharedGenericAny_m393E988493C7D6C04342B0ACB2D038419A91683B_gshared (ReadOnlySpan_1_tC416A5627E04F69CA2947A2A13F0A1DF096CABAC ___0_span, int32_t ___1_index, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -22104,7 +22104,7 @@ IL_000c:
 		return (bool)1;
 	}
 }
-// Method Definition Index: 101592
+// Method Definition Index: 101593
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool SpanUtility_IsValidIndex_TisIl2CppFullySharedGenericAny_m7E4732D128F78D919FC925AD1DF5724947AD00FA_gshared (Span_1_tDEB40BEFA77B5E4BB49B058CD3050EEA4DD36C54 ___0_span, int32_t ___1_index, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -23356,7 +23356,7 @@ IL_0039:
 		return L_11;
 	}
 }
-// Method Definition Index: 96458
+// Method Definition Index: 96459
 IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void SpriteShapeGenerator_CopyToNativeArray_TisIl2CppFullySharedGenericStruct_mBCD6F57F2D632FF3C5BFAFAB0FA4E8D08576C624_gshared (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 ___0_from, int32_t ___1_length, NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18* ___2_to, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -23404,7 +23404,7 @@ IL_0025:
 		return;
 	}
 }
-// Method Definition Index: 96459
+// Method Definition Index: 96460
 IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void SpriteShapeGenerator_SafeDispose_TisIl2CppFullySharedGenericStruct_mB511D011427270BC460A14CD07823E5E98951AF4_gshared (NativeArray_1_tDB8B8DC66CC8E16ED6D9A8C75D2C1AFC80AC1E18 ___0_na, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -23428,7 +23428,7 @@ IL_0011:
 		return;
 	}
 }
-// Method Definition Index: 96459
+// Method Definition Index: 96460
 IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void SpriteShapeGenerator_SafeDispose_Tisfloat2_t24AA5C0F612B0672315EDAFEC9D9E7F1C4A5B0BA_m738BCE684B1F01FA90F06DF143639A992D1DC37F_gshared (NativeArray_1_t46D43179C2B71BAB34958401E08B5C5DA4488E9E ___0_na, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -23452,7 +23452,7 @@ IL_0011:
 		return;
 	}
 }
-// Method Definition Index: 96459
+// Method Definition Index: 96460
 IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void SpriteShapeGenerator_SafeDispose_Tisint2_tF4AC25F87943DC0B2BB3456B0B919B3B42A9432A_mF0E6A47F9DE048580B8932B320F1DBF7CC04F0C3_gshared (NativeArray_1_tE86585F07CF10FCD01AA2652A104B149336F7EC2 ___0_na, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -23476,7 +23476,7 @@ IL_0011:
 		return;
 	}
 }
-// Method Definition Index: 96459
+// Method Definition Index: 96460
 IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void SpriteShapeGenerator_SafeDispose_TisJobAngleRange_t974C3D0183C9572CE9C7D88703CABC5FAE543F13_mD8C54F984ED397A3ECF100AA725BF5C35F8CCA5C_gshared (NativeArray_1_t6A9440FA4CD97A8AF79CFC6B5EACC6334B735C72 ___0_na, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -23500,7 +23500,7 @@ IL_0011:
 		return;
 	}
 }
-// Method Definition Index: 96459
+// Method Definition Index: 96460
 IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void SpriteShapeGenerator_SafeDispose_TisJobContourPoint_t4C410C8E8FEECD48C1DE496790BA15C88F09E3E3_m3D078541F6FD81C5502F27B0CD7F6B9DA1809999_gshared (NativeArray_1_t1B14A657C1CECB432BE147E154F55E2CA5137892 ___0_na, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -23524,7 +23524,7 @@ IL_0011:
 		return;
 	}
 }
-// Method Definition Index: 96459
+// Method Definition Index: 96460
 IL2CPP_EXTERN_C IL2CPP_NO_INLINE IL2CPP_METHOD_ATTR void SpriteShapeGenerator_SafeDispose_TisJobControlPoint_t4A1C76318BCFAEC1F3FBA7879A2FB6FD0AFB2A36_mE2735DDA22A0EBDD28F48E21B5B37D423DF1A507_gshared (NativeArray_1_tD02731CFBE491B5BFFD8328166FDE46F8D844B1A ___0_na, const RuntimeMethod* method) 
 {
 	il2cpp_rgctx_method_init(method);
@@ -23557,7 +23557,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR List_1_t2121653FB628940E808D105AD
 		return L_0;
 	}
 }
-// Method Definition Index: 96797
+// Method Definition Index: 96798
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR SocketIO_t200C44D27E2B933DEA8E187609255B96BA8FB86D* SocketIOResponse_get_SocketIO_m2B54B75C51E8A05F7303A3B48F331120CCDB9A8D_inline (SocketIOResponse_t44BB4FB9D88ECA2294013562D05C8B8B87384E8C* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23566,7 +23566,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR SocketIO_t200C44D27E2B933DEA8E187
 		return L_0;
 	}
 }
-// Method Definition Index: 96673
+// Method Definition Index: 96674
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* SocketIO_get_JsonSerializer_m2C9C39293CF7EDC925D5916680A688B57A26ADDE_inline (SocketIO_t200C44D27E2B933DEA8E187609255B96BA8FB86D* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23575,7 +23575,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR RuntimeObject* SocketIO_get_JsonS
 		return L_0;
 	}
 }
-// Method Definition Index: 96796
+// Method Definition Index: 96797
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR List_1_tBFF9DD9FFA06F20E74F9D7AD36610BD754D353A4* SocketIOResponse_get_InComingBytes_m2D3426A8B348B545297DEA505C06EA3723415C11_inline (SocketIOResponse_t44BB4FB9D88ECA2294013562D05C8B8B87384E8C* __this, const RuntimeMethod* method) 
 {
 	{
@@ -23584,7 +23584,7 @@ IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR List_1_tBFF9DD9FFA06F20E74F9D7AD3
 		return L_0;
 	}
 }
-// Method Definition Index: 96670
+// Method Definition Index: 96671
 IL2CPP_MANAGED_FORCE_INLINE IL2CPP_METHOD_ATTR bool SocketIO_get_Connected_m857CDB1F03CC47A90F976B20F9A8075CA84729DE_inline (SocketIO_t200C44D27E2B933DEA8E187609255B96BA8FB86D* __this, const RuntimeMethod* method) 
 {
 	{
