@@ -540,13 +540,43 @@ namespace PokerClient.UI.Scenes
             socketBotRatioSlider.gameObject.SetActive(false);
             socketBotRatioValue.gameObject.SetActive(false);
             
-            // Update simulation toggle to also toggle ratio label
+            // Update simulation toggle - randomize and lock all settings
             simulationToggle.onValueChanged.RemoveAllListeners();
             simulationToggle.onValueChanged.AddListener(v => {
                 if (v)
                 {
-                    practiceModeToggle.isOn = true; // Simulations always practice mode
+                    // Auto-name if empty
+                    if (string.IsNullOrWhiteSpace(tableNameInput?.text))
+                    {
+                        string[] simNames = { "Chaos Test", "Bot Battle", "Stress Test", "Showdown", "All-In Madness", 
+                            "High Stakes", "Low Roller", "Mixed Nuts", "River Rats", "Bluff City" };
+                        tableNameInput.text = simNames[UnityEngine.Random.Range(0, simNames.Length)];
+                    }
+                    
+                    // Randomize all settings
+                    if (maxPlayersSlider != null) maxPlayersSlider.value = UnityEngine.Random.Range(3, 10);
+                    if (smallBlindSlider != null) smallBlindSlider.value = UnityEngine.Random.Range(0, 8);
+                    if (buyInSlider != null) buyInSlider.value = UnityEngine.Random.Range(0, 6);
+                    if (turnTimeSlider != null) turnTimeSlider.value = UnityEngine.Random.Range(5, 31);
+                    if (roundTimerSlider != null) roundTimerSlider.value = UnityEngine.Random.value > 0.5f ? UnityEngine.Random.Range(5, 21) : 0;
+                    
+                    // Force practice mode ON
+                    practiceModeToggle.isOn = true;
+                    privateToggle.isOn = false;
                 }
+                
+                // Disable/enable all inputs based on simulation mode
+                bool canEdit = !v;
+                if (tableNameInput != null) tableNameInput.interactable = canEdit;
+                if (maxPlayersSlider != null) maxPlayersSlider.interactable = canEdit;
+                if (smallBlindSlider != null) smallBlindSlider.interactable = canEdit;
+                if (buyInSlider != null) buyInSlider.interactable = canEdit;
+                if (turnTimeSlider != null) turnTimeSlider.interactable = canEdit;
+                if (roundTimerSlider != null) roundTimerSlider.interactable = canEdit;
+                if (privateToggle != null) privateToggle.interactable = canEdit;
+                if (practiceModeToggle != null) practiceModeToggle.interactable = canEdit;
+                
+                // Show/hide socket bot ratio (only in simulation)
                 ratioLabelGo.gameObject.SetActive(v);
                 socketBotRatioSlider.gameObject.SetActive(v);
                 socketBotRatioValue.gameObject.SetActive(v);
